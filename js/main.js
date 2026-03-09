@@ -259,4 +259,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // --- GA4 Conversion Tracking ---
+  // Track WhatsApp clicks, booking clicks, and phone call clicks
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a[href]');
+    if (!link) return;
+    const href = link.getAttribute('href');
+
+    // WhatsApp conversation click
+    if (href && href.includes('wa.me')) {
+      gtag('event', 'whatsapp_click', {
+        event_category: 'engagement',
+        event_label: 'WhatsApp Conversation',
+        link_url: href
+      });
+    }
+
+    // 30-min booking click
+    if (href && href.includes('cal.eu')) {
+      gtag('event', 'booking_click', {
+        event_category: 'conversion',
+        event_label: '30 Min Booking',
+        link_url: href
+      });
+    }
+
+    // Phone call click
+    if (href && href.startsWith('tel:')) {
+      gtag('event', 'phone_call', {
+        event_category: 'engagement',
+        event_label: 'Phone Call',
+        link_url: href
+      });
+    }
+  });
+
 });
