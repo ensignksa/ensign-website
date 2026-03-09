@@ -76,6 +76,17 @@ strong {
   color: var(--white);
 }
 
+/* --- Keyboard Focus Accessibility --- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
 /* --- Custom Cursor --- */
 .cursor {
   width: 8px;
