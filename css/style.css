@@ -553,6 +553,21 @@ strong {
   transform: translateY(-2px);
 }
 
+.btn-whatsapp {
+  border-color: #25D366;
+  color: #25D366;
+  padding: 14px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-whatsapp:hover {
+  background: #25D366;
+  color: var(--white);
+  border-color: #25D366;
+}
+
 .btn-white {
   background: var(--white);
   color: var(--black);
