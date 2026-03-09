@@ -159,17 +159,18 @@
     ]
   }
   </script>
-  <!-- LocalBusiness Schema — boosts local search visibility -->
+  <!-- LocalBusiness Schema — boosts local search visibility, Knowledge Panel, Maps -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     "name": "Ensign Ai Marketing Agency",
-    "alternateName": "Ensign Agency",
+    "alternateName": ["Ensign Agency", "Ensign KSA"],
     "url": "https://ensignksa.com",
     "logo": "https://ensignksa.com/assets/logos/3.png",
     "image": "https://ensignksa.com/assets/logos/3.png",
-    "description": "Saudi-based AI and marketing consultancy designing intelligent marketing systems, automation frameworks, and high-performance campaigns.",
+    "description": "Saudi-based AI and marketing consultancy designing intelligent marketing systems, automation frameworks, and high-performance campaigns for businesses in Saudi Arabia and the UAE.",
+    "slogan": "AI Systems. Human Leadership.",
     "email": "contact@ensignksa.com",
     "telephone": "+966548919405",
     "address": {
@@ -191,14 +192,85 @@
       {
         "@type": "Country",
         "name": "United Arab Emirates"
+      },
+      {
+        "@type": "GeoCircle",
+        "geoMidpoint": {
+          "@type": "GeoCoordinates",
+          "latitude": 24.7136,
+          "longitude": 46.6753
+        },
+        "geoRadius": "2000000"
       }
     ],
+    "serviceType": ["AI Marketing Consulting", "Marketing Automation", "AI Agents", "Campaign Management", "Creative Production"],
     "priceRange": "$$",
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
-      "opens": "09:00",
-      "closes": "18:00"
+    "currenciesAccepted": "SAR, AED, USD",
+    "paymentAccepted": "Bank Transfer, Credit Card",
+    "knowsLanguage": ["en", "ar"],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Sunday",
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Monday",
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Tuesday",
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Wednesday",
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Thursday",
+        "opens": "09:00",
+        "closes": "18:00"
+      }
+    ],
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+966548919405",
+        "contactType": "sales",
+        "email": "contact@ensignksa.com",
+        "areaServed": ["SA", "AE"],
+        "availableLanguage": ["English", "Arabic"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+966548919405",
+        "contactType": "customer support",
+        "url": "https://wa.me/966548919405",
+        "availableLanguage": ["English", "Arabic"]
+      }
+    ],
+    "potentialAction": {
+      "@type": "ReserveAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://cal.eu/ensignksa/30min",
+        "actionPlatform": [
+          "http://schema.org/DesktopWebPlatform",
+          "http://schema.org/MobileWebPlatform"
+        ]
+      },
+      "result": {
+        "@type": "Reservation",
+        "name": "Book a Discovery Call"
+      }
     },
     "sameAs": [
       "https://www.linkedin.com/company/ensignailab",
@@ -776,8 +848,11 @@
             <a href="careers.html">Careers</a>
           </div>
           <div class="footer-col">
-            <h4>Location</h4>
-            <p>Riyadh, Saudi Arabia</p>
+            <h4>Contact</h4>
+            <a href="mailto:contact@ensignksa.com">contact@ensignksa.com</a>
+            <a href="https://wa.me/966548919405" target="_blank" rel="noopener noreferrer">+966 54 891 9405</a>
+            <p style="margin-top: 1rem; color: var(--gray-400); font-size: 0.85rem;">Based in Riyadh, Saudi Arabia</p>
+            <p style="color: var(--gray-400); font-size: 0.85rem;">Sun — Thu, 9:00 AM — 6:00 PM</p>
           </div>
         </div>
       </div>
