@@ -1,0 +1,19 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+
+# Claude
+.claude/
+
+# Node
+node_modules/
+
+# Python
+__pycache__/
+*.pyc
+temp/
