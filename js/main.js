@@ -10,19 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // --- Preloader ---
   const preloader = document.getElementById('preloader');
-  window.addEventListener('load', () => {
+  if (preloader) {
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        preloader.classList.add('hidden');
+        document.body.style.overflow = '';
+        initAnimations();
+      }, 1800);
+    });
+
+    // Fallback: hide preloader after 3s regardless
     setTimeout(() => {
       preloader.classList.add('hidden');
       document.body.style.overflow = '';
-      initAnimations();
-    }, 1800);
-  });
-
-  // Fallback: hide preloader after 3s regardless
-  setTimeout(() => {
-    preloader.classList.add('hidden');
-    document.body.style.overflow = '';
-  }, 3000);
+    }, 3000);
+  }
 
   // --- Custom Cursor ---
   const cursor = document.getElementById('cursor');
@@ -103,20 +105,22 @@ document.addEventListener('DOMContentLoaded', () => {
   const words = document.querySelectorAll('.hero-word');
   let currentWordIndex = 0;
 
-  function rotateWords() {
-    const currentWord = words[currentWordIndex];
-    currentWord.classList.remove('active');
-    currentWord.classList.add('exit');
+  if (words.length > 1) {
+    function rotateWords() {
+      const currentWord = words[currentWordIndex];
+      currentWord.classList.remove('active');
+      currentWord.classList.add('exit');
 
-    setTimeout(() => {
-      currentWord.classList.remove('exit');
-    }, 500);
+      setTimeout(() => {
+        currentWord.classList.remove('exit');
+      }, 500);
 
-    currentWordIndex = (currentWordIndex + 1) % words.length;
-    words[currentWordIndex].classList.add('active');
+      currentWordIndex = (currentWordIndex + 1) % words.length;
+      words[currentWordIndex].classList.add('active');
+    }
+
+    setInterval(rotateWords, 2500);
   }
-
-  setInterval(rotateWords, 2500);
 
   // --- Scroll Animations (Intersection Observer) ---
   function initAnimations() {
@@ -142,6 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize animations immediately as well (in case load event already fired)
   initAnimations();
+
+  // Safety net: force all animated elements visible after 1.5s
+  // Prevents content from staying hidden if IntersectionObserver fails
+  setTimeout(() => {
+    document.querySelectorAll('[data-animate]:not(.visible)').forEach(el => {
+      el.classList.add('visible');
+    });
+  }, 1500);
 
   // --- Counter Animation ---
   function animateCounters() {

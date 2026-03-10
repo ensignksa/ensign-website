@@ -1346,12 +1346,12 @@ select:focus-visible {
 /* --- Animations --- */
 [data-animate] {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transform: translateY(30px);
+  transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out);
 }
 
 [data-animate="fade-left"] {
-  transform: translateX(40px);
+  transform: translateX(30px);
 }
 
 [data-animate].visible {
