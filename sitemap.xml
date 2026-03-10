@@ -31,6 +31,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://ensignksa.com/blog/ai-marketing-automations-saudi-business-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Arabic Pages -->
   <url>
     <loc>https://ensignksa.com/ar/</loc>
@@ -49,6 +55,12 @@
     <lastmod>2026-03-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ensignksa.com/ar/blog/ai-marketing-automations-saudi-business-2026.html</loc>
+    <lastmod>2026-03-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://ensignksa.com/ar/privacy-policy.html</loc>
