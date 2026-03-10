@@ -1758,3 +1758,157 @@ section[id] {
   color: var(--coral);
   font-size: 0.9rem;
 }
+
+/* ============================================
+   RTL (Arabic) Overrides
+   Activated by <html dir="rtl" lang="ar">
+   ============================================ */
+
+/* Arabic font variables */
+[dir="rtl"] {
+  --font-headline: 'Cairo', 'Tajawal', sans-serif;
+  --font-body: 'Almarai', 'Montserrat', sans-serif;
+}
+
+[dir="rtl"] body {
+  letter-spacing: 0;
+}
+
+[dir="rtl"] .hero-title,
+[dir="rtl"] .section-title,
+[dir="rtl"] .cta-title {
+  letter-spacing: 0;
+}
+
+[dir="rtl"] .marquee-track {
+  letter-spacing: 0;
+}
+
+[dir="rtl"] .footer-col h4 {
+  letter-spacing: 0;
+}
+
+/* Nav underline — start from right */
+[dir="rtl"] .nav-link::after {
+  left: auto;
+  right: 0;
+}
+
+/* Hamburger menu X animation */
+[dir="rtl"] .nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(5.5px) translateX(-5.5px);
+}
+[dir="rtl"] .nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-5.5px) translateX(-5.5px);
+}
+
+/* Hero rotating word */
+[dir="rtl"] .hero-word {
+  left: auto;
+  right: 0;
+}
+
+/* Button arrow flip */
+[dir="rtl"] .btn-primary:hover svg {
+  transform: translateX(-4px);
+}
+
+/* Service card list — bullet on right */
+[dir="rtl"] .service-card-list li {
+  padding-left: 0;
+  padding-right: 16px;
+}
+[dir="rtl"] .service-card-list li::before {
+  left: auto;
+  right: 0;
+}
+
+/* Service card arrow — flip position and hover */
+[dir="rtl"] .service-card-arrow {
+  right: auto;
+  left: 36px;
+}
+[dir="rtl"] .service-card:hover .service-card-arrow {
+  transform: translate(-4px, -4px);
+}
+
+/* Marquee animation — reverse for RTL */
+[dir="rtl"] .marquee-track {
+  animation-direction: reverse;
+}
+[dir="rtl"] .clients-track {
+  animation-direction: reverse;
+}
+
+/* Industry items — padding on right */
+[dir="rtl"] .industry-item {
+  transition: padding-right 0.3s var(--ease-out), border-color 0.3s ease;
+}
+[dir="rtl"] .industry-item:hover {
+  padding-left: 0;
+  padding-right: 12px;
+}
+[dir="rtl"] .industry-item:hover .industry-arrow {
+  transform: translate(-4px, -4px);
+}
+
+/* Footer links — hover shift to right */
+[dir="rtl"] .footer-col a, [dir="rtl"] .footer-col p {
+  transition: color 0.3s ease, padding-right 0.3s ease;
+}
+[dir="rtl"] .footer-col a:hover {
+  padding-left: 0;
+  padding-right: 4px;
+}
+
+/* Fade-left animation — flip for RTL */
+[dir="rtl"] [data-animate="fade-left"] {
+  transform: translateX(-40px);
+}
+
+/* Privacy/Terms list bullets — right side */
+[dir="rtl"] .privacy-section ul li {
+  padding-left: 0;
+  padding-right: 20px;
+}
+[dir="rtl"] .privacy-section ul li::before {
+  left: auto;
+  right: 0;
+}
+
+/* Language switcher */
+.nav-lang-switch {
+  font-size: 0.8rem !important;
+  font-weight: 600;
+  padding: 4px 12px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+.nav-lang-switch:hover {
+  border-color: var(--blue);
+  color: var(--blue) !important;
+}
+.nav-lang-switch::after {
+  display: none !important;
+}
+
+.mobile-lang-switch {
+  font-size: 1rem;
+  margin-top: 16px;
+  padding: 8px 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  display: inline-block;
+  text-align: center;
+}
+.mobile-lang-switch:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+}
+
+/* Careers hero badge text-align for RTL */
+[dir="rtl"] .careers-hero-badge,
+[dir="rtl"] .hero-badge {
+  text-align: right;
+}

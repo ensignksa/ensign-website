@@ -5,6 +5,9 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
+  // --- RTL Detection ---
+  const isRTL = document.documentElement.dir === 'rtl';
+
   // --- Preloader ---
   const preloader = document.getElementById('preloader');
   window.addEventListener('load', () => {
@@ -181,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Marquee speed change on scroll
     gsap.to('.marquee-track', {
-      x: -100,
+      x: isRTL ? 100 : -100,
       scrollTrigger: {
         trigger: '.marquee-section',
         start: 'top bottom',
