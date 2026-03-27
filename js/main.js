@@ -274,37 +274,72 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // --- GA4 Conversion Tracking ---
-  // Track WhatsApp clicks, booking clicks, and phone call clicks
+  // --- GA4 Key Event / Conversion Tracking ---
+  // Uses GA4 recommended events for proper Lead Gen Key Event tracking
   document.addEventListener('click', (e) => {
     const link = e.target.closest('a[href]');
     if (!link) return;
     const href = link.getAttribute('href');
+    if (!href) return;
 
-    // WhatsApp conversation click
-    if (href && href.includes('wa.me')) {
-      gtag('event', 'whatsapp_click', {
-        event_category: 'engagement',
-        event_label: 'WhatsApp Conversation',
-        link_url: href
+    // Determine page context for attribution
+    const pagePath = window.location.pathname;
+    const pageTitle = document.title;
+
+    // Book a Discovery Call — generate_lead (Key Event)
+    if (href.includes('cal.eu')) {
+      gtag('event', 'generate_lead', {
+        currency: 'SAR',
+        value: 500,
+        lead_source: 'booking_call',
+        link_url: href,
+        page_path: pagePath,
+        page_title: pageTitle
       });
     }
 
-    // 30-min booking click
-    if (href && href.includes('cal.eu')) {
-      gtag('event', 'booking_click', {
-        event_category: 'conversion',
-        event_label: '30 Min Booking',
-        link_url: href
+    // Request a Proposal — generate_lead (Key Event)
+    if (href.includes('mailto:contact@ensignksa.com')) {
+      gtag('event', 'generate_lead', {
+        currency: 'SAR',
+        value: 300,
+        lead_source: 'proposal_request',
+        link_url: href,
+        page_path: pagePath,
+        page_title: pageTitle
+      });
+    }
+
+    // WhatsApp click — contact (Key Event)
+    if (href.includes('wa.me')) {
+      gtag('event', 'generate_lead', {
+        currency: 'SAR',
+        value: 200,
+        lead_source: 'whatsapp',
+        link_url: href,
+        page_path: pagePath,
+        page_title: pageTitle
       });
     }
 
     // Phone call click
-    if (href && href.startsWith('tel:')) {
-      gtag('event', 'phone_call', {
-        event_category: 'engagement',
-        event_label: 'Phone Call',
-        link_url: href
+    if (href.startsWith('tel:')) {
+      gtag('event', 'generate_lead', {
+        currency: 'SAR',
+        value: 200,
+        lead_source: 'phone_call',
+        link_url: href,
+        page_path: pagePath,
+        page_title: pageTitle
+      });
+    }
+
+    // Blog internal link clicks — for content attribution
+    if (href.includes('/blog/') && !href.includes('mailto') && !href.includes('wa.me')) {
+      gtag('event', 'select_content', {
+        content_type: 'blog_post',
+        item_id: href,
+        page_path: pagePath
       });
     }
   });
