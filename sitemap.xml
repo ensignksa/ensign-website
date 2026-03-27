@@ -55,6 +55,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://ensignksa.com/blog/signs-marketing-wasting-budget-ai-fix.html</loc>
+    <lastmod>2026-03-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Arabic Pages -->
   <url>
     <loc>https://ensignksa.com/ar/</loc>
@@ -95,6 +101,12 @@
   <url>
     <loc>https://ensignksa.com/ar/blog/ai-reshaping-digital-marketing-saudi-arabia-2026.html</loc>
     <lastmod>2026-03-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ensignksa.com/ar/blog/signs-marketing-wasting-budget-ai-fix.html</loc>
+    <lastmod>2026-03-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
