@@ -73,6 +73,12 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://ensignksa.com/blog/crm-setup-saudi-businesses.html</loc>
+    <lastmod>2026-03-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
   <!-- Arabic Pages -->
   <url>
     <loc>https://ensignksa.com/ar/</loc>
@@ -131,6 +137,12 @@
   <url>
     <loc>https://ensignksa.com/ar/blog/ai-lead-generation-saudi-arabia.html</loc>
     <lastmod>2026-03-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ensignksa.com/ar/blog/crm-setup-saudi-businesses.html</loc>
+    <lastmod>2026-03-31</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
