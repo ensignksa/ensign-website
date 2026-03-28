@@ -2112,18 +2112,20 @@ section[id] {
 
 /* Blog Post Featured Image */
 .blog-post-image {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  margin-top: 0;
-  margin-bottom: 0;
-  padding: 0;
+  max-width: 960px;
+  margin: 48px auto;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg, rgba(96, 148, 247, 0.08), rgba(255, 87, 87, 0.04));
+  border-radius: 8px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .blog-post-image img {
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
   object-fit: cover;
 }
 
