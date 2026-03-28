@@ -2112,8 +2112,11 @@ section[id] {
 
 /* Blog Post Featured Image */
 .blog-post-image {
-  max-width: 100%;
-  margin: 48px 0;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
   overflow: hidden;
 }
 
