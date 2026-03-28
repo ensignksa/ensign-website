@@ -1,4 +1,4 @@
-# Ensign AI Labs — Brand Guidelines
+# Ensign Ai Marketing Agency — Brand Guidelines
 
 ## Typography
 - **Headlines:** Neue Machina
