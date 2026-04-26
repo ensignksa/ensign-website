@@ -625,46 +625,41 @@
         my = e.clientY / window.innerHeight;
       }, { passive: true });
 
+      /* each orb: base position, current position, colour, alpha, radius, drift speed, mouse pull */
       var orbs = [
-        { bx:.12, by:.18, ox:.12, oy:.18, c:'31,111,78',  a:.72, r:.58, spd:.55, pull:.82 },
-        { bx:.82, by:.30, ox:.82, oy:.30, c:'39,71,255',  a:.58, r:.52, spd:.38, pull:.66 },
-        { bx:.50, by:.82, ox:.50, oy:.82, c:'124,58,237', a:.48, r:.50, spd:.70, pull:.92 }
+        { bx:.18, by:.20, ox:.18, oy:.20, c:'31,111,78',  a:.80, r:.55, spd:.50, pull:.88, lag:.06 },
+        { bx:.78, by:.32, ox:.78, oy:.32, c:'39,71,255',  a:.65, r:.50, spd:.36, pull:.75, lag:.04 },
+        { bx:.50, by:.78, ox:.50, oy:.78, c:'124,58,237', a:.55, r:.48, spd:.65, pull:.95, lag:.08 }
       ];
       var t = 0;
 
       function tick() {
         t += 0.004;
-        lx += (mx - lx) * 0.055;
-        ly += (my - ly) * 0.055;
+        /* fast lerp so colours respond quickly */
+        lx += (mx - lx) * 0.10;
+        ly += (my - ly) * 0.10;
 
         cx.fillStyle = '#0A1410';
         cx.fillRect(0, 0, W, H);
 
         orbs.forEach(function(o, i) {
-          var dx = Math.sin(t * o.spd + i * 2.09) * 0.09;
-          var dy = Math.cos(t * o.spd * .73 + i * 1.57) * 0.07;
-          var tx = o.bx + dx + (lx - .5) * o.pull;
-          var ty = o.by + dy + (ly - .5) * o.pull;
-          o.ox += (tx - o.ox) * 0.07;
-          o.oy += (ty - o.oy) * 0.07;
+          /* small autonomous drift on top of mouse-driven position */
+          var dx = Math.sin(t * o.spd + i * 2.09) * 0.06;
+          var dy = Math.cos(t * o.spd * .73 + i * 1.57) * 0.05;
+          /* target = lerped mouse position, offset by drift */
+          var tx = lx + (o.bx - .5) * (1 - o.pull) + dx;
+          var ty = ly + (o.by - .5) * (1 - o.pull) + dy;
+          o.ox += (tx - o.ox) * o.lag;
+          o.oy += (ty - o.oy) * o.lag;
+
           var ox = o.ox * W, oy = o.oy * H, r = o.r * Math.max(W, H);
           var g = cx.createRadialGradient(ox, oy, 0, ox, oy, r);
-          g.addColorStop(0,    'rgba(' + o.c + ',' + o.a + ')');
-          g.addColorStop(0.45, 'rgba(' + o.c + ',' + (o.a * 0.28) + ')');
-          g.addColorStop(1,    'rgba(' + o.c + ',0)');
+          g.addColorStop(0,   'rgba(' + o.c + ',' + o.a + ')');
+          g.addColorStop(0.4, 'rgba(' + o.c + ',' + (o.a * 0.25) + ')');
+          g.addColorStop(1,   'rgba(' + o.c + ',0)');
           cx.fillStyle = g;
           cx.fillRect(0, 0, W, H);
         });
-
-        /* dark lens at cursor */
-        var clx = lx * W, cly = ly * H, lr = Math.max(W, H) * 0.40;
-        var lg = cx.createRadialGradient(clx, cly, 0, clx, cly, lr);
-        lg.addColorStop(0,    'rgba(0,0,0,.92)');
-        lg.addColorStop(0.15, 'rgba(0,0,0,.68)');
-        lg.addColorStop(0.42, 'rgba(0,0,0,.22)');
-        lg.addColorStop(1,    'rgba(0,0,0,0)');
-        cx.fillStyle = lg;
-        cx.fillRect(0, 0, W, H);
 
         requestAnimationFrame(tick);
       }
