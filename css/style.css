@@ -1387,6 +1387,39 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ══════════════════════════════════════════════════════════════
+   CLARTE-STYLE ANIMATION SYSTEM
+   ══════════════════════════════════════════════════════════════ */
+
+/* Line reveal: each split-parent clips overflow so text slides up into view */
+.split-parent {
+  display: block;
+  overflow: hidden;
+  clip-path: inset(-0.15em -12px);
+}
+
+.split {
+  display: block;
+  transform: translateY(115%);
+  will-change: transform;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.split.is-inview {
+  transform: translateY(0);
+}
+
+/* Section fade-up entrance */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-up.is-inview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════════════════════════
    MAGAZINE EDITORIAL BLOG
    ══════════════════════════════════════════════════════════════ */
 

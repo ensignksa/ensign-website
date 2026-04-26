@@ -50,7 +50,7 @@
   <!-- DNS prefetch -->
   <link rel="dns-prefetch" href="https://cal.eu">
   <link rel="dns-prefetch" href="https://wa.me">
-  <link rel="stylesheet" href="css/style.min.css">
+  <link rel="stylesheet" href="css/style.min.css?v=2">
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
@@ -623,24 +623,129 @@
   (function() {
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ── Lenis smooth scroll (own RAF loop, synced to ScrollTrigger) ── */
-    var lenis = new Lenis({ lerp: 0.07 });
+    /* ── Lenis smooth scroll ── */
+    var lenis = new Lenis({ lerp: 0.08 });
     lenis.on('scroll', ScrollTrigger.update);
     (function lenisRaf(time) {
       lenis.raf(time);
       requestAnimationFrame(lenisRaf);
     })(performance.now());
 
-    /* ── Hero line reveal ── */
+    /* ── Hero line reveal (cinematic entrance) ── */
     gsap.from('.hero-line', {
-      yPercent: 105,
-      duration: 1.2,
-      ease: 'power4.out',
-      stagger: 0.18,
-      delay: 0.35
+      yPercent: 115,
+      duration: 1.5,
+      ease: 'expo.out',
+      stagger: 0.15,
+      delay: 0.15
+    });
+    gsap.from('.hero-btns', {
+      opacity: 0,
+      yPercent: 60,
+      duration: 1.1,
+      ease: 'expo.out',
+      delay: 0.7
+    });
+    gsap.from('#hero-hint', {
+      opacity: 0,
+      yPercent: 40,
+      duration: 1.0,
+      ease: 'power3.out',
+      delay: 1.4
     });
 
-    /* ── Word-by-word scroll reveal ── */
+    /* ── Hero: background parallax (the "standing still" feeling) ── */
+    /* bg moves at 30% of scroll speed — creates depth illusion */
+    gsap.to('.hero-bg', {
+      y: '30%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+    /* aurora layers move at different rates for depth */
+    gsap.to('.hero-aurora', {
+      y: '18%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+    gsap.to('.hero-grain', {
+      y: '10%',
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true
+      }
+    });
+
+    /* ── Hero content exits as you scroll (cinematic) ── */
+    gsap.to('#hero-content', {
+      yPercent: -24,
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: '55% top',
+        scrub: true
+      }
+    });
+    gsap.to('#hero-hint', {
+      opacity: 0,
+      yPercent: -100,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: '18% top',
+        scrub: true
+      }
+    });
+
+    /* ── Line-by-line clip reveal for section headings ── */
+    function splitReveal(selector) {
+      var el = document.querySelector(selector);
+      if (!el) return null;
+      var html = el.innerHTML;
+      var parts = html.split(/<br\s*\/?>/i);
+      el.innerHTML = parts.map(function(part, i) {
+        return '<span class="split-parent"><span class="split" style="transition-delay:' + (i * 0.14) + 's">' + part.trim() + '</span></span>';
+      }).join('');
+      return el;
+    }
+
+    var revealEls = [
+      splitReveal('#agents .agents-header h2'),
+      splitReveal('.services-banner-title'),
+      splitReveal('.work-header-left h2'),
+      splitReveal('.partners-header h2'),
+      splitReveal('#cta h2')
+    ].filter(Boolean);
+
+    var splitObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.split').forEach(function(s) {
+            s.classList.add('is-inview');
+          });
+          splitObserver.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -6% 0px' });
+
+    revealEls.forEach(function(el) { splitObserver.observe(el); });
+
+    /* ── Word-by-word scroll reveal (pillars) ── */
     var words = document.querySelectorAll('#pillars-story .pw');
     gsap.set(words, { opacity: 0.08 });
     gsap.to(words, {
@@ -692,7 +797,6 @@
         }
       });
 
-      /* Card reveal as each enters during horizontal scroll */
       document.querySelectorAll('#work-track .work-card').forEach(function(card) {
         gsap.from(card, {
           opacity: 0,
