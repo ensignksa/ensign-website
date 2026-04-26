@@ -351,103 +351,165 @@ button { font-family: inherit; cursor: pointer; }
 /* ══════════════════════════════════════════════════════════════
    PILLARS
    ══════════════════════════════════════════════════════════════ */
+/* ── Pillars section ─────────────────────────────────────────── */
 #pillars {
   position: relative;
   padding: 120px 56px 80px;
 }
 
-.pillars-header {
-  text-align: center;
-  margin-bottom: 72px;
-  border-top: 1px solid rgba(10,20,16,.15);
-  border-bottom: 1px solid rgba(10,20,16,.15);
-  padding: 56px 0;
+.pillars-intro {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  border-top: 1px solid rgba(10,20,16,.12);
+  padding-top: 56px;
 }
 
 .pillars-kicker {
   font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: .25em;
+  font-size: 11px;
+  letter-spacing: .22em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 18px;
+  margin-bottom: 28px;
 }
 
-.pillars-title {
-  margin: 0;
-  font-size: clamp(56px, 7vw, 120px);
-  line-height: .96;
-  letter-spacing: -.035em;
+/* ── Word-by-word storytelling text ── */
+.pillars-story {
+  font-size: clamp(32px, 4.5vw, 64px);
   font-weight: 500;
+  letter-spacing: -.03em;
+  line-height: 1.12;
   color: var(--ink);
+  max-width: 20ch;
 }
+.pw { display: inline-block; }
 
+/* ── Cards grid ── */
 .pillars-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* ── Individual card ── */
 .pillar-card {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
-  border: var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  border-radius: 22px;
-  padding: 36px 30px 28px;
-  min-height: 340px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   position: relative;
   overflow: hidden;
+  background: #fff;
+  border: 1px solid rgba(10,20,16,.08);
+  box-shadow: 0 2px 24px rgba(10,20,16,.06);
+  border-radius: 22px;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  will-change: transform;
 }
 
-.pillar-badge {
+/* gradient bg — revealed on hover via GSAP */
+.pc-bg {
   position: absolute;
-  top: 16px; right: 16px;
-  background: var(--ink);
-  color: var(--bg);
+  inset: 0;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+.pc-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: .55;
+}
+[data-pc="emerald"] .pc-bg {
+  background: linear-gradient(145deg, #061a10 0%, #0d4a2d 55%, #0a1a12 100%);
+}
+[data-pc="emerald"] .pc-bg::after {
+  background: radial-gradient(ellipse 90% 70% at 25% 80%, rgba(31,111,78,.7), transparent);
+}
+[data-pc="blue"] .pc-bg {
+  background: linear-gradient(145deg, #060c24 0%, #1230a0 55%, #0a1030 100%);
+}
+[data-pc="blue"] .pc-bg::after {
+  background: radial-gradient(ellipse 90% 70% at 75% 80%, rgba(39,71,255,.6), transparent);
+}
+[data-pc="dark"] .pc-bg {
+  background: linear-gradient(145deg, #08060e 0%, #281654 55%, #0a0812 100%);
+}
+[data-pc="dark"] .pc-bg::after {
+  background: radial-gradient(ellipse 90% 70% at 50% 80%, rgba(100,60,220,.5), transparent);
+}
+
+/* card inner layout */
+.pc-inner {
+  position: relative;
+  z-index: 1;
+  padding: 36px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.pc-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+.pc-num {
+  font-family: var(--mono);
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(10,20,16,.08);
+  letter-spacing: -.04em;
+}
+.pc-tag {
+  font-family: var(--mono);
   font-size: 10px;
-  padding: 5px 10px;
-  border-radius: 99px;
-  letter-spacing: .12em;
-  font-family: var(--mono);
+  letter-spacing: .16em;
   text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 8px;
 }
-
-.pillar-tag {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: rgba(10,20,16,.47);
-  letter-spacing: .12em;
-  margin-bottom: 10px;
+.pc-body { flex: 1; }
+.pc-title {
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 600;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  color: var(--ink);
 }
-
-.pillar-card h3 {
-  margin: 0;
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: -.02em;
-  line-height: 1.08;
-}
-
-.pillar-card p {
-  margin-top: 16px;
+.pc-desc {
   font-size: 15px;
-  line-height: 1.55;
-  color: rgba(10,20,16,.67);
+  line-height: 1.62;
+  color: rgba(10,20,16,.65);
 }
-
-.pillar-action {
-  margin-top: 32px;
+.pc-action {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 32px;
   color: var(--accent);
   font-size: 14px;
   font-weight: 500;
+  text-decoration: none;
+}
+
+/* ── Coming soon badge ── */
+.pillar-badge {
+  position: absolute;
+  top: 18px; right: 18px;
+  z-index: 2;
+  background: var(--ink);
+  color: #fff;
+  font-size: 9px;
+  padding: 5px 11px;
+  border-radius: 99px;
+  letter-spacing: .14em;
+  font-family: var(--mono);
+  text-transform: uppercase;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -2007,7 +2069,8 @@ button { font-family: inherit; cursor: pointer; }
 
   #pillars { padding: 80px 24px 60px; }
   .pillars-grid { grid-template-columns: 1fr; gap: 14px; }
-  .pillars-header { padding: 40px 0; }
+  .pillars-intro { margin-bottom: 48px; }
+  .pillar-card { min-height: 360px; }
 
   #agents { padding: 80px 24px; }
   .agents-grid { grid-template-columns: repeat(2, 1fr); }

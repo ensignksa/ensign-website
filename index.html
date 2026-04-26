@@ -184,52 +184,70 @@
   </section>
 
   <!-- ── PILLARS ─────────────────────────────────────────────── -->
+  <!-- ── PILLARS ────────────────────────────────────────────── -->
   <section id="pillars">
-    <div class="pillars-header">
+    <div class="pillars-intro">
       <div class="pillars-kicker">— Our services —</div>
-      <h2 class="pillars-title">Our main services.</h2>
+      <p class="pillars-story" id="pillars-story"><span class="pw">Three</span> <span class="pw">capabilities.</span> <span class="pw">One</span> <span class="pw">connected</span> <span class="pw">system.</span> <span class="pw">Built</span> <span class="pw">for</span> <span class="pw">businesses</span> <span class="pw">that</span> <span class="pw">move</span> <span class="pw">at</span> <span class="pw">the</span> <span class="pw">speed</span> <span class="pw">of</span> <span class="pw">AI.</span></p>
     </div>
 
-    <div class="pillars-grid">
-      <!-- AI Solutions -->
-      <article class="pillar-card">
-        <div>
-          <div class="pillar-tag">01 / AI Studio</div>
-          <h3>AI Solutions &amp; Agents</h3>
-          <p>We design AI agents that fit your workflow — campaign optimisation, content, sales support, research and beyond.</p>
-        </div>
-        <div class="pillar-action">
-          <span>Browse the studio</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    <div class="pillars-grid" id="pillars-grid">
+
+      <article class="pillar-card" data-pc="emerald">
+        <div class="pc-bg"></div>
+        <div class="pc-inner">
+          <div class="pc-top">
+            <span class="pc-num">01</span>
+            <span class="pc-tag">AI Studio</span>
+          </div>
+          <div class="pc-body">
+            <h3 class="pc-title">AI Solutions &amp; Agents</h3>
+            <p class="pc-desc">We design AI agents that fit your workflow — campaign optimisation, content, sales support, research and beyond.</p>
+          </div>
+          <a href="#agents" class="pc-action">
+            <span>Browse the studio</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
         </div>
       </article>
 
-      <!-- Agency -->
-      <article class="pillar-card">
-        <div>
-          <div class="pillar-tag">02 / Agency</div>
-          <h3>Marketing Agency Services</h3>
-          <p>A full-service team operated by humans + AI. Strategy, paid media, branding, content, events and more.</p>
-        </div>
-        <div class="pillar-action">
-          <span>See services</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      <article class="pillar-card" data-pc="blue">
+        <div class="pc-bg"></div>
+        <div class="pc-inner">
+          <div class="pc-top">
+            <span class="pc-num">02</span>
+            <span class="pc-tag">Agency</span>
+          </div>
+          <div class="pc-body">
+            <h3 class="pc-title">Marketing Agency Services</h3>
+            <p class="pc-desc">A full-service team operated by humans + AI. Strategy, paid media, branding, content, events and more.</p>
+          </div>
+          <a href="#services" class="pc-action">
+            <span>See services</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
         </div>
       </article>
 
-      <!-- Ensign OS -->
-      <article class="pillar-card">
+      <article class="pillar-card" data-pc="dark">
         <span class="pillar-badge">Coming soon</span>
-        <div>
-          <div class="pillar-tag">03 / Product</div>
-          <h3>Ensign OS — coming soon</h3>
-          <p>An intelligent operating system that connects sales, marketing, management and developers across real estate.</p>
-        </div>
-        <div class="pillar-action">
-          <span>Join the waitlist</span>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        <div class="pc-bg"></div>
+        <div class="pc-inner">
+          <div class="pc-top">
+            <span class="pc-num">03</span>
+            <span class="pc-tag">Product</span>
+          </div>
+          <div class="pc-body">
+            <h3 class="pc-title">Ensign OS</h3>
+            <p class="pc-desc">An intelligent operating system that connects sales, marketing, management and developers across real estate.</p>
+          </div>
+          <a href="#eos" class="pc-action">
+            <span>Join the waitlist</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
         </div>
       </article>
+
     </div>
   </section>
 
@@ -593,5 +611,85 @@
   </a>
 
   <script src="js/main.min.js"></script>
+
+  <!-- GSAP Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+  (function() {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ── Word-by-word scroll reveal ── */
+    var words = document.querySelectorAll('#pillars-story .pw');
+    gsap.set(words, { opacity: 0.08 });
+    gsap.to(words, {
+      opacity: 1,
+      stagger: 0.8,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#pillars-story',
+        start: 'top 80%',
+        end: 'bottom 30%',
+        scrub: 0.6
+      }
+    });
+
+    /* ── Staircase card entrance ── */
+    document.querySelectorAll('#pillars-grid .pillar-card').forEach(function(card, i) {
+      gsap.from(card, {
+        y: 60 + i * 44,
+        opacity: 0,
+        duration: 1.0,
+        ease: 'power3.out',
+        delay: i * 0.16,
+        scrollTrigger: {
+          trigger: '#pillars-grid',
+          start: 'top 82%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    /* ── Card hover: gradient bg reveal + color shift ── */
+    var INK  = 'rgb(10, 20, 16)';
+    var MUTE = 'rgba(10, 20, 16, 0.65)';
+    var WH   = '#ffffff';
+    var WHM  = 'rgba(255,255,255,0.62)';
+    var NUMIN  = 'rgba(10, 20, 16, 0.08)';
+    var NUMHOV = 'rgba(255,255,255,0.10)';
+    var TAGIN  = 'rgb(31, 111, 78)';
+    var TAGHOV = 'rgba(255,255,255,0.45)';
+
+    document.querySelectorAll('.pillar-card').forEach(function(card) {
+      var bg     = card.querySelector('.pc-bg');
+      var num    = card.querySelector('.pc-num');
+      var tag    = card.querySelector('.pc-tag');
+      var title  = card.querySelector('.pc-title');
+      var desc   = card.querySelector('.pc-desc');
+      var action = card.querySelector('.pc-action');
+
+      card.addEventListener('mouseenter', function() {
+        gsap.to(bg,     { opacity: 1,   duration: 0.42, ease: 'power2.out' });
+        gsap.to(num,    { color: NUMHOV, duration: 0.35 });
+        gsap.to(tag,    { color: TAGHOV, duration: 0.35 });
+        gsap.to(title,  { color: WH,    duration: 0.35 });
+        gsap.to(desc,   { color: WHM,   duration: 0.35 });
+        gsap.to(action, { color: WH,    duration: 0.35 });
+        gsap.to(card,   { y: -10, boxShadow: '0 28px 70px rgba(10,20,16,.18)', duration: 0.35, ease: 'power2.out' });
+      });
+
+      card.addEventListener('mouseleave', function() {
+        gsap.to(bg,     { opacity: 0,   duration: 0.42, ease: 'power2.inOut' });
+        gsap.to(num,    { color: NUMIN, duration: 0.4 });
+        gsap.to(tag,    { color: TAGIN, duration: 0.4 });
+        gsap.to(title,  { color: INK,   duration: 0.4 });
+        gsap.to(desc,   { color: MUTE,  duration: 0.4 });
+        gsap.to(action, { color: TAGIN, duration: 0.4 });
+        gsap.to(card,   { y: 0, boxShadow: '0 2px 24px rgba(10,20,16,.06)', duration: 0.4, ease: 'power2.inOut' });
+      });
+    });
+
+  })();
+  </script>
 </body>
 </html>
