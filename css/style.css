@@ -113,29 +113,31 @@ button { font-family: inherit; cursor: pointer; }
    ══════════════════════════════════════════════════════════════ */
 .site-nav {
   position: fixed;
-  top: 16px;
-  left: 24px;
-  right: 24px;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 200;
-  border-radius: 999px;
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
-  border: var(--glass-border);
-  box-shadow: var(--glass-shadow);
+  height: 52px;
+  border-radius: 0;
+  background: rgba(10,20,16,.75);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  box-shadow: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 22px;
+  padding: 0 32px;
 }
 
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: -.01em;
+  gap: 8px;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -.02em;
   color: var(--ink);
   flex-shrink: 0;
 }
@@ -143,45 +145,51 @@ button { font-family: inherit; cursor: pointer; }
 
 .nav-links {
   display: flex;
-  gap: 28px;
-  font-size: 13.5px;
-  color: rgba(10,20,16,.8);
+  gap: 32px;
+  font-size: 12px;
+  letter-spacing: -.005em;
+  color: rgba(255,255,255,.72);
 }
 .nav-links a { transition: color .2s; }
-.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover { color: #fff; }
 
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 18px;
   flex-shrink: 0;
 }
 
 .nav-lang {
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .15em;
-  opacity: .6;
+  font-size: 10.5px;
+  letter-spacing: .12em;
+  opacity: .5;
   color: var(--ink);
   transition: opacity .2s;
 }
 .nav-lang:hover { opacity: 1; }
 
 .nav-cta {
-  background: var(--ink);
-  color: var(--bg) !important;
-  border: 0;
-  padding: 10px 18px;
+  background: transparent;
+  color: rgba(255,255,255,.88) !important;
+  border: 1px solid rgba(255,255,255,.22);
+  padding: 7px 16px;
   border-radius: 999px;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 12px;
+  font-weight: 400;
   font-family: inherit;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  transition: opacity .2s;
+  gap: 6px;
+  transition: background .2s, border-color .2s, color .2s;
+  letter-spacing: -.01em;
 }
-.nav-cta:hover { opacity: .85; }
+.nav-cta:hover {
+  background: rgba(255,255,255,.08);
+  border-color: rgba(255,255,255,.4);
+  color: #fff !important;
+}
 
 /* Mobile burger */
 .nav-burger {
@@ -209,19 +217,20 @@ button { font-family: inherit; cursor: pointer; }
 .nav-mobile {
   display: none;
   position: fixed;
-  top: 80px;
-  left: 16px;
-  right: 16px;
+  top: 52px;
+  left: 0;
+  right: 0;
   z-index: 199;
-  border-radius: 20px;
-  padding: 16px;
+  border-radius: 0;
+  padding: 8px 16px 16px;
   flex-direction: column;
-  gap: 4px;
-  background: rgba(247,248,244,.97);
-  backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
-  border: var(--glass-border);
-  box-shadow: 0 20px 60px rgba(10,20,16,.12);
+  gap: 2px;
+  background: rgba(10,20,16,.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,.4);
   animation: mob-in .2s ease;
 }
 .nav-mobile.open { display: flex; }
@@ -1480,10 +1489,8 @@ button { font-family: inherit; cursor: pointer; }
    ══════════════════════════════════════════════════════════════ */
 
 /* Nav */
-.nav-links { color: rgba(255,255,255,.70); }
-.nav-mobile { background: rgba(10,20,16,.92); border-color: rgba(255,255,255,.08); }
 .nav-mobile a { color: var(--ink); }
-.nav-mobile a:hover { background: rgba(31,111,78,.12); }
+.nav-mobile a:hover { background: rgba(255,255,255,.06); color: #fff; }
 .nav-burger span { background: var(--ink); }
 
 /* Pillars */
@@ -2214,7 +2221,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 @media (max-width: 900px) {
-  .site-nav { left: 16px; right: 16px; padding: 12px 16px; }
+  .site-nav { padding: 0 20px; }
   .nav-links { display: none; }
   .nav-burger { display: flex; }
 
