@@ -110,9 +110,15 @@
 
   <!-- ── AURORA CANVAS ─────────────────────────────────────────── -->
   <div id="site-bg" aria-hidden="true">
-    <div class="site-bg-orb site-bg-orb-green"></div>
-    <div class="site-bg-orb site-bg-orb-blue"></div>
-    <div class="site-bg-orb site-bg-orb-purple"></div>
+    <div class="orb-mouse orb-mouse-green">
+      <div class="site-bg-orb site-bg-orb-green"></div>
+    </div>
+    <div class="orb-mouse orb-mouse-blue">
+      <div class="site-bg-orb site-bg-orb-blue"></div>
+    </div>
+    <div class="orb-mouse orb-mouse-purple">
+      <div class="site-bg-orb site-bg-orb-purple"></div>
+    </div>
   </div>
 
   <!-- ── NAV ─────────────────────────────────────────────────── -->
@@ -610,6 +616,26 @@
   <script>
   (function() {
     gsap.registerPlugin(ScrollTrigger);
+
+    /* ── Aurora: mouse-tracking parallax ── */
+    var wrapG = document.querySelector('.orb-mouse-green');
+    var wrapB = document.querySelector('.orb-mouse-blue');
+    var wrapP = document.querySelector('.orb-mouse-purple');
+    if (wrapG && wrapB && wrapP) {
+      var toGX = gsap.quickTo(wrapG, 'x', { duration: 2.0, ease: 'power2.out' });
+      var toGY = gsap.quickTo(wrapG, 'y', { duration: 2.0, ease: 'power2.out' });
+      var toBX = gsap.quickTo(wrapB, 'x', { duration: 2.8, ease: 'power2.out' });
+      var toBY = gsap.quickTo(wrapB, 'y', { duration: 2.8, ease: 'power2.out' });
+      var toPX = gsap.quickTo(wrapP, 'x', { duration: 1.5, ease: 'power2.out' });
+      var toPY = gsap.quickTo(wrapP, 'y', { duration: 1.5, ease: 'power2.out' });
+      window.addEventListener('mousemove', function(e) {
+        var cx = e.clientX / window.innerWidth  - 0.5;
+        var cy = e.clientY / window.innerHeight - 0.5;
+        toGX( cx *  220); toGY( cy *  150);
+        toBX( cx * -170); toBY( cy * -120);
+        toPX( cx *  130); toPY( cy *  180);
+      });
+    }
 
     /* ── Hero line reveal (cinematic entrance) ── */
     gsap.from('.hero-line', {

@@ -81,6 +81,12 @@ button { font-family: inherit; cursor: pointer; }
   background: #0A1410;
   pointer-events: none;
 }
+.orb-mouse {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  will-change: transform;
+}
 .site-bg-orb {
   position: absolute;
   border-radius: 50%;
