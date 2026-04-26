@@ -622,18 +622,18 @@
     var wrapB = document.querySelector('.orb-mouse-blue');
     var wrapP = document.querySelector('.orb-mouse-purple');
     if (wrapG && wrapB && wrapP) {
-      var toGX = gsap.quickTo(wrapG, 'x', { duration: 2.0, ease: 'power2.out' });
-      var toGY = gsap.quickTo(wrapG, 'y', { duration: 2.0, ease: 'power2.out' });
-      var toBX = gsap.quickTo(wrapB, 'x', { duration: 2.8, ease: 'power2.out' });
-      var toBY = gsap.quickTo(wrapB, 'y', { duration: 2.8, ease: 'power2.out' });
-      var toPX = gsap.quickTo(wrapP, 'x', { duration: 1.5, ease: 'power2.out' });
-      var toPY = gsap.quickTo(wrapP, 'y', { duration: 1.5, ease: 'power2.out' });
+      var toGX = gsap.quickTo(wrapG, 'x', { duration: 1.1, ease: 'power3.out' });
+      var toGY = gsap.quickTo(wrapG, 'y', { duration: 1.1, ease: 'power3.out' });
+      var toBX = gsap.quickTo(wrapB, 'x', { duration: 1.6, ease: 'power3.out' });
+      var toBY = gsap.quickTo(wrapB, 'y', { duration: 1.6, ease: 'power3.out' });
+      var toPX = gsap.quickTo(wrapP, 'x', { duration: 0.9, ease: 'power3.out' });
+      var toPY = gsap.quickTo(wrapP, 'y', { duration: 0.9, ease: 'power3.out' });
       window.addEventListener('mousemove', function(e) {
         var cx = e.clientX / window.innerWidth  - 0.5;
         var cy = e.clientY / window.innerHeight - 0.5;
-        toGX( cx *  220); toGY( cy *  150);
-        toBX( cx * -170); toBY( cy * -120);
-        toPX( cx *  130); toPY( cy *  180);
+        toGX(cx * window.innerWidth  * 0.75); toGY(cy * window.innerHeight * 0.75);
+        toBX(cx * window.innerWidth  * 0.60); toBY(cy * window.innerHeight * 0.60);
+        toPX(cx * window.innerWidth  * 0.85); toPY(cy * window.innerHeight * 0.85);
       });
     }
 
