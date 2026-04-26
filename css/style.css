@@ -139,7 +139,6 @@ button { font-family: inherit; cursor: pointer; }
 .nav-logo {
   height: 30px;
   width: auto;
-  mix-blend-mode: screen;
   display: block;
 }
 
