@@ -30,6 +30,15 @@
   <meta property="og:site_name" content="وكالة إنساين للتسويق بالذكاء الاصطناعي">
   <meta property="article:published_time" content="2026-03-15T09:00:00+03:00">
   <meta property="article:author" content="وكالة إنساين للتسويق بالذكاء الاصطناعي">
+  <script>
+    // Redirect to blog listing if post is not yet published
+    (function() {
+      var m = document.querySelector('meta[property="article:published_time"]');
+      if (m && new Date() < new Date(m.content)) {
+        window.location.replace(document.documentElement.lang === 'ar' ? '/ar/blog/' : '/blog/');
+      }
+    })();
+  </script>
   <meta property="article:section" content="POST_CATEGORY_AR">
   <meta property="article:tag" content="التسويق بالذكاء الاصطناعي">
   <meta property="article:tag" content="المملكة العربية السعودية">
