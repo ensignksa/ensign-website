@@ -6,13 +6,13 @@
 :root {
   --accent:  #1F6F4E;
   --accent2: #2747FF;
-  --ink:     #0A1410;
-  --bg:      #F7F8F4;
+  --ink:     #F0F1ED;
+  --bg:      #0A1410;
   --mono:    'JetBrains Mono', monospace;
-  --glass-bg:     rgba(255,255,255,0.55);
+  --glass-bg:     rgba(255,255,255,0.06);
   --glass-filter: blur(20px) saturate(140%);
-  --glass-border: 1px solid rgba(255,255,255,0.7);
-  --glass-shadow: 0 1px 0 rgba(255,255,255,.9) inset, 0 24px 40px -24px rgba(10,20,16,.18);
+  --glass-border: 1px solid rgba(255,255,255,0.10);
+  --glass-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 24px 40px -24px rgba(0,0,0,.4);
 }
 
 /* ── Reset ──────────────────────────────────────────────────── */
@@ -32,7 +32,7 @@ button { font-family: inherit; cursor: pointer; }
 /* ── Scrollbar ──────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: rgba(10,20,16,.15); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,.1); border-radius: 2px; }
 
 /* ── Keyframes ──────────────────────────────────────────────── */
 @keyframes aurora-drift {
@@ -51,6 +51,61 @@ button { font-family: inherit; cursor: pointer; }
 @keyframes mob-in {
   from { opacity:0; transform:translateY(-10px); }
   to   { opacity:1; transform:translateY(0); }
+}
+@keyframes orb-drift-a {
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  33%  { transform: translate3d(8vw,6vh,0) scale(1.12); }
+  66%  { transform: translate3d(-4vw,10vh,0) scale(.94); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+@keyframes orb-drift-b {
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  40%  { transform: translate3d(-10vw,8vh,0) scale(1.08); }
+  70%  { transform: translate3d(4vw,-6vh,0) scale(1.15); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+@keyframes orb-drift-c {
+  0%   { transform: translate3d(0,0,0) scale(1); }
+  30%  { transform: translate3d(6vw,-8vh,0) scale(1.1); }
+  60%  { transform: translate3d(-8vw,4vh,0) scale(.96); }
+  100% { transform: translate3d(0,0,0) scale(1); }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   SITE AURORA CANVAS (fixed full-page background)
+   ══════════════════════════════════════════════════════════════ */
+#site-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #0A1410;
+  pointer-events: none;
+}
+.site-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  will-change: transform;
+}
+.site-bg-orb-green {
+  width: 65vw; height: 65vh;
+  top: -10%; left: -15%;
+  background: rgba(31,111,78,.55);
+  filter: blur(110px);
+  animation: orb-drift-a 25s ease-in-out infinite;
+}
+.site-bg-orb-blue {
+  width: 55vw; height: 70vh;
+  top: 10%; right: -20%;
+  background: rgba(39,71,255,.45);
+  filter: blur(120px);
+  animation: orb-drift-b 32s ease-in-out infinite;
+}
+.site-bg-orb-purple {
+  width: 50vw; height: 60vh;
+  bottom: -15%; left: 25%;
+  background: rgba(124,58,237,.35);
+  filter: blur(100px);
+  animation: orb-drift-c 21s ease-in-out infinite;
 }
 
 /* ══════════════════════════════════════════════════════════════
@@ -1418,6 +1473,67 @@ button { font-family: inherit; cursor: pointer; }
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ══════════════════════════════════════════════════════════════
+   DARK AURORA OVERRIDES
+   (all hardcoded rgba light-mode colours swapped for dark)
+   ══════════════════════════════════════════════════════════════ */
+
+/* Nav */
+.nav-links { color: rgba(255,255,255,.70); }
+.nav-mobile { background: rgba(10,20,16,.92); border-color: rgba(255,255,255,.08); }
+.nav-mobile a { color: var(--ink); }
+.nav-mobile a:hover { background: rgba(31,111,78,.12); }
+.nav-burger span { background: var(--ink); }
+
+/* Pillars */
+.pillars-intro { border-top: 1px solid rgba(255,255,255,.08); }
+.pillar-card {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  box-shadow: 0 2px 24px rgba(0,0,0,.25);
+}
+.pc-num  { color: rgba(255,255,255,.05); }
+.pc-desc { color: rgba(255,255,255,.55); }
+.pillar-badge { background: rgba(255,255,255,.12); color: var(--ink); }
+
+/* Agents */
+.agents-header p { color: rgba(255,255,255,.60); }
+.agent-role      { color: rgba(255,255,255,.35); }
+.agent-line      { color: rgba(255,255,255,.50); }
+
+/* Services */
+.service-num { color: rgba(255,255,255,.28); }
+
+/* Work */
+.work-all-link { color: rgba(255,255,255,.45); }
+
+/* Partners */
+.marquee-wrap {
+  border-top:    1px solid rgba(255,255,255,.10);
+  border-bottom: 1px solid rgba(255,255,255,.10);
+}
+.marquee-item { color: rgba(255,255,255,.60); }
+
+/* CTA */
+#cta > p { color: rgba(255,255,255,.60); }
+
+/* Footer */
+.site-footer      { border-top: 1px solid rgba(255,255,255,.08); }
+.footer-tagline   { color: rgba(255,255,255,.38); }
+.footer-desc      { color: rgba(255,255,255,.45); }
+.footer-col h4    { color: rgba(255,255,255,.38); }
+.footer-col a     { color: rgba(255,255,255,.55); }
+.footer-bottom    { border-top: 1px solid rgba(255,255,255,.07); color: rgba(255,255,255,.35); }
+.social-link      { color: rgba(255,255,255,.45); background: rgba(255,255,255,.06); }
+.social-link:hover { background: rgba(31,111,78,.15); }
+
+/* Secondary / inner pages */
+.page-hero { border-bottom: 1px solid rgba(255,255,255,.08); }
+
+/* Blog cards */
+.blog-card-excerpt { color: rgba(255,255,255,.55); }
+.blog-card-meta    { color: rgba(255,255,255,.38); }
 
 /* ══════════════════════════════════════════════════════════════
    MAGAZINE EDITORIAL BLOG

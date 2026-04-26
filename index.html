@@ -50,7 +50,7 @@
   <!-- DNS prefetch -->
   <link rel="dns-prefetch" href="https://cal.eu">
   <link rel="dns-prefetch" href="https://wa.me">
-  <link rel="stylesheet" href="css/style.min.css?v=2">
+  <link rel="stylesheet" href="css/style.min.css?v=4">
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
@@ -108,6 +108,13 @@
 </head>
 <body>
 
+  <!-- ── AURORA CANVAS ─────────────────────────────────────────── -->
+  <div id="site-bg" aria-hidden="true">
+    <div class="site-bg-orb site-bg-orb-green"></div>
+    <div class="site-bg-orb site-bg-orb-blue"></div>
+    <div class="site-bg-orb site-bg-orb-purple"></div>
+  </div>
+
   <!-- ── NAV ─────────────────────────────────────────────────── -->
   <header class="site-nav" id="site-nav">
     <a href="/" class="nav-brand">
@@ -157,14 +164,6 @@
 
   <!-- ── HERO ────────────────────────────────────────────────── -->
   <section id="hero">
-    <div class="hero-bg" id="hero-bg"></div>
-    <div class="hero-aurora" aria-hidden="true">
-      <div class="hero-aurora-a"></div>
-      <div class="hero-aurora-b"></div>
-    </div>
-    <div class="hero-grain" aria-hidden="true"></div>
-    <div class="hero-fade" aria-hidden="true"></div>
-
     <div class="hero-content" id="hero-content">
       <h1>
         <span class="hero-line-outer"><span class="hero-line">Marketing Solutions</span></span>
@@ -258,7 +257,7 @@
   <section id="agents">
     <div class="agents-header">
       <span class="pill-chip"><span class="live-dot" aria-hidden="true"></span>AI Studio</span>
-      <h2>Agents, designed around your workflow.</h2>
+      <h2 class="reveal-h">Agents, designed around your workflow.</h2>
       <p>We don't ship templates. We sit with your team, map decisions and handoffs, then build agents that connect your tools and pay back time within weeks.</p>
     </div>
 
@@ -374,7 +373,7 @@
       <div class="services-banner-content">
         <div>
           <div class="services-banner-kicker">Agency</div>
-          <h2 class="services-banner-title">A full service team</h2>
+          <h2 class="services-banner-title reveal-h">A full service team</h2>
         </div>
         <div class="services-count">15 services · one studio</div>
       </div>
@@ -402,12 +401,12 @@
   </section>
 
   <!-- ── ENSIGN OS ───────────────────────────────────────────── -->
-  <section id="eos" style="padding:100px 56px;background:rgba(10,20,16,.03);border-top:1px solid rgba(10,20,16,.08);">
+  <section id="eos" style="padding:100px 56px;border-top:1px solid rgba(255,255,255,.08);">
     <div style="max-width:700px;">
       <span class="pill-chip" style="margin-bottom:24px;display:inline-flex;"><span class="live-dot" style="background:#2747FF;box-shadow:0 0 0 4px rgba(39,71,255,.13);" aria-hidden="true"></span>Ensign OS — EOS</span>
-      <span style="display:inline-block;margin-left:10px;background:#0A1410;color:#F7F8F4;font-size:10px;padding:5px 10px;border-radius:99px;letter-spacing:.12em;font-family:'JetBrains Mono',monospace;text-transform:uppercase;vertical-align:middle;">Coming soon</span>
-      <h2 style="margin-top:24px;font-size:clamp(40px,5.4vw,88px);line-height:1;letter-spacing:-.03em;font-weight:500;">An operating system for real estate brokerages.</h2>
-      <p style="margin-top:20px;font-size:18px;line-height:1.6;color:rgba(10,20,16,.65);max-width:580px;">One surface that connects sales, marketing, management and developers — with AI feedback woven through every view.</p>
+      <span style="display:inline-block;margin-left:10px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:10px;padding:5px 10px;border-radius:99px;letter-spacing:.12em;font-family:'JetBrains Mono',monospace;text-transform:uppercase;vertical-align:middle;">Coming soon</span>
+      <h2 class="reveal-h" style="margin-top:24px;font-size:clamp(40px,5.4vw,88px);line-height:1;letter-spacing:-.03em;font-weight:500;">An operating system for real estate brokerages.</h2>
+      <p style="margin-top:20px;font-size:18px;line-height:1.6;color:rgba(255,255,255,.60);max-width:580px;">One surface that connects sales, marketing, management and developers — with AI feedback woven through every view.</p>
       <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-cta" style="margin-top:32px;display:inline-flex;">
         Request early access
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -420,7 +419,7 @@
     <div class="work-header">
       <div class="work-header-left">
         <span class="work-kicker-pill">Our work</span>
-        <h2>We made it effortless...<br>it wasn't.</h2>
+        <h2 class="reveal-h">We made it effortless...<br>it wasn't.</h2>
       </div>
       <span class="work-all-link" aria-hidden="true">
         All work
@@ -495,45 +494,45 @@
   <section id="partners">
     <div class="partners-header">
       <span class="partners-kicker-pill">Trusted partners</span>
-      <h2>Trusted by ambitious teams<br>across the region.</h2>
+      <h2 class="reveal-h">Trusted by ambitious teams<br>across the region.</h2>
     </div>
     <div class="marquee-wrap">
       <div class="marquee-track" aria-hidden="true">
         <!-- duplicated for seamless loop -->
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>SAHEL</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>AWAN</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>MARYA CAPITAL</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>NOOR</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>TALA</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>ALDHAR</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>KAYAN</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>SORAYA</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>MAJID</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>RAYA</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>BURUJ</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>HILAL</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>ZAHRA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>SAHEL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>AWAN</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>MARYA CAPITAL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>NOOR</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>TALA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>ALDHAR</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>KAYAN</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>SORAYA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>MAJID</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>RAYA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>BURUJ</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>HILAL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>ZAHRA</span>
         <!-- duplicate -->
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>SAHEL</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>AWAN</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>MARYA CAPITAL</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>NOOR</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>TALA</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>ALDHAR</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>KAYAN</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>SORAYA</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>MAJID</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>RAYA</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>BURUJ</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>HILAL</span>
-        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(10,20,16,.53)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>ZAHRA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>SAHEL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>AWAN</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>MARYA CAPITAL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>NOOR</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>TALA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>ALDHAR</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>KAYAN</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>SORAYA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>MAJID</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>RAYA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>BURUJ</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>HILAL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>ZAHRA</span>
       </div>
     </div>
   </section>
 
   <!-- ── CTA ─────────────────────────────────────────────────── -->
   <section id="cta">
-    <h2>Let's build the<br>next chapter.</h2>
+    <h2 class="reveal-h">Let's build the<br>next chapter.</h2>
     <p>Tell us about your business. We'll come back within two working days.</p>
     <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-cta">
       Book a consultation
@@ -654,40 +653,6 @@
       delay: 1.4
     });
 
-    /* ── Hero: background parallax (the "standing still" feeling) ── */
-    /* bg moves at 30% of scroll speed — creates depth illusion */
-    gsap.to('.hero-bg', {
-      y: '30%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
-    /* aurora layers move at different rates for depth */
-    gsap.to('.hero-aurora', {
-      y: '18%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
-    gsap.to('.hero-grain', {
-      y: '10%',
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
-
     /* ── Hero content exits as you scroll (cinematic) ── */
     gsap.to('#hero-content', {
       yPercent: -24,
@@ -712,32 +677,21 @@
       }
     });
 
-    /* ── Line-by-line clip reveal for section headings ── */
-    function splitReveal(selector) {
-      var el = document.querySelector(selector);
-      if (!el) return null;
+    /* ── Line-by-line clip reveal: auto-processes all .reveal-h h2s ── */
+    var revealEls = [];
+    document.querySelectorAll('h2.reveal-h').forEach(function(el) {
       var html = el.innerHTML;
       var parts = html.split(/<br\s*\/?>/i);
       el.innerHTML = parts.map(function(part, i) {
         return '<span class="split-parent"><span class="split" style="transition-delay:' + (i * 0.14) + 's">' + part.trim() + '</span></span>';
       }).join('');
-      return el;
-    }
-
-    var revealEls = [
-      splitReveal('#agents .agents-header h2'),
-      splitReveal('.services-banner-title'),
-      splitReveal('.work-header-left h2'),
-      splitReveal('.partners-header h2'),
-      splitReveal('#cta h2')
-    ].filter(Boolean);
+      revealEls.push(el);
+    });
 
     var splitObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
         if (e.isIntersecting) {
-          e.target.querySelectorAll('.split').forEach(function(s) {
-            s.classList.add('is-inview');
-          });
+          e.target.querySelectorAll('.split').forEach(function(s) { s.classList.add('is-inview'); });
           splitObserver.unobserve(e.target);
         }
       });
@@ -813,14 +767,14 @@
       });
     }
 
-    /* ── Card hover: gradient bg reveal + color shift ── */
-    var INK  = 'rgb(10, 20, 16)';
-    var MUTE = 'rgba(10, 20, 16, 0.65)';
-    var WH   = '#ffffff';
-    var WHM  = 'rgba(255,255,255,0.62)';
-    var NUMIN  = 'rgba(10, 20, 16, 0.08)';
+    /* ── Card hover: gradient bg reveal + dark-mode colour shift ── */
+    var INK    = 'rgba(240,241,237,1)';
+    var MUTE   = 'rgba(240,241,237,0.60)';
+    var WH     = '#ffffff';
+    var WHM    = 'rgba(255,255,255,0.62)';
+    var NUMIN  = 'rgba(255,255,255,0.05)';
     var NUMHOV = 'rgba(255,255,255,0.10)';
-    var TAGIN  = 'rgb(31, 111, 78)';
+    var TAGIN  = 'rgb(31,111,78)';
     var TAGHOV = 'rgba(255,255,255,0.45)';
 
     document.querySelectorAll('.pillar-card').forEach(function(card) {
@@ -832,13 +786,13 @@
       var action = card.querySelector('.pc-action');
 
       card.addEventListener('mouseenter', function() {
-        gsap.to(bg,     { opacity: 1,   duration: 0.42, ease: 'power2.out' });
+        gsap.to(bg,     { opacity: 1,    duration: 0.42, ease: 'power2.out' });
         gsap.to(num,    { color: NUMHOV, duration: 0.35 });
         gsap.to(tag,    { color: TAGHOV, duration: 0.35 });
-        gsap.to(title,  { color: WH,    duration: 0.35 });
-        gsap.to(desc,   { color: WHM,   duration: 0.35 });
-        gsap.to(action, { color: WH,    duration: 0.35 });
-        gsap.to(card,   { y: -10, boxShadow: '0 28px 70px rgba(10,20,16,.18)', duration: 0.35, ease: 'power2.out' });
+        gsap.to(title,  { color: WH,     duration: 0.35 });
+        gsap.to(desc,   { color: WHM,    duration: 0.35 });
+        gsap.to(action, { color: WH,     duration: 0.35 });
+        gsap.to(card,   { y: -10, boxShadow: '0 28px 70px rgba(0,0,0,.4)', duration: 0.35, ease: 'power2.out' });
       });
 
       card.addEventListener('mouseleave', function() {
@@ -848,7 +802,7 @@
         gsap.to(title,  { color: INK,   duration: 0.4 });
         gsap.to(desc,   { color: MUTE,  duration: 0.4 });
         gsap.to(action, { color: TAGIN, duration: 0.4 });
-        gsap.to(card,   { y: 0, boxShadow: '0 2px 24px rgba(10,20,16,.06)', duration: 0.4, ease: 'power2.inOut' });
+        gsap.to(card,   { y: 0, boxShadow: '0 2px 24px rgba(0,0,0,.25)', duration: 0.4, ease: 'power2.inOut' });
       });
     });
 
