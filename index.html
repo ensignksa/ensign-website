@@ -110,15 +110,7 @@
 
   <!-- ── AURORA CANVAS ─────────────────────────────────────────── -->
   <div id="site-bg" aria-hidden="true">
-    <div class="orb-mouse orb-mouse-green">
-      <div class="site-bg-orb site-bg-orb-green"></div>
-    </div>
-    <div class="orb-mouse orb-mouse-blue">
-      <div class="site-bg-orb site-bg-orb-blue"></div>
-    </div>
-    <div class="orb-mouse orb-mouse-purple">
-      <div class="site-bg-orb site-bg-orb-purple"></div>
-    </div>
+    <canvas id="aurora-canvas"></canvas>
   </div>
 
   <!-- ── NAV ─────────────────────────────────────────────────── -->
@@ -617,25 +609,67 @@
   (function() {
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ── Aurora: mouse-tracking parallax ── */
-    var wrapG = document.querySelector('.orb-mouse-green');
-    var wrapB = document.querySelector('.orb-mouse-blue');
-    var wrapP = document.querySelector('.orb-mouse-purple');
-    if (wrapG && wrapB && wrapP) {
-      var toGX = gsap.quickTo(wrapG, 'x', { duration: 1.1, ease: 'power3.out' });
-      var toGY = gsap.quickTo(wrapG, 'y', { duration: 1.1, ease: 'power3.out' });
-      var toBX = gsap.quickTo(wrapB, 'x', { duration: 1.6, ease: 'power3.out' });
-      var toBY = gsap.quickTo(wrapB, 'y', { duration: 1.6, ease: 'power3.out' });
-      var toPX = gsap.quickTo(wrapP, 'x', { duration: 0.9, ease: 'power3.out' });
-      var toPY = gsap.quickTo(wrapP, 'y', { duration: 0.9, ease: 'power3.out' });
+    /* ── Canvas aurora + black-hole cursor ── */
+    (function() {
+      var cv = document.getElementById('aurora-canvas');
+      if (!cv) return;
+      var cx = cv.getContext('2d');
+      var W, H;
+      function resize() { W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
+      resize();
+      window.addEventListener('resize', resize, { passive: true });
+
+      var mx = 0.5, my = 0.5, lx = 0.5, ly = 0.5;
       window.addEventListener('mousemove', function(e) {
-        var cx = e.clientX / window.innerWidth  - 0.5;
-        var cy = e.clientY / window.innerHeight - 0.5;
-        toGX(cx * window.innerWidth  * 0.75); toGY(cy * window.innerHeight * 0.75);
-        toBX(cx * window.innerWidth  * 0.60); toBY(cy * window.innerHeight * 0.60);
-        toPX(cx * window.innerWidth  * 0.85); toPY(cy * window.innerHeight * 0.85);
-      });
-    }
+        mx = e.clientX / window.innerWidth;
+        my = e.clientY / window.innerHeight;
+      }, { passive: true });
+
+      var orbs = [
+        { bx:.12, by:.18, ox:.12, oy:.18, c:'31,111,78',  a:.72, r:.58, spd:.55, pull:.82 },
+        { bx:.82, by:.30, ox:.82, oy:.30, c:'39,71,255',  a:.58, r:.52, spd:.38, pull:.66 },
+        { bx:.50, by:.82, ox:.50, oy:.82, c:'124,58,237', a:.48, r:.50, spd:.70, pull:.92 }
+      ];
+      var t = 0;
+
+      function tick() {
+        t += 0.004;
+        lx += (mx - lx) * 0.055;
+        ly += (my - ly) * 0.055;
+
+        cx.fillStyle = '#0A1410';
+        cx.fillRect(0, 0, W, H);
+
+        orbs.forEach(function(o, i) {
+          var dx = Math.sin(t * o.spd + i * 2.09) * 0.09;
+          var dy = Math.cos(t * o.spd * .73 + i * 1.57) * 0.07;
+          var tx = o.bx + dx + (lx - .5) * o.pull;
+          var ty = o.by + dy + (ly - .5) * o.pull;
+          o.ox += (tx - o.ox) * 0.07;
+          o.oy += (ty - o.oy) * 0.07;
+          var ox = o.ox * W, oy = o.oy * H, r = o.r * Math.max(W, H);
+          var g = cx.createRadialGradient(ox, oy, 0, ox, oy, r);
+          g.addColorStop(0,    'rgba(' + o.c + ',' + o.a + ')');
+          g.addColorStop(0.45, 'rgba(' + o.c + ',' + (o.a * 0.28) + ')');
+          g.addColorStop(1,    'rgba(' + o.c + ',0)');
+          cx.fillStyle = g;
+          cx.fillRect(0, 0, W, H);
+        });
+
+        /* dark lens at cursor */
+        var clx = lx * W, cly = ly * H, lr = Math.max(W, H) * 0.40;
+        var lg = cx.createRadialGradient(clx, cly, 0, clx, cly, lr);
+        lg.addColorStop(0,    'rgba(0,0,0,.92)');
+        lg.addColorStop(0.15, 'rgba(0,0,0,.68)');
+        lg.addColorStop(0.42, 'rgba(0,0,0,.22)');
+        lg.addColorStop(1,    'rgba(0,0,0,0)');
+        cx.fillStyle = lg;
+        cx.fillRect(0, 0, W, H);
+
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
 
     /* ── Hero line reveal (cinematic entrance) ── */
     gsap.from('.hero-line', {
