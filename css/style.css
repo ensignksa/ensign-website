@@ -716,10 +716,7 @@ button { font-family: inherit; cursor: pointer; }
 .services-banner-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(60% 80% at 20% 50%, rgba(31,111,78,.8), transparent 60%),
-    radial-gradient(60% 80% at 80% 50%, rgba(39,71,255,.67), transparent 60%),
-    linear-gradient(120deg, #0A1410, rgba(10,20,16,.8) 50%, #0A1410);
+  background: rgba(0,0,0,.28);
 }
 
 .services-banner-grain {
