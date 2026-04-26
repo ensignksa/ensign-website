@@ -624,13 +624,13 @@
     gsap.set(words, { opacity: 0.08 });
     gsap.to(words, {
       opacity: 1,
-      stagger: 0.8,
+      stagger: 1,
       ease: 'none',
       scrollTrigger: {
-        trigger: '#pillars-story',
-        start: 'top 80%',
-        end: 'bottom 30%',
-        scrub: 0.6
+        trigger: '.pillars-intro',
+        start: 'top 60%',
+        end: 'bottom 55%',
+        scrub: 0.8
       }
     });
 

@@ -354,14 +354,18 @@ button { font-family: inherit; cursor: pointer; }
 /* ── Pillars section ─────────────────────────────────────────── */
 #pillars {
   position: relative;
-  padding: 120px 56px 80px;
+  padding: 0 56px 100px;
 }
 
 .pillars-intro {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: 1200px;
-  margin: 0 auto 80px;
+  margin: 0 auto;
+  padding: 120px 0 80px;
   border-top: 1px solid rgba(10,20,16,.12);
-  padding-top: 56px;
 }
 
 .pillars-kicker {
@@ -2067,9 +2071,9 @@ button { font-family: inherit; cursor: pointer; }
   .hero-content { padding: 0 24px; }
   .hero-btns { flex-direction: column; align-items: center; }
 
-  #pillars { padding: 80px 24px 60px; }
+  #pillars { padding: 0 24px 80px; }
   .pillars-grid { grid-template-columns: 1fr; gap: 14px; }
-  .pillars-intro { margin-bottom: 48px; }
+  .pillars-intro { min-height: 100svh; padding: 100px 0 60px; }
   .pillar-card { min-height: 360px; }
 
   #agents { padding: 80px 24px; }
