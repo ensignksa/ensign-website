@@ -117,7 +117,7 @@ button { font-family: inherit; cursor: pointer; }
   left: 0;
   right: 0;
   z-index: 200;
-  height: 52px;
+  height: 96px;
   border-radius: 0;
   background: rgba(10,20,16,.75);
   backdrop-filter: blur(24px) saturate(180%);
@@ -137,7 +137,7 @@ button { font-family: inherit; cursor: pointer; }
   flex-shrink: 0;
 }
 .nav-logo {
-  height: 30px;
+  height: 96px;
   width: auto;
   display: block;
 }
@@ -216,7 +216,7 @@ button { font-family: inherit; cursor: pointer; }
 .nav-mobile {
   display: none;
   position: fixed;
-  top: 52px;
+  top: 96px;
   left: 0;
   right: 0;
   z-index: 199;
