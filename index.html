@@ -166,7 +166,10 @@
     <div class="hero-fade" aria-hidden="true"></div>
 
     <div class="hero-content" id="hero-content">
-      <h1>Marketing Solutions<br>for the AI era.</h1>
+      <h1>
+        <span class="hero-line-outer"><span class="hero-line">Marketing Solutions</span></span>
+        <span class="hero-line-outer"><span class="hero-line">for the AI era.</span></span>
+      </h1>
       <div class="hero-btns">
         <a href="#services" class="btn-hero-primary">
           Marketing Agency
@@ -425,7 +428,7 @@
       </span>
     </div>
 
-    <div class="work-grid">
+    <div id="work-track" class="work-track">
       <article class="work-card work-card-1">
         <div class="work-card-bg"></div>
         <div class="work-card-stripes" aria-hidden="true"></div>
@@ -612,12 +615,30 @@
 
   <script src="js/main.min.js"></script>
 
-  <!-- GSAP Animations -->
+  <!-- GSAP + Lenis -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script>
   (function() {
     gsap.registerPlugin(ScrollTrigger);
+
+    /* ── Lenis smooth scroll (own RAF loop, synced to ScrollTrigger) ── */
+    var lenis = new Lenis({ lerp: 0.07 });
+    lenis.on('scroll', ScrollTrigger.update);
+    (function lenisRaf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(lenisRaf);
+    })(performance.now());
+
+    /* ── Hero line reveal ── */
+    gsap.from('.hero-line', {
+      yPercent: 105,
+      duration: 1.2,
+      ease: 'power4.out',
+      stagger: 0.18,
+      delay: 0.35
+    });
 
     /* ── Word-by-word scroll reveal ── */
     var words = document.querySelectorAll('#pillars-story .pw');
@@ -649,6 +670,44 @@
         }
       });
     });
+
+    /* ── Work section: horizontal scroll ── */
+    var workTrack = document.getElementById('work-track');
+    if (workTrack && window.innerWidth > 768) {
+      var getScrollAmount = function() {
+        return -(workTrack.scrollWidth - window.innerWidth + 56);
+      };
+
+      var horizTween = gsap.to(workTrack, {
+        x: getScrollAmount,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#work',
+          pin: true,
+          anticipatePin: 1,
+          scrub: 1.2,
+          start: 'top top',
+          end: function() { return '+=' + Math.abs(getScrollAmount()); },
+          invalidateOnRefresh: true
+        }
+      });
+
+      /* Card reveal as each enters during horizontal scroll */
+      document.querySelectorAll('#work-track .work-card').forEach(function(card) {
+        gsap.from(card, {
+          opacity: 0,
+          y: 32,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            containerAnimation: horizTween,
+            start: 'left 90%',
+            toggleActions: 'play none none none'
+          }
+        });
+      });
+    }
 
     /* ── Card hover: gradient bg reveal + color shift ── */
     var INK  = 'rgb(10, 20, 16)';
