@@ -41,7 +41,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.min.css">
+  <link rel="stylesheet" href="../css/style.min.css?v=4">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -70,10 +70,15 @@
 </head>
 <body class="blog-page">
 
+<div id="site-bg" aria-hidden="true">
+  <div class="site-bg-orb site-bg-orb-green"></div>
+  <div class="site-bg-orb site-bg-orb-blue"></div>
+  <div class="site-bg-orb site-bg-orb-purple"></div>
+</div>
+
 <header class="site-nav" id="site-nav">
   <a href="../" class="nav-brand">
-    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="orb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1F6F4E"/><stop offset="100%" stop-color="#2747FF"/></linearGradient></defs><circle cx="12" cy="12" r="9" fill="url(#orb)"/><circle cx="12" cy="12" r="3" fill="#fff" fill-opacity=".85"/></svg>
-    <span>Ensign<span class="dot">.</span></span>
+    <img src="../assets/logos/1-transparent.png" alt="Ensign Ai Marketing Agency" class="nav-logo">
   </a>
   <nav class="nav-links" aria-label="Main navigation">
     <a href="../#agents">AI Solutions</a>
