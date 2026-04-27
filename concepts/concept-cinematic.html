@@ -1,14 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LWTQMQ08D4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LWTQMQ08D4');
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ensign — Cinematic Concept (Prototype)</title>
-<meta name="robots" content="noindex,nofollow">
+<title>Ensign Ai Marketing Agency — AI Systems. Human Leadership.</title>
+<meta name="description" content="Ensign Ai Marketing Agency is a Riyadh-based AI marketing consultancy that builds intelligent marketing systems, automation frameworks, and high-performance campaigns for businesses in Saudi Arabia and the UAE.">
+<link rel="canonical" href="https://ensignksa.com/">
+<link rel="alternate" hreflang="en" href="https://ensignksa.com/">
+<link rel="alternate" hreflang="ar" href="https://ensignksa.com/ar/">
+<link rel="alternate" hreflang="x-default" href="https://ensignksa.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ensignksa.com/">
+<meta property="og:title" content="Ensign Ai Marketing Agency — AI Systems. Human Leadership.">
+<meta property="og:description" content="Ensign Ai Marketing Agency is a Riyadh-based AI marketing consultancy that builds intelligent marketing systems, automation frameworks, and high-performance campaigns for businesses in Saudi Arabia and the UAE.">
+<meta property="og:image" content="https://ensignksa.com/assets/logos/3.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ensign Ai Marketing Agency">
+<meta property="og:locale:alternate" content="ar_SA">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ensignksa">
+<meta name="twitter:title" content="Ensign Ai Marketing Agency — AI Systems. Human Leadership.">
+<meta name="twitter:description" content="Ensign Ai Marketing Agency is a Riyadh-based AI marketing consultancy that builds intelligent marketing systems, automation frameworks, and high-performance campaigns for businesses in Saudi Arabia and the UAE.">
+<meta name="twitter:image" content="https://ensignksa.com/assets/logos/3.png">
+<meta name="robots" content="index, follow">
+<meta name="google-site-verification" content="6mhIBpujaVlHhLelepqTFnCQbR2fOf5eYkuUP4PpcfQ">
+<meta name="author" content="Ensign Ai Marketing Agency">
+<meta name="geo.region" content="SA">
+<meta name="geo.placename" content="Riyadh">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://cal.eu">
+<link rel="dns-prefetch" href="https://wa.me">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Ensign Ai Marketing Agency","alternateName":"Ensign Agency","url":"https://ensignksa.com","logo":"https://ensignksa.com/assets/logos/3.png","description":"Ensign Ai Marketing Agency is a Riyadh-based AI marketing consultancy that builds intelligent marketing systems, automation frameworks, and high-performance campaigns for businesses in Saudi Arabia and the UAE.","email":"contact@ensignksa.com","address":{"@type":"PostalAddress","addressLocality":"Riyadh","addressCountry":"SA"},"sameAs":["https://www.linkedin.com/company/ensignailab","https://x.com/ensignksa","https://www.instagram.com/ensignksa/"]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"Ensign Ai Marketing Agency","alternateName":["Ensign Agency","Ensign KSA"],"url":"https://ensignksa.com","logo":"https://ensignksa.com/assets/logos/3.png","slogan":"AI Systems. Human Leadership.","email":"contact@ensignksa.com","telephone":"+966548919405","address":{"@type":"PostalAddress","addressLocality":"Riyadh","addressRegion":"Riyadh Province","addressCountry":"SA"},"geo":{"@type":"GeoCoordinates","latitude":24.7136,"longitude":46.6753},"areaServed":[{"@type":"Country","name":"Saudi Arabia"},{"@type":"Country","name":"United Arab Emirates"}],"serviceType":["AI Marketing Consulting","Marketing Automation","AI Agents","Campaign Management","Creative Production"],"priceRange":"$$","knowsLanguage":["en","ar"],"sameAs":["https://www.linkedin.com/company/ensignailab","https://x.com/ensignksa","https://www.instagram.com/ensignksa/"]}
+</script>
 
 <style>
 :root{
@@ -630,6 +673,160 @@ section{ position:relative; z-index:2;}
   -webkit-background-clip:text; background-clip:text; color:transparent;
 }
 
+/* ───── Work Tabs ───── */
+.work-tabs-wrap{ margin:8px 0 56px; display:flex; overflow-x:auto;}
+.work-tabs{
+  position:relative; display:inline-flex; gap:0; padding:6px;
+  background:var(--glass);
+  border:1px solid rgba(255,255,255,.7);
+  border-radius:999px;
+  backdrop-filter:blur(20px) saturate(140%); -webkit-backdrop-filter:blur(20px) saturate(140%);
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset, var(--shadow-sm);
+}
+.work-tab{
+  position:relative; z-index:2;
+  padding:11px 22px; border-radius:999px;
+  font-family:inherit; font-size:13px; font-weight:500;
+  color:var(--ink-mute); background:transparent; cursor:pointer; white-space:nowrap;
+  transition:color .35s var(--ease);
+}
+.work-tab:hover{ color:var(--ink);}
+.work-tab.active{ color:#fff;}
+.work-tab-indicator{
+  position:absolute; top:6px; left:0; height:calc(100% - 12px);
+  background:var(--ink); border-radius:999px; z-index:1;
+  transition:transform .55s var(--ease), width .55s var(--ease);
+  will-change:transform, width;
+}
+
+/* ───── Work Panels ───── */
+.work-panels{ position:relative; min-height:480px;}
+.work-panel{ display:none; opacity:0;}
+.work-panel.active{
+  display:block;
+  animation:panelIn .75s var(--ease-out) forwards;
+}
+@keyframes panelIn{
+  from{ opacity:0; transform:translateY(14px); filter:blur(8px);}
+  to{ opacity:1; transform:translateY(0); filter:blur(0);}
+}
+
+/* ───── Tile Strip (Media + Events) ───── */
+.work-tile-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+.work-tile{
+  position:relative; aspect-ratio:4/5; overflow:hidden;
+  border-radius:22px;
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:var(--shadow-md);
+  transition:transform .55s var(--ease), box-shadow .55s var(--ease);
+  cursor:pointer; will-change:transform;
+}
+.work-tile:hover{ transform:translateY(-6px) scale(1.015); box-shadow:var(--shadow-lg);}
+.work-tile.t-a{ background:linear-gradient(135deg,#ddd6fe 0%,#fce7f3 50%,#fef3c7 100%);}
+.work-tile.t-b{ background:linear-gradient(135deg,#bae6fd 0%,#ddd6fe 50%,#fbcfe8 100%);}
+.work-tile.t-c{ background:linear-gradient(135deg,#fef3c7 0%,#fed7aa 50%,#fbcfe8 100%);}
+.work-tile.t-d{ background:linear-gradient(135deg,#c7d2fe 0%,#bae6fd 50%,#d1fae5 100%);}
+.work-tile.t-e{ background:linear-gradient(135deg,#fce7f3 0%,#ddd6fe 50%,#bae6fd 100%);}
+.work-tile.t-f{ background:linear-gradient(135deg,#d1fae5 0%,#bae6fd 50%,#c7d2fe 100%);}
+.work-tile img, .work-tile video{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+}
+.work-tile-shade{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 50%, rgba(0,0,0,.18) 100%);
+  pointer-events:none;
+}
+.work-tile-label{
+  position:absolute; bottom:14px; left:14px; z-index:2;
+  padding:7px 14px; border-radius:999px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,.7);
+  font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink);
+}
+
+/* ───── KPI Grid ───── */
+.kpi-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+.kpi-card{
+  position:relative; overflow:hidden;
+  padding:28px 24px 24px;
+  background:var(--glass); border:1px solid rgba(255,255,255,.7); border-radius:22px;
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  box-shadow:var(--shadow-sm);
+  transition:transform .5s var(--ease), box-shadow .5s var(--ease);
+}
+.kpi-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md);}
+.kpi-card .glow{
+  position:absolute; inset:auto -30% -50% -10%; height:60%;
+  background:radial-gradient(circle, rgba(59,69,217,.14), transparent 60%);
+  filter:blur(28px); pointer-events:none;
+}
+.kpi-card .glow.warm{ background:radial-gradient(circle, rgba(245,188,54,.18), transparent 60%);}
+.kpi-label{
+  font-family:'JetBrains Mono',monospace; font-size:10px;
+  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px;
+}
+.kpi-value{
+  font-size:clamp(38px, 4.4vw, 60px); font-weight:500; letter-spacing:-.03em; line-height:1;
+  background:linear-gradient(135deg, var(--ink) 0%, var(--indigo) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  position:relative; z-index:1;
+}
+.kpi-bar{
+  margin-top:18px; height:4px;
+  background:rgba(10,10,10,.06); border-radius:999px; overflow:hidden;
+}
+.kpi-bar-fill{
+  height:100%; width:0;
+  background:linear-gradient(90deg, var(--indigo), var(--yellow));
+  border-radius:999px;
+  transition:width 1.6s var(--ease-out);
+}
+
+/* ───── Growth Chart ───── */
+.growth-chart{
+  margin-top:18px; padding:28px;
+  background:var(--glass); border:1px solid rgba(255,255,255,.7); border-radius:22px;
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  box-shadow:var(--shadow-sm);
+  position:relative; overflow:hidden;
+}
+.growth-chart-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;}
+.growth-chart-head h4{ font-size:15px; font-weight:500; letter-spacing:-.01em;}
+.growth-chart-head .legend{ display:flex; gap:14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-mute);}
+.growth-chart-head .legend span{ display:flex; align-items:center; gap:6px;}
+.growth-chart-head .legend .dot{ width:8px; height:8px; border-radius:50%;}
+.growth-chart svg{ width:100%; height:200px; display:block;}
+.growth-chart .chart-glow{
+  position:absolute; inset:auto -10% -50% -10%; height:60%;
+  background:radial-gradient(ellipse at center, rgba(59,69,217,.16), transparent 60%);
+  pointer-events:none; filter:blur(20px);
+}
+
+/* ───── Ads Funnel ───── */
+.ad-funnel{
+  margin-top:18px; padding:32px 28px;
+  background:var(--glass); border:1px solid rgba(255,255,255,.7); border-radius:22px;
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  box-shadow:var(--shadow-sm);
+  display:flex; flex-direction:column; gap:14px;
+}
+.ad-funnel-head{
+  font-family:'JetBrains Mono',monospace; font-size:11px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+}
+.ad-funnel-step{ display:flex; justify-content:space-between; align-items:center; gap:18px;}
+.ad-funnel-step .name{ font-size:13px; color:var(--ink-mute); width:140px; flex:none;}
+.ad-funnel-step .bar{ flex:1; height:32px; border-radius:8px; position:relative; overflow:hidden; background:rgba(10,10,10,.04);}
+.ad-funnel-step .bar-fill{
+  position:absolute; top:0; left:0; bottom:0; width:0;
+  background:linear-gradient(90deg, var(--indigo) 0%, var(--yellow) 100%);
+  border-radius:8px;
+  transition:width 1.4s var(--ease-out);
+}
+.ad-funnel-step .val{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--ink); width:64px; text-align:right; flex:none;}
+
 /* ───────── PARTNERS ───────── */
 .partners-cine{ padding:80px 0 120px;}
 .partners-cine .head{ text-align:center; margin-bottom:56px;}
@@ -734,6 +931,8 @@ footer.cine{
   .ac-left{ position:static;}
   .eos-grid{ grid-template-columns:1fr; gap:48px;}
   .work-grid{ grid-template-columns:1fr;}
+  .work-tile-strip{ grid-template-columns:repeat(2,1fr);}
+  .kpi-grid{ grid-template-columns:repeat(2,1fr);}
   .work-card.lg{ min-height:380px;}
   .foot-grid{ grid-template-columns:1fr 1fr;}
 }
@@ -751,6 +950,15 @@ footer.cine{
   .cta-card{ padding:60px 28px;}
   .foot-grid{ grid-template-columns:1fr;}
   .foot-bottom{ flex-direction:column; align-items:flex-start;}
+
+  .work-tile-strip{
+    display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
+    gap:12px; padding:0 22px 12px; margin:0 -22px;
+  }
+  .work-tile-strip > *{ flex:0 0 78%; scroll-snap-align:start;}
+  .kpi-grid{ grid-template-columns:1fr;}
+  .ad-funnel-step .name{ width:90px; font-size:12px;}
+  .ad-funnel-step .val{ width:48px;}
 }
 </style>
 </head>
@@ -765,15 +973,16 @@ footer.cine{
 <!-- ───────── NAV ───────── -->
 <div class="nav-wrap">
   <header class="nav">
-    <a href="#" class="nav-brand"><span class="nav-brand-orb"></span>Ensign<span style="color:var(--indigo)">.</span></a>
+    <a href="/" class="nav-brand"><span class="nav-brand-orb"></span>Ensign<span style="color:var(--indigo)">.</span></a>
     <nav class="nav-links">
       <a href="#agents">AI Solutions</a>
       <a href="#services">Agency</a>
       <a href="#eos">Ensign OS</a>
       <a href="#work">Work</a>
-      <a href="#blog">Blog</a>
+      <a href="blog/">Blog</a>
+      <a href="ar/" aria-label="Switch to Arabic">AR</a>
     </nav>
-    <a href="#cta" class="nav-cta" data-magnetic>Book a Call
+    <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-magnetic>Book a Call
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
   </header>
@@ -989,7 +1198,7 @@ footer.cine{
       </div>
       <h2 class="reveal">An operating system for real estate brokerages.</h2>
       <p class="reveal">One surface that connects sales, marketing, management and developers — with AI feedback woven through every view.</p>
-      <a href="#cta" class="btn-primary reveal" data-magnetic>Request early access
+      <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-primary reveal" data-magnetic>Request early access
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -1047,55 +1256,150 @@ footer.cine{
       </div>
     </div>
 
-    <div class="work-grid">
-      <article class="work-card lg b1 reveal">
-        <div class="glow"></div>
-        <span class="wc-tag">Real Estate · KSA</span>
-        <span class="wc-num">01 / 04</span>
-        <div class="wc-info">
-          <div>
-            <div class="wc-client">Sahel Residences</div>
-            <div class="wc-line">Launch campaign + lead funnel — 3.2× pipeline in 90 days.</div>
-          </div>
-          <div class="wc-metric">3.2×</div>
+    <div class="work-tabs-wrap reveal">
+      <div class="work-tabs" role="tablist">
+        <button class="work-tab active" data-tab="media" role="tab">Media Production</button>
+        <button class="work-tab" data-tab="growth" role="tab">Account Growth</button>
+        <button class="work-tab" data-tab="ads" role="tab">Ads Results</button>
+        <button class="work-tab" data-tab="events" role="tab">Events</button>
+        <span class="work-tab-indicator" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <div class="work-panels">
+
+      <!-- Media Production -->
+      <div class="work-panel active" data-panel="media">
+        <div class="work-tile-strip">
+          <figure class="work-tile t-a">
+            <img src="/work/media-production-01.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <span class="work-tile-shade"></span>
+            <span class="work-tile-label">Brand Film</span>
+          </figure>
+          <figure class="work-tile t-b">
+            <video src="/work/media-production-02.mp4" autoplay muted loop playsinline onerror="this.style.display='none'"></video>
+            <span class="work-tile-shade"></span>
+            <span class="work-tile-label">Product Reel</span>
+          </figure>
+          <figure class="work-tile t-c">
+            <img src="/work/media-production-03.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <span class="work-tile-shade"></span>
+            <span class="work-tile-label">Editorial</span>
+          </figure>
+          <figure class="work-tile t-d">
+            <video src="/work/media-production-04.mp4" autoplay muted loop playsinline onerror="this.style.display='none'"></video>
+            <span class="work-tile-shade"></span>
+            <span class="work-tile-label">Campaign</span>
+          </figure>
         </div>
-      </article>
-      <article class="work-card b2 reveal">
-        <div class="glow"></div>
-        <span class="wc-tag">Hospitality · UAE</span>
-        <span class="wc-num">02 / 04</span>
-        <div class="wc-info">
-          <div>
-            <div class="wc-client">Awan Hospitality</div>
-            <div class="wc-line">Brand refresh and seasonal performance program.</div>
+      </div>
+
+      <!-- Account Growth -->
+      <div class="work-panel" data-panel="growth">
+        <div class="kpi-grid">
+          <div class="kpi-card"><div class="glow"></div>
+            <div class="kpi-label">Reach Growth</div>
+            <div class="kpi-value" data-count="185" data-prefix="+" data-suffix="%">+0%</div>
+            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="92"></div></div>
           </div>
-          <div class="wc-metric">+47%</div>
-        </div>
-      </article>
-      <article class="work-card b3 reveal">
-        <div class="glow"></div>
-        <span class="wc-tag">Finance · KSA</span>
-        <span class="wc-num">03 / 04</span>
-        <div class="wc-info">
-          <div>
-            <div class="wc-client">Marya Capital</div>
-            <div class="wc-line">Thought-leadership engine and AI research workflow.</div>
+          <div class="kpi-card"><div class="glow warm"></div>
+            <div class="kpi-label">Follower Growth</div>
+            <div class="kpi-value" data-count="72" data-prefix="+" data-suffix="%">+0%</div>
+            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="64"></div></div>
           </div>
-          <div class="wc-metric">12 mo</div>
-        </div>
-      </article>
-      <article class="work-card lg b1 reveal">
-        <div class="glow"></div>
-        <span class="wc-tag">Real Estate · UAE</span>
-        <span class="wc-num">04 / 04</span>
-        <div class="wc-info">
-          <div>
-            <div class="wc-client">Noor Developments</div>
-            <div class="wc-line">Off-plan launch with role-based sales enablement.</div>
+          <div class="kpi-card"><div class="glow"></div>
+            <div class="kpi-label">Profile Visits</div>
+            <div class="kpi-value" data-count="240" data-prefix="+" data-suffix="%">+0%</div>
+            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="100"></div></div>
           </div>
-          <div class="wc-metric">AED 280M</div>
+          <div class="kpi-card"><div class="glow warm"></div>
+            <div class="kpi-label">Engagement Lift</div>
+            <div class="kpi-value" data-count="3.8" data-suffix="x" data-decimals="1">0.0x</div>
+            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="76"></div></div>
+          </div>
         </div>
-      </article>
+        <div class="growth-chart">
+          <div class="chart-glow"></div>
+          <div class="growth-chart-head">
+            <h4>Audience trajectory · 90 days</h4>
+            <div class="legend">
+              <span><span class="dot" style="background:var(--indigo)"></span>Reach</span>
+              <span><span class="dot" style="background:var(--yellow)"></span>Engagement</span>
+            </div>
+          </div>
+          <svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#3B45D9" stop-opacity=".25"/>
+                <stop offset="100%" stop-color="#3B45D9" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path id="growthArea" d="M0,170 C80,160 130,140 200,120 C270,100 320,80 400,55 C480,30 540,18 600,10 L600,200 L0,200 Z" fill="url(#gArea)"/>
+            <path id="growthLine" d="M0,170 C80,160 130,140 200,120 C270,100 320,80 400,55 C480,30 540,18 600,10" fill="none" stroke="#3B45D9" stroke-width="2" stroke-linecap="round"/>
+            <path id="growthLine2" d="M0,180 C80,175 140,165 220,150 C300,135 360,118 440,95 C500,80 560,68 600,60" fill="none" stroke="#F5BC36" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4" opacity=".75"/>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Ads Results -->
+      <div class="work-panel" data-panel="ads">
+        <div class="kpi-grid">
+          <div class="kpi-card"><div class="glow"></div>
+            <div class="kpi-label">Leads Generated</div>
+            <div class="kpi-value" data-count="1240" data-suffix="+">0</div>
+            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="88"></div></div>
+          </div>
+          <div class="kpi-card"><div class="glow warm"></div>
+            <div class="kpi-label">Cost Per Lead</div>
+            <div class="kpi-value" data-count="-38" data-suffix="%">0%</div>
+            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="62"></div></div>
+          </div>
+          <div class="kpi-card"><div class="glow"></div>
+            <div class="kpi-label">Conversion Rate</div>
+            <div class="kpi-value" data-count="64" data-prefix="+" data-suffix="%">+0%</div>
+            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="78"></div></div>
+          </div>
+          <div class="kpi-card"><div class="glow warm"></div>
+            <div class="kpi-label">Campaign Efficiency</div>
+            <div class="kpi-value" data-count="2.7" data-suffix="x" data-decimals="1">0.0x</div>
+            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="68"></div></div>
+          </div>
+        </div>
+        <div class="ad-funnel">
+          <div class="ad-funnel-head">Conversion funnel · last 30 days</div>
+          <div class="ad-funnel-step"><span class="name">Impressions</span><div class="bar"><div class="bar-fill" data-fill="100"></div></div><span class="val">1.2M</span></div>
+          <div class="ad-funnel-step"><span class="name">Clicks</span><div class="bar"><div class="bar-fill" data-fill="42"></div></div><span class="val">48K</span></div>
+          <div class="ad-funnel-step"><span class="name">Leads</span><div class="bar"><div class="bar-fill" data-fill="18"></div></div><span class="val">1.24K</span></div>
+          <div class="ad-funnel-step"><span class="name">Conversions</span><div class="bar"><div class="bar-fill" data-fill="9"></div></div><span class="val">312</span></div>
+        </div>
+      </div>
+
+      <!-- Events -->
+      <div class="work-panel" data-panel="events">
+        <div class="work-tile-strip">
+          <figure class="work-tile t-c">
+            <img src="/work/events-01.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <span class="work-tile-shade"></span>
+            <span class="work-tile-label">Brand Activation</span>
+          </figure>
+          <figure class="work-tile t-d">
+            <img src="/work/events-02.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <span class="work-tile-shade"></span>
+            <span class="work-tile-label">Conference</span>
+          </figure>
+          <figure class="work-tile t-e">
+            <video src="/work/events-03.mp4" autoplay muted loop playsinline onerror="this.style.display='none'"></video>
+            <span class="work-tile-shade"></span>
+            <span class="work-tile-label">Launch</span>
+          </figure>
+          <figure class="work-tile t-f">
+            <img src="/work/events-04.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
+            <span class="work-tile-shade"></span>
+            <span class="work-tile-label">VIP Dinner</span>
+          </figure>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1146,7 +1450,7 @@ footer.cine{
       <span class="kicker">Let's talk</span>
       <h2>Let's build the<br>next chapter.</h2>
       <p>Tell us about your business. We'll come back within two working days.</p>
-      <a href="#" class="btn-primary" data-magnetic>Book a consultation
+      <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-primary" data-magnetic>Book a consultation
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -1172,17 +1476,17 @@ footer.cine{
       </div>
       <div class="foot-col">
         <h4>Company</h4>
-        <a href="#">About</a>
-        <a href="#">Blog</a>
-        <a href="#">Careers</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms</a>
+        <a href="#agents">About</a>
+        <a href="blog/">Blog</a>
+        <a href="careers.html">Careers</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms</a>
       </div>
       <div class="foot-col">
         <h4>Contact</h4>
         <a href="mailto:contact@ensignksa.com">contact@ensignksa.com</a>
-        <a href="#">+966 54 891 9405</a>
-        <a href="#">Book a Call</a>
+        <a href="https://wa.me/966548919405" target="_blank" rel="noopener noreferrer">+966 54 891 9405</a>
+        <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
       </div>
     </div>
 
@@ -1312,6 +1616,113 @@ footer.cine{
         mock.style.transform = 'perspective(1600px) rotateY(' + (-6 + t*3) + 'deg) rotateX(' + (2 - t*2) + 'deg) translateY(' + (t*-12) + 'px)';
       }
     }, { passive:true });
+  }
+
+  /* ── WORK TABS + KPI ANIMATION ── */
+  var workTabs      = document.querySelectorAll('.work-tab');
+  var workIndicator = document.querySelector('.work-tab-indicator');
+  var workPanels    = document.querySelectorAll('.work-panel');
+  var workSection   = document.getElementById('work');
+
+  function positionIndicator(){
+    var active = document.querySelector('.work-tab.active');
+    if(!active || !workIndicator) return;
+    workIndicator.style.width = active.offsetWidth + 'px';
+    workIndicator.style.transform = 'translateX(' + (active.offsetLeft - 6) + 'px)';
+  }
+
+  function formatVal(v, el){
+    var decimals = parseInt(el.dataset.decimals || '0', 10);
+    var prefix = el.dataset.prefix || '';
+    var suffix = el.dataset.suffix || '';
+    var str;
+    if(decimals){
+      str = v.toFixed(decimals);
+    } else {
+      var rounded = Math.round(v);
+      str = (Math.abs(rounded) >= 1000) ? rounded.toLocaleString('en-US') : rounded.toString();
+    }
+    return prefix + str + suffix;
+  }
+
+  function animateCount(el){
+    if(reduceMotion){
+      el.textContent = formatVal(parseFloat(el.dataset.count), el);
+      return;
+    }
+    var target = parseFloat(el.dataset.count);
+    var duration = 1400;
+    var start = performance.now();
+    function tick(now){
+      var t = Math.min((now - start) / duration, 1);
+      var eased = 1 - Math.pow(1 - t, 3);
+      var v = target * eased;
+      el.textContent = formatVal(v, el);
+      if(t < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function animateLine(el, dur){
+    if(!el || reduceMotion) return;
+    var len = el.getTotalLength ? el.getTotalLength() : 1000;
+    el.style.strokeDasharray = len;
+    el.style.strokeDashoffset = len;
+    el.style.transition = 'none';
+    requestAnimationFrame(function(){
+      el.style.transition = 'stroke-dashoffset ' + (dur || 2) + 's cubic-bezier(.16,1,.3,1)';
+      el.style.strokeDashoffset = 0;
+    });
+  }
+
+  function activatePanel(name){
+    workPanels.forEach(function(p){
+      p.classList.toggle('active', p.dataset.panel === name);
+    });
+    var active = document.querySelector('.work-panel[data-panel="'+name+'"]');
+    if(!active) return;
+    /* Reset bar fills then animate */
+    active.querySelectorAll('.kpi-bar-fill, .ad-funnel-step .bar-fill').forEach(function(el){
+      el.style.width = '0%';
+    });
+    /* Trigger after a tick so transition fires */
+    requestAnimationFrame(function(){
+      active.querySelectorAll('.kpi-bar-fill, .ad-funnel-step .bar-fill').forEach(function(el){
+        el.style.width = el.dataset.fill + '%';
+      });
+    });
+    /* Count up KPI values */
+    active.querySelectorAll('.kpi-value[data-count]').forEach(animateCount);
+    /* Animate growth chart lines */
+    animateLine(active.querySelector('#growthLine'), 2);
+    animateLine(active.querySelector('#growthLine2'), 2.4);
+  }
+
+  workTabs.forEach(function(tab){
+    tab.addEventListener('click', function(){
+      workTabs.forEach(function(t){ t.classList.remove('active'); });
+      tab.classList.add('active');
+      positionIndicator();
+      activatePanel(tab.dataset.tab);
+    });
+  });
+
+  window.addEventListener('load', positionIndicator);
+  window.addEventListener('resize', positionIndicator);
+  positionIndicator();
+
+  /* Trigger initial panel animation when scrolled into view */
+  if(workSection && 'IntersectionObserver' in window){
+    var workIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          var act = document.querySelector('.work-tab.active');
+          if(act) activatePanel(act.dataset.tab);
+          workIO.unobserve(workSection);
+        }
+      });
+    }, { threshold: .25 });
+    workIO.observe(workSection);
   }
 }());
 </script>
