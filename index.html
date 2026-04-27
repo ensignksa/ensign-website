@@ -697,38 +697,47 @@
 
     /* ── Scattered float entrance — fan out from center ── */
     var pcRotations = [-5, 3, -4];
-    var pcFromX     = [340, 0, -340];   /* cards fly in from center to their column */
+    var pcFromX     = [340, 0, -340];
     var pcFloatDur  = [3.4, 4.2, 3.8];
     var pcFloatAmp  = [-10, -13, -11];
     var pcFloats    = [];
+    var pcTweens    = [];
+    var pcCards     = Array.from(document.querySelectorAll('#pillars-grid .pillar-card'));
 
-    document.querySelectorAll('#pillars-grid .pillar-card').forEach(function(card, i) {
-      gsap.fromTo(card,
+    pcCards.forEach(function(card, i) {
+      gsap.set(card, { x: pcFromX[i], y: 60, opacity: 0, rotation: 0, scale: 0.88 });
+
+      pcTweens[i] = gsap.fromTo(card,
         { x: pcFromX[i], y: 60, opacity: 0, rotation: 0, scale: 0.88 },
         {
           x: 0, y: 0, opacity: 1, rotation: pcRotations[i], scale: 1,
           duration: 1.1, ease: 'expo.out', delay: i * 0.08,
-          scrollTrigger: {
-            trigger: '#pillars-grid',
-            start: 'top 82%',
-            toggleActions: 'play none none reverse',
-            onLeaveBack: function() {
-              if (pcFloats[i]) { pcFloats[i].kill(); pcFloats[i] = null; }
-              gsap.set(card, { y: 0 });
-            }
-          },
+          paused: true,
           onComplete: function() {
             if (pcFloats[i]) pcFloats[i].kill();
             pcFloats[i] = gsap.to(card, {
-              y: pcFloatAmp[i],
-              duration: pcFloatDur[i],
-              ease: 'sine.inOut',
-              yoyo: true,
-              repeat: -1
+              y: pcFloatAmp[i], duration: pcFloatDur[i],
+              ease: 'sine.inOut', yoyo: true, repeat: -1
             });
           }
         }
       );
+    });
+
+    ScrollTrigger.create({
+      trigger: '#pillars-grid',
+      start: 'top 82%',
+      onEnter: function() {
+        pcTweens.forEach(function(t) { t.play(); });
+      },
+      onLeaveBack: function() {
+        pcCards.forEach(function(card, i) {
+          if (pcFloats[i]) { pcFloats[i].kill(); pcFloats[i] = null; }
+          gsap.killTweensOf(card, 'y');
+          gsap.set(card, { y: 0 });
+          pcTweens[i].reverse();
+        });
+      }
     });
 
     /* ── Work section: horizontal scroll ── */
