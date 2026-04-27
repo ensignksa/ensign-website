@@ -108,6 +108,11 @@
 </head>
 <body>
 
+  <!-- ── CREATIVE OVERLAYS ────────────────────────────────────── -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
+
   <!-- ── AURORA CANVAS ─────────────────────────────────────────── -->
   <div id="site-bg" aria-hidden="true">
     <div class="site-bg-orb site-bg-orb-green"></div>
@@ -131,7 +136,7 @@
 
     <div class="nav-actions">
       <a href="ar/" class="nav-lang" aria-label="Switch to Arabic">AR</a>
-      <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="nav-cta">
+      <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-magnetic>
         Book a Call
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
@@ -157,18 +162,18 @@
     <div class="hero-content" id="hero-content">
       <h1>
         <span class="hero-line-outer"><span class="hero-line">Marketing Solutions</span></span>
-        <span class="hero-line-outer"><span class="hero-line">for the AI era.</span></span>
+        <span class="hero-line-outer"><span class="hero-line">for the <span class="hero-accent">AI era.<svg class="u-line" viewBox="0 0 340 12" preserveAspectRatio="none" fill="none" aria-hidden="true"><path id="uline-path" d="M2 8C60 2 200 11 338 7" stroke="#6B9BF7" stroke-width="2.5" stroke-linecap="round"/></svg></span></span></span>
       </h1>
       <div class="hero-btns">
-        <a href="#services" class="btn-hero-primary">
+        <a href="#services" class="btn-hero-primary" data-magnetic>
           Marketing Agency
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a href="#agents" class="btn-hero-primary2">
+        <a href="#agents" class="btn-hero-primary2" data-magnetic>
           Explore AI Solutions
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
-        <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-hero-ghost">Book a Consultation</a>
+        <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-hero-ghost" data-magnetic>Book a Consultation</a>
       </div>
     </div>
 
@@ -823,6 +828,111 @@
     });
 
   })();
+  </script>
+
+  <!-- ── CREATIVE INTERACTIONS ─────────────────────────────── -->
+  <script>
+  (function() {
+    var isTouch = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (isTouch) return;
+
+    document.body.classList.add('cc-on');
+
+    /* ── Custom cursor ── */
+    var dot  = document.getElementById('cursor-dot');
+    var ring = document.getElementById('cursor-ring');
+    gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
+
+    var qx = gsap.quickTo(ring, 'x', { duration: 0.42, ease: 'power3' });
+    var qy = gsap.quickTo(ring, 'y', { duration: 0.42, ease: 'power3' });
+
+    document.addEventListener('mousemove', function(e) {
+      gsap.set(dot, { x: e.clientX, y: e.clientY });
+      qx(e.clientX); qy(e.clientY);
+    });
+    document.addEventListener('mouseleave', function() {
+      gsap.to([dot, ring], { opacity: 0, duration: 0.3 });
+    });
+    document.addEventListener('mouseenter', function() {
+      gsap.to([dot, ring], { opacity: 1, duration: 0.3 });
+    });
+    document.addEventListener('mousedown', function() { ring.classList.add('is-click'); });
+    document.addEventListener('mouseup',   function() { ring.classList.remove('is-click'); });
+
+    document.querySelectorAll('a, button').forEach(function(el) {
+      el.addEventListener('mouseenter', function() {
+        dot.classList.add('is-hover');
+        ring.classList.add('is-hover');
+      });
+      el.addEventListener('mouseleave', function() {
+        dot.classList.remove('is-hover');
+        ring.classList.remove('is-hover');
+      });
+    });
+
+    /* ── Magnetic buttons ── */
+    document.querySelectorAll('[data-magnetic]').forEach(function(btn) {
+      btn.addEventListener('mousemove', function(e) {
+        var r = btn.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width  - 0.5;
+        var y = (e.clientY - r.top)  / r.height - 0.5;
+        gsap.to(btn, { x: x * 22, y: y * 16, duration: 0.3, ease: 'power2.out' });
+      });
+      btn.addEventListener('mouseleave', function() {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
+      });
+    });
+
+    /* ── Hero line reveal + SVG underline ── */
+    var heroLines = document.querySelectorAll('.hero-line');
+    if (heroLines.length) {
+      gsap.from(heroLines, {
+        yPercent: 115,
+        duration: 1.15,
+        ease: 'expo.out',
+        stagger: 0.18,
+        delay: 0.15,
+        onComplete: function() {
+          var path = document.getElementById('uline-path');
+          if (!path) return;
+          var len = path.getTotalLength();
+          path.style.strokeDasharray  = len;
+          path.style.strokeDashoffset = len;
+          requestAnimationFrame(function() {
+            path.style.strokeDashoffset = 0;
+          });
+        }
+      });
+      gsap.from('.hero-btns', {
+        opacity: 0, y: 30,
+        duration: 0.9, ease: 'power3.out',
+        delay: 0.65
+      });
+    }
+
+    /* ── 3D tilt on agent + work cards ── */
+    document.querySelectorAll('.agent-card, .work-card').forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width  - 0.5;
+        var y = (e.clientY - r.top)  / r.height - 0.5;
+        gsap.to(card, {
+          rotationY: x * 14,
+          rotationX: -y * 10,
+          transformPerspective: 900,
+          z: 20,
+          duration: 0.35, ease: 'power2.out'
+        });
+      });
+      card.addEventListener('mouseleave', function() {
+        gsap.to(card, {
+          rotationY: 0, rotationX: 0, z: 0,
+          duration: 0.65, ease: 'elastic.out(1, 0.45)'
+        });
+      });
+    });
+
+  }());
   </script>
 </body>
 </html>
