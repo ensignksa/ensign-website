@@ -50,7 +50,7 @@
   <!-- DNS prefetch -->
   <link rel="dns-prefetch" href="https://cal.eu">
   <link rel="dns-prefetch" href="https://wa.me">
-  <link rel="stylesheet" href="css/style.min.css?v=5">
+  <link rel="stylesheet" href="css/style.min.css?v=6">
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
@@ -159,24 +159,60 @@
 
   <!-- ── HERO ────────────────────────────────────────────────── -->
   <section id="hero">
-    <div class="hero-content" id="hero-content">
-      <h1>
-        <span class="hero-line-outer"><span class="hero-line">Marketing Solutions</span></span>
-        <span class="hero-line-outer"><span class="hero-line">for the <span class="hero-accent">AI era.<svg class="u-line" viewBox="0 0 340 12" preserveAspectRatio="none" fill="none" aria-hidden="true"><path id="uline-path" d="M2 8C60 2 200 11 338 7" stroke="#6B9BF7" stroke-width="2.5" stroke-linecap="round"/></svg></span></span></span>
-      </h1>
-      <div class="hero-btns">
-        <a href="#services" class="btn-hero-primary" data-magnetic>
-          Marketing Agency
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="#agents" class="btn-hero-primary2" data-magnetic>
-          Explore AI Solutions
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-hero-ghost" data-magnetic>Book a Consultation</a>
-      </div>
-    </div>
+    <div class="hero-split">
 
+      <!-- Left: text -->
+      <div class="hero-left" id="hero-content">
+        <p class="hero-eyebrow" aria-hidden="true">— AI Marketing Agency · Riyadh, KSA</p>
+        <h1 class="hero-display">
+          <span class="hero-line-outer"><span class="hero-line hd-light">MARKETING</span></span>
+          <span class="hero-line-outer"><span class="hero-line hd-bold">SOLUTIONS</span></span>
+          <span class="hero-line-outer"><span class="hero-line hd-light">FOR THE</span></span>
+          <span class="hero-line-outer"><span class="hero-line hd-outline">AI ERA.</span></span>
+        </h1>
+        <p class="hero-sub">We build AI agents, automation systems, and high-performance marketing for businesses in Saudi Arabia and the UAE.</p>
+        <div class="hero-btns">
+          <a href="#services" class="btn-hero-primary" data-magnetic>
+            Marketing Agency
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#agents" class="btn-hero-ghost" data-magnetic>
+            AI Solutions
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: holographic star -->
+      <div class="hero-right" aria-hidden="true">
+        <div class="hero-star-float">
+          <svg class="hero-star" viewBox="-1.1 -1.1 2.2 2.2" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <radialGradient id="holo1" cx="38%" cy="32%" r="72%">
+                <stop offset="0%"   stop-color="#ffffff" stop-opacity=".95"/>
+                <stop offset="18%"  stop-color="#e0d9ff"/>
+                <stop offset="42%"  stop-color="#bfdbfe"/>
+                <stop offset="68%"  stop-color="#c7d2fe"/>
+                <stop offset="100%" stop-color="#7c3aed" stop-opacity=".75"/>
+              </radialGradient>
+              <radialGradient id="holo2" cx="62%" cy="68%" r="52%">
+                <stop offset="0%"   stop-color="#e0f9ff" stop-opacity=".65"/>
+                <stop offset="100%" stop-color="#e0f9ff" stop-opacity="0"/>
+              </radialGradient>
+              <clipPath id="star-cp">
+                <path d="M0,-1C.2,-.2.2,-.2,1,0C.2,.2.2,.2,0,1C-.2,.2-.2,.2,-1,0C-.2,-.2-.2,-.2,0,-1Z"/>
+              </clipPath>
+            </defs>
+            <path d="M0,-1C.2,-.2.2,-.2,1,0C.2,.2.2,.2,0,1C-.2,.2-.2,.2,-1,0C-.2,-.2-.2,-.2,0,-1Z" fill="url(#holo1)"/>
+            <rect x="-1.1" y="-1.1" width="2.2" height="2.2" fill="url(#holo2)" clip-path="url(#star-cp)" class="star-shimmer"/>
+            <circle cx=".28" cy="-.68" r=".022" fill="white" class="star-sp sp1"/>
+            <circle cx="-.52" cy=".18" r=".016" fill="white" class="star-sp sp2"/>
+            <circle cx=".62" cy=".28" r=".02"  fill="white" class="star-sp sp3"/>
+          </svg>
+        </div>
+      </div>
+
+    </div>
     <div class="hero-scroll-hint" id="hero-hint" aria-hidden="true">SCROLL ↓</div>
   </section>
 
@@ -883,31 +919,15 @@
       });
     });
 
-    /* ── Hero line reveal + SVG underline ── */
+    /* ── Hero entrance timeline ── */
     var heroLines = document.querySelectorAll('.hero-line');
     if (heroLines.length) {
-      gsap.from(heroLines, {
-        yPercent: 115,
-        duration: 1.15,
-        ease: 'expo.out',
-        stagger: 0.18,
-        delay: 0.15,
-        onComplete: function() {
-          var path = document.getElementById('uline-path');
-          if (!path) return;
-          var len = path.getTotalLength();
-          path.style.strokeDasharray  = len;
-          path.style.strokeDashoffset = len;
-          requestAnimationFrame(function() {
-            path.style.strokeDashoffset = 0;
-          });
-        }
-      });
-      gsap.from('.hero-btns', {
-        opacity: 0, y: 30,
-        duration: 0.9, ease: 'power3.out',
-        delay: 0.65
-      });
+      var htl = gsap.timeline({ delay: 0.1 });
+      htl.from('.hero-eyebrow', { opacity: 0, y: 14, duration: 0.6, ease: 'power2.out' })
+         .from(heroLines, { yPercent: 115, duration: 1.1, ease: 'expo.out', stagger: 0.14 }, '-=0.3')
+         .from('.hero-sub',  { opacity: 0, y: 18, duration: 0.7, ease: 'power2.out' }, '-=0.5')
+         .from('.hero-btns', { opacity: 0, y: 18, duration: 0.7, ease: 'power2.out' }, '-=0.55')
+         .from('.hero-star-float', { opacity: 0, scale: 0.75, duration: 1.3, ease: 'expo.out' }, 0.2);
     }
 
     /* ── 3D tilt on agent + work cards ── */
