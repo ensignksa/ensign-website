@@ -695,18 +695,19 @@
       }
     });
 
-    /* ── Scattered float entrance ── */
-    var pcRotations = [-4, 2.5, -3];
+    /* ── Scattered float entrance — fan out from center ── */
+    var pcRotations = [-5, 3, -4];
+    var pcFromX     = [340, 0, -340];   /* cards fly in from center to their column */
     var pcFloatDur  = [3.4, 4.2, 3.8];
-    var pcFloatAmp  = [-10, -14, -11];
+    var pcFloatAmp  = [-10, -13, -11];
     var pcFloats    = [];
 
     document.querySelectorAll('#pillars-grid .pillar-card').forEach(function(card, i) {
       gsap.fromTo(card,
-        { y: 70, opacity: 0, rotation: 0 },
+        { x: pcFromX[i], y: 60, opacity: 0, rotation: 0, scale: 0.88 },
         {
-          y: 0, opacity: 1, rotation: pcRotations[i],
-          duration: 1.0, ease: 'power3.out', delay: i * 0.16,
+          x: 0, y: 0, opacity: 1, rotation: pcRotations[i], scale: 1,
+          duration: 1.1, ease: 'expo.out', delay: i * 0.08,
           scrollTrigger: {
             trigger: '#pillars-grid',
             start: 'top 82%',
