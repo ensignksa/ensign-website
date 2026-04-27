@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWTQMQ08D4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LWTQMQ08D4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Ensign Ai Marketing Agency | AI & Marketing Insights</title>
+  <meta name="description" content="Expert insights on AI marketing, automation strategies, and digital transformation in Saudi Arabia. Stay ahead with the latest trends from Ensign Ai Marketing Agency.">
+  <link rel="canonical" href="https://ensignksa.com/blog/">
+  <link rel="alternate" hreflang="en" href="https://ensignksa.com/blog/">
+  <link rel="alternate" hreflang="ar" href="https://ensignksa.com/ar/blog/">
+  <link rel="alternate" hreflang="x-default" href="https://ensignksa.com/blog/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ensignksa.com/blog/">
+  <meta property="og:title" content="Blog — Ensign Ai Marketing Agency | AI & Marketing Insights">
+  <meta property="og:description" content="Expert insights on AI marketing, automation strategies, and digital transformation in Saudi Arabia.">
+  <meta property="og:image" content="https://ensignksa.com/assets/logos/3.png">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Ensign Ai Marketing Agency">
+  <meta property="og:locale:alternate" content="ar_SA">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ensignksa">
+  <meta name="twitter:title" content="Blog — Ensign Ai Marketing Agency | AI & Marketing Insights">
+  <meta name="twitter:description" content="Expert insights on AI marketing, automation strategies, and digital transformation in Saudi Arabia.">
+  <meta name="twitter:image" content="https://ensignksa.com/assets/logos/3.png">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Ensign Ai Marketing Agency">
+  <meta name="geo.region" content="SA">
+  <meta name="geo.placename" content="Riyadh">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.min.css?v=4">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Ensign Ai Marketing Agency Blog",
+    "description": "Expert insights on AI marketing, automation strategies, and digital transformation in Saudi Arabia.",
+    "url": "https://ensignksa.com/blog/",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Ensign Ai Marketing Agency",
+      "logo": { "@type": "ImageObject", "url": "https://ensignksa.com/assets/logos/3.png" }
+    },
+    "inLanguage": "en"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ensignksa.com/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://ensignksa.com/blog/" }
+    ]
+  }
+  </script>
+</head>
+<body class="blog-page">
+
+<div id="site-bg" aria-hidden="true">
+  <div class="site-bg-orb site-bg-orb-green"></div>
+  <div class="site-bg-orb site-bg-orb-blue"></div>
+  <div class="site-bg-orb site-bg-orb-purple"></div>
+</div>
+
+<header class="site-nav" id="site-nav">
+  <a href="../" class="nav-brand">
+    <img src="../assets/logos/1-transparent.png" alt="Ensign Ai Marketing Agency" class="nav-logo">
+  </a>
+  <nav class="nav-links" aria-label="Main navigation">
+    <a href="../#agents">AI Solutions</a>
+    <a href="../#services">Agency</a>
+    <a href="../#eos">Ensign OS</a>
+    <a href="../#work">Work</a>
+    <a href="../blog/" aria-current="page">Blog</a>
+  </nav>
+  <div class="nav-actions">
+    <a href="../ar/" class="nav-lang" aria-label="Switch to Arabic">AR</a>
+    <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="nav-cta">Book a Call <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<nav class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
+  <a href="../#agents">AI Solutions</a>
+  <a href="../#services">Agency</a>
+  <a href="../#eos">Ensign OS</a>
+  <a href="../#work">Work</a>
+  <a href="../blog/">Blog</a>
+  <a href="../ar/" class="nav-lang" style="opacity:.6;">AR — العربية</a>
+  <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="nav-mobile-cta">Book a Call →</a>
+</nav>
+
+<!-- ── MASTHEAD ──────────────────────────────────────── -->
+<section class="mag-masthead">
+  <div class="mag-masthead-inner">
+    <div class="mag-top" id="mag-top">
+      <span class="mag-pub">Ensign Intelligence</span>
+      <span class="mag-sep">—</span>
+      <span class="mag-date">April 2026</span>
+    </div>
+
+    <h1 class="mag-headline" aria-label="AI & Marketing Insights">
+      <span class="mag-hl" id="hl-1">AI &amp;</span>
+      <span class="mag-hl" id="hl-2">Marketing</span>
+      <span class="mag-hl mag-hl-em" id="hl-3">Insights</span>
+    </h1>
+
+    <div class="mag-foot" id="mag-foot">
+      <span class="mag-issue">Issue No. 01</span>
+      <span class="mag-rule"></span>
+      <span class="mag-count" id="mag-count">9 Articles</span>
+    </div>
+
+    <div class="mag-cats" id="mag-cats">
+      <button class="mag-cat active" data-category="all">All</button>
+      <button class="mag-cat" data-category="ai">AI</button>
+      <button class="mag-cat" data-category="marketing">Marketing</button>
+      <button class="mag-cat" data-category="automation">Automation</button>
+      <button class="mag-cat" data-category="strategy">Strategy</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── COVER STORY ───────────────────────────────────── -->
+<article class="mag-cover" data-category="ai-marketing" data-publish-date="2026-04-06">
+  <a href="ai-content-creation-vs-human-copywriters-saudi.html" class="mag-cover-link">
+    <div class="mag-cover-img-wrap">
+      <div class="mag-cover-img" id="cover-parallax">
+        <picture>
+          <source srcset="../assets/blog/ai-content-vs-copywriters-featured.webp" type="image/webp">
+          <img src="../assets/blog/ai-content-vs-copywriters-featured.jpg" alt="Human hand and robot hand reaching toward each other — AI content creation vs human copywriters for the Saudi market" width="1200" height="675" loading="eager">
+        </picture>
+      </div>
+      <div class="mag-cover-overlay"></div>
+    </div>
+    <div class="mag-cover-body" id="cover-body">
+      <div class="mag-cover-eyebrow">
+        <span class="mag-tag">Cover Story</span>
+        <span class="mag-tag-dot">·</span>
+        <span class="mag-tag">AI Marketing</span>
+      </div>
+      <h2 class="mag-cover-title">AI Content Creation vs Human Copywriters: What Actually Works in the Saudi Market</h2>
+      <div class="mag-cover-foot">
+        <span>Apr 6, 2026</span>
+        <span class="mag-tag-dot">·</span>
+        <span>14 min read</span>
+        <span class="mag-cover-cta">Read Article <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+    </div>
+  </a>
+</article>
+
+<!-- ── EDITORIAL SECTION ─────────────────────────────── -->
+<section class="mag-ed" id="mag-articles">
+  <div class="mag-ed-inner">
+
+    <div class="mag-section-label" id="ed-label">
+      <span class="mag-label-line"></span>
+      <span>From This Issue</span>
+      <span class="mag-label-line"></span>
+    </div>
+
+    <!-- Feature + Sidebar row -->
+    <div class="mag-feature-row">
+
+      <a href="crm-setup-saudi-businesses.html" class="mag-feature" data-category="strategy" data-publish-date="2026-03-31">
+        <div class="mag-feature-img">
+          <picture>
+            <source srcset="../assets/blog/crm-setup-saudi-businesses-featured.webp" type="image/webp">
+            <img src="../assets/blog/crm-setup-saudi-businesses-featured.jpg" alt="CRM dashboard with analytics on laptop" loading="lazy">
+          </picture>
+        </div>
+        <div class="mag-feature-body">
+          <span class="mag-art-num">01</span>
+          <div class="mag-feature-text">
+            <span class="mag-art-cat">Strategy</span>
+            <h3 class="mag-feature-title">CRM Setup for Saudi Businesses: Why 68% Fail and How to Get It Right</h3>
+            <p class="mag-feature-excerpt">68% of CRM implementations fail. Learn the 7 mistakes Saudi businesses make and the step-by-step guide to getting it right.</p>
+            <div class="mag-art-meta">Mar 31, 2026 <span class="mag-tag-dot">·</span> 13 min read</div>
+          </div>
+        </div>
+      </a>
+
+      <div class="mag-sidebar">
+        <a href="ai-lead-generation-saudi-arabia.html" class="mag-sidebar-art" data-category="ai" data-publish-date="2026-03-30">
+          <span class="mag-art-num">02</span>
+          <div class="mag-sa-body">
+            <span class="mag-art-cat">AI Marketing</span>
+            <h3 class="mag-sa-title">AI-Powered Lead Generation: How Saudi Companies Are Getting 3x More Qualified Leads</h3>
+            <div class="mag-art-meta">Mar 30, 2026 <span class="mag-tag-dot">·</span> 13 min</div>
+          </div>
+        </a>
+        <a href="marketing-automation-guide-saudi-smes.html" class="mag-sidebar-art" data-category="automation" data-publish-date="2026-03-30">
+          <span class="mag-art-num">03</span>
+          <div class="mag-sa-body">
+            <span class="mag-art-cat">Automation</span>
+            <h3 class="mag-sa-title">The Complete Guide to Marketing Automation for Saudi SMEs</h3>
+            <div class="mag-art-meta">Mar 30, 2026 <span class="mag-tag-dot">·</span> 14 min</div>
+          </div>
+        </a>
+        <a href="signs-marketing-wasting-budget-ai-fix.html" class="mag-sidebar-art" data-category="ai" data-publish-date="2026-03-29">
+          <span class="mag-art-num">04</span>
+          <div class="mag-sa-body">
+            <span class="mag-art-cat">AI Marketing</span>
+            <h3 class="mag-sa-title">7 Signs Your Marketing Team Is Wasting Budget (and How AI Fixes Each One)</h3>
+            <div class="mag-art-meta">Mar 29, 2026 <span class="mag-tag-dot">·</span> 12 min</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="mag-divider"></div>
+
+    <!-- 4-column grid -->
+    <div class="mag-grid-4">
+      <a href="ai-reshaping-digital-marketing-saudi-arabia-2026.html" class="mag-art-card" data-category="ai" data-publish-date="2026-03-27">
+        <div class="mac-img">
+          <picture>
+            <source srcset="../assets/blog/ai-reshaping-digital-marketing-featured.webp" type="image/webp">
+            <img src="../assets/blog/ai-reshaping-digital-marketing-featured.jpg" alt="AI reshaping digital marketing in Saudi Arabia" loading="lazy">
+          </picture>
+        </div>
+        <div class="mac-body">
+          <span class="mag-art-num">05</span>
+          <span class="mag-art-cat">AI Marketing</span>
+          <h3 class="mac-title">How AI Is Reshaping Digital Marketing in Saudi Arabia: A 2026 Reality Check</h3>
+          <div class="mag-art-meta">Mar 27, 2026 <span class="mag-tag-dot">·</span> 10 min</div>
+        </div>
+      </a>
+
+      <a href="what-is-ai-marketing-agency-saudi-arabia.html" class="mag-art-card" data-category="ai" data-publish-date="2026-03-26">
+        <div class="mac-img">
+          <picture>
+            <source srcset="../assets/blog/what-is-ai-marketing-agency-featured.webp" type="image/webp">
+            <img src="../assets/blog/what-is-ai-marketing-agency-featured.jpg" alt="AI marketing agency dashboard" loading="lazy">
+          </picture>
+        </div>
+        <div class="mac-body">
+          <span class="mag-art-num">06</span>
+          <span class="mag-art-cat">AI Marketing</span>
+          <h3 class="mac-title">What Is an AI Marketing Agency, and Why Saudi Businesses Are Switching</h3>
+          <div class="mag-art-meta">Mar 26, 2026 <span class="mag-tag-dot">·</span> 12 min</div>
+        </div>
+      </a>
+
+      <a href="in-house-marketing-vs-ai-agency-saudi-smes.html" class="mag-art-card" data-category="strategy" data-publish-date="2026-03-11">
+        <div class="mac-img">
+          <picture>
+            <source srcset="../assets/blog/in-house-vs-ai-agency-featured.webp" type="image/webp">
+            <img src="../assets/blog/in-house-vs-ai-agency-featured.jpg" alt="In-house vs AI agency comparison" loading="lazy">
+          </picture>
+        </div>
+        <div class="mac-body">
+          <span class="mag-art-num">07</span>
+          <span class="mag-art-cat">Strategy</span>
+          <h3 class="mac-title">In-House Marketing Team vs AI-Powered Agency: What Saudi SMEs Need to Know</h3>
+          <div class="mag-art-meta">Mar 11, 2026 <span class="mag-tag-dot">·</span> 9 min</div>
+        </div>
+      </a>
+
+      <a href="ai-marketing-automations-saudi-business-2026.html" class="mag-art-card" data-category="ai-marketing" data-publish-date="2026-03-11">
+        <div class="mac-img">
+          <picture>
+            <source srcset="../assets/blog/ai-marketing-automations-featured.webp" type="image/webp">
+            <img src="../assets/blog/ai-marketing-automations-featured.jpg" alt="AI marketing automation nodes" loading="lazy">
+          </picture>
+        </div>
+        <div class="mac-body">
+          <span class="mag-art-num">08</span>
+          <span class="mag-art-cat">AI Marketing</span>
+          <h3 class="mac-title">5 AI Marketing Automations Every Saudi Business Should Use in 2026</h3>
+          <div class="mag-art-meta">Mar 11, 2026 <span class="mag-tag-dot">·</span> 8 min</div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CTA ───────────────────────────────────────────── -->
+<section class="mag-cta-section">
+  <div class="mag-ed-inner">
+    <div class="mag-cta-card" id="mag-cta">
+      <div class="mag-cta-bg"></div>
+      <div class="mag-cta-content">
+        <span class="mag-cta-kicker">Ready to Transform?</span>
+        <h2 class="mag-cta-title">Let AI work for your business</h2>
+        <p class="mag-cta-sub">Book a free discovery call. No commitment, just clarity.</p>
+        <div class="mag-cta-btns">
+          <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">Book a Discovery Call</a>
+          <a href="https://wa.me/966548919405" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-large">WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-brand-name">
+        <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><defs><linearGradient id="orb-f" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1F6F4E"/><stop offset="100%" stop-color="#2747FF"/></linearGradient></defs><circle cx="12" cy="12" r="9" fill="url(#orb-f)"/><circle cx="12" cy="12" r="3" fill="#fff" fill-opacity=".85"/></svg>
+        <span>Ensign<span class="dot">.</span></span>
+      </div>
+      <div class="footer-tagline">AI Systems. Human Leadership.</div>
+      <div class="footer-desc">Saudi AI and marketing consultancy serving KSA &amp; UAE.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="../#agents">AI Agents &amp; Automation</a>
+      <a href="../#services">Marketing Agency</a>
+      <a href="../#services">Paid Media</a>
+      <a href="../#services">Branding &amp; Creative</a>
+      <a href="../#eos">Ensign OS</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="../#pillars">About</a>
+      <a href="../blog/">Blog</a>
+      <a href="../careers.html">Careers</a>
+      <a href="../privacy-policy.html">Privacy Policy</a>
+      <a href="../terms-and-conditions.html">Terms</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:contact@ensignksa.com">contact@ensignksa.com</a>
+      <a href="https://wa.me/966548919405" target="_blank" rel="noopener noreferrer">+966 54 891 9405</a>
+      <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 Ensign Ai Marketing Agency. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="../privacy-policy.html">Privacy Policy</a>
+      <a href="../terms-and-conditions.html">Terms &amp; Conditions</a>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.linkedin.com/company/ensignailab" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+      <a href="https://x.com/ensignksa" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="social-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="https://www.instagram.com/ensignksa/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/966548919405" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+<script src="../js/main.min.js"></script>
+
+<!-- Blog scheduling + category filter -->
+<script>
+(function() {
+  var now = new Date();
+  var saudiTime = new Date(now.getTime() + (now.getTimezoneOffset() + 180) * 60000);
+  var today = saudiTime.getFullYear() + '-' + String(saudiTime.getMonth()+1).padStart(2,'0') + '-' + String(saudiTime.getDate()).padStart(2,'0');
+
+  var allItems = document.querySelectorAll('[data-publish-date]');
+  allItems.forEach(function(el) {
+    if (el.dataset.publishDate > today) {
+      el.style.display = 'none';
+      el.dataset.scheduled = 'true';
+    }
+  });
+
+  var catBtns = document.querySelectorAll('.mag-cat');
+  var catItems = document.querySelectorAll('[data-category]');
+
+  catBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      catBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var cat = btn.dataset.category;
+      catItems.forEach(function(item) {
+        if (item.dataset.scheduled === 'true') { item.style.display = 'none'; return; }
+        item.style.display = (cat === 'all' || item.dataset.category === cat || item.dataset.category === cat+'-marketing') ? '' : 'none';
+      });
+    });
+  });
+})();
+</script>
+
+<!-- GSAP Animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* ── Masthead headline: each line clips up from below ── */
+gsap.set('.mag-hl', { overflow: 'hidden', display: 'block' });
+gsap.from('.mag-hl', {
+  yPercent: 110,
+  duration: 1.0,
+  stagger: 0.14,
+  ease: 'expo.out',
+  delay: 0.1
+});
+
+/* ── Masthead meta rows fade in ── */
+gsap.from('#mag-top, #mag-foot, #mag-cats', {
+  opacity: 0,
+  y: 16,
+  duration: 0.7,
+  stagger: 0.1,
+  ease: 'power2.out',
+  delay: 0.55
+});
+
+/* ── Cover: image parallax ── */
+gsap.to('#cover-parallax', {
+  yPercent: 18,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.mag-cover',
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: 1
+  }
+});
+
+/* ── Cover caption rises in ── */
+gsap.from('#cover-body', {
+  y: 50,
+  opacity: 0,
+  duration: 1.1,
+  ease: 'power3.out',
+  scrollTrigger: {
+    trigger: '.mag-cover',
+    start: 'top 65%'
+  }
+});
+
+/* ── Editorial label ── */
+gsap.from('#ed-label', {
+  opacity: 0,
+  duration: 0.8,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: '#ed-label',
+    start: 'top 88%'
+  }
+});
+gsap.from('#ed-label .mag-label-line', {
+  scaleX: 0,
+  duration: 1.2,
+  ease: 'expo.out',
+  stagger: 0.1,
+  scrollTrigger: {
+    trigger: '#ed-label',
+    start: 'top 88%'
+  }
+});
+
+/* ── Feature card ── */
+gsap.from('.mag-feature', {
+  y: 60,
+  opacity: 0,
+  duration: 0.9,
+  ease: 'power3.out',
+  scrollTrigger: {
+    trigger: '.mag-feature-row',
+    start: 'top 82%'
+  }
+});
+
+/* ── Sidebar articles stagger ── */
+gsap.from('.mag-sidebar-art', {
+  y: 40,
+  opacity: 0,
+  duration: 0.7,
+  stagger: 0.12,
+  ease: 'power3.out',
+  scrollTrigger: {
+    trigger: '.mag-sidebar',
+    start: 'top 82%'
+  }
+});
+
+/* ── 4-col grid cards stagger ── */
+gsap.from('.mag-art-card', {
+  y: 50,
+  opacity: 0,
+  duration: 0.75,
+  stagger: 0.1,
+  ease: 'power3.out',
+  scrollTrigger: {
+    trigger: '.mag-grid-4',
+    start: 'top 82%'
+  }
+});
+
+/* ── CTA scale-in ── */
+gsap.from('#mag-cta', {
+  scale: 0.95,
+  opacity: 0,
+  duration: 1.0,
+  ease: 'power3.out',
+  scrollTrigger: {
+    trigger: '#mag-cta',
+    start: 'top 85%'
+  }
+});
+
+/* ── Image hover parallax (subtle) ── */
+document.querySelectorAll('.mag-feature-img, .mac-img').forEach(function(wrap) {
+  var img = wrap.querySelector('img');
+  if (!img) return;
+  wrap.addEventListener('mouseenter', function() {
+    gsap.to(img, { scale: 1.05, duration: 0.6, ease: 'power2.out' });
+  });
+  wrap.addEventListener('mouseleave', function() {
+    gsap.to(img, { scale: 1.0, duration: 0.5, ease: 'power2.inOut' });
+  });
+});
+</script>
+
+</body>
+</html>
