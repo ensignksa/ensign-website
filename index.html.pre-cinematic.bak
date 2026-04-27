@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWTQMQ08D4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-LWTQMQ08D4');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ensign Ai Marketing Agency — AI Systems. Human Leadership.</title>
+  <meta name="description" content="Ensign Ai Marketing Agency is a Riyadh-based AI marketing consultancy that builds intelligent marketing systems, automation frameworks, and high-performance campaigns for businesses in Saudi Arabia and the UAE.">
+  <link rel="canonical" href="https://ensignksa.com/">
+  <!-- hreflang -->
+  <link rel="alternate" hreflang="en" href="https://ensignksa.com/">
+  <link rel="alternate" hreflang="ar" href="https://ensignksa.com/ar/">
+  <link rel="alternate" hreflang="x-default" href="https://ensignksa.com/">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ensignksa.com/">
+  <meta property="og:title" content="Ensign Ai Marketing Agency — AI Systems. Human Leadership.">
+  <meta property="og:description" content="Ensign Ai Marketing Agency is a Riyadh-based AI marketing consultancy that builds intelligent marketing systems, automation frameworks, and high-performance campaigns for businesses in Saudi Arabia and the UAE.">
+  <meta property="og:image" content="https://ensignksa.com/assets/logos/3.png">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Ensign Ai Marketing Agency">
+  <meta property="og:locale:alternate" content="ar_SA">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ensignksa">
+  <meta name="twitter:title" content="Ensign Ai Marketing Agency — AI Systems. Human Leadership.">
+  <meta name="twitter:description" content="Ensign Ai Marketing Agency is a Riyadh-based AI marketing consultancy that builds intelligent marketing systems, automation frameworks, and high-performance campaigns for businesses in Saudi Arabia and the UAE.">
+  <meta name="twitter:image" content="https://ensignksa.com/assets/logos/3.png">
+  <!-- Additional SEO -->
+  <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="6mhIBpujaVlHhLelepqTFnCQbR2fOf5eYkuUP4PpcfQ">
+  <meta name="author" content="Ensign Ai Marketing Agency">
+  <meta name="geo.region" content="SA">
+  <meta name="geo.placename" content="Riyadh">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Kufi+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- DNS prefetch -->
+  <link rel="dns-prefetch" href="https://cal.eu">
+  <link rel="dns-prefetch" href="https://wa.me">
+  <link rel="stylesheet" href="css/style.min.css?v=7">
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ensign Ai Marketing Agency",
+    "alternateName": "Ensign Agency",
+    "url": "https://ensignksa.com",
+    "logo": "https://ensignksa.com/assets/logos/3.png",
+    "description": "Ensign Ai Marketing Agency is a Riyadh-based AI marketing consultancy that builds intelligent marketing systems, automation frameworks, and high-performance campaigns for businesses in Saudi Arabia and the UAE.",
+    "email": "contact@ensignksa.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Riyadh", "addressCountry": "SA" },
+    "sameAs": ["https://www.linkedin.com/company/ensignailab","https://x.com/ensignksa","https://www.instagram.com/ensignksa/"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is an AI marketing agency and how does it help businesses in Saudi Arabia?", "acceptedAnswer": { "@type": "Answer", "text": "An AI marketing agency helps companies improve their marketing performance using artificial intelligence, automation systems, and data-driven strategies. Ensign Agency combines AI-powered workflows with human strategic leadership to help businesses automate repetitive marketing tasks, improve campaign performance, and scale growth faster." } },
+      { "@type": "Question", "name": "What services does Ensign Agency provide?", "acceptedAnswer": { "@type": "Answer", "text": "Ensign Agency provides AI-powered marketing consulting and implementation services including AI marketing advisory, marketing automation systems, AI agents for lead qualification, CRM workflow design, campaign strategy, paid media management, and AI-assisted content production." } },
+      { "@type": "Question", "name": "What are AI agents in marketing?", "acceptedAnswer": { "@type": "Answer", "text": "AI marketing agents are automated systems that perform specific marketing tasks such as responding to leads, qualifying prospects, managing CRM pipelines, generating marketing content, and automating campaign reporting." } },
+      { "@type": "Question", "name": "How does marketing automation improve business growth?", "acceptedAnswer": { "@type": "Answer", "text": "Marketing automation allows companies to automate repetitive tasks such as lead follow-ups, email campaigns, CRM updates, and reporting dashboards. This improves efficiency and helps marketing teams focus on strategy and growth." } },
+      { "@type": "Question", "name": "Why choose a Saudi-based AI marketing consultancy?", "acceptedAnswer": { "@type": "Answer", "text": "Working with a Saudi-based AI marketing consultancy ensures that marketing strategies are aligned with local market dynamics, cultural context, and regional digital platforms. Ensign Agency operates from Riyadh and supports organizations across the Gulf." } }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Ensign Ai Marketing Agency",
+    "alternateName": ["Ensign Agency", "Ensign KSA"],
+    "url": "https://ensignksa.com",
+    "logo": "https://ensignksa.com/assets/logos/3.png",
+    "slogan": "AI Systems. Human Leadership.",
+    "email": "contact@ensignksa.com",
+    "telephone": "+966548919405",
+    "address": { "@type": "PostalAddress", "addressLocality": "Riyadh", "addressRegion": "Riyadh Province", "addressCountry": "SA" },
+    "geo": { "@type": "GeoCoordinates", "latitude": 24.7136, "longitude": 46.6753 },
+    "areaServed": [{ "@type": "Country", "name": "Saudi Arabia" }, { "@type": "Country", "name": "United Arab Emirates" }],
+    "serviceType": ["AI Marketing Consulting", "Marketing Automation", "AI Agents", "Campaign Management", "Creative Production"],
+    "priceRange": "$$",
+    "knowsLanguage": ["en", "ar"],
+    "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "00:00", "closes": "23:59" }],
+    "contactPoint": [{ "@type": "ContactPoint", "telephone": "+966548919405", "contactType": "sales", "email": "contact@ensignksa.com", "areaServed": ["SA","AE"], "availableLanguage": ["English","Arabic"] }],
+    "potentialAction": { "@type": "ReserveAction", "target": { "@type": "EntryPoint", "urlTemplate": "https://cal.eu/ensignksa/30min" }, "result": { "@type": "Reservation", "name": "Book a Discovery Call" } },
+    "sameAs": ["https://www.linkedin.com/company/ensignailab","https://x.com/ensignksa","https://www.instagram.com/ensignksa/"]
+  }
+  </script>
+  <script type="application/ld+json">
+  { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{ "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ensignksa.com/" }] }
+  </script>
+</head>
+<body>
+
+  <!-- ── CREATIVE OVERLAYS ────────────────────────────────────── -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
+
+  <!-- ── AURORA CANVAS ─────────────────────────────────────────── -->
+  <div id="site-bg" aria-hidden="true">
+    <div class="site-bg-orb site-bg-orb-green"></div>
+    <div class="site-bg-orb site-bg-orb-blue"></div>
+    <div class="site-bg-orb site-bg-orb-purple"></div>
+  </div>
+
+  <!-- ── NAV ─────────────────────────────────────────────────── -->
+  <header class="site-nav" id="site-nav">
+    <a href="/" class="nav-brand">
+      <img src="assets/logos/1-transparent.png" alt="Ensign Ai Marketing Agency" class="nav-logo">
+    </a>
+
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#agents">AI Solutions</a>
+      <a href="#services">Agency</a>
+      <a href="#eos">Ensign OS</a>
+      <a href="#work">Work</a>
+      <a href="blog/">Blog</a>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="ar/" class="nav-lang" aria-label="Switch to Arabic">AR</a>
+      <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-magnetic>
+        Book a Call
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile nav -->
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
+    <a href="#agents">AI Solutions</a>
+    <a href="#services">Agency</a>
+    <a href="#eos">Ensign OS</a>
+    <a href="#work">Work</a>
+    <a href="blog/">Blog</a>
+    <a href="ar/" class="nav-lang" style="opacity:.6;">AR — العربية</a>
+    <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="nav-mobile-cta">Book a Call →</a>
+  </nav>
+
+  <!-- ── HERO ────────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-inner" id="hero-content">
+      <p class="hero-eyebrow">— AI Marketing Agency · Riyadh, KSA</p>
+      <h1 class="hero-display">
+        <span class="hero-line-outer"><span class="hero-line hd-light">MARKETING</span></span>
+        <span class="hero-line-outer"><span class="hero-line hd-bold">SOLUTIONS</span></span>
+        <span class="hero-line-outer"><span class="hero-line hd-light">FOR THE</span></span>
+        <span class="hero-line-outer"><span class="hero-line hd-outline">AI ERA.</span></span>
+      </h1>
+      <p class="hero-sub">We build AI agents, automation systems, and high-performance marketing for businesses in Saudi Arabia and the UAE.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-hero-primary" data-magnetic>
+          Marketing Agency
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#agents" class="btn-hero-ghost" data-magnetic>
+          AI Solutions
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint" id="hero-hint" aria-hidden="true">SCROLL ↓</div>
+  </section>
+
+  <!-- ── PILLARS ─────────────────────────────────────────────── -->
+  <!-- ── PILLARS ────────────────────────────────────────────── -->
+  <section id="pillars">
+    <div class="pillars-intro">
+      <div class="pillars-kicker">— Our services —</div>
+      <p class="pillars-story" id="pillars-story"><span class="pw">Three</span> <span class="pw">capabilities.</span> <span class="pw">One</span> <span class="pw">connected</span> <span class="pw">system.</span> <span class="pw">Built</span> <span class="pw">for</span> <span class="pw">businesses</span> <span class="pw">that</span> <span class="pw">move</span> <span class="pw">at</span> <span class="pw">the</span> <span class="pw">speed</span> <span class="pw">of</span> <span class="pw">AI.</span></p>
+    </div>
+
+    <div class="pillars-grid" id="pillars-grid">
+
+      <article class="pillar-card" data-pc="emerald">
+        <div class="pc-bg"></div>
+        <div class="pc-inner">
+          <div class="pc-top">
+            <span class="pc-num">01</span>
+            <span class="pc-tag">AI Studio</span>
+          </div>
+          <div class="pc-body">
+            <h3 class="pc-title">AI Solutions &amp; Agents</h3>
+            <p class="pc-desc">We design AI agents that fit your workflow — campaign optimisation, content, sales support, research and beyond.</p>
+          </div>
+          <a href="#agents" class="pc-action">
+            <span>Browse the studio</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pillar-card" data-pc="blue">
+        <div class="pc-bg"></div>
+        <div class="pc-inner">
+          <div class="pc-top">
+            <span class="pc-num">02</span>
+            <span class="pc-tag">Agency</span>
+          </div>
+          <div class="pc-body">
+            <h3 class="pc-title">Marketing Agency Services</h3>
+            <p class="pc-desc">A full-service team operated by humans + AI. Strategy, paid media, branding, content, events and more.</p>
+          </div>
+          <a href="#services" class="pc-action">
+            <span>See services</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <article class="pillar-card" data-pc="dark">
+        <span class="pillar-badge">Coming soon</span>
+        <div class="pc-bg"></div>
+        <div class="pc-inner">
+          <div class="pc-top">
+            <span class="pc-num">03</span>
+            <span class="pc-tag">Product</span>
+          </div>
+          <div class="pc-body">
+            <h3 class="pc-title">Ensign OS</h3>
+            <p class="pc-desc">An intelligent operating system that connects sales, marketing, management and developers across real estate.</p>
+          </div>
+          <a href="#eos" class="pc-action">
+            <span>Join the waitlist</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── AI AGENTS ───────────────────────────────────────────── -->
+  <section id="agents">
+    <div class="agents-header">
+      <span class="pill-chip"><span class="live-dot" aria-hidden="true"></span>AI Studio</span>
+      <h2 class="reveal-h">Agents, designed around your workflow.</h2>
+      <p>We don't ship templates. We sit with your team, map decisions and handoffs, then build agents that connect your tools and pay back time within weeks.</p>
+    </div>
+
+    <div class="agents-grid">
+      <article class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">C</div>
+          <span class="agent-role">Marketing</span>
+        </div>
+        <div>
+          <div class="agent-name">Campaign Optimisation</div>
+          <div class="agent-line">Reads spend, creative and channel signal — recommends the next move.</div>
+        </div>
+      </article>
+      <article class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">C</div>
+          <span class="agent-role">Marketing</span>
+        </div>
+        <div>
+          <div class="agent-name">Content Agent</div>
+          <div class="agent-line">Drafts on-brand copy across formats, voices and channels.</div>
+        </div>
+      </article>
+      <article class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">B</div>
+          <span class="agent-role">Brand</span>
+        </div>
+        <div>
+          <div class="agent-name">Brand Agent</div>
+          <div class="agent-line">Guards tone, visual rules and reviews work against guidelines.</div>
+        </div>
+      </article>
+      <article class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">D</div>
+          <span class="agent-role">Creative</span>
+        </div>
+        <div>
+          <div class="agent-name">Design Agent</div>
+          <div class="agent-line">Generates layout, image and motion variants from a single brief.</div>
+        </div>
+      </article>
+      <article class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">C</div>
+          <span class="agent-role">Sales</span>
+        </div>
+        <div>
+          <div class="agent-name">Cold Calling Agent</div>
+          <div class="agent-line">Voice-first qualification, scripted around your ICP and objections.</div>
+        </div>
+      </article>
+      <article class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">D</div>
+          <span class="agent-role">Operations</span>
+        </div>
+        <div>
+          <div class="agent-name">Data Analyst</div>
+          <div class="agent-line">Connects to warehouses, answers in plain language, ships dashboards.</div>
+        </div>
+      </article>
+      <article class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">R</div>
+          <span class="agent-role">Insight</span>
+        </div>
+        <div>
+          <div class="agent-name">Research Agent</div>
+          <div class="agent-line">Market scans, competitor diffs, weekly briefings on demand.</div>
+        </div>
+      </article>
+      <article class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">P</div>
+          <span class="agent-role">Productivity</span>
+        </div>
+        <div>
+          <div class="agent-name">Personal Assistant</div>
+          <div class="agent-line">Inbox, calendar, prep notes — for an executive cadence.</div>
+        </div>
+      </article>
+      <article class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">S</div>
+          <span class="agent-role">Sales</span>
+        </div>
+        <div>
+          <div class="agent-name">Sales Support</div>
+          <div class="agent-line">Lead enrichment, follow-ups, proposal drafts and CRM hygiene.</div>
+        </div>
+      </article>
+      <article class="agent-card">
+        <div class="agent-card-top">
+          <div class="agent-icon" aria-hidden="true">M</div>
+          <span class="agent-role">Operations</span>
+        </div>
+        <div>
+          <div class="agent-name">Marketing Operations</div>
+          <div class="agent-line">Workflow, attribution, reporting plumbing — quiet and reliable.</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ────────────────────────────────────────────── -->
+  <section id="services">
+    <div class="services-banner">
+      <div class="services-banner-bg" aria-hidden="true"></div>
+      <div class="services-banner-grain" aria-hidden="true"></div>
+      <div class="services-banner-content">
+        <div>
+          <div class="services-banner-kicker">Agency</div>
+          <h2 class="services-banner-title reveal-h">A full service team</h2>
+        </div>
+        <div class="services-count">15 services · one studio</div>
+      </div>
+    </div>
+
+    <div class="services-tiles">
+      <div class="services-grid">
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">01</span>Digital Marketing Strategy</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">02</span>Paid Media Management</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">03</span>Social Media Management</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">04</span>Content Creation</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">05</span>Creative Direction</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">06</span>Website &amp; App Building</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">07</span>Branding</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">08</span>Influencer Marketing</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">09</span>SEO / SEM</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">10</span>Campaign Planning</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">11</span>Marketing Analytics</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">12</span>Full Event Services</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">13</span>Launch Campaigns</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">14</span>Lead Generation</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+        <div class="service-tile"><div class="service-tile-inner"><span class="service-num">15</span>Performance Reporting</div><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ENSIGN OS ───────────────────────────────────────────── -->
+  <section id="eos" style="padding:100px 56px;border-top:1px solid rgba(255,255,255,.08);">
+    <div style="max-width:700px;">
+      <span class="pill-chip" style="margin-bottom:24px;display:inline-flex;"><span class="live-dot" style="background:#2747FF;box-shadow:0 0 0 4px rgba(39,71,255,.13);" aria-hidden="true"></span>Ensign OS — EOS</span>
+      <span style="display:inline-block;margin-left:10px;background:rgba(255,255,255,.1);color:rgba(255,255,255,.8);font-size:10px;padding:5px 10px;border-radius:99px;letter-spacing:.12em;font-family:'JetBrains Mono',monospace;text-transform:uppercase;vertical-align:middle;">Coming soon</span>
+      <h2 class="reveal-h" style="margin-top:24px;font-size:clamp(40px,5.4vw,88px);line-height:1;letter-spacing:-.03em;font-weight:500;">An operating system for real estate brokerages.</h2>
+      <p style="margin-top:20px;font-size:18px;line-height:1.6;color:rgba(255,255,255,.60);max-width:580px;">One surface that connects sales, marketing, management and developers — with AI feedback woven through every view.</p>
+      <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-cta" style="margin-top:32px;display:inline-flex;">
+        Request early access
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <!-- ── WORK ────────────────────────────────────────────────── -->
+  <section id="work">
+    <div class="work-header">
+      <div class="work-header-left">
+        <span class="work-kicker-pill">Our work</span>
+        <h2 class="reveal-h">We made it effortless...<br>it wasn't.</h2>
+      </div>
+      <span class="work-all-link" aria-hidden="true">
+        All work
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+      </span>
+    </div>
+
+    <div id="work-track" class="work-track">
+      <article class="work-card work-card-1">
+        <div class="work-card-bg"></div>
+        <div class="work-card-stripes" aria-hidden="true"></div>
+        <div class="work-card-fade" aria-hidden="true"></div>
+        <div class="work-card-tag">Real Estate · KSA</div>
+        <div class="work-card-num" aria-hidden="true">01 / 04</div>
+        <div class="work-card-info">
+          <div>
+            <div class="work-card-client">Sahel Residences</div>
+            <div class="work-card-line">Launch campaign + lead funnel — 3.2× pipeline in 90 days.</div>
+          </div>
+          <div class="work-card-metric">3.2×</div>
+        </div>
+      </article>
+
+      <article class="work-card work-card-2">
+        <div class="work-card-bg"></div>
+        <div class="work-card-stripes" aria-hidden="true"></div>
+        <div class="work-card-fade" aria-hidden="true"></div>
+        <div class="work-card-tag">Hospitality · UAE</div>
+        <div class="work-card-num" aria-hidden="true">02 / 04</div>
+        <div class="work-card-info">
+          <div>
+            <div class="work-card-client">Awan Hospitality</div>
+            <div class="work-card-line">Brand refresh and seasonal performance program.</div>
+          </div>
+          <div class="work-card-metric">+47%</div>
+        </div>
+      </article>
+
+      <article class="work-card work-card-3">
+        <div class="work-card-bg"></div>
+        <div class="work-card-stripes" aria-hidden="true"></div>
+        <div class="work-card-fade" aria-hidden="true"></div>
+        <div class="work-card-tag">Finance · KSA</div>
+        <div class="work-card-num" aria-hidden="true">03 / 04</div>
+        <div class="work-card-info">
+          <div>
+            <div class="work-card-client">Marya Capital</div>
+            <div class="work-card-line">Thought-leadership engine and AI research workflow.</div>
+          </div>
+          <div class="work-card-metric">12 mo</div>
+        </div>
+      </article>
+
+      <article class="work-card work-card-4">
+        <div class="work-card-bg"></div>
+        <div class="work-card-stripes" aria-hidden="true"></div>
+        <div class="work-card-fade" aria-hidden="true"></div>
+        <div class="work-card-tag">Real Estate · UAE</div>
+        <div class="work-card-num" aria-hidden="true">04 / 04</div>
+        <div class="work-card-info">
+          <div>
+            <div class="work-card-client">Noor Developments</div>
+            <div class="work-card-line">Off-plan launch with role-based sales enablement.</div>
+          </div>
+          <div class="work-card-metric">AED 280M</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ── PARTNERS ────────────────────────────────────────────── -->
+  <section id="partners">
+    <div class="partners-header">
+      <span class="partners-kicker-pill">Trusted partners</span>
+      <h2 class="reveal-h">Trusted by ambitious teams<br>across the region.</h2>
+    </div>
+    <div class="marquee-wrap">
+      <div class="marquee-track" aria-hidden="true">
+        <!-- duplicated for seamless loop -->
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>SAHEL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>AWAN</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>MARYA CAPITAL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>NOOR</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>TALA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>ALDHAR</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>KAYAN</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>SORAYA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>MAJID</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>RAYA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>BURUJ</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>HILAL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>ZAHRA</span>
+        <!-- duplicate -->
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>SAHEL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>AWAN</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>MARYA CAPITAL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>NOOR</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>TALA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>ALDHAR</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>KAYAN</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>SORAYA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>MAJID</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="4"/></svg>RAYA</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M12 3 L21 21 L3 21 Z" stroke-linejoin="round"/></svg>BURUJ</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><path d="M3 12 L12 3 L21 12 L12 21 Z" stroke-linejoin="round"/></svg>HILAL</span>
+        <span class="marquee-item"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5"><circle cx="12" cy="12" r="9"/></svg>ZAHRA</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA ─────────────────────────────────────────────────── -->
+  <section id="cta">
+    <h2 class="reveal-h">Let's build the<br>next chapter.</h2>
+    <p>Tell us about your business. We'll come back within two working days.</p>
+    <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-cta">
+      Book a consultation
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </section>
+
+  <!-- ── FOOTER ──────────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-name">
+          <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+            <defs>
+              <linearGradient id="orb-f" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#1F6F4E"/>
+                <stop offset="100%" stop-color="#2747FF"/>
+              </linearGradient>
+            </defs>
+            <circle cx="12" cy="12" r="9" fill="url(#orb-f)"/>
+            <circle cx="12" cy="12" r="3" fill="#fff" fill-opacity=".85"/>
+          </svg>
+          <span>Ensign<span class="dot">.</span></span>
+        </div>
+        <div class="footer-tagline">AI Systems. Human Leadership.</div>
+        <div class="footer-desc">Saudi AI and marketing consultancy serving KSA &amp; UAE.</div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <a href="#agents">AI Agents &amp; Automation</a>
+        <a href="#services">Marketing Agency</a>
+        <a href="#services">Paid Media</a>
+        <a href="#services">Branding &amp; Creative</a>
+        <a href="#eos">Ensign OS</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#pillars">About</a>
+        <a href="blog/">Blog</a>
+        <a href="careers.html">Careers</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@ensignksa.com">contact@ensignksa.com</a>
+        <a href="https://wa.me/966548919405" target="_blank" rel="noopener noreferrer">+966 54 891 9405</a>
+        <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; 2026 Ensign Ai Marketing Agency. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms &amp; Conditions</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/ensignailab" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com/ensignksa" target="_blank" rel="noopener noreferrer" aria-label="X / Twitter" class="social-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.instagram.com/ensignksa/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="social-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/966548919405" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="js/main.min.js"></script>
+
+  <!-- GSAP + Lenis -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+  (function() {
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* ── Hero line reveal (cinematic entrance) ── */
+    gsap.from('.hero-line', {
+      yPercent: 115,
+      duration: 1.5,
+      ease: 'expo.out',
+      stagger: 0.15,
+      delay: 0.15
+    });
+    gsap.from('.hero-btns', {
+      opacity: 0,
+      yPercent: 60,
+      duration: 1.1,
+      ease: 'expo.out',
+      delay: 0.7
+    });
+    gsap.from('#hero-hint', {
+      opacity: 0,
+      yPercent: 40,
+      duration: 1.0,
+      ease: 'power3.out',
+      delay: 1.4
+    });
+
+    /* ── Hero content exits as you scroll (cinematic) ── */
+    gsap.to('#hero-content', {
+      yPercent: -24,
+      opacity: 0,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: '55% top',
+        scrub: true
+      }
+    });
+    gsap.to('#hero-hint', {
+      opacity: 0,
+      yPercent: -100,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#hero',
+        start: 'top top',
+        end: '18% top',
+        scrub: true
+      }
+    });
+
+    /* ── Line-by-line clip reveal: auto-processes all .reveal-h h2s ── */
+    var revealEls = [];
+    document.querySelectorAll('h2.reveal-h').forEach(function(el) {
+      var html = el.innerHTML;
+      var parts = html.split(/<br\s*\/?>/i);
+      el.innerHTML = parts.map(function(part, i) {
+        return '<span class="split-parent"><span class="split" style="transition-delay:' + (i * 0.14) + 's">' + part.trim() + '</span></span>';
+      }).join('');
+      revealEls.push(el);
+    });
+
+    var splitObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.split').forEach(function(s) { s.classList.add('is-inview'); });
+          splitObserver.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -6% 0px' });
+
+    revealEls.forEach(function(el) { splitObserver.observe(el); });
+
+    /* ── Word-by-word scroll reveal (pillars) ── */
+    var words = document.querySelectorAll('#pillars-story .pw');
+    gsap.set(words, { opacity: 0.08 });
+    gsap.to(words, {
+      opacity: 1,
+      stagger: 1,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.pillars-intro',
+        start: 'top 60%',
+        end: 'bottom 55%',
+        scrub: 0.8
+      }
+    });
+
+    /* ── Scattered float entrance — fan out from center ── */
+    var pcRotations = [-5, 3, -4];
+    var pcFromX     = [340, 0, -340];
+    var pcFloatDur  = [3.4, 4.2, 3.8];
+    var pcFloatAmp  = [-10, -13, -11];
+    var pcFloats    = [];
+    var pcTweens    = [];
+    var pcCards     = Array.from(document.querySelectorAll('#pillars-grid .pillar-card'));
+
+    pcCards.forEach(function(card, i) {
+      gsap.set(card, { x: pcFromX[i], y: 60, opacity: 0, rotation: 0, scale: 0.88 });
+
+      pcTweens[i] = gsap.fromTo(card,
+        { x: pcFromX[i], y: 60, opacity: 0, rotation: 0, scale: 0.88 },
+        {
+          x: 0, y: 0, opacity: 1, rotation: pcRotations[i], scale: 1,
+          duration: 1.1, ease: 'expo.out', delay: i * 0.08,
+          paused: true,
+          onComplete: function() {
+            if (pcFloats[i]) pcFloats[i].kill();
+            pcFloats[i] = gsap.to(card, {
+              y: pcFloatAmp[i], duration: pcFloatDur[i],
+              ease: 'sine.inOut', yoyo: true, repeat: -1
+            });
+          }
+        }
+      );
+    });
+
+    ScrollTrigger.create({
+      trigger: '#pillars-grid',
+      start: 'top 82%',
+      onEnter: function() {
+        pcTweens.forEach(function(t) { t.play(); });
+      },
+      onLeaveBack: function() {
+        pcCards.forEach(function(card, i) {
+          if (pcFloats[i]) { pcFloats[i].kill(); pcFloats[i] = null; }
+          gsap.killTweensOf(card, 'y');
+          gsap.set(card, { y: 0 });
+          pcTweens[i].reverse();
+        });
+      }
+    });
+
+    /* ── Work section: horizontal scroll ── */
+    var workTrack = document.getElementById('work-track');
+    if (workTrack && window.innerWidth > 768) {
+      var getScrollAmount = function() {
+        return -(workTrack.scrollWidth - window.innerWidth + 56);
+      };
+
+      var horizTween = gsap.to(workTrack, {
+        x: getScrollAmount,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#work',
+          pin: true,
+          anticipatePin: 1,
+          scrub: 1.2,
+          start: 'top top',
+          end: function() { return '+=' + Math.abs(getScrollAmount()); },
+          invalidateOnRefresh: true
+        }
+      });
+
+      document.querySelectorAll('#work-track .work-card').forEach(function(card) {
+        gsap.from(card, {
+          opacity: 0,
+          y: 32,
+          duration: 0.7,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: card,
+            containerAnimation: horizTween,
+            start: 'left 90%',
+            toggleActions: 'play none none none'
+          }
+        });
+      });
+    }
+
+    /* ── Card hover: gradient bg reveal + dark-mode colour shift ── */
+    var INK    = 'rgba(240,241,237,1)';
+    var MUTE   = 'rgba(240,241,237,0.60)';
+    var WH     = '#ffffff';
+    var WHM    = 'rgba(255,255,255,0.62)';
+    var NUMIN  = 'rgba(255,255,255,0.05)';
+    var NUMHOV = 'rgba(255,255,255,0.10)';
+    var TAGIN  = 'rgb(31,111,78)';
+    var TAGHOV = 'rgba(255,255,255,0.45)';
+
+    document.querySelectorAll('.pillar-card').forEach(function(card, i) {
+      var bg     = card.querySelector('.pc-bg');
+      var num    = card.querySelector('.pc-num');
+      var tag    = card.querySelector('.pc-tag');
+      var title  = card.querySelector('.pc-title');
+      var desc   = card.querySelector('.pc-desc');
+      var action = card.querySelector('.pc-action');
+
+      card.addEventListener('mouseenter', function() {
+        if (pcFloats[i]) pcFloats[i].pause();
+        gsap.to(card,   { rotation: 0, y: -14, scale: 1.02, boxShadow: '0 32px 80px rgba(0,0,0,.5)', duration: 0.4, ease: 'power2.out' });
+        gsap.to(bg,     { opacity: 1,    duration: 0.42, ease: 'power2.out' });
+        gsap.to(num,    { color: NUMHOV, duration: 0.35 });
+        gsap.to(tag,    { color: TAGHOV, duration: 0.35 });
+        gsap.to(title,  { color: WH,     duration: 0.35 });
+        gsap.to(desc,   { color: WHM,    duration: 0.35 });
+        gsap.to(action, { color: WH,     duration: 0.35 });
+      });
+
+      card.addEventListener('mouseleave', function() {
+        gsap.to(card, {
+          rotation: pcRotations[i] || 0, y: 0, scale: 1,
+          boxShadow: '0 2px 24px rgba(0,0,0,.25)',
+          duration: 0.5, ease: 'power2.inOut',
+          onComplete: function() { if (pcFloats[i]) pcFloats[i].resume(); }
+        });
+        gsap.to(bg,     { opacity: 0,   duration: 0.42, ease: 'power2.inOut' });
+        gsap.to(num,    { color: NUMIN, duration: 0.4 });
+        gsap.to(tag,    { color: TAGIN, duration: 0.4 });
+        gsap.to(title,  { color: INK,   duration: 0.4 });
+        gsap.to(desc,   { color: MUTE,  duration: 0.4 });
+        gsap.to(action, { color: TAGIN, duration: 0.4 });
+      });
+    });
+
+  })();
+  </script>
+
+  <!-- ── CREATIVE INTERACTIONS ─────────────────────────────── -->
+  <script>
+  (function() {
+    var isTouch = !window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (isTouch) return;
+
+    document.body.classList.add('cc-on');
+
+    /* ── Custom cursor ── */
+    var dot  = document.getElementById('cursor-dot');
+    var ring = document.getElementById('cursor-ring');
+    gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
+
+    var qx = gsap.quickTo(ring, 'x', { duration: 0.42, ease: 'power3' });
+    var qy = gsap.quickTo(ring, 'y', { duration: 0.42, ease: 'power3' });
+
+    document.addEventListener('mousemove', function(e) {
+      gsap.set(dot, { x: e.clientX, y: e.clientY });
+      qx(e.clientX); qy(e.clientY);
+    });
+    document.addEventListener('mouseleave', function() {
+      gsap.to([dot, ring], { opacity: 0, duration: 0.3 });
+    });
+    document.addEventListener('mouseenter', function() {
+      gsap.to([dot, ring], { opacity: 1, duration: 0.3 });
+    });
+    document.addEventListener('mousedown', function() { ring.classList.add('is-click'); });
+    document.addEventListener('mouseup',   function() { ring.classList.remove('is-click'); });
+
+    document.querySelectorAll('a, button').forEach(function(el) {
+      el.addEventListener('mouseenter', function() {
+        dot.classList.add('is-hover');
+        ring.classList.add('is-hover');
+      });
+      el.addEventListener('mouseleave', function() {
+        dot.classList.remove('is-hover');
+        ring.classList.remove('is-hover');
+      });
+    });
+
+    /* ── Magnetic buttons ── */
+    document.querySelectorAll('[data-magnetic]').forEach(function(btn) {
+      btn.addEventListener('mousemove', function(e) {
+        var r = btn.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width  - 0.5;
+        var y = (e.clientY - r.top)  / r.height - 0.5;
+        gsap.to(btn, { x: x * 22, y: y * 16, duration: 0.3, ease: 'power2.out' });
+      });
+      btn.addEventListener('mouseleave', function() {
+        gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.5)' });
+      });
+    });
+
+    /* ── Hero entrance timeline (failsafe — uses fromTo with explicit visible end state) ── */
+    try {
+      var heroLines = document.querySelectorAll('.hero-line');
+      if (heroLines.length) {
+        var htl = gsap.timeline({ delay: 0.1 });
+        htl.fromTo('.hero-eyebrow', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+           .fromTo(heroLines, { yPercent: 115 }, { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: 0.12 }, '-=0.3')
+           .fromTo('.hero-sub',  { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
+           .fromTo('.hero-btns', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.55');
+      }
+    } catch (e) {
+      /* Failsafe — make sure text is visible if GSAP fails */
+      document.querySelectorAll('.hero-line, .hero-eyebrow, .hero-sub, .hero-btns').forEach(function(el) {
+        el.style.opacity = 1;
+        el.style.transform = 'none';
+      });
+    }
+
+    /* ── 3D tilt on agent + work cards ── */
+    document.querySelectorAll('.agent-card, .work-card').forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        var r = card.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width  - 0.5;
+        var y = (e.clientY - r.top)  / r.height - 0.5;
+        gsap.to(card, {
+          rotationY: x * 14,
+          rotationX: -y * 10,
+          transformPerspective: 900,
+          z: 20,
+          duration: 0.35, ease: 'power2.out'
+        });
+      });
+      card.addEventListener('mouseleave', function() {
+        gsap.to(card, {
+          rotationY: 0, rotationX: 0, z: 0,
+          duration: 0.65, ease: 'elastic.out(1, 0.45)'
+        });
+      });
+    });
+
+  }());
+  </script>
+</body>
+</html>
