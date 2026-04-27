@@ -695,20 +695,34 @@
       }
     });
 
-    /* ── Staircase card entrance ── */
+    /* ── Scattered float entrance ── */
+    var pcRotations = [-4, 2.5, -3];
+    var pcFloatDur  = [3.4, 4.2, 3.8];
+    var pcFloatAmp  = [-10, -14, -11];
+    var pcFloats    = [];
+
     document.querySelectorAll('#pillars-grid .pillar-card').forEach(function(card, i) {
-      gsap.from(card, {
-        y: 60 + i * 44,
-        opacity: 0,
-        duration: 1.0,
-        ease: 'power3.out',
-        delay: i * 0.16,
-        scrollTrigger: {
-          trigger: '#pillars-grid',
-          start: 'top 82%',
-          toggleActions: 'play none none none'
+      gsap.fromTo(card,
+        { y: 70, opacity: 0, rotation: 0 },
+        {
+          y: 0, opacity: 1, rotation: pcRotations[i],
+          duration: 1.0, ease: 'power3.out', delay: i * 0.16,
+          scrollTrigger: {
+            trigger: '#pillars-grid',
+            start: 'top 82%',
+            toggleActions: 'play none none none'
+          },
+          onComplete: function() {
+            pcFloats[i] = gsap.to(card, {
+              y: pcFloatAmp[i],
+              duration: pcFloatDur[i],
+              ease: 'sine.inOut',
+              yoyo: true,
+              repeat: -1
+            });
+          }
         }
-      });
+      );
     });
 
     /* ── Work section: horizontal scroll ── */
@@ -758,7 +772,7 @@
     var TAGIN  = 'rgb(31,111,78)';
     var TAGHOV = 'rgba(255,255,255,0.45)';
 
-    document.querySelectorAll('.pillar-card').forEach(function(card) {
+    document.querySelectorAll('.pillar-card').forEach(function(card, i) {
       var bg     = card.querySelector('.pc-bg');
       var num    = card.querySelector('.pc-num');
       var tag    = card.querySelector('.pc-tag');
@@ -767,23 +781,29 @@
       var action = card.querySelector('.pc-action');
 
       card.addEventListener('mouseenter', function() {
+        if (pcFloats[i]) pcFloats[i].pause();
+        gsap.to(card,   { rotation: 0, y: -14, scale: 1.02, boxShadow: '0 32px 80px rgba(0,0,0,.5)', duration: 0.4, ease: 'power2.out' });
         gsap.to(bg,     { opacity: 1,    duration: 0.42, ease: 'power2.out' });
         gsap.to(num,    { color: NUMHOV, duration: 0.35 });
         gsap.to(tag,    { color: TAGHOV, duration: 0.35 });
         gsap.to(title,  { color: WH,     duration: 0.35 });
         gsap.to(desc,   { color: WHM,    duration: 0.35 });
         gsap.to(action, { color: WH,     duration: 0.35 });
-        gsap.to(card,   { y: -10, boxShadow: '0 28px 70px rgba(0,0,0,.4)', duration: 0.35, ease: 'power2.out' });
       });
 
       card.addEventListener('mouseleave', function() {
+        gsap.to(card, {
+          rotation: pcRotations[i] || 0, y: 0, scale: 1,
+          boxShadow: '0 2px 24px rgba(0,0,0,.25)',
+          duration: 0.5, ease: 'power2.inOut',
+          onComplete: function() { if (pcFloats[i]) pcFloats[i].resume(); }
+        });
         gsap.to(bg,     { opacity: 0,   duration: 0.42, ease: 'power2.inOut' });
         gsap.to(num,    { color: NUMIN, duration: 0.4 });
         gsap.to(tag,    { color: TAGIN, duration: 0.4 });
         gsap.to(title,  { color: INK,   duration: 0.4 });
         gsap.to(desc,   { color: MUTE,  duration: 0.4 });
         gsap.to(action, { color: TAGIN, duration: 0.4 });
-        gsap.to(card,   { y: 0, boxShadow: '0 2px 24px rgba(0,0,0,.25)', duration: 0.4, ease: 'power2.inOut' });
       });
     });
 

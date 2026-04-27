@@ -460,6 +460,7 @@ button { font-family: inherit; cursor: pointer; }
   gap: 18px;
   max-width: 1200px;
   margin: 0 auto;
+  align-items: start;
 }
 
 /* ── Individual card ── */
