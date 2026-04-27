@@ -35,7 +35,7 @@ html,body{
   letter-spacing:-.005em;
   line-height:1.6;
 }
-[lang="ar"], [dir="rtl"]{
+html[dir="rtl"], html[dir="rtl"] body, [lang="ar"]{
   font-family:'Noto Kufi Arabic','Inter',-apple-system,BlinkMacSystemFont,sans-serif;
   letter-spacing:0;
 }
