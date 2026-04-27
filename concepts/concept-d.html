@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept D — The Reveal | Ensign Ai</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #6B9BF7;
+  --blue-dim: rgba(107,155,247,0.1);
+  --coral: #F05A5A;
+  --yellow: #F5D84E;
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --green: #22c55e;
+}
+
+html { scroll-behavior: auto; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 52px;
+  height: 64px;
+  background: rgba(255,255,255,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  transition: background 0.3s;
+}
+
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-mark {
+  width: 28px; height: 28px;
+  background: var(--blue);
+  border-radius: 7px;
+  display: grid;
+  place-items: center;
+}
+
+.nav-pill {
+  display: flex;
+  gap: 2px;
+  background: var(--gray-100);
+  padding: 4px;
+  border-radius: 12px;
+  list-style: none;
+}
+
+.nav-pill a {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+  text-decoration: none;
+  padding: 7px 16px;
+  border-radius: 8px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.nav-pill a:hover { background: var(--white); color: var(--black); }
+
+.nav-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.nav-ar {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-500);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-ar:hover { color: var(--black); }
+
+.nav-cta {
+  background: var(--black);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 9px;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-cta:hover { background: var(--blue); box-shadow: 0 4px 16px rgba(107,155,247,0.4); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 52px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(ellipse 60% 50% at 15% 40%, rgba(107,155,247,0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 60%, rgba(240,90,90,0.05) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 50% 100%, rgba(245,216,78,0.05) 0%, transparent 50%);
+  animation: bg-breathe 18s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes bg-breathe {
+  0%   { transform: scale(1)    rotate(0deg); }
+  100% { transform: scale(1.08) rotate(1deg); }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-500);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  padding: 7px 16px;
+  border-radius: 100px;
+  margin-bottom: 44px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  opacity: 0;
+}
+
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 0 rgba(34,197,94,0.4);
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+  50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(52px, 8.5vw, 118px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+  color: var(--black);
+  margin-bottom: 32px;
+  overflow: visible;
+  position: relative;
+}
+
+.hero-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(70px);
+  margin-right: 0.2em;
+}
+
+.hero-word.blue { color: var(--blue); }
+.hero-word.last { margin-right: 0; }
+
+.hero-sub {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--gray-500);
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 48px;
+  opacity: 0;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 64px;
+  opacity: 0;
+}
+
+.btn-primary {
+  position: relative;
+  background: var(--black);
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 16px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.25s;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--blue);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 32px rgba(107,155,247,0.4); }
+.btn-primary span { position: relative; }
+
+.btn-secondary {
+  color: var(--black);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 16px 36px;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid var(--gray-200);
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover { border-color: var(--black); }
+
+/* Floating agent pills */
+.hero-agents {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+}
+
+.h-pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 14px;
+  padding: 10px 18px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  transition: all 0.3s cubic-bezier(0.16,1,0.3,1);
+  cursor: default;
+}
+
+.h-pill:hover {
+  border-color: var(--blue);
+  box-shadow: 0 8px 24px rgba(107,155,247,0.15);
+  transform: translateY(-3px);
+}
+
+.pill-icon {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.pill-icon.i1 { background: rgba(107,155,247,0.12); }
+.pill-icon.i2 { background: rgba(240,90,90,0.10); }
+.pill-icon.i3 { background: rgba(245,216,78,0.14); }
+
+.pill-text { line-height: 1.2; }
+.pill-name { font-size: 13px; font-weight: 700; color: var(--black); }
+.pill-sub { font-size: 11px; color: var(--gray-400); font-weight: 500; }
+
+.pill-live {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.live-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: badge-pulse 1.8s ease-in-out infinite;
+}
+
+/* Scroll indicator */
+.scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 48px;
+  background: var(--gray-200);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--blue);
+  animation: scroll-drop 1.8s ease-in-out infinite;
+}
+
+@keyframes scroll-drop {
+  0% { top: -100%; }
+  100% { top: 100%; }
+}
+
+.scroll-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+}
+
+/* ── STATS STRIP ── */
+.stats {
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.stat {
+  padding: 44px 48px;
+  border-right: 1px solid var(--gray-200);
+  overflow: hidden;
+  position: relative;
+}
+
+.stat:last-child { border-right: none; }
+
+.stat::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 2px;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+.stat:hover::after { transform: scaleX(1); }
+
+.stat-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.stat-val sup {
+  font-size: 28px;
+  color: var(--blue);
+  vertical-align: super;
+}
+
+.stat-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+}
+
+/* ── SERVICES ── */
+.services {
+  padding: 120px 52px;
+}
+
+.services-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.sec-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 64px;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 14px;
+}
+
+.sec-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: var(--black);
+}
+
+.sec-desc {
+  font-size: 15px;
+  color: var(--gray-500);
+  line-height: 1.75;
+  align-self: end;
+}
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.svc-card {
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 20px;
+  padding: 36px 32px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+  opacity: 0;
+  transform: translateY(50px);
+  cursor: default;
+}
+
+/* Glassmorphism shine on hover */
+.svc-card::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at center, rgba(107,155,247,0.08) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+.svc-card:hover::before { opacity: 1; }
+
+.svc-card:hover {
+  border-color: rgba(107,155,247,0.5);
+  transform: translateY(-6px) !important;
+  box-shadow:
+    0 0 0 1px rgba(107,155,247,0.15),
+    0 20px 48px rgba(107,155,247,0.1),
+    0 4px 16px rgba(0,0,0,0.04);
+}
+
+.svc-card.featured {
+  grid-column: span 2;
+  background: var(--black);
+  border-color: transparent;
+}
+
+.svc-card.featured:hover {
+  border-color: rgba(107,155,247,0.4);
+  box-shadow: 0 20px 48px rgba(107,155,247,0.2);
+}
+
+.svc-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--gray-400);
+  margin-bottom: 20px;
+}
+
+.svc-card.featured .svc-num { color: rgba(255,255,255,0.25); }
+
+.svc-icon-wrap {
+  width: 48px; height: 48px;
+  border-radius: 13px;
+  background: var(--gray-100);
+  border: 1px solid var(--gray-200);
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  transition: transform 0.3s;
+}
+
+.svc-card:hover .svc-icon-wrap { transform: scale(1.08) rotate(-3deg); }
+
+.svc-card.featured .svc-icon-wrap {
+  background: rgba(107,155,247,0.15);
+  border-color: rgba(107,155,247,0.3);
+}
+
+.svc-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.svc-card.featured .svc-title {
+  font-size: 24px;
+  color: var(--white);
+}
+
+.svc-desc {
+  font-size: 13.5px;
+  color: var(--gray-500);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.svc-card.featured .svc-desc { color: rgba(255,255,255,0.45); }
+
+.svc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 11px;
+  border-radius: 100px;
+  background: var(--gray-100);
+  color: var(--gray-500);
+  border: 1px solid var(--gray-200);
+}
+
+.svc-card.featured .tag {
+  background: rgba(107,155,247,0.12);
+  color: var(--blue);
+  border-color: rgba(107,155,247,0.25);
+}
+
+/* Agent pills inside featured card */
+.agent-pills-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.a-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px;
+  padding: 10px 16px;
+  transition: all 0.2s;
+}
+
+.a-pill:hover {
+  background: rgba(107,155,247,0.15);
+  border-color: rgba(107,155,247,0.4);
+  transform: translateY(-2px);
+}
+
+.a-pill-icon {
+  width: 28px; height: 28px;
+  border-radius: 7px;
+  background: rgba(107,155,247,0.2);
+  display: grid; place-items: center;
+  font-size: 14px;
+}
+
+.a-pill-name { font-size: 13px; font-weight: 700; color: var(--white); }
+.a-pill-role { font-size: 11px; color: rgba(255,255,255,0.35); }
+
+/* ── AGENTS STICKY ── */
+.agents-outer {
+  position: relative;
+  height: 400vh;
+}
+
+.agents-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background: var(--black);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.agents-progress {
+  position: absolute;
+  left: 52px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 10;
+}
+
+.progress-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.progress-dot.active {
+  background: var(--blue);
+  transform: scale(1.4);
+  box-shadow: 0 0 10px var(--blue);
+}
+
+.agents-track {
+  display: flex;
+  width: 300%;
+  transition: none;
+  will-change: transform;
+  padding: 0 52px 0 120px;
+  gap: 0;
+}
+
+.agent-slide {
+  width: calc(100% / 3);
+  flex-shrink: 0;
+  padding: 0 40px 0 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.agent-slide-left {}
+
+.agents-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.agents-eyebrow::before {
+  content: '';
+  width: 20px; height: 2px;
+  background: var(--blue);
+}
+
+.agent-slide-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(36px, 4vw, 60px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.agent-role-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 7px 14px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+
+.agent-desc {
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
+
+.agent-feats {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.agent-feats li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.4;
+}
+
+.feat-check {
+  width: 20px; height: 20px;
+  border-radius: 6px;
+  background: rgba(107,155,247,0.2);
+  border: 1px solid rgba(107,155,247,0.4);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* Agent visual card */
+.agent-slide-right {}
+
+.agent-vis-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 24px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+
+.agent-vis-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(107,155,247,0.5), transparent);
+}
+
+.avc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.avc-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  background: rgba(107,155,247,0.15);
+  border: 1px solid rgba(107,155,247,0.3);
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+}
+
+.avc-live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.2);
+  padding: 6px 12px;
+  border-radius: 100px;
+}
+
+.avc-live-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: badge-pulse 1.5s ease-in-out infinite;
+}
+
+.avc-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.avc-stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.avc-stat-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.avc-stat-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  font-weight: 500;
+}
+
+.avc-activity {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.avc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.avc-row-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.avc-row-text { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.5); flex: 1; }
+.avc-row-time { font-size: 11px; color: rgba(255,255,255,0.25); }
+
+/* Agent counter display */
+.agents-counter {
+  position: absolute;
+  right: 52px;
+  bottom: 52px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 100px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.04);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.3s;
+}
+
+/* ── PROCESS ── */
+.process {
+  padding: 120px 52px;
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+}
+
+.process-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.process-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 23px;
+  left: 11%;
+  right: 11%;
+  height: 1px;
+  background: var(--gray-200);
+}
+
+.process-steps::after {
+  content: '';
+  position: absolute;
+  top: 23px;
+  left: 11%;
+  height: 1px;
+  background: var(--blue);
+  width: 0;
+  transition: width 1.5s cubic-bezier(0.16,1,0.3,1);
+}
+
+.process-steps.animated::after { width: 78%; }
+
+.p-step {
+  text-align: center;
+  padding: 0 24px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.p-num {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--gray-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0 auto 24px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+
+.p-step:hover .p-num {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: var(--white);
+  transform: scale(1.1);
+}
+
+.p-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.p-desc {
+  font-size: 13px;
+  color: var(--gray-500);
+  line-height: 1.65;
+}
+
+/* ── CTA ── */
+.cta-wrap {
+  padding: 80px 52px;
+}
+
+.cta-card {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: var(--black);
+  border-radius: 28px;
+  padding: 100px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-glow {
+  position: absolute;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(107,155,247,0.18) 0%, transparent 70%);
+  top: -200px; right: -100px;
+  pointer-events: none;
+}
+
+.cta-glow-2 {
+  position: absolute;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(240,90,90,0.08) 0%, transparent 70%);
+  bottom: -100px; left: -50px;
+  pointer-events: none;
+}
+
+.cta-left { position: relative; }
+
+.cta-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+
+.cta-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.cta-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.65;
+}
+
+.cta-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.btn-white {
+  background: var(--white);
+  color: var(--black);
+  font-size: 15px;
+  font-weight: 700;
+  padding: 18px 40px;
+  border-radius: 100px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+
+.btn-white:hover {
+  background: var(--blue);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(107,155,247,0.5);
+}
+
+.cta-fine { font-size: 12px; color: rgba(255,255,255,0.25); text-align: center; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  padding: 56px 52px 32px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.footer-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 12px;
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+
+.footer-contact {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+}
+
+.footer-col h4 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 16px;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col a {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.footer-col a:hover { color: var(--white); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.25); }
+
+/* CONCEPT LABEL */
+.concept-label {
+  position: fixed;
+  bottom: 20px; right: 20px;
+  background: linear-gradient(135deg, var(--blue), #4a7ef5);
+  color: var(--white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 9px 18px;
+  border-radius: 100px;
+  z-index: 1000;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(107,155,247,0.4);
+}
+</style>
+</head>
+<body>
+
+<div class="concept-label">Concept D — The Reveal</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-mark">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    Ensign Ai
+  </a>
+  <ul class="nav-pill">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">AI Agents</a></li>
+    <li><a href="#">Process</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="nav-ar">عربي</a>
+    <a href="#" class="nav-cta">Book a Call →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-badge" id="hero-badge">
+    <div class="badge-dot"></div>
+    AI-First Marketing Agency · Riyadh, Saudi Arabia
+  </div>
+
+  <h1 class="hero-title">
+    <span class="hero-word">Your</span>
+    <span class="hero-word">marketing,</span><br>
+    <span class="hero-word blue">powered</span>
+    <span class="hero-word blue">by</span>
+    <span class="hero-word blue last">AI.</span>
+  </h1>
+
+  <p class="hero-sub" id="hero-sub">
+    AI agents that handle calls, close sales, and run your entire marketing department — deployed for Saudi and UAE businesses ready to grow.
+  </p>
+
+  <div class="hero-btns" id="hero-btns">
+    <a href="#" class="btn-primary"><span>Deploy Your AI Team</span> <span>→</span></a>
+    <a href="#" class="btn-secondary">See Our Services</a>
+  </div>
+
+  <div class="hero-agents" id="hero-agents">
+    <div class="h-pill">
+      <div class="pill-icon i1">📞</div>
+      <div class="pill-text">
+        <div class="pill-name">Call Center Agent</div>
+        <div class="pill-sub">Inbound & outbound calls</div>
+      </div>
+      <div class="pill-live"><div class="live-dot"></div> Live</div>
+    </div>
+    <div class="h-pill">
+      <div class="pill-icon i2">💼</div>
+      <div class="pill-text">
+        <div class="pill-name">Sales Rep Agent</div>
+        <div class="pill-sub">Leads, proposals & closing</div>
+      </div>
+      <div class="pill-live"><div class="live-dot"></div> Live</div>
+    </div>
+    <div class="h-pill">
+      <div class="pill-icon i3">📣</div>
+      <div class="pill-text">
+        <div class="pill-name">AI Marketing Team</div>
+        <div class="pill-sub">Full department, always on</div>
+      </div>
+      <div class="pill-live"><div class="live-dot"></div> Live</div>
+    </div>
+  </div>
+
+  <div class="scroll-hint" id="scroll-hint">
+    <div class="scroll-line"></div>
+    <span class="scroll-label">Scroll</span>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats" id="stats">
+  <div class="stat">
+    <div class="stat-val"><span class="count" data-target="10">0</span><sup>x</sup></div>
+    <div class="stat-label">Faster Lead Response</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val"><span class="count" data-target="24">0</span><sup>/7</sup></div>
+    <div class="stat-label">Agents Always Active</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val"><span class="count" data-target="6">0</span><sup>+</sup></div>
+    <div class="stat-label">AI Agent Types</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val"><span class="count" data-target="60">0</span><sup>%</sup></div>
+    <div class="stat-label">Avg. Cost Savings</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-inner">
+    <div class="sec-header">
+      <div>
+        <div class="eyebrow">What We Build</div>
+        <h2 class="sec-title">Six services.<br>One system.</h2>
+      </div>
+      <p class="sec-desc">From AI advisory to full campaign execution — everything your marketing operation needs, built and run by us.</p>
+    </div>
+
+    <div class="svc-grid" id="svc-grid">
+      <div class="svc-card featured">
+        <div class="svc-num">02 — MOST REQUESTED</div>
+        <div class="svc-icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="svc-title">AI Agents & Automation</div>
+        <p class="svc-desc">Deploy a full AI workforce that replaces entire departments. Not bots — intelligent workers trained on your business, running around the clock.</p>
+        <div class="agent-pills-row">
+          <div class="a-pill"><div class="a-pill-icon">📞</div><div><div class="a-pill-name">Call Center Agent</div><div class="a-pill-role">Voice, inbound & outbound</div></div></div>
+          <div class="a-pill"><div class="a-pill-icon">💼</div><div><div class="a-pill-name">Sales Rep Agent</div><div class="a-pill-role">Follow-up & closing</div></div></div>
+          <div class="a-pill"><div class="a-pill-icon">📣</div><div><div class="a-pill-name">AI Marketing Team</div><div class="a-pill-role">Full department</div></div></div>
+        </div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-num">01</div>
+        <div class="svc-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        </div>
+        <div class="svc-title">AI & Marketing Advisory</div>
+        <p class="svc-desc">Strategic consulting to integrate AI into your marketing. Adoption roadmaps, systems architecture, go-to-market strategy.</p>
+        <div class="svc-tags"><span class="tag">AI Strategy</span><span class="tag">GTM</span><span class="tag">Brand</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-num">03</div>
+        <div class="svc-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="svc-title">Marketing Systems</div>
+        <p class="svc-desc">CRM design, automated workflows, and analytics dashboards — connected infrastructure built to scale.</p>
+        <div class="svc-tags"><span class="tag">CRM</span><span class="tag">Workflows</span><span class="tag">Analytics</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-num">04</div>
+        <div class="svc-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div class="svc-title">Campaign Execution</div>
+        <p class="svc-desc">Google, Meta, TikTok — planned and managed with AI for maximum ROI across Saudi and UAE.</p>
+        <div class="svc-tags"><span class="tag">Paid Media</span><span class="tag">SEO</span><span class="tag">Social</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-num">05</div>
+        <div class="svc-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="1.5"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/></svg>
+        </div>
+        <div class="svc-title">AI Creative Production</div>
+        <p class="svc-desc">Visual content, video, and brand storytelling produced at scale using AI-enhanced workflows.</p>
+        <div class="svc-tags"><span class="tag">Video</span><span class="tag">Visuals</span><span class="tag">Content</span></div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-num">06</div>
+        <div class="svc-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="1.5"><path d="M12 22v-7M12 8V2M4.93 10.93l1.41 1.41M17.66 5.99l1.41 1.42M2 15h2M20 15h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+        </div>
+        <div class="svc-title">Entertainment & Events</div>
+        <p class="svc-desc">End-to-end event planning, entertainment booking, and live production for Saudi brands.</p>
+        <div class="svc-tags"><span class="tag">Events</span><span class="tag">Live</span><span class="tag">Production</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AGENTS STICKY -->
+<div class="agents-outer">
+  <div class="agents-sticky" id="agents-sticky">
+    <div class="agents-progress" id="agents-progress">
+      <div class="progress-dot active" onclick="goAgent(0)"></div>
+      <div class="progress-dot" onclick="goAgent(1)"></div>
+      <div class="progress-dot" onclick="goAgent(2)"></div>
+    </div>
+
+    <div class="agents-track" id="agents-track">
+
+      <!-- Agent 1 -->
+      <div class="agent-slide">
+        <div class="agent-slide-left">
+          <div class="agents-eyebrow">AI Workforce · Agent 01</div>
+          <h2 class="agent-slide-title">Call Center<br>Agent</h2>
+          <div class="agent-role-badge">📞 Inbound & Outbound Voice · Arabic & English</div>
+          <p class="agent-desc">Handles every call your business receives — qualifying leads, booking appointments, and routing intelligently. Bilingual, tireless, always available.</p>
+          <ul class="agent-feats">
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Inbound call handling & intelligent routing</li>
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Lead qualification over voice before CRM entry</li>
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Appointment scheduling & calendar sync</li>
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Fully bilingual — Arabic & English</li>
+          </ul>
+        </div>
+        <div class="agent-slide-right">
+          <div class="agent-vis-card">
+            <div class="avc-header">
+              <div class="avc-icon">📞</div>
+              <div class="avc-live"><div class="avc-live-dot"></div> Live Now</div>
+            </div>
+            <div class="avc-stats">
+              <div class="avc-stat"><div class="avc-stat-val" style="color:#6B9BF7">487</div><div class="avc-stat-label">Calls / Month</div></div>
+              <div class="avc-stat"><div class="avc-stat-val" style="color:#22c55e">94%</div><div class="avc-stat-label">Resolution Rate</div></div>
+              <div class="avc-stat"><div class="avc-stat-val">&lt;30s</div><div class="avc-stat-label">Answer Time</div></div>
+              <div class="avc-stat"><div class="avc-stat-val">24/7</div><div class="avc-stat-label">Availability</div></div>
+            </div>
+            <div class="avc-activity">
+              <div class="avc-row"><div class="avc-row-dot" style="background:#22c55e"></div><div class="avc-row-text">Handling inbound inquiry — Riyadh lead</div><div class="avc-row-time">Now</div></div>
+              <div class="avc-row"><div class="avc-row-dot" style="background:#6B9BF7"></div><div class="avc-row-text">Booked 3 discovery calls today</div><div class="avc-row-time">2m ago</div></div>
+              <div class="avc-row"><div class="avc-row-dot" style="background:#9ca3af"></div><div class="avc-row-text">Qualified 8 leads, added to CRM</div><div class="avc-row-time">15m ago</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent 2 -->
+      <div class="agent-slide">
+        <div class="agent-slide-left">
+          <div class="agents-eyebrow">AI Workforce · Agent 02</div>
+          <h2 class="agent-slide-title">Sales Rep<br>Agent</h2>
+          <div class="agent-role-badge">💼 Pipeline Management · Proposals · Closing</div>
+          <p class="agent-desc">Follows up on every lead in under 90 seconds, sends personalized proposals, handles objections, and pushes deals through your pipeline automatically.</p>
+          <ul class="agent-feats">
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Follows up on every lead in &lt;90 seconds</li>
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Sends personalized proposals automatically</li>
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Handles objections with trained scripts</li>
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Syncs all activity to your CRM in real-time</li>
+          </ul>
+        </div>
+        <div class="agent-slide-right">
+          <div class="agent-vis-card">
+            <div class="avc-header">
+              <div class="avc-icon">💼</div>
+              <div class="avc-live"><div class="avc-live-dot"></div> Live Now</div>
+            </div>
+            <div class="avc-stats">
+              <div class="avc-stat"><div class="avc-stat-val" style="color:#6B9BF7">2.3x</div><div class="avc-stat-label">Conversion Lift</div></div>
+              <div class="avc-stat"><div class="avc-stat-val" style="color:#22c55e">&lt;90s</div><div class="avc-stat-label">Follow-up Speed</div></div>
+              <div class="avc-stat"><div class="avc-stat-val">48</div><div class="avc-stat-label">Proposals Sent</div></div>
+              <div class="avc-stat"><div class="avc-stat-val">12</div><div class="avc-stat-label">Deals Closed</div></div>
+            </div>
+            <div class="avc-activity">
+              <div class="avc-row"><div class="avc-row-dot" style="background:#22c55e"></div><div class="avc-row-text">Sent proposal to Jeddah prospect</div><div class="avc-row-time">Now</div></div>
+              <div class="avc-row"><div class="avc-row-dot" style="background:#6B9BF7"></div><div class="avc-row-text">Followed up with 5 warm leads</div><div class="avc-row-time">8m ago</div></div>
+              <div class="avc-row"><div class="avc-row-dot" style="background:#9ca3af"></div><div class="avc-row-text">Deal closed — updated CRM</div><div class="avc-row-time">1h ago</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agent 3 -->
+      <div class="agent-slide">
+        <div class="agent-slide-left">
+          <div class="agents-eyebrow">AI Workforce · Agent 03</div>
+          <h2 class="agent-slide-title">AI Marketing<br>Team</h2>
+          <div class="agent-role-badge">📣 Content · Social · Ads · Email · Analytics</div>
+          <p class="agent-desc">A complete AI-powered marketing department — content strategist, social manager, ad optimizer, and email marketer — all coordinated, all running in parallel.</p>
+          <ul class="agent-feats">
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Publishes content across all channels</li>
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Manages and optimizes ad campaigns</li>
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Runs email sequences automatically</li>
+            <li><div class="feat-check"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>5 sub-agents coordinated in real-time</li>
+          </ul>
+        </div>
+        <div class="agent-slide-right">
+          <div class="agent-vis-card">
+            <div class="avc-header">
+              <div class="avc-icon">📣</div>
+              <div class="avc-live"><div class="avc-live-dot"></div> Live Now</div>
+            </div>
+            <div class="avc-stats">
+              <div class="avc-stat"><div class="avc-stat-val" style="color:#6B9BF7">5</div><div class="avc-stat-label">Sub-Agents</div></div>
+              <div class="avc-stat"><div class="avc-stat-val" style="color:#22c55e">60%</div><div class="avc-stat-label">Cost Savings</div></div>
+              <div class="avc-stat"><div class="avc-stat-val">48</div><div class="avc-stat-label">Posts/Month</div></div>
+              <div class="avc-stat"><div class="avc-stat-val">3x</div><div class="avc-stat-label">Engagement</div></div>
+            </div>
+            <div class="avc-activity">
+              <div class="avc-row"><div class="avc-row-dot" style="background:#22c55e"></div><div class="avc-row-text">Published 4 posts, optimizing ad bids</div><div class="avc-row-time">Now</div></div>
+              <div class="avc-row"><div class="avc-row-dot" style="background:#6B9BF7"></div><div class="avc-row-text">Email sequence sent to 240 subscribers</div><div class="avc-row-time">12m ago</div></div>
+              <div class="avc-row"><div class="avc-row-dot" style="background:#9ca3af"></div><div class="avc-row-text">Weekly analytics report generated</div><div class="avc-row-time">1h ago</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="agents-counter" id="agents-counter">01</div>
+  </div>
+</div>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-inner">
+    <div class="process-header">
+      <div class="eyebrow" style="text-align:center;">How It Works</div>
+      <h2 class="sec-title" style="text-align:center;">Deployed in weeks,<br>not months</h2>
+    </div>
+    <div class="process-steps" id="process-steps">
+      <div class="p-step"><div class="p-num">1</div><div class="p-title">Discovery Call</div><p class="p-desc">We map your marketing gaps, goals, and the AI systems you need</p></div>
+      <div class="p-step"><div class="p-num">2</div><div class="p-title">System Design</div><p class="p-desc">We architect your full AI stack — agents, automations, workflows</p></div>
+      <div class="p-step"><div class="p-num">3</div><div class="p-title">Build & Deploy</div><p class="p-desc">We build, train, and launch your AI workforce on your business</p></div>
+      <div class="p-step"><div class="p-num">4</div><div class="p-title">Scale & Optimize</div><p class="p-desc">We monitor, iterate, and expand your systems as you grow</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <div class="cta-card" id="cta-card">
+    <div class="cta-glow"></div>
+    <div class="cta-glow-2"></div>
+    <div class="cta-left">
+      <div class="cta-eyebrow">Get Started Today</div>
+      <h2 class="cta-title">Ready to hire your<br>AI workforce?</h2>
+      <p class="cta-sub">Book a 30-minute discovery call. We'll map exactly what your business needs — no commitment required.</p>
+    </div>
+    <div class="cta-right">
+      <a href="#" class="btn-white">Book a Discovery Call →</a>
+      <p class="cta-fine">Free · 30 minutes · No commitment</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="footer-logo">
+        <div class="logo-mark"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        Ensign Ai
+      </a>
+      <p class="footer-tagline">AI Systems. Human Leadership.<br>Riyadh, Saudi Arabia.</p>
+      <p class="footer-contact">contact@ensignksa.com<br>+966 54 891 9405</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul><li><a href="#">AI Advisory</a></li><li><a href="#">AI Agents</a></li><li><a href="#">Marketing Systems</a></li><li><a href="#">Campaign Execution</a></li><li><a href="#">Creative Production</a></li><li><a href="#">Events</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul><li><a href="#">About Us</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms & Conditions</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Ensign Ai Marketing Agency. All rights reserved.</p>
+    <p>Riyadh, Saudi Arabia</p>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// ── LENIS SMOOTH SCROLL ──
+const lenis = new Lenis({
+  duration: 1.2,
+  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  smooth: true,
+});
+
+function raf(time) {
+  lenis.raf(time);
+  requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+gsap.ticker.lagSmoothing(0);
+
+// ── HERO ENTRANCE ──
+const tl = gsap.timeline({ delay: 0.2 });
+
+tl.to('#hero-badge', {
+  opacity: 1, y: 0, duration: 0.6, ease: 'power2.out'
+})
+.to('.hero-word', {
+  opacity: 1, y: 0,
+  duration: 0.7,
+  stagger: 0.1,
+  ease: 'back.out(1.4)'
+}, '-=0.3')
+.to('#hero-sub', {
+  opacity: 1, y: 0, duration: 0.6, ease: 'power2.out'
+}, '-=0.3')
+.to('#hero-btns', {
+  opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'
+}, '-=0.2')
+.to('#hero-agents', {
+  opacity: 1, y: 0, duration: 0.5, ease: 'power2.out'
+}, '-=0.2')
+.to('#scroll-hint', {
+  opacity: 1, duration: 0.5
+}, '-=0.1');
+
+// Hero scroll out
+gsap.to('#hero > *:not(.hero-bg)', {
+  y: -60,
+  opacity: 0,
+  scrollTrigger: {
+    trigger: '#hero',
+    start: 'top top',
+    end: 'bottom 50%',
+    scrub: 1.5,
+  }
+});
+
+// ── STATS COUNTERS ──
+document.querySelectorAll('.count').forEach(el => {
+  const target = parseInt(el.dataset.target);
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top 85%',
+    onEnter: () => {
+      gsap.fromTo(el,
+        { textContent: 0 },
+        {
+          textContent: target,
+          duration: 1.8,
+          ease: 'power2.out',
+          snap: { textContent: 1 },
+          onUpdate() { el.textContent = Math.round(el.textContent); }
+        }
+      );
+    },
+    once: true
+  });
+});
+
+// ── SERVICE CARDS ──
+gsap.fromTo('.svc-card', {
+  opacity: 0, y: 60
+}, {
+  opacity: 1, y: 0,
+  duration: 0.7,
+  stagger: 0.1,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: '#svc-grid',
+    start: 'top 75%',
+  }
+});
+
+// ── AGENTS STICKY SCROLL ──
+const track = document.getElementById('agents-track');
+const dots = document.querySelectorAll('.progress-dot');
+const counter = document.getElementById('agents-counter');
+const labels = ['01', '02', '03'];
+let currentAgent = 0;
+
+function setAgent(index) {
+  currentAgent = index;
+  gsap.to(track, {
+    x: `-${index * (100 / 3)}%`,
+    duration: 0.9,
+    ease: 'power3.inOut'
+  });
+  dots.forEach((d, i) => d.classList.toggle('active', i === index));
+  counter.textContent = labels[index];
+}
+
+window.goAgent = setAgent;
+
+ScrollTrigger.create({
+  trigger: '.agents-outer',
+  start: 'top top',
+  end: 'bottom bottom',
+  onUpdate: (self) => {
+    const idx = Math.min(2, Math.floor(self.progress * 3));
+    if (idx !== currentAgent) setAgent(idx);
+  }
+});
+
+// ── PROCESS STEPS ──
+ScrollTrigger.create({
+  trigger: '#process-steps',
+  start: 'top 70%',
+  onEnter: () => {
+    document.getElementById('process-steps').classList.add('animated');
+    gsap.to('.p-step', {
+      opacity: 1, y: 0,
+      duration: 0.6,
+      stagger: 0.15,
+      ease: 'power2.out'
+    });
+  },
+  once: true
+});
+
+// ── CTA REVEAL ──
+gsap.fromTo('#cta-card', {
+  opacity: 0, y: 40, scale: 0.97
+}, {
+  opacity: 1, y: 0, scale: 1,
+  duration: 0.8,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: '#cta-card',
+    start: 'top 80%',
+  }
+});
+
+// ── MAGNETIC BUTTONS ──
+document.querySelectorAll('.btn-primary, .btn-white').forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const rect = btn.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    gsap.to(btn, { x: x * 0.3, y: y * 0.3, duration: 0.3, ease: 'power2.out' });
+  });
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, { x: 0, y: 0, duration: 0.5, ease: 'elastic.out(1, 0.5)' });
+  });
+});
+
+// ── PARALLAX HERO BG ──
+gsap.to('.hero-bg', {
+  y: 80,
+  scrollTrigger: {
+    trigger: '#hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: 2
+  }
+});
+</script>
+</body>
+</html>

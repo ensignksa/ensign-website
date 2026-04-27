@@ -1,0 +1,1825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept E — The Cinematic | Ensign Ai</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #6B9BF7;
+  --coral: #F05A5A;
+  --yellow: #F5D84E;
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --off: #F8F7F5;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --green: #22c55e;
+}
+
+html { scroll-behavior: auto; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom cursor */
+.cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--blue);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: multiply;
+}
+
+.cursor-follower {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid var(--blue);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
+}
+
+body:has(a:hover) .cursor { width: 14px; height: 14px; }
+body:has(a:hover) .cursor-follower { width: 52px; height: 52px; opacity: 0.3; }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 56px;
+  height: 66px;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  width: 30px; height: 30px;
+  background: var(--black);
+  border-radius: 8px;
+  display: grid; place-items: center;
+  transition: background 0.2s;
+}
+
+.logo:hover .logo-icon { background: var(--blue); }
+
+.nav-pill {
+  display: flex;
+  gap: 2px;
+  background: var(--gray-100);
+  padding: 4px;
+  border-radius: 13px;
+  list-style: none;
+}
+
+.nav-pill a {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+  text-decoration: none;
+  padding: 7px 15px;
+  border-radius: 9px;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.nav-pill a:hover { background: var(--white); color: var(--black); }
+
+.nav-end { display: flex; gap: 10px; align-items: center; }
+
+.nav-ar {
+  font-size: 13px; font-weight: 600;
+  color: var(--gray-500); text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-ar:hover { color: var(--black); }
+
+.nav-cta {
+  background: var(--black);
+  color: var(--white);
+  font-size: 13px; font-weight: 600;
+  padding: 9px 22px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--blue); box-shadow: 0 4px 20px rgba(107,155,247,0.45); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding: 100px 56px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Giant background word */
+.hero-bg-word {
+  position: absolute;
+  top: 50%;
+  left: -0.05em;
+  transform: translateY(-50%);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 28vw;
+  font-weight: 700;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(0,0,0,0.045);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.hero-left { position: relative; z-index: 2; }
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 36px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-eyebrow::before {
+  content: '';
+  width: 28px; height: 2px;
+  background: var(--blue);
+  border-radius: 2px;
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(48px, 6.5vw, 92px);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 0.95;
+  color: var(--black);
+  margin-bottom: 36px;
+  overflow: hidden;
+}
+
+.title-line {
+  display: block;
+  overflow: hidden;
+}
+
+.title-line-inner {
+  display: block;
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+/* Gradient shimmer text */
+.title-gradient {
+  background: linear-gradient(90deg, var(--black) 0%, var(--blue) 40%, var(--black) 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+  animation-play-state: paused;
+}
+
+.title-gradient.active { animation-play-state: running; }
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.hero-desc {
+  font-size: 17px;
+  color: var(--gray-500);
+  line-height: 1.75;
+  max-width: 420px;
+  margin-bottom: 44px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 52px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.btn-black {
+  background: var(--black);
+  color: var(--white);
+  font-size: 15px; font-weight: 600;
+  padding: 16px 34px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.25s;
+  display: flex; align-items: center; gap: 8px;
+  position: relative; overflow: hidden;
+}
+
+.btn-black::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--blue), #4a7ef5);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.btn-black:hover::before { opacity: 1; }
+.btn-black:hover { transform: translateY(-2px); box-shadow: 0 12px 36px rgba(107,155,247,0.4); }
+.btn-black span { position: relative; z-index: 1; }
+
+.btn-outline {
+  color: var(--black);
+  font-size: 15px; font-weight: 600;
+  padding: 16px 34px;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid var(--gray-200);
+  transition: all 0.2s;
+}
+.btn-outline:hover { border-color: var(--black); }
+
+/* Hero agent tags */
+.hero-agent-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.agent-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 14px;
+  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+  cursor: default;
+}
+
+.agent-tag-row:hover {
+  border-color: var(--blue);
+  transform: translateX(6px);
+  box-shadow: 0 6px 20px rgba(107,155,247,0.1);
+}
+
+.atag-icon {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  display: grid; place-items: center;
+  font-size: 18px; flex-shrink: 0;
+}
+
+.atag-icon.b { background: rgba(107,155,247,0.1); }
+.atag-icon.c { background: rgba(240,90,90,0.09); }
+.atag-icon.y { background: rgba(245,216,78,0.14); }
+
+.atag-info { flex: 1; }
+.atag-name { font-size: 14px; font-weight: 700; color: var(--black); letter-spacing: -0.01em; }
+.atag-role { font-size: 12px; color: var(--gray-400); margin-top: 1px; }
+
+.atag-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.atag-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: gp 1.8s ease-in-out infinite;
+}
+
+@keyframes gp {
+  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+}
+
+/* ── HERO RIGHT — ORBITAL VISUAL ── */
+.hero-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 560px;
+  z-index: 2;
+  opacity: 0;
+}
+
+.orbital-wrap {
+  position: relative;
+  width: 420px; height: 420px;
+}
+
+.orbital-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ring-1 {
+  width: 420px; height: 420px;
+  border-color: rgba(107,155,247,0.12);
+  animation: orbit-spin 30s linear infinite;
+}
+
+.ring-2 {
+  width: 320px; height: 320px;
+  border-color: rgba(107,155,247,0.18);
+  border-style: dashed;
+  animation: orbit-spin 20s linear infinite reverse;
+}
+
+.ring-3 {
+  width: 220px; height: 220px;
+  border-color: rgba(107,155,247,0.25);
+  animation: orbit-spin 14s linear infinite;
+}
+
+@keyframes orbit-spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Center orb */
+.orbital-center {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: var(--black);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  box-shadow:
+    0 0 0 1px rgba(107,155,247,0.3),
+    0 0 40px rgba(107,155,247,0.2),
+    0 0 80px rgba(107,155,247,0.1);
+  animation: orb-breathe 4s ease-in-out infinite;
+}
+
+@keyframes orb-breathe {
+  0%,100% { box-shadow: 0 0 0 1px rgba(107,155,247,0.3), 0 0 40px rgba(107,155,247,0.2), 0 0 80px rgba(107,155,247,0.1); }
+  50% { box-shadow: 0 0 0 1px rgba(107,155,247,0.5), 0 0 60px rgba(107,155,247,0.35), 0 0 120px rgba(107,155,247,0.15); }
+}
+
+.orb-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* Floating nodes on rings */
+.orbit-node {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform-origin: 0 0;
+}
+
+.node-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--blue);
+  box-shadow: 0 0 10px var(--blue), 0 0 20px rgba(107,155,247,0.4);
+  margin-top: -5px; margin-left: -5px;
+}
+
+.node-label {
+  position: absolute;
+  top: -24px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--black);
+  white-space: nowrap;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* Node positions (will be set via JS) */
+.n1 { transform: translate(205px, -5px); }
+.n2 { transform: translate(-10px, -215px); }
+.n3 { transform: translate(-215px, -5px); }
+.n4 { transform: translate(-5px, 205px); }
+
+/* ── HORIZONTAL SERVICES ── */
+.h-outer {
+  position: relative;
+  height: 700vh;
+}
+
+.h-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--white);
+}
+
+.h-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  padding: 0 56px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--gray-200);
+  z-index: 10;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+}
+
+.h-header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.h-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+
+.h-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--black);
+}
+
+.h-progress-bar {
+  width: 200px;
+  height: 3px;
+  background: var(--gray-200);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.h-progress-fill {
+  height: 100%;
+  background: var(--blue);
+  border-radius: 3px;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.h-counter {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gray-400);
+  letter-spacing: -0.02em;
+}
+
+.h-counter span { color: var(--black); }
+
+.h-track {
+  display: flex;
+  will-change: transform;
+  height: 100%;
+  padding-top: 80px;
+}
+
+.h-panel {
+  flex-shrink: 0;
+  width: 100vw;
+  height: calc(100vh - 80px);
+  padding: 60px 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  border-right: 1px solid var(--gray-200);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Panel accent colors */
+.h-panel:nth-child(1) .panel-accent { background: rgba(107,155,247,0.06); }
+.h-panel:nth-child(2) .panel-accent { background: rgba(107,155,247,0.04); }
+.h-panel:nth-child(3) .panel-accent { background: rgba(34,197,94,0.04); }
+.h-panel:nth-child(4) .panel-accent { background: rgba(240,90,90,0.04); }
+.h-panel:nth-child(5) .panel-accent { background: rgba(245,216,78,0.06); }
+.h-panel:nth-child(6) .panel-accent { background: rgba(107,155,247,0.04); }
+
+.panel-accent {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.panel-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 120px;
+  font-weight: 700;
+  color: var(--gray-100);
+  letter-spacing: -0.06em;
+  line-height: 1;
+  margin-bottom: -20px;
+  user-select: none;
+}
+
+.panel-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 12px;
+}
+
+.panel-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(32px, 3vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--black);
+  margin-bottom: 20px;
+}
+
+.panel-desc {
+  font-size: 15px;
+  color: var(--gray-500);
+  line-height: 1.75;
+  margin-bottom: 28px;
+  max-width: 420px;
+}
+
+.panel-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panel-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.list-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+
+/* Panel right visual */
+.panel-visual {
+  background: var(--gray-50);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 24px;
+  padding: 40px;
+  height: 100%;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.panel-visual:hover {
+  border-color: var(--blue);
+  box-shadow: 0 12px 40px rgba(107,155,247,0.1);
+}
+
+.pv-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-400);
+  margin-bottom: 8px;
+}
+
+.pv-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+
+.pv-value.blue { color: var(--blue); }
+.pv-value.green { color: var(--green); }
+.pv-value.coral { color: var(--coral); }
+
+.pv-sub { font-size: 14px; color: var(--gray-400); margin-bottom: 28px; }
+
+.pv-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pv-bar { display: flex; align-items: center; gap: 12px; }
+.pv-bar-label { font-size: 12px; font-weight: 500; color: var(--gray-500); width: 90px; flex-shrink: 0; }
+.pv-bar-track {
+  flex: 1; height: 6px;
+  background: var(--gray-200);
+  border-radius: 3px; overflow: hidden;
+}
+.pv-bar-fill {
+  height: 100%; border-radius: 3px;
+  background: var(--blue);
+  transition: width 1s cubic-bezier(0.16,1,0.3,1);
+}
+.pv-bar-fill.gr { background: var(--green); }
+.pv-bar-fill.co { background: var(--coral); }
+.pv-bar-val { font-size: 12px; font-weight: 700; color: var(--black); width: 36px; text-align: right; }
+
+/* Agents inside featured panel */
+.panel-agents {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.pa-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.pa-row:hover { border-color: var(--blue); transform: translateX(4px); }
+
+.pa-icon { font-size: 20px; }
+.pa-name { font-size: 13px; font-weight: 700; color: var(--black); flex: 1; }
+.pa-live {
+  font-size: 10px; font-weight: 700; color: var(--green);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  display: flex; align-items: center; gap: 4px;
+}
+.pald { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: gp 1.5s ease-in-out infinite; }
+
+/* ── AGENTS SECTION ── */
+.agents-section {
+  padding: 120px 56px;
+  background: var(--black);
+  position: relative;
+  overflow: hidden;
+}
+
+.agents-bg-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px; height: 600px;
+  background: radial-gradient(ellipse, rgba(107,155,247,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.agents-inner { max-width: 1280px; margin: 0 auto; position: relative; }
+
+.agents-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+}
+
+.ag-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.ag-eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--blue); }
+
+.ag-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(36px, 4vw, 58px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.0;
+  color: var(--white);
+}
+
+.ag-intro {
+  font-size: 15px;
+  color: rgba(255,255,255,0.35);
+  max-width: 260px;
+  line-height: 1.7;
+  text-align: right;
+}
+
+/* Glow border cards */
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ag-glow-wrap {
+  position: relative;
+  border-radius: 22px;
+  padding: 2px;
+  background: rgba(255,255,255,0.05);
+  transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+
+/* Rotating conic gradient border */
+.ag-glow-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 270deg,
+    rgba(107,155,247,0.8) 300deg,
+    rgba(107,155,247,0.4) 330deg,
+    transparent 360deg
+  );
+  opacity: 0;
+  transition: opacity 0.4s;
+  animation: border-rotate 4s linear infinite;
+  animation-play-state: paused;
+}
+
+.ag-glow-wrap:hover::before {
+  opacity: 1;
+  animation-play-state: running;
+}
+
+@keyframes border-rotate {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.ag-glow-wrap:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 32px 64px rgba(107,155,247,0.2);
+}
+
+.ag-card-inner {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 20px;
+  padding: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ag-card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(107,155,247,0.4), transparent);
+}
+
+.ag-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--green);
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.2);
+  padding: 6px 12px;
+  border-radius: 100px;
+  margin-bottom: 28px;
+}
+
+.ag-live-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  animation: gp 1.5s ease-in-out infinite;
+}
+
+.ag-icon-large {
+  font-size: 48px;
+  margin-bottom: 20px;
+  display: block;
+  filter: drop-shadow(0 0 16px rgba(107,155,247,0.4));
+}
+
+.ag-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 26px; font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.03em;
+  margin-bottom: 6px;
+}
+
+.ag-role {
+  font-size: 12px; font-weight: 600;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 18px;
+}
+
+.ag-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+.ag-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.ag-stat {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+
+.ag-stat-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px; font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 3px;
+}
+
+.ag-stat-label { font-size: 11px; color: rgba(255,255,255,0.3); font-weight: 500; }
+
+.ag-feats {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.ag-feats li {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+}
+
+.ag-feats li::before {
+  content: '↗';
+  color: var(--blue);
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── WHY SECTION ── */
+.why-section {
+  padding: 120px 56px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.why-inner { max-width: 1280px; margin: 0 auto; }
+
+.why-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 80px;
+}
+
+.why-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: var(--black);
+}
+
+.why-desc {
+  font-size: 15px;
+  color: var(--gray-500);
+  line-height: 1.75;
+  align-self: end;
+}
+
+.why-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.why-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  background: var(--gray-200);
+  border-radius: 16px;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.why-row-left, .why-row-right {
+  padding: 52px 56px;
+  background: var(--white);
+  transition: background 0.2s;
+}
+
+.why-row:hover .why-row-left,
+.why-row:hover .why-row-right { background: var(--gray-50); }
+
+.why-row-left { border-right: 1px solid var(--gray-200); }
+
+.why-row-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 12px;
+}
+
+.why-row-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px; font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--black);
+}
+
+.why-row-desc {
+  font-size: 15px;
+  color: var(--gray-500);
+  line-height: 1.75;
+}
+
+/* ── CTA ── */
+.cta-section {
+  padding: 0 56px 80px;
+}
+
+.cta-card {
+  max-width: 1280px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a2744 50%, #0a0a0a 100%);
+  border-radius: 28px;
+  padding: 100px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-card::before {
+  content: '';
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(107,155,247,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 28px;
+  border: 1px solid rgba(107,155,247,0.2);
+  pointer-events: none;
+}
+
+.cta-eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 20px;
+  position: relative;
+}
+
+.cta-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(36px, 5vw, 68px);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.0;
+  color: var(--white);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.cta-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.65;
+  max-width: 500px;
+  margin: 0 auto 48px;
+  position: relative;
+}
+
+.cta-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.btn-cta-white {
+  background: var(--white);
+  color: var(--black);
+  font-size: 15px; font-weight: 700;
+  padding: 18px 40px;
+  border-radius: 100px;
+  text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  transition: all 0.25s;
+}
+
+.btn-cta-white:hover {
+  background: var(--blue);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(107,155,247,0.5);
+}
+
+.btn-cta-ghost {
+  color: rgba(255,255,255,0.6);
+  font-size: 15px; font-weight: 600;
+  padding: 18px 40px;
+  border-radius: 100px;
+  text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  transition: all 0.2s;
+}
+
+.btn-cta-ghost:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+
+.cta-fine { font-size: 12px; color: rgba(255,255,255,0.2); position: relative; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  padding: 56px 56px 32px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 56px;
+  padding-bottom: 56px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.footer-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--white); text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 14px;
+}
+
+.footer-logo-icon {
+  width: 28px; height: 28px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 7px;
+  display: grid; place-items: center;
+}
+
+.footer-sub { font-size: 14px; color: rgba(255,255,255,0.3); line-height: 1.65; margin-bottom: 20px; }
+.footer-contact { font-size: 13px; color: rgba(255,255,255,0.25); line-height: 1.7; }
+
+.footer-col h4 {
+  font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.25); margin-bottom: 16px;
+}
+
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a { font-size: 14px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.15s; }
+.footer-col a:hover { color: var(--white); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-bottom p { font-size: 13px; color: rgba(255,255,255,0.2); }
+
+/* Concept label */
+.concept-label {
+  position: fixed; bottom: 20px; right: 20px;
+  background: var(--black);
+  color: var(--yellow);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px; font-weight: 700;
+  padding: 9px 18px; border-radius: 100px;
+  z-index: 1000;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+/* Eyebrow shared */
+.eyebrow {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 14px;
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-follower" id="cursor-follower"></div>
+<div class="concept-label">Concept E — The Cinematic</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+    </div>
+    Ensign Ai
+  </a>
+  <ul class="nav-pill">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">AI Agents</a></li>
+    <li><a href="#">Process</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-end">
+    <a href="#" class="nav-ar">عربي</a>
+    <a href="#" class="nav-cta">Book a Call →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg-word">AI</div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow" id="h-eyebrow">AI-First Marketing Agency · Riyadh, KSA</div>
+
+    <h1 class="hero-title">
+      <span class="title-line"><span class="title-line-inner" id="hl1">The marketing</span></span>
+      <span class="title-line"><span class="title-line-inner" id="hl2">system that</span></span>
+      <span class="title-line"><span class="title-line-inner title-gradient" id="hl3">never sleeps.</span></span>
+    </h1>
+
+    <p class="hero-desc" id="h-desc">
+      AI agents. Automation systems. Full execution. We build the engine — your business grows while the AI works.
+    </p>
+
+    <div class="hero-btns" id="h-btns">
+      <a href="#" class="btn-black"><span>Deploy Your AI Team</span><span>→</span></a>
+      <a href="#" class="btn-outline">See Our Work</a>
+    </div>
+
+    <div class="hero-agent-tags" id="h-tags">
+      <div class="agent-tag-row">
+        <div class="atag-icon b">📞</div>
+        <div class="atag-info">
+          <div class="atag-name">Call Center Agent</div>
+          <div class="atag-role">Inbound & outbound calls · Arabic & English</div>
+        </div>
+        <div class="atag-status"><div class="atag-dot"></div>Active</div>
+      </div>
+      <div class="agent-tag-row">
+        <div class="atag-icon c">💼</div>
+        <div class="atag-info">
+          <div class="atag-name">Sales Rep Agent</div>
+          <div class="atag-role">Lead follow-up, proposals & closing</div>
+        </div>
+        <div class="atag-status"><div class="atag-dot"></div>Active</div>
+      </div>
+      <div class="agent-tag-row">
+        <div class="atag-icon y">📣</div>
+        <div class="atag-info">
+          <div class="atag-name">AI Marketing Team</div>
+          <div class="atag-role">Full department — content, ads, email, social</div>
+        </div>
+        <div class="atag-status"><div class="atag-dot"></div>Active</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORBITAL VISUAL -->
+  <div class="hero-right" id="h-right">
+    <div class="orbital-wrap">
+      <div class="orbital-ring ring-1"></div>
+      <div class="orbital-ring ring-2"></div>
+      <div class="orbital-ring ring-3"></div>
+      <div class="orbital-center">
+        <div class="orb-label">AI<br>Systems</div>
+      </div>
+      <div class="orbit-node n1">
+        <div class="node-dot"></div>
+        <div class="node-label">📞 Call Agent</div>
+      </div>
+      <div class="orbit-node n2">
+        <div class="node-dot"></div>
+        <div class="node-label">💼 Sales Agent</div>
+      </div>
+      <div class="orbit-node n3">
+        <div class="node-dot"></div>
+        <div class="node-label">📣 Mktg Team</div>
+      </div>
+      <div class="orbit-node n4">
+        <div class="node-dot"></div>
+        <div class="node-label">⚡ Automation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HORIZONTAL SERVICES -->
+<div class="h-outer" id="h-outer">
+  <div class="h-sticky" id="h-sticky">
+    <div class="h-header">
+      <div class="h-header-left">
+        <span class="h-eyebrow">Our Services</span>
+        <span class="h-title">What We Build</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <div class="h-progress-bar"><div class="h-progress-fill" id="h-progress-fill"></div></div>
+        <div class="h-counter"><span id="h-curr">1</span> / 6</div>
+      </div>
+    </div>
+
+    <div class="h-track" id="h-track">
+
+      <!-- Panel 1: AI Advisory -->
+      <div class="h-panel">
+        <div class="panel-accent"></div>
+        <div>
+          <div class="panel-num">01</div>
+          <div class="panel-eyebrow">Advisory</div>
+          <h3 class="panel-title">AI & Marketing<br>Advisory</h3>
+          <p class="panel-desc">Strategic consulting to integrate AI into your marketing operations. We map your current state, design your AI future, and build the roadmap.</p>
+          <ul class="panel-list">
+            <li><div class="list-dot"></div>AI adoption strategy & roadmap</li>
+            <li><div class="list-dot"></div>Marketing systems architecture</li>
+            <li><div class="list-dot"></div>Go-to-market strategy for KSA & UAE</li>
+            <li><div class="list-dot"></div>Brand positioning & competitive analysis</li>
+          </ul>
+        </div>
+        <div class="panel-visual">
+          <div>
+            <div class="pv-label">AI Readiness Score</div>
+            <div class="pv-value blue">87</div>
+            <div class="pv-sub">Your organization's current score</div>
+          </div>
+          <div class="pv-bars">
+            <div class="pv-bar"><span class="pv-bar-label">Lead Gen</span><div class="pv-bar-track"><div class="pv-bar-fill" style="width:85%"></div></div><span class="pv-bar-val">85%</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">Automation</span><div class="pv-bar-track"><div class="pv-bar-fill" style="width:62%"></div></div><span class="pv-bar-val">62%</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">Content AI</span><div class="pv-bar-track"><div class="pv-bar-fill co" style="width:48%"></div></div><span class="pv-bar-val">48%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: AI Agents -->
+      <div class="h-panel">
+        <div class="panel-accent"></div>
+        <div>
+          <div class="panel-num">02</div>
+          <div class="panel-eyebrow">AI Agents — New</div>
+          <h3 class="panel-title">AI Agents &<br>Automation</h3>
+          <p class="panel-desc">Deploy a full AI workforce — not chatbots, but fully operational workers trained on your business running 24/7.</p>
+          <div class="panel-agents" style="margin-top:20px;">
+            <div class="pa-row"><span class="pa-icon">📞</span><span class="pa-name">Call Center Agent</span><div class="pa-live"><div class="pald"></div>Live</div></div>
+            <div class="pa-row"><span class="pa-icon">💼</span><span class="pa-name">Sales Rep Agent</span><div class="pa-live"><div class="pald"></div>Live</div></div>
+            <div class="pa-row"><span class="pa-icon">📣</span><span class="pa-name">AI Marketing Team</span><div class="pa-live"><div class="pald"></div>Live</div></div>
+            <div class="pa-row"><span class="pa-icon">⚙️</span><span class="pa-name">CRM Automation</span><div class="pa-live"><div class="pald"></div>Live</div></div>
+          </div>
+        </div>
+        <div class="panel-visual">
+          <div>
+            <div class="pv-label">Active Agents</div>
+            <div class="pv-value green">3</div>
+            <div class="pv-sub">Running right now</div>
+          </div>
+          <div class="pv-bars">
+            <div class="pv-bar"><span class="pv-bar-label">Call Center</span><div class="pv-bar-track"><div class="pv-bar-fill" style="width:94%"></div></div><span class="pv-bar-val">94%</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">Sales Rep</span><div class="pv-bar-track"><div class="pv-bar-fill gr" style="width:88%"></div></div><span class="pv-bar-val">88%</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">Mktg Team</span><div class="pv-bar-track"><div class="pv-bar-fill co" style="width:91%"></div></div><span class="pv-bar-val">91%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Systems -->
+      <div class="h-panel">
+        <div class="panel-accent"></div>
+        <div>
+          <div class="panel-num">03</div>
+          <div class="panel-eyebrow">Infrastructure</div>
+          <h3 class="panel-title">Marketing<br>Systems</h3>
+          <p class="panel-desc">Build structured marketing infrastructure — CRM design, automated workflows, and analytics dashboards connecting strategy to execution.</p>
+          <ul class="panel-list">
+            <li><div class="list-dot"></div>CRM pipeline design & implementation</li>
+            <li><div class="list-dot"></div>Marketing workflow automation</li>
+            <li><div class="list-dot"></div>Reporting & analytics dashboards</li>
+            <li><div class="list-dot"></div>Lead handover & scoring systems</li>
+          </ul>
+        </div>
+        <div class="panel-visual">
+          <div>
+            <div class="pv-label">Active Leads in Pipeline</div>
+            <div class="pv-value">142</div>
+            <div class="pv-sub">Qualified & tracked</div>
+          </div>
+          <div class="pv-bars">
+            <div class="pv-bar"><span class="pv-bar-label">New Leads</span><div class="pv-bar-track"><div class="pv-bar-fill" style="width:90%"></div></div><span class="pv-bar-val">142</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">Qualified</span><div class="pv-bar-track"><div class="pv-bar-fill gr" style="width:55%"></div></div><span class="pv-bar-val">38</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">Closed</span><div class="pv-bar-track"><div class="pv-bar-fill co" style="width:28%"></div></div><span class="pv-bar-val">12</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Campaigns -->
+      <div class="h-panel">
+        <div class="panel-accent"></div>
+        <div>
+          <div class="panel-num">04</div>
+          <div class="panel-eyebrow">Execution</div>
+          <h3 class="panel-title">Campaign<br>Execution</h3>
+          <p class="panel-desc">Drive visibility and growth through paid media, AI-assisted content, social campaigns, and SEO — all targeted to Saudi and UAE audiences.</p>
+          <ul class="panel-list">
+            <li><div class="list-dot"></div>Google, Meta & TikTok paid media</li>
+            <li><div class="list-dot"></div>AI-assisted content at scale</li>
+            <li><div class="list-dot"></div>Social media strategy & management</li>
+            <li><div class="list-dot"></div>SEO & website optimization</li>
+          </ul>
+        </div>
+        <div class="panel-visual">
+          <div>
+            <div class="pv-label">Average ROAS</div>
+            <div class="pv-value coral">4.8x</div>
+            <div class="pv-sub">Return on ad spend</div>
+          </div>
+          <div class="pv-bars">
+            <div class="pv-bar"><span class="pv-bar-label">Google</span><div class="pv-bar-track"><div class="pv-bar-fill" style="width:88%"></div></div><span class="pv-bar-val">4.8x</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">Meta</span><div class="pv-bar-track"><div class="pv-bar-fill co" style="width:75%"></div></div><span class="pv-bar-val">3.9x</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">TikTok</span><div class="pv-bar-track"><div class="pv-bar-fill gr" style="width:92%"></div></div><span class="pv-bar-val">5.2x</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 5: Creative -->
+      <div class="h-panel">
+        <div class="panel-accent"></div>
+        <div>
+          <div class="panel-num">05</div>
+          <div class="panel-eyebrow">Creative</div>
+          <h3 class="panel-title">AI Creative<br>Production</h3>
+          <p class="panel-desc">Modern content production combining human creativity with AI efficiency — visuals, video, short-form social, and brand storytelling at scale.</p>
+          <ul class="panel-list">
+            <li><div class="list-dot"></div>AI-assisted visual content production</li>
+            <li><div class="list-dot"></div>Video concept & production</li>
+            <li><div class="list-dot"></div>Short-form & Reels at scale</li>
+            <li><div class="list-dot"></div>Brand identity & storytelling</li>
+          </ul>
+        </div>
+        <div class="panel-visual">
+          <div>
+            <div class="pv-label">Content Output / Month</div>
+            <div class="pv-value">48</div>
+            <div class="pv-sub">Pieces of content created</div>
+          </div>
+          <div class="pv-bars">
+            <div class="pv-bar"><span class="pv-bar-label">Instagram</span><div class="pv-bar-track"><div class="pv-bar-fill" style="width:90%"></div></div><span class="pv-bar-val">24</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">TikTok</span><div class="pv-bar-track"><div class="pv-bar-fill co" style="width:50%"></div></div><span class="pv-bar-val">12</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">Video</span><div class="pv-bar-track"><div class="pv-bar-fill gr" style="width:28%"></div></div><span class="pv-bar-val">12</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 6: Events -->
+      <div class="h-panel">
+        <div class="panel-accent"></div>
+        <div>
+          <div class="panel-num">06</div>
+          <div class="panel-eyebrow">Events</div>
+          <h3 class="panel-title">Entertainment<br>& Events</h3>
+          <p class="panel-desc">End-to-end event planning, entertainment booking, and live production for Saudi brands — from corporate conferences to large-scale experiences.</p>
+          <ul class="panel-list">
+            <li><div class="list-dot"></div>Corporate event planning & execution</li>
+            <li><div class="list-dot"></div>Entertainment booking & talent management</li>
+            <li><div class="list-dot"></div>Live production & technical direction</li>
+            <li><div class="list-dot"></div>Post-event content & documentation</li>
+          </ul>
+        </div>
+        <div class="panel-visual">
+          <div>
+            <div class="pv-label">Events Delivered</div>
+            <div class="pv-value">24</div>
+            <div class="pv-sub">Across KSA 2025–2026</div>
+          </div>
+          <div class="pv-bars">
+            <div class="pv-bar"><span class="pv-bar-label">Corporate</span><div class="pv-bar-track"><div class="pv-bar-fill" style="width:80%"></div></div><span class="pv-bar-val">12</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">Conferences</span><div class="pv-bar-track"><div class="pv-bar-fill co" style="width:50%"></div></div><span class="pv-bar-val">7</span></div>
+            <div class="pv-bar"><span class="pv-bar-label">Shows</span><div class="pv-bar-track"><div class="pv-bar-fill gr" style="width:30%"></div></div><span class="pv-bar-val">5</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end h-track -->
+  </div>
+</div>
+
+<!-- AGENTS -->
+<section class="agents-section" id="agents">
+  <div class="agents-bg-glow"></div>
+  <div class="agents-inner">
+    <div class="agents-top">
+      <div>
+        <div class="ag-eyebrow">Your AI Workforce</div>
+        <h2 class="ag-heading">Hire agents,<br>not headcount.</h2>
+      </div>
+      <p class="ag-intro">Three AI workers ready to deploy. No salary. No sick days. Always performing.</p>
+    </div>
+
+    <div class="agents-grid" id="agents-grid">
+      <div class="ag-glow-wrap">
+        <div class="ag-card-inner">
+          <div class="ag-live"><div class="ag-live-dot"></div> Active 24/7</div>
+          <span class="ag-icon-large">📞</span>
+          <div class="ag-name">Call Center Agent</div>
+          <div class="ag-role">Inbound & Outbound Voice</div>
+          <p class="ag-desc">Handles every call your business receives — qualifying leads, booking appointments, and routing intelligently. Arabic & English, around the clock.</p>
+          <div class="ag-stats">
+            <div class="ag-stat"><div class="ag-stat-val" style="color:#6B9BF7">487</div><div class="ag-stat-label">Calls / Month</div></div>
+            <div class="ag-stat"><div class="ag-stat-val" style="color:#22c55e">94%</div><div class="ag-stat-label">Resolution Rate</div></div>
+          </div>
+          <ul class="ag-feats">
+            <li>Inbound call handling & intelligent routing</li>
+            <li>Lead qualification over voice before CRM entry</li>
+            <li>Appointment scheduling & calendar sync</li>
+            <li>Fully bilingual — Arabic & English</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ag-glow-wrap">
+        <div class="ag-card-inner">
+          <div class="ag-live"><div class="ag-live-dot"></div> Active 24/7</div>
+          <span class="ag-icon-large">💼</span>
+          <div class="ag-name">Sales Rep Agent</div>
+          <div class="ag-role">Pipeline & Closing</div>
+          <p class="ag-desc">Follows up on every lead in under 90 seconds, sends personalized proposals, handles objections, and closes deals — like your top salesperson, never sleeping.</p>
+          <div class="ag-stats">
+            <div class="ag-stat"><div class="ag-stat-val" style="color:#6B9BF7">2.3x</div><div class="ag-stat-label">Conversion Lift</div></div>
+            <div class="ag-stat"><div class="ag-stat-val" style="color:#22c55e">&lt;90s</div><div class="ag-stat-label">Follow-up Time</div></div>
+          </div>
+          <ul class="ag-feats">
+            <li>Follows up on every lead instantly</li>
+            <li>Sends personalized proposals automatically</li>
+            <li>Handles objections with trained scripts</li>
+            <li>Syncs all activity to your CRM</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="ag-glow-wrap">
+        <div class="ag-card-inner">
+          <div class="ag-live"><div class="ag-live-dot"></div> Active 24/7</div>
+          <span class="ag-icon-large">📣</span>
+          <div class="ag-name">AI Marketing Team</div>
+          <div class="ag-role">Full Department</div>
+          <p class="ag-desc">A complete AI-powered marketing department — content, social, ads, email, and analytics — all coordinated, all running in parallel, all reporting in real-time.</p>
+          <div class="ag-stats">
+            <div class="ag-stat"><div class="ag-stat-val" style="color:#6B9BF7">5</div><div class="ag-stat-label">Sub-Agents</div></div>
+            <div class="ag-stat"><div class="ag-stat-val" style="color:#22c55e">60%</div><div class="ag-stat-label">Cost Savings</div></div>
+          </div>
+          <ul class="ag-feats">
+            <li>Publishes content across all channels</li>
+            <li>Manages and optimizes ad campaigns</li>
+            <li>Runs email sequences automatically</li>
+            <li>Reports performance in real-time</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why-section" id="why">
+  <div class="why-inner">
+    <div class="why-header">
+      <div>
+        <div class="eyebrow">Why Ensign</div>
+        <h2 class="why-title">Built for this<br>market. Built to last.</h2>
+      </div>
+      <p class="why-desc">Three things that make Ensign different from every other marketing agency in Saudi Arabia.</p>
+    </div>
+    <div class="why-rows">
+      <div class="why-row" id="wr1">
+        <div class="why-row-left">
+          <div class="why-row-num">01</div>
+          <div class="why-row-title">Saudi & UAE First</div>
+        </div>
+        <div class="why-row-right">
+          <p class="why-row-desc">Every system we build is designed for this market — Arabic-first agents, region-specific compliance, deep understanding of local consumer behavior, and experience with Saudi business culture.</p>
+        </div>
+      </div>
+      <div class="why-row" id="wr2">
+        <div class="why-row-left">
+          <div class="why-row-num">02</div>
+          <div class="why-row-title">Deployed in Weeks</div>
+        </div>
+        <div class="why-row-right">
+          <p class="why-row-desc">Your AI workforce goes live in weeks, not months. We have pre-built frameworks and proven deployment processes so we're not starting from scratch every time.</p>
+        </div>
+      </div>
+      <div class="why-row" id="wr3">
+        <div class="why-row-left">
+          <div class="why-row-num">03</div>
+          <div class="why-row-title">AI Systems. Human Leadership.</div>
+        </div>
+        <div class="why-row-right">
+          <p class="why-row-desc">Our team oversees every AI deployment. You get the efficiency of automation with the accountability of real human experts making strategic decisions behind it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-card" id="cta-card">
+    <div class="cta-eyebrow">Get Started</div>
+    <h2 class="cta-title">Ready to build<br>your AI team?</h2>
+    <p class="cta-sub">Book a free 30-minute discovery call. We'll map out what your business needs and show you what's possible.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-cta-white">Book a Discovery Call →</a>
+      <a href="#" class="btn-cta-ghost">View Services</a>
+    </div>
+    <p class="cta-fine">Free · 30 minutes · No commitment required</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="footer-logo">
+        <div class="footer-logo-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        Ensign Ai
+      </a>
+      <p class="footer-sub">AI Systems. Human Leadership.<br>Riyadh, Saudi Arabia.</p>
+      <p class="footer-contact">contact@ensignksa.com<br>+966 54 891 9405</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul><li><a href="#">AI Advisory</a></li><li><a href="#">AI Agents</a></li><li><a href="#">Marketing Systems</a></li><li><a href="#">Campaigns</a></li><li><a href="#">Creative</a></li><li><a href="#">Events</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul><li><a href="#">About</a></li><li><a href="#">Blog</a></li><li><a href="#">Careers</a></li><li><a href="#">Contact</a></li></ul>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms</a></li></ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Ensign Ai Marketing Agency. All rights reserved.</p>
+    <p>Riyadh, Saudi Arabia</p>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// ── LENIS ──
+const lenis = new Lenis({
+  duration: 1.3,
+  easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+});
+function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+requestAnimationFrame(raf);
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add(t => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+
+// ── CUSTOM CURSOR ──
+const cursor = document.getElementById('cursor');
+const follower = document.getElementById('cursor-follower');
+let mx = 0, my = 0, fx = 0, fy = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  gsap.to(cursor, { x: mx, y: my, duration: 0.1 });
+});
+
+function followCursor() {
+  fx += (mx - fx) * 0.12;
+  fy += (my - fy) * 0.12;
+  gsap.set(follower, { x: fx, y: fy });
+  requestAnimationFrame(followCursor);
+}
+followCursor();
+
+// ── HERO ENTRANCE ──
+const heroTl = gsap.timeline({ delay: 0.3 });
+
+heroTl
+  .to('#h-eyebrow', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+  .to(['#hl1', '#hl2', '#hl3'], {
+    opacity: 1,
+    y: 0,
+    duration: 0.7,
+    stagger: 0.12,
+    ease: 'power3.out'
+  }, '-=0.3')
+  .to('#h-desc',  { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+  .to('#h-btns',  { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+  .to('#h-tags',  { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.2')
+  .to('#h-right', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.6')
+  .add(() => {
+    document.getElementById('hl3').classList.add('active');
+  }, '-=0.5');
+
+// Parallax hero bg word
+gsap.to('.hero-bg-word', {
+  y: 120,
+  scrollTrigger: {
+    trigger: '.hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: 2
+  }
+});
+
+// ── HORIZONTAL SCROLL ──
+const hTrack = document.getElementById('h-track');
+const hPanels = hTrack.querySelectorAll('.h-panel');
+const progressFill = document.getElementById('h-progress-fill');
+const hCurr = document.getElementById('h-curr');
+const totalPanels = hPanels.length;
+
+const hScrollDist = hTrack.scrollWidth - window.innerWidth;
+
+gsap.to(hTrack, {
+  x: -hScrollDist,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '#h-outer',
+    start: 'top top',
+    end: () => '+=' + hScrollDist * 1.2,
+    pin: true,
+    scrub: 1,
+    anticipatePin: 1,
+    onUpdate: self => {
+      const pct = self.progress * 100;
+      progressFill.style.width = pct + '%';
+      const idx = Math.min(totalPanels - 1, Math.floor(self.progress * totalPanels));
+      hCurr.textContent = idx + 1;
+    }
+  }
+});
+
+// ── AGENTS GRID ──
+gsap.fromTo('.ag-glow-wrap', {
+  opacity: 0, y: 60
+}, {
+  opacity: 1, y: 0,
+  duration: 0.8,
+  stagger: 0.15,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: '#agents-grid',
+    start: 'top 75%'
+  }
+});
+
+// ── WHY ROWS ──
+['#wr1','#wr2','#wr3'].forEach((id, i) => {
+  gsap.fromTo(id,
+    { opacity: 0, y: 30 },
+    {
+      opacity: 1, y: 0,
+      duration: 0.6,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: id,
+        start: 'top 80%'
+      }
+    }
+  );
+});
+
+// ── CTA ──
+gsap.fromTo('#cta-card', {
+  opacity: 0, y: 40, scale: 0.97
+}, {
+  opacity: 1, y: 0, scale: 1,
+  duration: 0.8,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: '#cta-card',
+    start: 'top 80%'
+  }
+});
+
+// ── MAGNETIC BUTTONS ──
+document.querySelectorAll('.btn-black, .btn-cta-white').forEach(btn => {
+  btn.addEventListener('mousemove', e => {
+    const r = btn.getBoundingClientRect();
+    const x = e.clientX - r.left - r.width / 2;
+    const y = e.clientY - r.top - r.height / 2;
+    gsap.to(btn, { x: x * 0.28, y: y * 0.28, duration: 0.3, ease: 'power2.out' });
+  });
+  btn.addEventListener('mouseleave', () => {
+    gsap.to(btn, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+  });
+});
+</script>
+</body>
+</html>

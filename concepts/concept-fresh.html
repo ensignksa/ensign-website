@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ensign Ai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --off: #f2f2f2;
+  --text: #1a1a1a;
+  --muted: #888;
+  --blue: #6B9BF7;
+}
+
+html { scroll-behavior: auto; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  background: rgba(0,0,0,0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.nav-logo {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.3px;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+
+.nav-cta {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--blue);
+  text-decoration: none;
+}
+.nav-cta:hover { text-decoration: underline; }
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding-bottom: 80px;
+}
+
+.hero-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 10%;
+  opacity: 0.55;
+  filter: grayscale(20%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+  opacity: 0;
+}
+
+.hero-headline {
+  font-size: clamp(52px, 8vw, 108px);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -3px;
+  color: #fff;
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.hero-headline em {
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+}
+
+.hero-sub {
+  font-size: 17px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.6);
+  max-width: 520px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 28px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-primary:hover { opacity: 0.85; transform: scale(1.02); }
+
+.btn-ghost {
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: color 0.2s;
+}
+.btn-ghost:hover { color: #fff; }
+
+.scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  z-index: 2;
+}
+.scroll-hint span {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  animation: scrollDrop 1.8s ease-in-out infinite;
+}
+@keyframes scrollDrop {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ── INTRO STATEMENT ── */
+.statement {
+  padding: 140px 32px;
+  background: var(--white);
+  text-align: center;
+}
+
+.statement-label {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 32px;
+}
+
+.statement-text {
+  font-size: clamp(32px, 4.5vw, 64px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -2px;
+  color: var(--text);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.statement-text .dim { color: #bbb; }
+
+/* ── AGENTS ── */
+.agents-header {
+  padding: 100px 32px 60px;
+  background: var(--off);
+  text-align: center;
+}
+
+.section-label {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  color: var(--text);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Agent full-bleed panels */
+.agent-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 640px;
+  overflow: hidden;
+}
+
+.agent-panel.reverse { direction: rtl; }
+.agent-panel.reverse > * { direction: ltr; }
+
+.agent-panel-visual {
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.agent-panel-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+}
+
+.agent-panel:hover .agent-panel-visual img {
+  transform: scale(1.0);
+}
+
+.agent-panel-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, transparent 60%, rgba(0,0,0,0.3));
+  pointer-events: none;
+}
+
+.agent-panel.reverse .agent-panel-visual::after {
+  background: linear-gradient(to left, transparent 60%, rgba(0,0,0,0.3));
+}
+
+.agent-panel-content {
+  padding: 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--black);
+  color: #fff;
+}
+
+.agent-number {
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 28px;
+  font-weight: 500;
+}
+
+.agent-name {
+  font-size: clamp(32px, 3vw, 48px);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.agent-tagline {
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.4;
+  margin-bottom: 40px;
+  letter-spacing: -0.5px;
+}
+
+.agent-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.agent-features li {
+  font-size: 15px;
+  color: rgba(255,255,255,0.6);
+  padding-left: 20px;
+  position: relative;
+}
+.agent-features li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--blue);
+  font-size: 13px;
+}
+
+.agent-link {
+  font-size: 15px;
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+}
+.agent-link:hover { text-decoration: underline; }
+
+/* ── SERVICES ── */
+.services {
+  padding: 120px 32px;
+  background: var(--white);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-header {
+  margin-bottom: 80px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+.services-title {
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1.1;
+  max-width: 480px;
+}
+
+.services-desc {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 360px;
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #e8e8e8;
+  border: 1px solid #e8e8e8;
+}
+
+.service-item {
+  background: var(--white);
+  padding: 48px 40px;
+  transition: background 0.3s;
+}
+.service-item:hover { background: var(--off); }
+
+.service-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-icon svg { width: 28px; height: 28px; color: var(--blue); }
+
+.service-name {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.service-desc {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  font-weight: 300;
+}
+
+/* ── STATS ── */
+.stats {
+  padding: 120px 32px;
+  background: var(--black);
+  color: #fff;
+}
+
+.stats-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 60px;
+  text-align: center;
+}
+
+.stat-number {
+  font-size: clamp(48px, 6vw, 80px);
+  font-weight: 700;
+  letter-spacing: -3px;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.stat-number span { color: var(--blue); }
+
+.stat-label {
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+/* ── PROCESS ── */
+.process {
+  padding: 120px 32px;
+  background: var(--off);
+}
+
+.process-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.process-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  position: relative;
+}
+
+.process-steps::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: #ddd;
+}
+
+.process-step {
+  text-align: center;
+  position: relative;
+}
+
+.step-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+  position: relative;
+  z-index: 1;
+}
+
+.step-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  letter-spacing: -0.3px;
+}
+
+.step-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+/* ── CTA ── */
+.cta-section {
+  padding: 160px 32px;
+  background: var(--white);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(107,155,247,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-eyebrow {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+
+.cta-headline {
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 700;
+  letter-spacing: -2.5px;
+  line-height: 1.1;
+  color: var(--text);
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+
+.cta-sub {
+  font-size: 17px;
+  color: var(--muted);
+  margin-bottom: 48px;
+  font-weight: 300;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
+.cta-primary {
+  background: var(--text);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 14px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.cta-primary:hover { opacity: 0.8; }
+
+.cta-secondary {
+  font-size: 15px;
+  color: var(--blue);
+  text-decoration: none;
+  font-weight: 400;
+}
+.cta-secondary:hover { text-decoration: underline; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--black);
+  color: rgba(255,255,255,0.4);
+  padding: 60px 32px 40px;
+  font-size: 13px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-logo {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-tagline {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  max-width: 220px;
+  line-height: 1.5;
+}
+
+.footer-links {
+  display: flex;
+  gap: 60px;
+}
+
+.footer-col h4 {
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.footer-col ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-col a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-col a:hover { color: rgba(255,255,255,0.7); }
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ── REVEAL ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  will-change: opacity, transform;
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">Ensign Ai</a>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">AI Agents</a></li>
+    <li><a href="#">Process</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <a class="nav-cta" href="https://cal.eu/ensignksa/30min" target="_blank">Book a call ›</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-image" src="../assets/images/Girl.png" alt="AI Agent">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Introducing Ensign Ai</div>
+    <h1 class="hero-headline">Marketing that<br><em>never sleeps.</em></h1>
+    <p class="hero-sub">AI agents that call, sell, and market for your business — around the clock.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://cal.eu/ensignksa/30min" target="_blank">Book a discovery call</a>
+      <a class="btn-ghost" href="#">See what we build &darr;</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement">
+  <div class="section-label reveal">What we do</div>
+  <p class="statement-text reveal">
+    We build AI systems that run your entire
+    marketing operation — <span class="dim">calls, sales follow-ups,
+    content, campaigns, analytics.</span>
+  </p>
+</section>
+
+<!-- AGENTS HEADER -->
+<div class="agents-header">
+  <div class="section-label reveal">Meet the agents</div>
+  <h2 class="section-title reveal">Three agents. One complete marketing system.</h2>
+</div>
+
+<!-- AGENT 1: CALL CENTER -->
+<div class="agent-panel">
+  <div class="agent-panel-visual">
+    <img src="../assets/images/Girl.png" alt="Call Center Agent">
+  </div>
+  <div class="agent-panel-content reveal">
+    <div class="agent-number">Agent 01</div>
+    <h3 class="agent-name">Call Center<br>Agent</h3>
+    <p class="agent-tagline">Answers every call,<br>in Arabic and English.</p>
+    <ul class="agent-features">
+      <li>Inbound & outbound calling, 24/7</li>
+      <li>Natural Arabic & English conversations</li>
+      <li>Qualifies leads before they reach your team</li>
+      <li>Escalates to humans when needed</li>
+    </ul>
+    <a href="#" class="agent-link">Learn more ›</a>
+  </div>
+</div>
+
+<!-- AGENT 2: SALES REP -->
+<div class="agent-panel reverse">
+  <div class="agent-panel-visual">
+    <img src="../assets/images/boy.png" alt="Sales Rep Agent">
+  </div>
+  <div class="agent-panel-content reveal">
+    <div class="agent-number">Agent 02</div>
+    <h3 class="agent-name">Sales Rep<br>Agent</h3>
+    <p class="agent-tagline">Follows every lead<br>until it closes.</p>
+    <ul class="agent-features">
+      <li>Automatic follow-up sequences</li>
+      <li>Sends proposals and pricing</li>
+      <li>Handles objections over WhatsApp & email</li>
+      <li>Syncs with your CRM in real time</li>
+    </ul>
+    <a href="#" class="agent-link">Learn more ›</a>
+  </div>
+</div>
+
+<!-- AGENT 3: MARKETING TEAM -->
+<div class="agent-panel">
+  <div class="agent-panel-visual" style="background: #0d0d0d; display:flex; align-items:center; justify-content:center;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;width:80%;max-width:320px;opacity:0.8;">
+      <div style="background:#1a1a1a;padding:24px;border-radius:4px 0 0 0;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">✍️</div>
+        <div style="font-size:11px;color:#888;letter-spacing:1px;text-transform:uppercase;">Content</div>
+      </div>
+      <div style="background:#1a1a1a;padding:24px;border-radius:0 4px 0 0;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">📣</div>
+        <div style="font-size:11px;color:#888;letter-spacing:1px;text-transform:uppercase;">Ads</div>
+      </div>
+      <div style="background:#1a1a1a;padding:24px;border-radius:0 0 0 4px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">📧</div>
+        <div style="font-size:11px;color:#888;letter-spacing:1px;text-transform:uppercase;">Email</div>
+      </div>
+      <div style="background:#1a1a1a;padding:24px;border-radius:0 0 4px 0;text-align:center;">
+        <div style="font-size:28px;margin-bottom:8px;">📊</div>
+        <div style="font-size:11px;color:#888;letter-spacing:1px;text-transform:uppercase;">Analytics</div>
+      </div>
+    </div>
+  </div>
+  <div class="agent-panel-content reveal">
+    <div class="agent-number">Agent 03</div>
+    <h3 class="agent-name">AI Marketing<br>Team</h3>
+    <p class="agent-tagline">A full department.<br>Minus the salaries.</p>
+    <ul class="agent-features">
+      <li>Content creation — social, blog, email</li>
+      <li>Ad campaign management (Meta, Google, TikTok)</li>
+      <li>Email & WhatsApp automation flows</li>
+      <li>Weekly performance reports, automatically</li>
+    </ul>
+    <a href="#" class="agent-link">Learn more ›</a>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section style="padding: 120px 0; background: var(--white);">
+  <div class="services">
+    <div class="services-header">
+      <h2 class="services-title reveal">Everything your business needs to grow.</h2>
+      <p class="services-desc reveal">Six core services, all powered by AI — delivered as a managed system, not a project.</p>
+    </div>
+    <div class="services-grid">
+
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+          </svg>
+        </div>
+        <div class="service-name">AI & Marketing Advisory</div>
+        <div class="service-desc">Strategic consulting on how to integrate AI into your marketing systems. We map the gaps and build the plan.</div>
+      </div>
+
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+          </svg>
+        </div>
+        <div class="service-name">AI Agents & Automation</div>
+        <div class="service-desc">Custom agents for sales, support, and marketing. Built, deployed, and maintained — fully managed.</div>
+      </div>
+
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><circle cx="12" cy="12" r="3"/>
+          </svg>
+        </div>
+        <div class="service-name">Marketing Systems</div>
+        <div class="service-desc">CRM setup, automation workflows, lead pipelines, and dashboards — the infrastructure your growth needs.</div>
+      </div>
+
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+        </div>
+        <div class="service-name">Campaign Strategy</div>
+        <div class="service-desc">Full-funnel campaign planning and execution — from awareness to conversion — backed by AI analytics.</div>
+      </div>
+
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/>
+          </svg>
+        </div>
+        <div class="service-name">AI-Assisted Creative</div>
+        <div class="service-desc">Ads, social content, video scripts, and copywriting — produced at scale with AI, refined by humans.</div>
+      </div>
+
+      <div class="service-item reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+          </svg>
+        </div>
+        <div class="service-name">Entertainment & Events</div>
+        <div class="service-desc">Event marketing, sponsorship strategy, and live activation — bringing AI-powered reach to physical experiences.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="reveal">
+      <div class="stat-number" data-target="24">0<span>/7</span></div>
+      <div class="stat-label">Always on<br>Never offline</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-number"><span data-count="3">0</span></div>
+      <div class="stat-label">AI agents<br>working in parallel</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-number"><span data-count="60">0</span>%</div>
+      <div class="stat-label">Average reduction<br>in marketing overhead</div>
+    </div>
+    <div class="reveal">
+      <div class="stat-number"><span data-count="14">0</span><span style="font-size:0.5em;letter-spacing:0"> days</span></div>
+      <div class="stat-label">Average time<br>to go live</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process">
+  <div class="process-inner">
+    <div class="process-header">
+      <div class="section-label reveal">How it works</div>
+      <h2 class="section-title reveal" style="font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; letter-spacing: -1.5px; color: var(--text); max-width: 500px; margin: 0 auto; margin-top: 12px;">From onboarding to fully operational in two weeks.</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-dot">01</div>
+        <div class="step-title">Discovery</div>
+        <div class="step-desc">We audit your current marketing setup and identify where AI can make the biggest impact.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot">02</div>
+        <div class="step-title">Build</div>
+        <div class="step-desc">We configure and train your AI agents to match your brand, offers, and business processes.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot">03</div>
+        <div class="step-title">Launch</div>
+        <div class="step-desc">Your agents go live. We monitor performance and optimize in real time during launch week.</div>
+      </div>
+      <div class="process-step reveal">
+        <div class="step-dot">04</div>
+        <div class="step-title">Scale</div>
+        <div class="step-desc">Monthly strategy reviews, new automations, and expanded agent capabilities as you grow.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-eyebrow reveal">Let's talk</div>
+  <h2 class="cta-headline reveal">Ready to hand your marketing<br>over to AI?</h2>
+  <p class="cta-sub reveal">30-minute discovery call. No commitment.</p>
+  <div class="cta-buttons reveal">
+    <a class="cta-primary" href="https://cal.eu/ensignksa/30min" target="_blank">Book a discovery call</a>
+    <a class="cta-secondary" href="mailto:contact@ensignksa.com">contact@ensignksa.com</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <a href="#" class="footer-logo">Ensign Ai</a>
+      <p class="footer-tagline">AI Systems. Human Leadership.<br>Riyadh, Saudi Arabia.</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">AI Advisory</a></li>
+          <li><a href="#">AI Agents</a></li>
+          <li><a href="#">Marketing Systems</a></li>
+          <li><a href="#">Campaign Strategy</a></li>
+          <li><a href="#">AI Creative</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Ensign Ai Marketing Agency. All rights reserved.</span>
+    <span>Riyadh, KSA · contact@ensignksa.com · +966 54 891 9405</span>
+  </div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// Hero entrance
+gsap.timeline({ delay: 0.2 })
+  .to('.hero-eyebrow', { opacity: 1, duration: 0.8, ease: 'power2.out' })
+  .to('.hero-headline', { opacity: 1, y: 0, duration: 1, ease: 'power3.out' }, '-=0.4')
+  .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.6')
+  .to('.hero-actions', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5')
+  .to('.scroll-hint', { opacity: 1, duration: 0.8, ease: 'power2.out' }, '-=0.2');
+
+// Nav color shift on scroll
+ScrollTrigger.create({
+  start: 'top -80px',
+  onEnter: () => gsap.to('nav', { background: 'rgba(0,0,0,0.88)', duration: 0.3 }),
+  onLeaveBack: () => gsap.to('nav', { background: 'rgba(0,0,0,0.72)', duration: 0.3 })
+});
+
+// Scroll reveals
+gsap.utils.toArray('.reveal').forEach(el => {
+  gsap.to(el, {
+    opacity: 1,
+    y: 0,
+    duration: 0.9,
+    ease: 'power3.out',
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 85%',
+      toggleActions: 'play none none none'
+    }
+  });
+});
+
+// Counter animations
+gsap.utils.toArray('[data-count]').forEach(el => {
+  const target = parseInt(el.dataset.count);
+  ScrollTrigger.create({
+    trigger: el,
+    start: 'top 80%',
+    once: true,
+    onEnter: () => {
+      gsap.fromTo({ val: 0 }, { val: target }, {
+        duration: 1.8,
+        ease: 'power2.out',
+        onUpdate: function() { el.textContent = Math.round(this.targets()[0].val); }
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

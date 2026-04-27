@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concept A — Editorial | Ensign Ai Marketing Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --blue: #6B9BF7;
+  --blue-dark: #4a7ef5;
+  --coral: #F05A5A;
+  --yellow: #F5D84E;
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --gray-50: #fafafa;
+  --gray-100: #f4f4f5;
+  --gray-200: #e4e4e7;
+  --gray-400: #a1a1aa;
+  --gray-500: #71717a;
+  --gray-700: #3f3f46;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 64px;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--black);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-logo-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-500);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--black); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-lang {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-500);
+  text-decoration: none;
+  padding: 8px 14px;
+  border: 1px solid var(--gray-200);
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.nav-lang:hover { border-color: var(--black); color: var(--black); }
+
+.nav-cta {
+  background: var(--black);
+  color: var(--white);
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-cta:hover { background: var(--blue); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  padding: 140px 64px 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-text {
+  position: absolute;
+  top: 50%;
+  right: -40px;
+  transform: translateY(-50%);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 220px;
+  font-weight: 700;
+  color: var(--gray-100);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 80px;
+  align-items: end;
+}
+
+.hero-top-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gray-500);
+  margin-bottom: 40px;
+}
+
+.hero-top-tag::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--gray-400);
+}
+
+.hero-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(52px, 7vw, 100px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--black);
+  margin-bottom: 40px;
+}
+
+.hero-title .word-blue { color: var(--blue); }
+.hero-title .word-italic { font-style: italic; color: var(--gray-400); }
+.hero-title .word-outline {
+  -webkit-text-stroke: 2px var(--black);
+  color: transparent;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-black {
+  background: var(--black);
+  color: var(--white);
+  padding: 16px 32px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s;
+  letter-spacing: 0.01em;
+}
+
+.btn-black:hover {
+  background: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(107,155,247,0.35);
+}
+
+.btn-ghost {
+  color: var(--black);
+  padding: 16px 32px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1.5px solid var(--gray-200);
+  transition: all 0.2s;
+}
+
+.btn-ghost:hover { border-color: var(--black); }
+
+.hero-right {
+  padding-bottom: 8px;
+}
+
+.hero-desc {
+  font-size: 17px;
+  font-weight: 400;
+  color: var(--gray-500);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--black);
+  padding: 8px 14px;
+  background: var(--gray-100);
+  border-radius: 100px;
+  border: 1px solid var(--gray-200);
+}
+
+.hero-tag .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: blink 2s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.hero-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gray-400);
+}
+
+/* TICKER */
+.ticker {
+  background: var(--black);
+  overflow: hidden;
+  padding: 14px 0;
+  white-space: nowrap;
+}
+
+.ticker-inner {
+  display: inline-flex;
+  animation: ticker 25s linear infinite;
+  gap: 0;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 32px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+}
+
+.ticker-item .sep {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--blue);
+  flex-shrink: 0;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* SERVICES */
+.services-section {
+  padding: 120px 64px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.services-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 100px;
+  align-items: start;
+}
+
+.sticky-left {
+  position: sticky;
+  top: 100px;
+}
+
+.section-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--blue);
+}
+
+.section-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 24px;
+}
+
+.section-body {
+  font-size: 15px;
+  color: var(--gray-500);
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+.services-accordion {
+  list-style: none;
+  border-top: 1px solid var(--gray-200);
+}
+
+.acc-item {
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.acc-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 26px 0;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.acc-header:hover .acc-title { color: var(--blue); }
+
+.acc-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-400);
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.acc-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--black);
+  flex: 1;
+  transition: color 0.2s;
+  letter-spacing: -0.02em;
+}
+
+.acc-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 100px;
+  background: var(--blue);
+  color: var(--white);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.acc-toggle {
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.3s;
+  color: var(--gray-400);
+}
+
+.acc-item.open .acc-toggle {
+  background: var(--black);
+  border-color: var(--black);
+  color: var(--white);
+  transform: rotate(45deg);
+}
+
+.acc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1);
+  padding-left: 48px;
+}
+
+.acc-item.open .acc-body { max-height: 320px; }
+
+.acc-desc {
+  font-size: 14px;
+  color: var(--gray-500);
+  line-height: 1.75;
+  padding-bottom: 12px;
+}
+
+.acc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 28px;
+  margin-top: 12px;
+}
+
+.chip {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: var(--gray-100);
+  color: var(--gray-700);
+  border: 1px solid var(--gray-200);
+}
+
+.chip.blue { background: rgba(107,155,247,0.1); color: var(--blue); border-color: rgba(107,155,247,0.3); }
+
+/* AGENTS */
+.agents-section {
+  background: var(--black);
+  padding: 120px 64px;
+  overflow: hidden;
+  position: relative;
+}
+
+.agents-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(107,155,247,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.agents-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.agents-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 64px;
+}
+
+.agents-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.agents-eyebrow::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--blue);
+}
+
+.agents-heading {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: var(--white);
+}
+
+.agents-heading .italic { font-style: italic; color: rgba(255,255,255,0.4); }
+
+.agents-intro {
+  font-size: 15px;
+  color: rgba(255,255,255,0.45);
+  max-width: 280px;
+  line-height: 1.7;
+  text-align: right;
+}
+
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.agent-card {
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 16px;
+  padding: 36px;
+  background: rgba(255,255,255,0.03);
+  transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+  position: relative;
+  overflow: hidden;
+}
+
+.agent-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(107,155,247,0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+
+.agent-card:hover {
+  border-color: rgba(107,155,247,0.4);
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.05);
+}
+
+.agent-card:hover::before { opacity: 1; }
+
+.agent-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4ade80;
+  margin-bottom: 28px;
+}
+
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74,222,128,0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(74,222,128,0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+  100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+}
+
+.agent-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(107,155,247,0.12);
+  border: 1px solid rgba(107,155,247,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.agent-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+
+.agent-tagline {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--blue);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+
+.agent-desc {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.agent-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.agent-features li {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.agent-features li::before {
+  content: '↗';
+  color: var(--blue);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* HOW IT WORKS */
+.how-section {
+  padding: 120px 64px;
+  border-top: 1px solid var(--gray-200);
+}
+
+.how-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.how-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.how-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--gray-200);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.how-step {
+  background: var(--white);
+  padding: 48px 36px;
+  transition: background 0.2s;
+}
+
+.how-step:hover { background: var(--gray-50); }
+
+.step-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--gray-100);
+  letter-spacing: -0.05em;
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+.step-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.step-desc {
+  font-size: 14px;
+  color: var(--gray-500);
+  line-height: 1.7;
+}
+
+/* CTA */
+.cta-section {
+  margin: 0 64px 80px;
+  border-radius: 24px;
+  background: var(--black);
+  padding: 100px 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(107,155,247,0.2) 0%, transparent 70%);
+}
+
+.cta-left { position: relative; }
+
+.cta-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--blue);
+  margin-bottom: 20px;
+}
+
+.cta-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(32px, 3.5vw, 52px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.cta-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+.cta-right {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.btn-white {
+  background: var(--white);
+  color: var(--black);
+  padding: 18px 40px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s;
+  white-space: nowrap;
+}
+
+.btn-white:hover {
+  background: var(--blue);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.cta-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+}
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--gray-200);
+  padding: 40px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--black);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--gray-500);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--black); }
+
+footer p {
+  font-size: 13px;
+  color: var(--gray-400);
+}
+
+/* CONCEPT LABEL */
+.concept-label {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--blue);
+  color: var(--white);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 100px;
+  z-index: 1000;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+</style>
+</head>
+<body>
+
+<div class="concept-label">Concept A — Editorial</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-dot"></div>
+    Ensign Ai
+  </a>
+  <ul class="nav-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">AI Agents</a></li>
+    <li><a href="#">Process</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#" class="nav-lang">عربي</a>
+    <a href="#" class="nav-cta">Book a Call →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-text">AI</div>
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-top-tag">Riyadh, KSA · AI Marketing Agency</div>
+      <h1 class="hero-title">
+        We build<br>
+        <span class="word-outline">marketing</span><br>
+        <span class="word-blue">that thinks.</span>
+      </h1>
+      <div class="hero-ctas">
+        <a href="#" class="btn-black">Deploy Your AI Team →</a>
+        <a href="#" class="btn-ghost">See How It Works</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">
+        AI agents, automation systems, and full marketing execution —
+        built for Saudi and UAE businesses that are done leaving growth on the table.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag"><span class="dot"></span> Call Center Agent</span>
+        <span class="hero-tag"><span class="dot"></span> Sales Rep Agent</span>
+        <span class="hero-tag"><span class="dot"></span> AI Marketing Team</span>
+        <span class="hero-tag"><span class="dot"></span> 24/7 Active</span>
+      </div>
+      <div class="hero-location">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Serving KSA & UAE Markets
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item"><span class="sep"></span> AI Marketing Advisory</span>
+    <span class="ticker-item"><span class="sep"></span> Call Center Agent</span>
+    <span class="ticker-item"><span class="sep"></span> Sales Rep Agent</span>
+    <span class="ticker-item"><span class="sep"></span> AI Marketing Team</span>
+    <span class="ticker-item"><span class="sep"></span> Marketing Systems</span>
+    <span class="ticker-item"><span class="sep"></span> Campaign Execution</span>
+    <span class="ticker-item"><span class="sep"></span> Creative Production</span>
+    <span class="ticker-item"><span class="sep"></span> Events & Entertainment</span>
+    <span class="ticker-item"><span class="sep"></span> AI Marketing Advisory</span>
+    <span class="ticker-item"><span class="sep"></span> Call Center Agent</span>
+    <span class="ticker-item"><span class="sep"></span> Sales Rep Agent</span>
+    <span class="ticker-item"><span class="sep"></span> AI Marketing Team</span>
+    <span class="ticker-item"><span class="sep"></span> Marketing Systems</span>
+    <span class="ticker-item"><span class="sep"></span> Campaign Execution</span>
+    <span class="ticker-item"><span class="sep"></span> Creative Production</span>
+    <span class="ticker-item"><span class="sep"></span> Events & Entertainment</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services-section">
+  <div class="services-inner">
+    <div class="sticky-left">
+      <div class="section-eyebrow">What We Build</div>
+      <h2 class="section-heading">Six ways we power your growth</h2>
+      <p class="section-body">From strategy to execution — we architect, build, and run marketing systems that work around the clock.</p>
+      <a href="#" class="btn-black" style="display:inline-flex; font-size:13px; padding:14px 24px;">View All Services →</a>
+    </div>
+
+    <ul class="services-accordion">
+      <li class="acc-item open">
+        <div class="acc-header" onclick="toggle(this)">
+          <span class="acc-num">01</span>
+          <span class="acc-title">AI & Marketing Advisory</span>
+          <div class="acc-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </div>
+        </div>
+        <div class="acc-body">
+          <p class="acc-desc">Strategic consulting to integrate AI into your marketing operations — from AI adoption roadmaps to full go-to-market strategy and brand positioning.</p>
+          <div class="acc-chips">
+            <span class="chip">AI Adoption Strategy</span>
+            <span class="chip">Systems Architecture</span>
+            <span class="chip">Go-to-Market</span>
+            <span class="chip">Brand Positioning</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="acc-item">
+        <div class="acc-header" onclick="toggle(this)">
+          <span class="acc-num">02</span>
+          <span class="acc-title">AI Agents & Automation</span>
+          <span class="acc-badge">New</span>
+          <div class="acc-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </div>
+        </div>
+        <div class="acc-body">
+          <p class="acc-desc">Deploy AI agents that work like full-time employees — a Call Center Agent, Sales Rep Agent, and a full AI Marketing Team running your operations 24/7.</p>
+          <div class="acc-chips">
+            <span class="chip blue">Call Center Agent</span>
+            <span class="chip blue">Sales Rep Agent</span>
+            <span class="chip blue">AI Marketing Team</span>
+            <span class="chip">CRM Automation</span>
+            <span class="chip">Lead Qualification</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="acc-item">
+        <div class="acc-header" onclick="toggle(this)">
+          <span class="acc-num">03</span>
+          <span class="acc-title">Marketing Systems Implementation</span>
+          <div class="acc-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </div>
+        </div>
+        <div class="acc-body">
+          <p class="acc-desc">Build structured marketing infrastructure — CRM design, automated workflows, and analytics dashboards that connect strategy to execution.</p>
+          <div class="acc-chips">
+            <span class="chip">CRM Pipeline Design</span>
+            <span class="chip">Workflow Automation</span>
+            <span class="chip">Analytics Dashboards</span>
+            <span class="chip">Lead Handover Systems</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="acc-item">
+        <div class="acc-header" onclick="toggle(this)">
+          <span class="acc-num">04</span>
+          <span class="acc-title">Campaign Strategy & Execution</span>
+          <div class="acc-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </div>
+        </div>
+        <div class="acc-body">
+          <p class="acc-desc">Drive visibility and growth through paid media, AI-assisted content creation, social media campaigns, and SEO optimization across KSA & UAE.</p>
+          <div class="acc-chips">
+            <span class="chip">Google & Meta Ads</span>
+            <span class="chip">TikTok Campaigns</span>
+            <span class="chip">SEO Optimization</span>
+            <span class="chip">AI Content Creation</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="acc-item">
+        <div class="acc-header" onclick="toggle(this)">
+          <span class="acc-num">05</span>
+          <span class="acc-title">AI-Assisted Creative Production</span>
+          <div class="acc-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </div>
+        </div>
+        <div class="acc-body">
+          <p class="acc-desc">Modern content combining creativity with AI efficiency — visual content, video production, short-form social content, and brand storytelling.</p>
+          <div class="acc-chips">
+            <span class="chip">Visual Content</span>
+            <span class="chip">Video Production</span>
+            <span class="chip">Social Content</span>
+            <span class="chip">Brand Storytelling</span>
+          </div>
+        </div>
+      </li>
+
+      <li class="acc-item">
+        <div class="acc-header" onclick="toggle(this)">
+          <span class="acc-num">06</span>
+          <span class="acc-title">Entertainment & Event Management</span>
+          <div class="acc-toggle">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+          </div>
+        </div>
+        <div class="acc-body">
+          <p class="acc-desc">End-to-end event planning, entertainment booking, and live production for Saudi brands and businesses.</p>
+          <div class="acc-chips">
+            <span class="chip">Event Planning</span>
+            <span class="chip">Live Production</span>
+            <span class="chip">Entertainment Booking</span>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- AI AGENTS SPOTLIGHT -->
+<section class="agents-section">
+  <div class="agents-glow"></div>
+  <div class="agents-inner">
+    <div class="agents-top">
+      <div>
+        <div class="agents-eyebrow">Your AI Workforce</div>
+        <h2 class="agents-heading">
+          Meet your new<br>
+          <span class="italic">full-time</span> AI team.
+        </h2>
+      </div>
+      <p class="agents-intro">Not chatbots. Fully operational AI workers — trained on your business, deployed to perform.</p>
+    </div>
+
+    <div class="agents-grid">
+      <div class="agent-card">
+        <div class="agent-live"><div class="pulse-dot"></div> Live 24/7</div>
+        <div class="agent-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <h3 class="agent-name">Call Center Agent</h3>
+        <p class="agent-tagline">Inbound & Outbound</p>
+        <p class="agent-desc">Handles every call your business receives — qualifying leads, booking appointments, and answering questions in Arabic and English, around the clock.</p>
+        <ul class="agent-features">
+          <li>Inbound call handling & routing</li>
+          <li>Lead qualification over voice</li>
+          <li>Appointment scheduling</li>
+          <li>Arabic & English fluency</li>
+        </ul>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-live"><div class="pulse-dot"></div> Live 24/7</div>
+        <div class="agent-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="1.5"><path d="M20 7H4a2 2 0 00-2 2v6a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+        </div>
+        <h3 class="agent-name">Sales Rep Agent</h3>
+        <p class="agent-tagline">Pipeline & Closing</p>
+        <p class="agent-desc">Follows up instantly on every lead, sends personalized proposals, handles objections, and moves prospects through your pipeline — like your top salesperson, never sleeping.</p>
+        <ul class="agent-features">
+          <li>Instant lead follow-up</li>
+          <li>Personalized proposal sending</li>
+          <li>Objection handling scripts</li>
+          <li>CRM pipeline sync</li>
+        </ul>
+      </div>
+
+      <div class="agent-card">
+        <div class="agent-live"><div class="pulse-dot"></div> Live 24/7</div>
+        <div class="agent-icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6B9BF7" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 class="agent-name">AI Marketing Team</h3>
+        <p class="agent-tagline">Full Department</p>
+        <p class="agent-desc">A complete AI marketing department — content strategist, social media manager, ad optimizer, and email marketer — all coordinated, all running in parallel.</p>
+        <ul class="agent-features">
+          <li>Content creation & scheduling</li>
+          <li>Social media management</li>
+          <li>Ad campaign optimization</li>
+          <li>Email marketing automation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="how-header">
+      <div class="section-eyebrow" style="justify-content:center; margin-bottom:16px;">How It Works</div>
+      <h2 class="section-heading" style="text-align:center;">From zero to deployed in weeks</h2>
+    </div>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">01</div>
+        <div class="step-title">Discovery Call</div>
+        <p class="step-desc">We map your marketing gaps, goals, and the systems you need built.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">02</div>
+        <div class="step-title">System Design</div>
+        <p class="step-desc">We architect the full AI stack — agents, automations, and workflows.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">03</div>
+        <div class="step-title">Build & Deploy</div>
+        <p class="step-desc">We build and launch your AI workforce, trained on your business.</p>
+      </div>
+      <div class="how-step">
+        <div class="step-num">04</div>
+        <div class="step-title">Scale & Optimize</div>
+        <p class="step-desc">We monitor, iterate, and expand your AI systems as you grow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-left">
+    <div class="cta-eyebrow">Get Started Today</div>
+    <h2 class="cta-title">Ready to hire your<br>AI workforce?</h2>
+    <p class="cta-sub">Book a 30-minute discovery call. We'll map exactly what your business needs.</p>
+  </div>
+  <div class="cta-right">
+    <a href="#" class="btn-white">Book a Discovery Call →</a>
+    <p class="cta-note">Free. No commitment. 30 minutes.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="footer-logo">
+    <div class="nav-logo-dot"></div>
+    Ensign Ai Marketing Agency
+  </a>
+  <ul class="footer-links">
+    <li><a href="#">Services</a></li>
+    <li><a href="#">AI Agents</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">Careers</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+  <p>© 2026 Ensign · Riyadh, KSA</p>
+</footer>
+
+<script>
+function toggle(header) {
+  const item = header.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>

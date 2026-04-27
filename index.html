@@ -50,7 +50,7 @@
   <!-- DNS prefetch -->
   <link rel="dns-prefetch" href="https://cal.eu">
   <link rel="dns-prefetch" href="https://wa.me">
-  <link rel="stylesheet" href="css/style.min.css?v=6">
+  <link rel="stylesheet" href="css/style.min.css?v=7">
   <!-- JSON-LD Structured Data -->
   <script type="application/ld+json">
   {
@@ -159,59 +159,25 @@
 
   <!-- ── HERO ────────────────────────────────────────────────── -->
   <section id="hero">
-    <div class="hero-split">
-
-      <!-- Left: text -->
-      <div class="hero-left" id="hero-content">
-        <p class="hero-eyebrow" aria-hidden="true">— AI Marketing Agency · Riyadh, KSA</p>
-        <h1 class="hero-display">
-          <span class="hero-line-outer"><span class="hero-line hd-light">MARKETING</span></span>
-          <span class="hero-line-outer"><span class="hero-line hd-bold">SOLUTIONS</span></span>
-          <span class="hero-line-outer"><span class="hero-line hd-light">FOR THE</span></span>
-          <span class="hero-line-outer"><span class="hero-line hd-outline">AI ERA.</span></span>
-        </h1>
-        <p class="hero-sub">We build AI agents, automation systems, and high-performance marketing for businesses in Saudi Arabia and the UAE.</p>
-        <div class="hero-btns">
-          <a href="#services" class="btn-hero-primary" data-magnetic>
-            Marketing Agency
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a href="#agents" class="btn-hero-ghost" data-magnetic>
-            AI Solutions
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
+    <div class="hero-inner" id="hero-content">
+      <p class="hero-eyebrow">— AI Marketing Agency · Riyadh, KSA</p>
+      <h1 class="hero-display">
+        <span class="hero-line-outer"><span class="hero-line hd-light">MARKETING</span></span>
+        <span class="hero-line-outer"><span class="hero-line hd-bold">SOLUTIONS</span></span>
+        <span class="hero-line-outer"><span class="hero-line hd-light">FOR THE</span></span>
+        <span class="hero-line-outer"><span class="hero-line hd-outline">AI ERA.</span></span>
+      </h1>
+      <p class="hero-sub">We build AI agents, automation systems, and high-performance marketing for businesses in Saudi Arabia and the UAE.</p>
+      <div class="hero-btns">
+        <a href="#services" class="btn-hero-primary" data-magnetic>
+          Marketing Agency
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#agents" class="btn-hero-ghost" data-magnetic>
+          AI Solutions
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
-
-      <!-- Right: holographic star -->
-      <div class="hero-right" aria-hidden="true">
-        <div class="hero-star-float">
-          <svg class="hero-star" viewBox="-1.1 -1.1 2.2 2.2" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="holo1" cx="38%" cy="32%" r="72%">
-                <stop offset="0%"   stop-color="#ffffff" stop-opacity=".95"/>
-                <stop offset="18%"  stop-color="#e0d9ff"/>
-                <stop offset="42%"  stop-color="#bfdbfe"/>
-                <stop offset="68%"  stop-color="#c7d2fe"/>
-                <stop offset="100%" stop-color="#7c3aed" stop-opacity=".75"/>
-              </radialGradient>
-              <radialGradient id="holo2" cx="62%" cy="68%" r="52%">
-                <stop offset="0%"   stop-color="#e0f9ff" stop-opacity=".65"/>
-                <stop offset="100%" stop-color="#e0f9ff" stop-opacity="0"/>
-              </radialGradient>
-              <clipPath id="star-cp">
-                <path d="M0,-1C.2,-.2.2,-.2,1,0C.2,.2.2,.2,0,1C-.2,.2-.2,.2,-1,0C-.2,-.2-.2,-.2,0,-1Z"/>
-              </clipPath>
-            </defs>
-            <path d="M0,-1C.2,-.2.2,-.2,1,0C.2,.2.2,.2,0,1C-.2,.2-.2,.2,-1,0C-.2,-.2-.2,-.2,0,-1Z" fill="url(#holo1)"/>
-            <rect x="-1.1" y="-1.1" width="2.2" height="2.2" fill="url(#holo2)" clip-path="url(#star-cp)" class="star-shimmer"/>
-            <circle cx=".28" cy="-.68" r=".022" fill="white" class="star-sp sp1"/>
-            <circle cx="-.52" cy=".18" r=".016" fill="white" class="star-sp sp2"/>
-            <circle cx=".62" cy=".28" r=".02"  fill="white" class="star-sp sp3"/>
-          </svg>
-        </div>
-      </div>
-
     </div>
     <div class="hero-scroll-hint" id="hero-hint" aria-hidden="true">SCROLL ↓</div>
   </section>
@@ -919,15 +885,22 @@
       });
     });
 
-    /* ── Hero entrance timeline ── */
-    var heroLines = document.querySelectorAll('.hero-line');
-    if (heroLines.length) {
-      var htl = gsap.timeline({ delay: 0.1 });
-      htl.from('.hero-eyebrow', { opacity: 0, y: 14, duration: 0.6, ease: 'power2.out' })
-         .from(heroLines, { yPercent: 115, duration: 1.1, ease: 'expo.out', stagger: 0.14 }, '-=0.3')
-         .from('.hero-sub',  { opacity: 0, y: 18, duration: 0.7, ease: 'power2.out' }, '-=0.5')
-         .from('.hero-btns', { opacity: 0, y: 18, duration: 0.7, ease: 'power2.out' }, '-=0.55')
-         .from('.hero-star-float', { opacity: 0, scale: 0.75, duration: 1.3, ease: 'expo.out' }, 0.2);
+    /* ── Hero entrance timeline (failsafe — uses fromTo with explicit visible end state) ── */
+    try {
+      var heroLines = document.querySelectorAll('.hero-line');
+      if (heroLines.length) {
+        var htl = gsap.timeline({ delay: 0.1 });
+        htl.fromTo('.hero-eyebrow', { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' })
+           .fromTo(heroLines, { yPercent: 115 }, { yPercent: 0, duration: 1.1, ease: 'expo.out', stagger: 0.12 }, '-=0.3')
+           .fromTo('.hero-sub',  { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.5')
+           .fromTo('.hero-btns', { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power2.out' }, '-=0.55');
+      }
+    } catch (e) {
+      /* Failsafe — make sure text is visible if GSAP fails */
+      document.querySelectorAll('.hero-line, .hero-eyebrow, .hero-sub, .hero-btns').forEach(function(el) {
+        el.style.opacity = 1;
+        el.style.transform = 'none';
+      });
     }
 
     /* ── 3D tilt on agent + work cards ── */
