@@ -711,9 +711,14 @@
           scrollTrigger: {
             trigger: '#pillars-grid',
             start: 'top 82%',
-            toggleActions: 'play none none none'
+            toggleActions: 'play none none reverse',
+            onLeaveBack: function() {
+              if (pcFloats[i]) { pcFloats[i].kill(); pcFloats[i] = null; }
+              gsap.set(card, { y: 0 });
+            }
           },
           onComplete: function() {
+            if (pcFloats[i]) pcFloats[i].kill();
             pcFloats[i] = gsap.to(card, {
               y: pcFloatAmp[i],
               duration: pcFloatDur[i],
