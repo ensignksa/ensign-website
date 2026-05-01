@@ -82,6 +82,7 @@ body > *{ position:relative; z-index:2;}
 .site-nav .nav-links a{
   font-size:13px; color:rgba(10,10,10,.62);
   padding:8px 14px; border-radius:999px;
+  white-space:nowrap;
   transition:color .25s, background .25s;
 }
 .site-nav .nav-links a:hover{ color:var(--ink); background:rgba(10,10,10,.06);}
