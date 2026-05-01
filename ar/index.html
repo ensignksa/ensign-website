@@ -169,25 +169,6 @@ button{font:inherit; cursor:pointer; border:0; background:none;}
   100%{background-position:-15px 20px}
 }
 
-/* ───────── CURSOR (premium minimal) ───────── */
-.c-dot{
-  position:fixed; top:0; left:0; width:6px; height:6px;
-  background:var(--ink); border-radius:50%; pointer-events:none; z-index:1000;
-  will-change:transform; mix-blend-mode:difference;
-  transition:opacity .2s, width .2s, height .2s;
-}
-.c-ring{
-  position:fixed; top:0; left:0; width:34px; height:34px;
-  border:1px solid rgba(17,20,17,.35); border-radius:50%;
-  pointer-events:none; z-index:999; will-change:transform;
-  transition:width .35s var(--ease), height .35s var(--ease), background .3s, border-color .25s;
-}
-.c-ring.is-hover{ width:60px; height:60px; background:rgba(17,20,17,.04); border-color:rgba(17,20,17,.6);}
-.c-dot.is-hover{ width:0; height:0; opacity:0;}
-@media (hover:none){ .c-dot,.c-ring{display:none !important;} body{cursor:auto !important;} }
-body.cc-on{cursor:none;}
-body.cc-on a, body.cc-on button, body.cc-on [data-magnetic]{cursor:none;}
-
 /* ───────── NAV ───────── */
 .nav-wrap{
   position:fixed; top:18px; left:0; right:0; z-index:50;
@@ -977,9 +958,6 @@ footer.cine{
 <div class="bg-photo" aria-hidden="true"></div>
 <div class="bg-mist" aria-hidden="true"><div class="m3"></div></div>
 <div class="grain" aria-hidden="true"></div>
-<div class="c-dot" aria-hidden="true"></div>
-<div class="c-ring" aria-hidden="true"></div>
-
 <!-- ───────── NAV ───────── -->
 <div class="nav-wrap">
   <header class="nav">
@@ -1513,30 +1491,6 @@ footer.cine{
 (function(){
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var hasPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
-  /* ── CUSTOM CURSOR ── */
-  if(hasPointer && !reduceMotion){
-    document.body.classList.add('cc-on');
-    var dot = document.querySelector('.c-dot');
-    var ring = document.querySelector('.c-ring');
-    var mx=0,my=0,rx=0,ry=0;
-    document.addEventListener('mousemove', function(e){
-      mx=e.clientX; my=e.clientY;
-      dot.style.transform = 'translate('+(mx-3)+'px,'+(my-3)+'px)';
-    });
-    function loop(){
-      rx += (mx-rx)*.15;
-      ry += (my-ry)*.15;
-      ring.style.transform = 'translate('+(rx-17)+'px,'+(ry-17)+'px)';
-      requestAnimationFrame(loop);
-    }
-    loop();
-
-    document.querySelectorAll('a, button, [data-magnetic]').forEach(function(el){
-      el.addEventListener('mouseenter', function(){ ring.classList.add('is-hover'); dot.classList.add('is-hover'); });
-      el.addEventListener('mouseleave', function(){ ring.classList.remove('is-hover'); dot.classList.remove('is-hover'); });
-    });
-  }
 
   /* ── MAGNETIC BUTTONS ── */
   if(hasPointer && !reduceMotion){
