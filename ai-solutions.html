@@ -39,43 +39,45 @@ ul{list-style:none;padding:0;}
 
 /* ─── Atmosphere layers ─── */
 .atmos-video{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  width:100vw;height:100vh;object-fit:cover;
-  opacity:.55;
+  position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;
+  width:100%;height:100%;object-fit:cover;object-position:center;
+  will-change:transform;transform:scale(1.08);
+  filter:brightness(1) saturate(0.7);
 }
-.atmos-veil{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse at center, rgba(7,17,30,.45) 0%, rgba(7,17,30,.75) 65%, rgba(7,17,30,.92) 100%),
-    linear-gradient(180deg, rgba(7,17,30,.55) 0%, rgba(7,17,30,.35) 35%, rgba(7,17,30,.65) 100%);
+.bg-mist{
+  position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;
 }
-.atmos-grid{
-  position:fixed;inset:0;z-index:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(0,217,192,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,217,192,.04) 1px, transparent 1px);
-  background-size:88px 88px;
-  background-position:center center;
-  opacity:.25;
-  animation:gridBreathe 14s ease-in-out infinite;
-  mask-image:radial-gradient(ellipse at center, black 40%, transparent 90%);
-  -webkit-mask-image:radial-gradient(ellipse at center, black 40%, transparent 90%);
+.bg-mist::before,.bg-mist::after{
+  content:"";position:absolute;border-radius:50%;filter:blur(140px);will-change:transform;
 }
-@keyframes gridBreathe{
-  0%,100%{opacity:.18;}
-  50%{opacity:.35;}
+.bg-mist::before{
+  width:60vw;height:60vw;left:-15vw;top:-10vw;
+  background:radial-gradient(circle, rgba(0,217,192,.07), transparent 70%);
+  animation:mistA 40s ease-in-out infinite;
 }
-.atmos-horizon{
-  position:fixed;top:-15%;left:50%;transform:translate(-50%,0);
-  width:140vw;height:90vh;z-index:0;pointer-events:none;
-  background:radial-gradient(ellipse at center top, rgba(0,217,192,.08), transparent 55%);
-  animation:horizonShift 18s ease-in-out infinite;
-  will-change:transform,opacity;
-  mix-blend-mode:screen;
+.bg-mist::after{
+  width:55vw;height:55vw;right:-10vw;top:30vh;
+  background:radial-gradient(circle, rgba(0,217,192,.05), transparent 70%);
+  animation:mistB 50s ease-in-out infinite;
 }
-@keyframes horizonShift{
-  0%,100%{opacity:.5;transform:translate(-50%,0);}
-  50%{opacity:.75;transform:translate(-50%,18px);}
+.bg-mist .m3{
+  position:absolute;width:48vw;height:48vw;left:25vw;top:80vh;
+  background:radial-gradient(circle, rgba(0,217,192,.04), transparent 70%);
+  filter:blur(140px);border-radius:50%;
+  animation:mistC 60s ease-in-out infinite;
+}
+@keyframes mistA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(8vw,6vw) scale(1.1);}}
+@keyframes mistB{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-6vw,4vw) scale(1.05);}}
+@keyframes mistC{0%,100%{transform:translate(0,0);}50%{transform:translate(-10vw,-8vw);}}
+.grain{
+  position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:240px;animation:grain .5s steps(1) infinite;
+}
+@keyframes grain{
+  0%{background-position:0 0}20%{background-position:-30px -20px}
+  40%{background-position:25px 30px}60%{background-position:-20px 15px}
+  80%{background-position:20px -25px}100%{background-position:-15px 20px}
 }
 .atmos-particles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;mix-blend-mode:screen;}
 
@@ -609,7 +611,7 @@ ul{list-style:none;padding:0;}
 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
-  .atmos-grid,.atmos-horizon,.atmos-particles,.hero-glow{animation:none!important;}
+  .atmos-particles,.hero-glow,.bg-mist{animation:none!important;}
   .reveal{opacity:1!important;transform:none!important;}
   .hero h1 em{opacity:1!important;transform:none!important;animation:none!important;}
 }
@@ -621,9 +623,8 @@ ul{list-style:none;padding:0;}
 <video class="atmos-video" id="bg-video" autoplay loop muted playsinline preload="auto" aria-hidden="true">
   <source src="/assets/video/hero-bg.mp4" type="video/mp4">
 </video>
-<div class="atmos-veil" aria-hidden="true"></div>
-<div class="atmos-horizon" aria-hidden="true"></div>
-<div class="atmos-grid" aria-hidden="true"></div>
+<div class="bg-mist" aria-hidden="true"><div class="m3"></div></div>
+<div class="grain" aria-hidden="true"></div>
 <canvas class="atmos-particles" id="particles" aria-hidden="true"></canvas>
 
 <!-- NAV -->
