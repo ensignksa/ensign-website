@@ -88,6 +88,20 @@ button{font:inherit; cursor:pointer; border:0; background:none;}
 /* ───────── BACKGROUND PHOTO LAYER ───────── */
 .bg-photo{ display:none;}
 
+/* ───────── HERO VIDEO ───────── */
+.hero-video-wrap{
+  position:fixed; inset:0; z-index:1;
+  pointer-events:none; overflow:hidden;
+}
+.hero-video{
+  position:absolute; inset:0;
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  will-change:transform;
+  transform:scale(1.08);
+  filter:brightness(1) saturate(0.7);
+}
+
 /* ───────── BACKGROUND MIST ───────── */
 .bg-mist{
   position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
@@ -147,7 +161,7 @@ button{font:inherit; cursor:pointer; border:0; background:none;}
 }
 @keyframes navIn{ to{ opacity:1; transform:translateY(0);} }
 .nav-brand{ display:flex; align-items:center;}
-.nav-logo-img{ height:36px; width:auto; display:block; filter:brightness(0);}
+.nav-logo-img{ height:20px; width:auto; display:block; filter:brightness(0);}
 .nav-links{display:flex; gap:6px;}
 .nav-links a{
   font-size:13px; color:rgba(10,10,10,.62); padding:8px 14px; border-radius:999px;
@@ -472,6 +486,9 @@ footer.cine{
 <body>
 
 <div class="bg-photo" aria-hidden="true"></div>
+<div class="hero-video-wrap" aria-hidden="true">
+  <video class="hero-video" src="/assets/video/hero-bg.mp4" autoplay muted loop playsinline preload="auto"></video>
+</div>
 <div class="bg-mist" aria-hidden="true"><div class="m3"></div></div>
 <div class="grain" aria-hidden="true"></div>
 <div class="nav-wrap">
