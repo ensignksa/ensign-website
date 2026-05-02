@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -12,21 +12,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Our Word — Ensign Ai Marketing Agency</title>
-<meta name="description" content="See what Ensign Ai Marketing Agency has built — media production, account growth, paid media results, and events across Saudi Arabia and the UAE.">
+<meta name="description" content="Films, audience growth, performance results, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.">
 <link rel="canonical" href="https://ensignksa.com/work.html">
 <link rel="alternate" hreflang="en" href="https://ensignksa.com/work.html">
 <link rel="alternate" hreflang="x-default" href="https://ensignksa.com/work.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ensignksa.com/work.html">
 <meta property="og:title" content="Our Word — Ensign Ai Marketing Agency">
-<meta property="og:description" content="See what Ensign Ai Marketing Agency has built — media production, account growth, paid media results, and events across Saudi Arabia and the UAE.">
+<meta property="og:description" content="Films, audience growth, performance results, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.">
 <meta property="og:image" content="https://ensignksa.com/assets/logos/3.png">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Ensign Ai Marketing Agency">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ensignksa">
 <meta name="twitter:title" content="Our Word — Ensign Ai Marketing Agency">
-<meta name="twitter:description" content="See what Ensign Ai Marketing Agency has built — media production, account growth, paid media results, and events across Saudi Arabia and the UAE.">
+<meta name="twitter:description" content="Films, audience growth, performance results, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.">
 <meta name="twitter:image" content="https://ensignksa.com/assets/logos/3.png">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Ensign Ai Marketing Agency">
@@ -50,436 +50,199 @@
 <style>
 :root{
   --bg:#07111E;
-  --bg-soft:rgba(255,255,255,.02);
-  --warm:rgba(255,255,255,.04);
-  --white:rgba(255,255,255,.06);
   --ink:#F2EFE8;
   --ink-mute:rgba(242,239,232,.58);
   --ink-soft:rgba(242,239,232,.35);
   --line:rgba(255,255,255,.07);
-  --line-soft:rgba(255,255,255,.04);
-  --glass:rgba(255,255,255,.05);
-  --indigo:#00D9C0;
-  --indigo-soft:rgba(0,217,192,.12);
-  --yellow:#00D9C0;
-  --yellow-soft:rgba(0,217,192,.15);
-  --shadow-sm:0 1px 2px rgba(0,0,0,.15), 0 2px 8px rgba(0,0,0,.12);
-  --shadow-md:0 8px 28px -8px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.18);
-  --shadow-lg:0 24px 70px -20px rgba(0,0,0,.5), 0 8px 24px rgba(0,0,0,.25);
+  --oasis:#00D9C0;
+  --oasis-soft:rgba(0,217,192,.12);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.15),0 2px 8px rgba(0,0,0,.12);
+  --shadow-md:0 8px 28px -8px rgba(0,0,0,.35),0 2px 8px rgba(0,0,0,.18);
+  --shadow-lg:0 24px 70px -20px rgba(0,0,0,.5),0 8px 24px rgba(0,0,0,.25);
   --ease:cubic-bezier(.23,1,.32,1);
   --ease-out:cubic-bezier(.16,1,.3,1);
 }
 
-*{box-sizing:border-box; margin:0; padding:0; -webkit-font-smoothing:antialiased;}
-html,body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:'Manrope',system-ui,sans-serif;
-  font-feature-settings:"ss01","cv11";
-  letter-spacing:-.005em;
-}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased;}
+html,body{background:var(--bg);color:var(--ink);font-family:'Manrope',system-ui,sans-serif;font-feature-settings:"ss01","cv11";}
 html{scroll-behavior:smooth;}
-img,svg{display:block; max-width:100%;}
-a{color:inherit; text-decoration:none;}
-button{font:inherit; cursor:pointer; border:0; background:none;}
+img,svg{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;cursor:pointer;border:0;background:none;}
 
-.mono{font-family:'JetBrains Mono',monospace;}
+/* ── Atmosphere ── */
+.bg-photo{display:none;}
+.hero-video-wrap{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;will-change:transform;transform:scale(1.08);filter:brightness(1) saturate(0.7);}
+.bg-mist{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;}
+.bg-mist::before,.bg-mist::after{content:"";position:absolute;border-radius:50%;filter:blur(140px);will-change:transform;}
+.bg-mist::before{width:60vw;height:60vw;left:-15vw;top:-10vw;background:radial-gradient(circle,rgba(0,217,192,.07),transparent 70%);animation:mistA 40s ease-in-out infinite;}
+.bg-mist::after{width:55vw;height:55vw;right:-10vw;top:30vh;background:radial-gradient(circle,rgba(0,217,192,.05),transparent 70%);animation:mistB 50s ease-in-out infinite;}
+.bg-mist .m3{position:absolute;width:48vw;height:48vw;left:25vw;top:80vh;background:radial-gradient(circle,rgba(0,217,192,.04),transparent 70%);filter:blur(140px);border-radius:50%;animation:mistC 60s ease-in-out infinite;}
+@keyframes mistA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(8vw,6vw) scale(1.1);}}
+@keyframes mistB{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-6vw,4vw) scale(1.05);}}
+@keyframes mistC{0%,100%{transform:translate(0,0);}50%{transform:translate(-10vw,-8vw);}}
+.grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");background-size:240px;animation:grain .5s steps(1) infinite;}
+@keyframes grain{0%{background-position:0 0}20%{background-position:-30px -20px}40%{background-position:25px 30px}60%{background-position:-20px 15px}80%{background-position:20px -25px}100%{background-position:-15px 20px}}
 
-/* ───────── BACKGROUND PHOTO LAYER ───────── */
-.bg-photo{ display:none;}
+/* ── Nav ── */
+.nav-wrap{position:fixed;top:18px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 24px;pointer-events:none;}
+.nav{display:flex;align-items:center;gap:32px;background:rgba(242,239,232,.85);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);border:1px solid rgba(255,255,255,.7);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,var(--shadow-md);border-radius:999px;padding:10px 12px 10px 22px;pointer-events:auto;opacity:0;transform:translateY(-12px);animation:navIn 1s var(--ease-out) .3s forwards;}
+@keyframes navIn{to{opacity:1;transform:translateY(0);}}
+.nav-brand{display:flex;align-items:center;}
+.nav-logo-img{height:20px;width:auto;display:block;filter:brightness(0);}
+.nav-links{display:flex;gap:6px;}
+.nav-links a{font-size:13px;color:rgba(10,10,10,.62);padding:8px 14px;border-radius:999px;transition:color .25s,background .25s;}
+.nav-links a:hover{color:#0A0A0A;background:rgba(10,10,10,.06);}
+.nav-links a.active{color:#0A0A0A;background:rgba(10,10,10,.06);font-weight:500;}
+.nav-cta{background:#0A0A0A;color:#fff;padding:10px 18px;border-radius:999px;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:transform .35s var(--ease),box-shadow .35s var(--ease);will-change:transform;}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px -8px rgba(10,10,10,.4);}
 
-/* ───────── HERO VIDEO ───────── */
-.hero-video-wrap{
-  position:fixed; inset:0; z-index:1;
-  pointer-events:none; overflow:hidden;
-}
-.hero-video{
-  position:absolute; inset:0;
-  width:100%; height:100%;
-  object-fit:cover; object-position:center;
-  will-change:transform;
-  transform:scale(1.08);
-  filter:brightness(1) saturate(0.7);
-}
+/* ── Shared ── */
+section{position:relative;z-index:2;}
+.container{max-width:1280px;margin:0 auto;padding:0 56px;}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;margin-bottom:24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#00D9C0;}
+.dot-pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:#00D9C0;vertical-align:middle;box-shadow:0 0 0 4px rgba(0,217,192,.22);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 4px rgba(0,217,192,.22);}50%{box-shadow:0 0 0 8px rgba(0,217,192,.06);}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease-out),transform 1s var(--ease-out);}
+.reveal.in{opacity:1;transform:translateY(0);}
+.btn-primary{background:#00D9C0;color:#07111E;padding:16px 28px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;transition:transform .4s var(--ease),box-shadow .4s var(--ease);box-shadow:0 8px 28px -8px rgba(0,217,192,.35);will-change:transform;}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 40px -10px rgba(0,217,192,.45);}
 
-/* ───────── BACKGROUND MIST ───────── */
-.bg-mist{
-  position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
-}
-.bg-mist::before, .bg-mist::after{
-  content:""; position:absolute; border-radius:50%; filter:blur(140px);
-  will-change:transform;
-}
-.bg-mist::before{
-  width:60vw; height:60vw; left:-15vw; top:-10vw;
-  background:radial-gradient(circle, rgba(0,217,192,.07), transparent 70%);
-  animation:mistA 40s ease-in-out infinite;
-}
-.bg-mist::after{
-  width:55vw; height:55vw; right:-10vw; top:30vh;
-  background:radial-gradient(circle, rgba(0,217,192,.05), transparent 70%);
-  animation:mistB 50s ease-in-out infinite;
-}
-.bg-mist .m3{
-  position:absolute; width:48vw; height:48vw; left:25vw; top:80vh;
-  background:radial-gradient(circle, rgba(0,217,192,.04), transparent 70%);
-  filter:blur(140px); border-radius:50%;
-  animation:mistC 60s ease-in-out infinite;
-}
-@keyframes mistA{ 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(8vw,6vw) scale(1.1);} }
-@keyframes mistB{ 0%,100%{transform:translate(0,0) scale(1);} 50%{transform:translate(-6vw,4vw) scale(1.05);} }
-@keyframes mistC{ 0%,100%{transform:translate(0,0);} 50%{transform:translate(-10vw,-8vw);} }
+/* ── Hero ── */
+.proof-hero{padding:170px 0 90px;position:relative;overflow:hidden;}
+.hero-trails{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;}
+.trail{position:absolute;height:1px;left:-100%;background:linear-gradient(90deg,transparent 0%,rgba(0,217,192,.2) 40%,rgba(0,217,192,.1) 70%,transparent 100%);}
+.trail:nth-child(1){top:38%;width:45%;animation:trailMove 72s linear infinite;}
+.trail:nth-child(2){top:54%;width:32%;animation:trailMove 88s linear infinite 22s;opacity:.6;}
+.trail:nth-child(3){top:70%;width:24%;animation:trailMove 62s linear infinite 44s;opacity:.4;}
+@keyframes trailMove{from{left:-100%;}to{left:220%;}}
+.proof-hero-inner{position:relative;z-index:1;}
+.proof-hero h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(54px,7.5vw,116px);line-height:.95;letter-spacing:-.04em;font-weight:300;color:var(--ink);margin-bottom:28px;}
+.proof-hero h1 em{font-style:italic;color:#00D9C0;}
+.proof-hero .sub{font-size:18px;color:var(--ink-mute);line-height:1.6;max-width:560px;}
 
-/* ───────── GRAIN ───────── */
-.grain{
-  position:fixed; inset:0; z-index:1; pointer-events:none; opacity:.025;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size:240px;
-  animation:grain .5s steps(1) infinite;
-}
-@keyframes grain{
-  0%{background-position:0 0} 20%{background-position:-30px -20px}
-  40%{background-position:25px 30px} 60%{background-position:-20px 15px}
-  80%{background-position:20px -25px} 100%{background-position:-15px 20px}
-}
+/* ── Tabs ── */
+.proof-section{padding:60px 0 120px;}
+.work-tabs-wrap{margin:0 0 56px;display:flex;overflow-x:auto;}
+.work-tabs{position:relative;display:inline-flex;gap:0;padding:6px;background:rgba(242,239,232,.08);border:1px solid rgba(255,255,255,.1);border-radius:999px;backdrop-filter:blur(20px) saturate(140%);-webkit-backdrop-filter:blur(20px) saturate(140%);box-shadow:0 1px 0 rgba(255,255,255,.06) inset;}
+.work-tab{position:relative;z-index:2;padding:11px 22px;border-radius:999px;font-family:inherit;font-size:13px;font-weight:500;color:rgba(242,239,232,.5);background:transparent;cursor:pointer;white-space:nowrap;transition:color .35s var(--ease);}
+.work-tab:hover{color:var(--ink);}
+.work-tab.active{color:#07111E;}
+.work-tab-indicator{position:absolute;top:6px;left:0;height:calc(100% - 12px);background:var(--ink);border-radius:999px;z-index:1;transition:transform .55s var(--ease),width .55s var(--ease);will-change:transform,width;}
 
-/* ───────── NAV ───────── */
-.nav-wrap{
-  position:fixed; top:18px; left:0; right:0; z-index:50;
-  display:flex; justify-content:center; padding:0 24px;
-  pointer-events:none;
-}
-.nav{
-  display:flex; align-items:center; gap:32px;
-  background:rgba(242,239,232,.85); backdrop-filter:blur(22px) saturate(140%);
-  -webkit-backdrop-filter:blur(22px) saturate(140%);
-  border:1px solid rgba(255,255,255,.7); box-shadow:0 1px 0 rgba(255,255,255,.6) inset, var(--shadow-md);
-  border-radius:999px; padding:10px 12px 10px 22px;
-  pointer-events:auto;
-  opacity:0; transform:translateY(-12px);
-  animation:navIn 1s var(--ease-out) .3s forwards;
-}
-@keyframes navIn{ to{ opacity:1; transform:translateY(0);} }
-.nav-brand{ display:flex; align-items:center;}
-.nav-logo-img{ height:20px; width:auto; display:block; filter:brightness(0);}
-.nav-links{display:flex; gap:6px;}
-.nav-links a{
-  font-size:13px; color:rgba(10,10,10,.62); padding:8px 14px; border-radius:999px;
-  transition:color .25s, background .25s;
-}
-.nav-links a:hover{ color:#0A0A0A; background:rgba(10,10,10,.06);}
-.nav-links a.active{ color:#0A0A0A; background:rgba(10,10,10,.06); font-weight:500;}
-.nav-cta{
-  background:#0A0A0A; color:#fff; padding:10px 18px; border-radius:999px;
-  font-size:13px; font-weight:500;
-  display:inline-flex; align-items:center; gap:8px;
-  transition:transform .35s var(--ease), box-shadow .35s var(--ease);
-  will-change:transform;
-}
-.nav-cta:hover{ transform:translateY(-2px); box-shadow:0 12px 28px -8px rgba(10,10,10,.4);}
+/* ── Panels ── */
+.work-panels{position:relative;min-height:400px;}
+.work-panel{display:none;opacity:0;}
+.work-panel.active{display:block;animation:panelIn .65s var(--ease-out) forwards;}
+@keyframes panelIn{from{opacity:0;transform:translateY(12px);filter:blur(6px);}to{opacity:1;transform:translateY(0);filter:blur(0);}}
 
-/* ───────── SHARED ───────── */
-section{ position:relative; z-index:2;}
-.container{ max-width:1280px; margin:0 auto; padding:0 56px;}
-.kicker{
-  font-family:'JetBrains Mono',monospace; font-size:11px;
-  letter-spacing:.18em; text-transform:uppercase; color:var(--ink-soft);
-}
-.dot-pulse{
-  display:inline-block; width:7px; height:7px; border-radius:50%;
-  background:#00D9C0; margin-right:8px; vertical-align:middle;
-  box-shadow:0 0 0 4px rgba(0,217,192,.22);
-  animation:pulse 2.5s ease-in-out infinite;
-}
-@keyframes pulse{
-  0%,100%{ box-shadow:0 0 0 4px rgba(0,217,192,.22);}
-  50%{ box-shadow:0 0 0 8px rgba(0,217,192,.06);}
-}
-.reveal{ opacity:0; transform:translateY(28px); transition:opacity 1s var(--ease-out), transform 1s var(--ease-out);}
-.reveal.in{ opacity:1; transform:translateY(0);}
-.btn-primary{
-  background:#00D9C0; color:#07111E; padding:16px 26px; border-radius:999px;
-  display:inline-flex; align-items:center; gap:10px; font-size:14px; font-weight:600;
-  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
-  box-shadow:0 8px 28px -8px rgba(0,217,192,.35); will-change:transform;
-}
-.btn-primary:hover{ transform:translateY(-2px); box-shadow:0 18px 40px -10px rgba(0,217,192,.45);}
+/* ── Proof Grid ── */
+.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.proof-card{border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .4s;cursor:pointer;}
+.proof-card:hover{transform:translateY(-4px);box-shadow:0 24px 60px -16px rgba(0,0,0,.45);border-color:rgba(0,217,192,.18);}
+.proof-card-visual{position:relative;aspect-ratio:16/9;overflow:hidden;}
+.proof-card-visual-bg{position:absolute;inset:0;transition:transform .6s var(--ease);}
+.proof-card:hover .proof-card-visual-bg{transform:scale(1.03);}
+.pv-a{background:linear-gradient(135deg,#0D1F2D 0%,#0A2425 100%);}
+.pv-b{background:linear-gradient(135deg,#0E1A2B 0%,#091D1D 100%);}
+.pv-c{background:linear-gradient(135deg,#121B28 0%,#0C2020 100%);}
+.pv-d{background:linear-gradient(135deg,#0B1E2C 0%,#0A2828 100%);}
+.proof-card-visual-bg::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(-55deg,transparent,transparent 18px,rgba(255,255,255,.018) 18px,rgba(255,255,255,.018) 19px);}
+.proof-card-visual-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(7,17,30,.65) 100%);}
+.proof-card-visual-label{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(242,239,232,.15);}
+.proof-card-visual-line{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,217,192,.3),transparent);z-index:2;}
+.proof-card-body{padding:22px 24px 24px;}
+.proof-card-cat{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#00D9C0;margin-bottom:8px;}
+.proof-card-title{font-size:19px;font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1.25;margin-bottom:9px;}
+.proof-card-outcome{font-size:13.5px;color:var(--ink-mute);line-height:1.6;margin-bottom:16px;}
+.proof-card-metric{display:inline-flex;align-items:baseline;gap:7px;padding:8px 14px;border-radius:8px;background:rgba(0,217,192,.06);border:1px solid rgba(0,217,192,.12);margin-bottom:14px;}
+.metric-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;color:#00D9C0;letter-spacing:-.02em;}
+.metric-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:rgba(242,239,232,.4);text-transform:uppercase;}
+.proof-card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.proof-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.09);color:rgba(242,239,232,.38);}
+.proof-card-cta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:#00D9C0;opacity:0;transform:translateY(5px);transition:opacity .3s var(--ease),transform .3s var(--ease);}
+.proof-card:hover .proof-card-cta{opacity:1;transform:translateY(0);}
+.proof-card-cta svg{transition:transform .3s var(--ease);}
+.proof-card:hover .proof-card-cta svg{transform:translateX(3px);}
 
-/* ───────── PAGE HERO ───────── */
-.work-page-hero{
-  padding:160px 0 60px;
-}
-.work-page-hero .eyebrow{
-  display:inline-flex; align-items:center; gap:10px; margin-bottom:24px;
-  font-family:'JetBrains Mono',monospace; font-size:11px;
-  letter-spacing:.18em; text-transform:uppercase; color:#00D9C0;
-}
-.work-page-hero h1{
-  font-size:clamp(54px, 7vw, 110px); line-height:.96;
-  letter-spacing:-.04em; font-weight:500;
-}
-.work-page-hero h1 .accent{
-  color:#00D9C0;
-  font-style:italic; font-weight:300;
-}
-.work-page-hero p.sub{
-  margin-top:24px; font-size:18px; color:var(--ink-mute); line-height:1.55; max-width:560px;
-}
+/* ── Selected Proof ── */
+.selected-proof{padding:120px 0;border-top:1px solid var(--line);}
+.selected-proof-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;}
+.selected-proof-visual{aspect-ratio:4/3;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:linear-gradient(135deg,#0D1F2D 0%,#0A2828 100%);position:relative;}
+.selected-proof-visual::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(-55deg,transparent,transparent 18px,rgba(255,255,255,.018) 18px,rgba(255,255,255,.018) 19px);}
+.selected-proof-visual-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(242,239,232,.15);}
+.selected-proof-text h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,3.5vw,52px);font-weight:300;letter-spacing:-.03em;line-height:1.08;color:var(--ink);margin-bottom:32px;}
+.selected-proof-text h2 em{font-style:italic;color:#00D9C0;}
+.proof-detail-list{border-top:1px solid var(--line);margin-bottom:32px;}
+.proof-detail-item{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:14px;}
+.proof-detail-item .dl{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,239,232,.35);padding-top:2px;}
+.proof-detail-item .dv{color:var(--ink-mute);line-height:1.55;}
+.proof-detail-item .dv.result{color:#00D9C0;font-weight:500;}
+.selected-proof-link{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:#00D9C0;transition:gap .3s var(--ease);}
+.selected-proof-link:hover{gap:12px;}
 
-/* ───────── WORK ───────── */
-.work-cine{ padding:40px 0 120px;}
-.work-cine .head{
-  display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:56px;
-}
-.work-cine h2{
-  font-size:clamp(40px, 5vw, 76px); line-height:1.02; letter-spacing:-.03em; font-weight:500;
-}
+/* ── Results Strip ── */
+.results-strip{padding:80px 0;border-top:1px solid var(--line);}
+.results-strip-inner{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;}
+.result-block{padding:36px 28px;border-right:1px solid rgba(255,255,255,.07);transition:background .3s;}
+.result-block:last-child{border-right:none;}
+.result-block:hover{background:rgba(255,255,255,.03);}
+.result-num{font-family:'JetBrains Mono',monospace;font-size:clamp(26px,2.8vw,42px);font-weight:500;color:#00D9C0;letter-spacing:-.03em;line-height:1;margin-bottom:10px;}
+.result-label{font-size:13px;color:var(--ink-mute);line-height:1.45;}
 
-/* ───── Work Tabs ───── */
-.work-tabs-wrap{ margin:8px 0 56px; display:flex; overflow-x:auto;}
-.work-tabs{
-  position:relative; display:inline-flex; gap:0; padding:6px;
-  background:rgba(242,239,232,.1);
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:999px;
-  backdrop-filter:blur(20px) saturate(140%); -webkit-backdrop-filter:blur(20px) saturate(140%);
-  box-shadow:0 1px 0 rgba(255,255,255,.06) inset;
-}
-.work-tab{
-  position:relative; z-index:2;
-  padding:11px 22px; border-radius:999px;
-  font-family:inherit; font-size:13px; font-weight:500;
-  color:rgba(242,239,232,.55); background:transparent; cursor:pointer; white-space:nowrap;
-  transition:color .35s var(--ease);
-}
-.work-tab:hover{ color:var(--ink);}
-.work-tab.active{ color:#07111E;}
-.work-tab-indicator{
-  position:absolute; top:6px; left:0; height:calc(100% - 12px);
-  background:var(--ink); border-radius:999px; z-index:1;
-  transition:transform .55s var(--ease), width .55s var(--ease);
-  will-change:transform, width;
+/* ── CTA ── */
+.cta-cine{padding:120px 0 100px;}
+.cta-card{position:relative;overflow:hidden;border-radius:36px;padding:100px 64px;background:rgba(255,255,255,.04);border:1px solid rgba(0,217,192,.15);box-shadow:var(--shadow-lg);text-align:center;}
+.cta-card::before{content:"";position:absolute;inset:-50%;pointer-events:none;background:radial-gradient(ellipse 50% 40% at 30% 20%,rgba(0,217,192,.10),transparent 70%),radial-gradient(ellipse 50% 40% at 70% 80%,rgba(0,217,192,.07),transparent 70%),radial-gradient(ellipse 40% 35% at 50% 100%,rgba(0,217,192,.05),transparent 70%);animation:ctaSwirl 22s ease-in-out infinite;}
+@keyframes ctaSwirl{0%,100%{transform:rotate(0deg) scale(1);}50%{transform:rotate(8deg) scale(1.05);}}
+.cta-card>*{position:relative;z-index:1;}
+.cta-kicker{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,239,232,.35);display:block;margin-bottom:24px;}
+.cta-card h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(44px,6vw,96px);line-height:.98;letter-spacing:-.035em;font-weight:300;max-width:900px;margin:0 auto;}
+.cta-card h2 em{font-style:italic;color:#00D9C0;}
+.cta-card p{margin-top:20px;font-size:17px;color:var(--ink-mute);max-width:500px;margin-left:auto;margin-right:auto;}
+.cta-card .btn-primary{margin-top:36px;}
+
+/* ── Footer ── */
+footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relative;z-index:2;}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px;}
+.foot-logo{display:inline-block;margin-bottom:16px;}
+.foot-logo-img{height:28px;width:auto;filter:brightness(0) invert(1);opacity:.7;}
+.foot-brand .tag{font-size:14px;color:rgba(242,239,232,.55);line-height:1.5;max-width:220px;}
+.foot-brand .desc{font-size:11px;color:rgba(242,239,232,.25);margin-top:8px;font-family:'JetBrains Mono',monospace;letter-spacing:.04em;}
+.foot-col h4{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(242,239,232,.3);margin-bottom:16px;font-family:'JetBrains Mono',monospace;font-weight:500;}
+.foot-col a{display:block;font-size:14px;color:rgba(242,239,232,.5);padding:6px 0;transition:color .25s;}
+.foot-col a:hover{color:#F2EFE8;}
+.foot-bottom{margin-top:64px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:24px;font-size:12px;color:var(--ink-soft);}
+
+/* ── WhatsApp ── */
+.whatsapp-fab{position:fixed;bottom:28px;right:28px;z-index:100;width:52px;height:52px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .3s var(--ease),box-shadow .3s var(--ease);}
+.whatsapp-fab:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(37,211,102,.5);}
+
+/* ── Reduced motion ── */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+  .reveal,.trail{opacity:1 !important;transform:none !important;}
 }
 
-/* ───── Work Panels ───── */
-.work-panels{ position:relative; min-height:480px;}
-.work-panel{ display:none; opacity:0;}
-.work-panel.active{
-  display:block;
-  animation:panelIn .75s var(--ease-out) forwards;
+/* ── Responsive ── */
+@media(max-width:1100px){
+  .container{padding:0 32px;}
+  .proof-grid{grid-template-columns:1fr 1fr;}
+  .selected-proof-inner{grid-template-columns:1fr;gap:48px;}
+  .results-strip-inner{grid-template-columns:repeat(3,1fr);}
+  .foot-grid{grid-template-columns:1fr 1fr;}
 }
-@keyframes panelIn{
-  from{ opacity:0; transform:translateY(14px); filter:blur(8px);}
-  to{ opacity:1; transform:translateY(0); filter:blur(0);}
-}
-
-/* ───── Tile Strip ───── */
-.work-tile-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
-.work-tile{
-  position:relative; aspect-ratio:4/5; overflow:hidden;
-  border-radius:22px;
-  border:1px solid rgba(255,255,255,.7);
-  box-shadow:var(--shadow-md);
-  transition:transform .55s var(--ease), box-shadow .55s var(--ease);
-  cursor:pointer; will-change:transform;
-}
-.work-tile:hover{ transform:translateY(-6px) scale(1.015); box-shadow:var(--shadow-lg);}
-.work-tile.t-a{ background:linear-gradient(135deg,#0D1F2D 0%,#0A2A2A 100%);}
-.work-tile.t-b{ background:linear-gradient(135deg,#0E1A2B 0%,#091D1D 100%);}
-.work-tile.t-c{ background:linear-gradient(135deg,#121B28 0%,#0C2020 100%);}
-.work-tile.t-d{ background:linear-gradient(135deg,#0B1E2C 0%,#0A2828 100%);}
-.work-tile.t-e{ background:linear-gradient(135deg,#0D1C2A 0%,#082424 100%);}
-.work-tile.t-f{ background:linear-gradient(135deg,#0A1E2E 0%,#091E1E 100%);}
-.work-tile img, .work-tile video{
-  position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
-}
-.work-tile-shade{
-  position:absolute; inset:0;
-  background:linear-gradient(180deg, transparent 50%, rgba(0,0,0,.18) 100%);
-  pointer-events:none;
-}
-.work-tile-label{
-  position:absolute; bottom:14px; left:14px; z-index:2;
-  padding:7px 14px; border-radius:999px;
-  background:rgba(7,17,30,.75);
-  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-  border:1px solid rgba(0,217,192,.2);
-  font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase;
-  color:#00D9C0;
-}
-
-/* ───── KPI Grid ───── */
-.kpi-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
-.kpi-card{
-  position:relative; overflow:hidden;
-  padding:28px 24px 24px;
-  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:22px;
-  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-  box-shadow:var(--shadow-sm);
-  transition:transform .5s var(--ease), box-shadow .5s var(--ease);
-}
-.kpi-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow-md);}
-.kpi-card .glow{
-  position:absolute; inset:auto -30% -50% -10%; height:60%;
-  background:radial-gradient(circle, rgba(0,217,192,.12), transparent 60%);
-  filter:blur(28px); pointer-events:none;
-}
-.kpi-card .glow.warm{ background:radial-gradient(circle, rgba(0,217,192,.10), transparent 60%);}
-.kpi-label{
-  font-family:'JetBrains Mono',monospace; font-size:10px;
-  letter-spacing:.16em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:14px;
-}
-.kpi-value{
-  font-size:clamp(38px, 4.4vw, 60px); font-weight:500; letter-spacing:-.03em; line-height:1;
-  color:#00D9C0;
-  position:relative; z-index:1;
-}
-.kpi-bar{
-  margin-top:18px; height:4px;
-  background:rgba(255,255,255,.06); border-radius:999px; overflow:hidden;
-}
-.kpi-bar-fill{
-  height:100%; width:0;
-  background:linear-gradient(90deg, #00D9C0, rgba(0,217,192,.4));
-  border-radius:999px;
-  transition:width 1.6s var(--ease-out);
-}
-
-/* ───── Growth Chart ───── */
-.growth-chart{
-  margin-top:18px; padding:28px;
-  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:22px;
-  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-  box-shadow:var(--shadow-sm);
-  position:relative; overflow:hidden;
-}
-.growth-chart-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;}
-.growth-chart-head h4{ font-size:15px; font-weight:500; letter-spacing:-.01em;}
-.growth-chart-head .legend{ display:flex; gap:14px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--ink-mute);}
-.growth-chart-head .legend span{ display:flex; align-items:center; gap:6px;}
-.growth-chart-head .legend .dot{ width:8px; height:8px; border-radius:50%;}
-.growth-chart svg{ width:100%; height:200px; display:block;}
-.growth-chart .chart-glow{
-  position:absolute; inset:auto -10% -50% -10%; height:60%;
-  background:radial-gradient(ellipse at center, rgba(0,217,192,.12), transparent 60%);
-  pointer-events:none; filter:blur(20px);
-}
-
-/* ───── Ads Funnel ───── */
-.ad-funnel{
-  margin-top:18px; padding:32px 28px;
-  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.07); border-radius:22px;
-  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
-  box-shadow:var(--shadow-sm);
-  display:flex; flex-direction:column; gap:14px;
-}
-.ad-funnel-head{
-  font-family:'JetBrains Mono',monospace; font-size:11px;
-  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
-}
-.ad-funnel-step{ display:flex; justify-content:space-between; align-items:center; gap:18px;}
-.ad-funnel-step .name{ font-size:13px; color:var(--ink-mute); width:140px; flex:none;}
-.ad-funnel-step .bar{ flex:1; height:32px; border-radius:8px; position:relative; overflow:hidden; background:rgba(255,255,255,.05);}
-.ad-funnel-step .bar-fill{
-  position:absolute; top:0; left:0; bottom:0; width:0;
-  background:linear-gradient(90deg, #00D9C0 0%, rgba(0,217,192,.35) 100%);
-  border-radius:8px;
-  transition:width 1.4s var(--ease-out);
-}
-.ad-funnel-step .val{ font-family:'JetBrains Mono',monospace; font-size:12px; color:#00D9C0; width:64px; text-align:right; flex:none;}
-
-/* ───────── CTA ───────── */
-.cta-cine{ padding:120px 0 100px;}
-.cta-card{
-  position:relative; overflow:hidden;
-  border-radius:36px; padding:100px 64px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(0,217,192,.15);
-  box-shadow:var(--shadow-lg);
-  text-align:center;
-}
-.cta-card::before{
-  content:""; position:absolute; inset:-50%; pointer-events:none;
-  background:
-    radial-gradient(ellipse 50% 40% at 30% 20%, rgba(0,217,192,.10), transparent 70%),
-    radial-gradient(ellipse 50% 40% at 70% 80%, rgba(0,217,192,.07), transparent 70%),
-    radial-gradient(ellipse 40% 35% at 50% 100%, rgba(0,217,192,.05), transparent 70%);
-  animation:ctaSwirl 22s ease-in-out infinite;
-}
-@keyframes ctaSwirl{
-  0%,100%{ transform:rotate(0deg) scale(1);}
-  50%{ transform:rotate(8deg) scale(1.05);}
-}
-.cta-card > *{ position:relative; z-index:1;}
-.cta-card .kicker{ margin-bottom:24px; display:block;}
-.cta-card h2{
-  font-size:clamp(48px, 6.5vw, 100px); line-height:.98; letter-spacing:-.035em; font-weight:500;
-  max-width:900px; margin:0 auto;
-}
-.cta-card p{
-  margin-top:20px; font-size:17px; color:var(--ink-mute); max-width:520px; margin-left:auto; margin-right:auto;
-}
-.cta-card .btn-primary{ margin-top:36px;}
-
-/* ───────── FOOTER ───────── */
-footer.cine{
-  padding:80px 0 40px; border-top:1px solid var(--line);
-  position:relative; z-index:2;
-}
-.foot-grid{
-  display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px;
-}
-.foot-logo{ display:inline-block; margin-bottom:16px;}
-.foot-logo-img{ height:28px; width:auto; filter:brightness(0) invert(1); opacity:.7;}
-.foot-brand .tag{ font-size:14px; color:rgba(242,239,232,.55); line-height:1.5; max-width:220px;}
-.foot-brand .desc{ font-size:11px; color:rgba(242,239,232,.25); margin-top:8px; font-family:'JetBrains Mono',monospace; letter-spacing:.04em;}
-.foot-col h4{ font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:rgba(242,239,232,.3); margin-bottom:16px; font-family:'JetBrains Mono',monospace; font-weight:500;}
-.foot-col a{ display:block; font-size:14px; color:rgba(242,239,232,.5); padding:6px 0; transition:color .25s; }
-.foot-col a:hover{ color:#F2EFE8; }
-.foot-bottom{
-  margin-top:64px; padding-top:24px; border-top:1px solid var(--line);
-  display:flex; justify-content:space-between; align-items:center; gap:24px;
-  font-size:12px; color:var(--ink-soft);
-}
-.foot-wordmark{
-  font-size:clamp(80px, 16vw, 220px); font-weight:600; letter-spacing:-.05em;
-  color:transparent; -webkit-text-stroke:1px rgba(17,20,17,.06);
-  margin:80px 0 -10px; line-height:.9; user-select:none; pointer-events:none;
-}
-
-/* ───────── REDUCED MOTION ───────── */
-@media (prefers-reduced-motion: reduce){
-  *, *::before, *::after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
-  }
-  .reveal, .line-in{ opacity:1 !important; transform:none !important;}
-}
-
-/* ───────── RESPONSIVE ───────── */
-@media (max-width:1100px){
-  .container{ padding:0 32px;}
-  .work-tile-strip{ grid-template-columns:repeat(2,1fr);}
-  .kpi-grid{ grid-template-columns:repeat(2,1fr);}
-  .foot-grid{ grid-template-columns:1fr 1fr;}
-}
-@media (max-width:720px){
-  .container{ padding:0 22px;}
-  .nav-links{ display:none;}
-  .nav{ padding:8px 8px 8px 18px; gap:12px;}
-  .work-page-hero{ padding:130px 0 40px;}
-  .cta-card{ padding:60px 28px;}
-  .foot-grid{ grid-template-columns:1fr;}
-  .foot-bottom{ flex-direction:column; align-items:flex-start;}
-  .work-tile-strip{
-    display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
-    gap:12px; padding:0 22px 12px; margin:0 -22px;
-  }
-  .work-tile-strip > *{ flex:0 0 78%; scroll-snap-align:start;}
-  .kpi-grid{ grid-template-columns:1fr;}
-  .ad-funnel-step .name{ width:90px; font-size:12px;}
-  .ad-funnel-step .val{ width:48px;}
+@media(max-width:720px){
+  .container{padding:0 22px;}
+  .nav-links{display:none;}
+  .nav{padding:8px 8px 8px 18px;gap:12px;}
+  .proof-hero{padding:130px 0 60px;}
+  .proof-grid{grid-template-columns:1fr;}
+  .results-strip-inner{grid-template-columns:repeat(2,1fr);}
+  .cta-card{padding:60px 28px;}
+  .foot-grid{grid-template-columns:1fr;}
+  .foot-bottom{flex-direction:column;align-items:flex-start;}
 }
 </style>
 </head>
@@ -491,6 +254,8 @@ footer.cine{
 </div>
 <div class="bg-mist" aria-hidden="true"><div class="m3"></div></div>
 <div class="grain" aria-hidden="true"></div>
+
+<!-- ── Nav ── -->
 <div class="nav-wrap">
   <header class="nav">
     <a href="/" class="nav-brand"><img src="/assets/logos/logo-main.png" alt="Ensign Ai Marketing Agency" class="nav-logo-img"></a>
@@ -503,165 +268,500 @@ footer.cine{
       <a href="/ar/" aria-label="Switch to Arabic">AR</a>
     </nav>
     <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-magnetic>Book a Call
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
   </header>
 </div>
 
-<!-- ───────── PAGE HERO ───────── -->
-<section class="work-page-hero">
+<!-- ── Hero ── -->
+<section class="proof-hero">
+  <div class="hero-trails" aria-hidden="true">
+    <span class="trail"></span>
+    <span class="trail"></span>
+    <span class="trail"></span>
+  </div>
   <div class="container">
-    <span class="eyebrow reveal"><span class="dot-pulse"></span>Portfolio</span>
-    <h1 class="reveal">We made it<br>effortless...<br><span class="accent">it wasn't.</span></h1>
-    <p class="sub reveal">Media production, audience growth, paid media results, and events — built for ambitious brands across Saudi Arabia and the UAE.</p>
+    <div class="proof-hero-inner">
+      <span class="eyebrow reveal"><span class="dot-pulse"></span>The Proof Room</span>
+      <h1 class="reveal">It wasn't luck.<br>It was <em>built.</em></h1>
+      <p class="sub reveal">Films, content, audience growth, performance results, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.</p>
+    </div>
   </div>
 </section>
 
-<!-- ───────── WORK ───────── -->
-<section class="work-cine" id="work">
+<!-- ── Work Panels ── -->
+<section class="proof-section" id="proof">
   <div class="container">
 
     <div class="work-tabs-wrap reveal">
       <div class="work-tabs" role="tablist">
-        <button class="work-tab active" data-tab="media" role="tab">Media Production</button>
-        <button class="work-tab" data-tab="growth" role="tab">Account Growth</button>
-        <button class="work-tab" data-tab="ads" role="tab">Ads Results</button>
-        <button class="work-tab" data-tab="events" role="tab">Events</button>
+        <button class="work-tab active" data-tab="films" role="tab" aria-selected="true">Films &amp; Content</button>
+        <button class="work-tab" data-tab="growth" role="tab" aria-selected="false">Audience Growth</button>
+        <button class="work-tab" data-tab="performance" role="tab" aria-selected="false">Performance Results</button>
+        <button class="work-tab" data-tab="events" role="tab" aria-selected="false">Live Experiences</button>
         <span class="work-tab-indicator" aria-hidden="true"></span>
       </div>
     </div>
 
     <div class="work-panels">
 
-      <!-- Media Production -->
-      <div class="work-panel active" data-panel="media">
-        <div class="work-tile-strip">
-          <figure class="work-tile t-a">
-            <img src="/work/media-production-01.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Brand Film</span>
-          </figure>
-          <figure class="work-tile t-b">
-            <video src="/work/media-production-02.mp4" autoplay muted loop playsinline onerror="this.style.display='none'"></video>
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Product Reel</span>
-          </figure>
-          <figure class="work-tile t-c">
-            <img src="/work/media-production-03.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Editorial</span>
-          </figure>
-          <figure class="work-tile t-d">
-            <video src="/work/media-production-04.mp4" autoplay muted loop playsinline onerror="this.style.display='none'"></video>
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Campaign</span>
-          </figure>
-        </div>
-      </div>
+      <!-- Films & Content -->
+      <div class="work-panel active" data-panel="films">
+        <div class="proof-grid">
 
-      <!-- Account Growth -->
-      <div class="work-panel" data-panel="growth">
-        <div class="kpi-grid">
-          <div class="kpi-card"><div class="glow"></div>
-            <div class="kpi-label">Reach Growth</div>
-            <div class="kpi-value" data-count="185" data-prefix="+" data-suffix="%">+0%</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="92"></div></div>
-          </div>
-          <div class="kpi-card"><div class="glow warm"></div>
-            <div class="kpi-label">Follower Growth</div>
-            <div class="kpi-value" data-count="72" data-prefix="+" data-suffix="%">+0%</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="64"></div></div>
-          </div>
-          <div class="kpi-card"><div class="glow"></div>
-            <div class="kpi-label">Profile Visits</div>
-            <div class="kpi-value" data-count="240" data-prefix="+" data-suffix="%">+0%</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="100"></div></div>
-          </div>
-          <div class="kpi-card"><div class="glow warm"></div>
-            <div class="kpi-label">Engagement Lift</div>
-            <div class="kpi-value" data-count="3.8" data-suffix="x" data-decimals="1">0.0x</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="76"></div></div>
-          </div>
-        </div>
-        <div class="growth-chart">
-          <div class="chart-glow"></div>
-          <div class="growth-chart-head">
-            <h4>Audience trajectory · 90 days</h4>
-            <div class="legend">
-              <span><span class="dot" style="background:var(--indigo)"></span>Reach</span>
-              <span><span class="dot" style="background:var(--yellow)"></span>Engagement</span>
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-a"></div>
+              <!-- PLACEHOLDER: replace with campaign visual or screenshot -->
+              <div class="proof-card-visual-label">Campaign Visual</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Films &amp; Content</div>
+              <div class="proof-card-title">Brand Documentary Series</div>
+              <p class="proof-card-outcome">A three-part cinematic series told the brand's founding story across social and OOH channels.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">+2.4M</span>
+                <span class="metric-label">Total Views</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Brand Film</span>
+                <span class="proof-tag">Documentary</span>
+                <span class="proof-tag">GCC</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
             </div>
           </div>
-          <svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#00D9C0" stop-opacity=".25"/>
-                <stop offset="100%" stop-color="#00D9C0" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path id="growthArea" d="M0,170 C80,160 130,140 200,120 C270,100 320,80 400,55 C480,30 540,18 600,10 L600,200 L0,200 Z" fill="url(#gArea)"/>
-            <path id="growthLine" d="M0,170 C80,160 130,140 200,120 C270,100 320,80 400,55 C480,30 540,18 600,10" fill="none" stroke="#00D9C0" stroke-width="2" stroke-linecap="round"/>
-            <path id="growthLine2" d="M0,180 C80,175 140,165 220,150 C300,135 360,118 440,95 C500,80 560,68 600,60" fill="none" stroke="#00D9C0" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4" opacity=".4"/>
-          </svg>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-b"></div>
+              <!-- PLACEHOLDER: replace with campaign visual or screenshot -->
+              <div class="proof-card-visual-label">Content System</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Films &amp; Content</div>
+              <div class="proof-card-title">Monthly Content Engine</div>
+              <p class="proof-card-outcome">Full monthly production system: scripting, shooting, editing, scheduling — 30 pieces per month, consistently delivered.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">30</span>
+                <span class="metric-label">Pieces / Month</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Content</span>
+                <span class="proof-tag">Production</span>
+                <span class="proof-tag">Social</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-c"></div>
+              <!-- PLACEHOLDER: replace with campaign visual or screenshot -->
+              <div class="proof-card-visual-label">Campaign Visual</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Films &amp; Content</div>
+              <div class="proof-card-title">Product Launch Film</div>
+              <p class="proof-card-outcome">Hero video anchored a cross-platform launch campaign for a new product entering the GCC market.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">4.1M</span>
+                <span class="metric-label">Campaign Reach</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Film</span>
+                <span class="proof-tag">Launch</span>
+                <span class="proof-tag">Campaign</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-d"></div>
+              <!-- PLACEHOLDER: replace with campaign visual or screenshot -->
+              <div class="proof-card-visual-label">Editorial Visual</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Films &amp; Content</div>
+              <div class="proof-card-title">Editorial Series</div>
+              <p class="proof-card-outcome">Luxury editorial photography series for a fashion brand's seasonal collection, distributed to press and retail.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">12</span>
+                <span class="metric-label">Editorials Produced</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Editorial</span>
+                <span class="proof-tag">Photography</span>
+                <span class="proof-tag">Fashion</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <!-- Ads Results -->
-      <div class="work-panel" data-panel="ads">
-        <div class="kpi-grid">
-          <div class="kpi-card"><div class="glow"></div>
-            <div class="kpi-label">Leads Generated</div>
-            <div class="kpi-value" data-count="1240" data-suffix="+">0</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="88"></div></div>
+      <!-- Audience Growth -->
+      <div class="work-panel" data-panel="growth">
+        <div class="proof-grid">
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-b"></div>
+              <!-- PLACEHOLDER: replace with screenshot proof -->
+              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Audience Growth</div>
+              <div class="proof-card-title">Instagram Growth Sprint</div>
+              <p class="proof-card-outcome">Grew a lifestyle brand's account from 8K to 74K followers in 90 days through content strategy and daily engagement.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">+820%</span>
+                <span class="metric-label">Follower Growth</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Instagram</span>
+                <span class="proof-tag">Growth</span>
+                <span class="proof-tag">Strategy</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
           </div>
-          <div class="kpi-card"><div class="glow warm"></div>
-            <div class="kpi-label">Cost Per Lead</div>
-            <div class="kpi-value" data-count="-38" data-suffix="%">0%</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="62"></div></div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-c"></div>
+              <!-- PLACEHOLDER: replace with screenshot proof -->
+              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Audience Growth</div>
+              <div class="proof-card-title">LinkedIn Authority Build</div>
+              <p class="proof-card-outcome">Positioned a B2B founder as a top sector voice through consistent thought leadership content over six months.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">3.2M</span>
+                <span class="metric-label">Impressions · 6 months</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">LinkedIn</span>
+                <span class="proof-tag">B2B</span>
+                <span class="proof-tag">Thought Leadership</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
           </div>
-          <div class="kpi-card"><div class="glow"></div>
-            <div class="kpi-label">Conversion Rate</div>
-            <div class="kpi-value" data-count="64" data-prefix="+" data-suffix="%">+0%</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="78"></div></div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-d"></div>
+              <!-- PLACEHOLDER: replace with screenshot proof -->
+              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Audience Growth</div>
+              <div class="proof-card-title">TikTok Market Entry</div>
+              <p class="proof-card-outcome">Took a Saudi brand from zero to 50K+ TikTok followers in one quarter through a short-form content system.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">50K+</span>
+                <span class="metric-label">Followers in 90 Days</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">TikTok</span>
+                <span class="proof-tag">Short-Form</span>
+                <span class="proof-tag">Saudi</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
           </div>
-          <div class="kpi-card"><div class="glow warm"></div>
-            <div class="kpi-label">Campaign Efficiency</div>
-            <div class="kpi-value" data-count="2.7" data-suffix="x" data-decimals="1">0.0x</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="68"></div></div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-a"></div>
+              <!-- PLACEHOLDER: replace with campaign visual or screenshot -->
+              <div class="proof-card-visual-label">Campaign Visual</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Audience Growth</div>
+              <div class="proof-card-title">Cross-Platform Expansion</div>
+              <p class="proof-card-outcome">Built and scaled presence across four platforms simultaneously for a GCC retail brand entering the digital space.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">4</span>
+                <span class="metric-label">Platforms Launched</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Multi-Platform</span>
+                <span class="proof-tag">Content</span>
+                <span class="proof-tag">GCC</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
           </div>
-        </div>
-        <div class="ad-funnel">
-          <div class="ad-funnel-head">Conversion funnel · last 30 days</div>
-          <div class="ad-funnel-step"><span class="name">Impressions</span><div class="bar"><div class="bar-fill" data-fill="100"></div></div><span class="val">1.2M</span></div>
-          <div class="ad-funnel-step"><span class="name">Clicks</span><div class="bar"><div class="bar-fill" data-fill="42"></div></div><span class="val">48K</span></div>
-          <div class="ad-funnel-step"><span class="name">Leads</span><div class="bar"><div class="bar-fill" data-fill="18"></div></div><span class="val">1.24K</span></div>
-          <div class="ad-funnel-step"><span class="name">Conversions</span><div class="bar"><div class="bar-fill" data-fill="9"></div></div><span class="val">312</span></div>
+
         </div>
       </div>
 
-      <!-- Events -->
+      <!-- Performance Results -->
+      <div class="work-panel" data-panel="performance">
+        <div class="proof-grid">
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-c"></div>
+              <!-- PLACEHOLDER: replace with screenshot proof -->
+              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Performance Results</div>
+              <div class="proof-card-title">Real Estate Lead Gen</div>
+              <p class="proof-card-outcome">Meta campaign generated 1,200+ qualified leads at SAR 18 per lead for a residential developer in Riyadh.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">SAR 18</span>
+                <span class="metric-label">Cost Per Lead</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Meta Ads</span>
+                <span class="proof-tag">Real Estate</span>
+                <span class="proof-tag">Leads</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-d"></div>
+              <!-- PLACEHOLDER: replace with screenshot proof -->
+              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Performance Results</div>
+              <div class="proof-card-title">E-Commerce ROAS</div>
+              <p class="proof-card-outcome">Google + Meta performance system for a GCC e-commerce brand hit 6.2× return on ad spend in 60 days.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">6.2×</span>
+                <span class="metric-label">Return on Ad Spend</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Google</span>
+                <span class="proof-tag">Meta</span>
+                <span class="proof-tag">E-Commerce</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-a"></div>
+              <!-- PLACEHOLDER: replace with screenshot proof -->
+              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Performance Results</div>
+              <div class="proof-card-title">App Install Campaign</div>
+              <p class="proof-card-outcome">Performance campaign drove 28,000 app installs at below-target cost-per-install for a fintech client.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">28K</span>
+                <span class="metric-label">App Installs</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">App Installs</span>
+                <span class="proof-tag">Fintech</span>
+                <span class="proof-tag">Mobile</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-b"></div>
+              <!-- PLACEHOLDER: replace with screenshot proof -->
+              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Performance Results</div>
+              <div class="proof-card-title">Retargeting System</div>
+              <p class="proof-card-outcome">Rebuilt a client's retargeting architecture from scratch, cutting cost-per-conversion by 41%.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">−41%</span>
+                <span class="metric-label">Cost Per Conversion</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Retargeting</span>
+                <span class="proof-tag">Performance</span>
+                <span class="proof-tag">Optimization</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Live Experiences -->
       <div class="work-panel" data-panel="events">
-        <div class="work-tile-strip">
-          <figure class="work-tile t-c">
-            <img src="/work/events-01.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Brand Activation</span>
-          </figure>
-          <figure class="work-tile t-d">
-            <img src="/work/events-02.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Conference</span>
-          </figure>
-          <figure class="work-tile t-e">
-            <video src="/work/events-03.mp4" autoplay muted loop playsinline onerror="this.style.display='none'"></video>
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Launch</span>
-          </figure>
-          <figure class="work-tile t-f">
-            <img src="/work/events-04.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">VIP Dinner</span>
-          </figure>
+        <div class="proof-grid">
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-d"></div>
+              <!-- PLACEHOLDER: replace with event visual -->
+              <div class="proof-card-visual-label">Event Visual</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Live Experiences</div>
+              <div class="proof-card-title">Brand Activation</div>
+              <p class="proof-card-outcome">Pop-up brand activation in Riyadh — 4,000+ attendees and 600K organic impressions generated in 48 hours.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">4,000+</span>
+                <span class="metric-label">Attendees</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Activation</span>
+                <span class="proof-tag">Riyadh</span>
+                <span class="proof-tag">Brand</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-a"></div>
+              <!-- PLACEHOLDER: replace with event visual -->
+              <div class="proof-card-visual-label">Event Visual</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Live Experiences</div>
+              <div class="proof-card-title">Annual Conference</div>
+              <p class="proof-card-outcome">Full production, AV, speakers, and communications for a 300-person industry conference from concept to execution.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">300</span>
+                <span class="metric-label">Guests Hosted</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Conference</span>
+                <span class="proof-tag">Production</span>
+                <span class="proof-tag">Events</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-b"></div>
+              <!-- PLACEHOLDER: replace with event visual -->
+              <div class="proof-card-visual-label">Event Visual</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Live Experiences</div>
+              <div class="proof-card-title">Product Launch Event</div>
+              <p class="proof-card-outcome">Press and influencer launch event for a new product line — 85 media and press in attendance, full coverage achieved.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">85</span>
+                <span class="metric-label">Press Attended</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Launch</span>
+                <span class="proof-tag">Press</span>
+                <span class="proof-tag">Influencer</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <div class="proof-card-visual-bg pv-c"></div>
+              <!-- PLACEHOLDER: replace with event visual -->
+              <div class="proof-card-visual-label">Event Visual</div>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Live Experiences</div>
+              <div class="proof-card-title">VIP Dinner Series</div>
+              <p class="proof-card-outcome">Intimate private dinner series connecting brand leadership with key client stakeholders across six carefully curated evenings.</p>
+              <div class="proof-card-metric">
+                <!-- PLACEHOLDER: replace with real metric -->
+                <span class="metric-num">6</span>
+                <span class="metric-label">Events Executed</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">VIP</span>
+                <span class="proof-tag">Hospitality</span>
+                <span class="proof-tag">Private</span>
+              </div>
+              <span class="proof-card-cta">View case
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </div>
+
         </div>
       </div>
 
@@ -669,21 +769,101 @@ footer.cine{
   </div>
 </section>
 
-<!-- ───────── CTA ───────── -->
-<section class="cta-cine" id="cta">
+<!-- ── Selected Proof ── -->
+<section class="selected-proof">
+  <div class="container">
+    <div class="selected-proof-inner reveal">
+      <div class="selected-proof-visual">
+        <!-- PLACEHOLDER: replace with real case study visual -->
+        <div class="selected-proof-visual-label">Selected Proof Visual</div>
+      </div>
+      <div class="selected-proof-text">
+        <span class="eyebrow"><span class="dot-pulse"></span>Selected Proof</span>
+        <h2>From idea to<br>visible <em>impact.</em></h2>
+        <div class="proof-detail-list">
+          <div class="proof-detail-item">
+            <span class="dl">Project</span>
+            <!-- PLACEHOLDER: replace with real project name -->
+            <span class="dv">Real Estate Lead Generation Campaign</span>
+          </div>
+          <div class="proof-detail-item">
+            <span class="dl">Service</span>
+            <!-- PLACEHOLDER: replace with real service type -->
+            <span class="dv">Paid Media · Meta Ads · Lead Nurturing</span>
+          </div>
+          <div class="proof-detail-item">
+            <span class="dl">Challenge</span>
+            <!-- PLACEHOLDER: replace with real challenge description -->
+            <span class="dv">A Riyadh residential developer needed qualified leads at scale — fast, with a fixed acquisition budget and a hard launch deadline.</span>
+          </div>
+          <div class="proof-detail-item">
+            <span class="dl">What we did</span>
+            <!-- PLACEHOLDER: replace with real approach description -->
+            <span class="dv">Built a full Meta funnel: creative, targeting, landing pages, CRM integration, and a weekly optimisation cadence from day one.</span>
+          </div>
+          <div class="proof-detail-item">
+            <span class="dl">Result</span>
+            <!-- PLACEHOLDER: replace with real result -->
+            <span class="dv result">1,200+ qualified leads at SAR 18 per lead — 40% below the target cost.</span>
+          </div>
+        </div>
+        <!-- PLACEHOLDER: link to full case study page when available -->
+        <a href="#" class="selected-proof-link">View full case study
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Results Strip ── -->
+<section class="results-strip">
+  <div class="container">
+    <div class="results-strip-inner reveal">
+      <div class="result-block">
+        <!-- PLACEHOLDER: replace XX with real number -->
+        <div class="result-num">XX+</div>
+        <div class="result-label">Films &amp; content pieces produced</div>
+      </div>
+      <div class="result-block">
+        <!-- PLACEHOLDER: replace XX with real number -->
+        <div class="result-num">XX+</div>
+        <div class="result-label">Followers grown for clients</div>
+      </div>
+      <div class="result-block">
+        <!-- PLACEHOLDER: replace XX with real number -->
+        <div class="result-num">XX+</div>
+        <div class="result-label">Qualified leads generated</div>
+      </div>
+      <div class="result-block">
+        <!-- PLACEHOLDER: replace XX with real number -->
+        <div class="result-num">XX+</div>
+        <div class="result-label">Live experiences executed</div>
+      </div>
+      <div class="result-block">
+        <!-- PLACEHOLDER: replace XX with real average ROAS -->
+        <div class="result-num">XX×</div>
+        <div class="result-label">Average return on ad spend</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-cine">
   <div class="container">
     <div class="cta-card reveal">
-      <span class="kicker">Let's talk</span>
-      <h2>Let's build the<br>next chapter.</h2>
-      <p>Tell us about your business. We'll come back within two working days.</p>
-      <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-primary" data-magnetic>Book a consultation
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      <span class="cta-kicker">Let's talk</span>
+      <h2>Have work that<br>needs to <em>move?</em></h2>
+      <p>Tell us about your brand. We'll come back within two working days with a clear plan.</p>
+      <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-primary" data-magnetic>Book a Discovery Call
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
   </div>
 </section>
 
-<!-- ───────── FOOTER ───────── -->
+<!-- ── Footer ── -->
 <footer class="cine">
   <div class="container">
     <div class="foot-grid">
@@ -715,7 +895,6 @@ footer.cine{
         <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
       </div>
     </div>
-
     <div class="foot-bottom">
       <span>© 2026 Ensign Ai Marketing Agency. All rights reserved.</span>
       <span>Riyadh, KSA · Sun–Thu · 9:00–18:00</span>
@@ -723,138 +902,68 @@ footer.cine{
   </div>
 </footer>
 
+<!-- ── WhatsApp FAB ── -->
+<a href="https://wa.me/966548919405" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 <script>
 (function(){
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var hasPointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  var hasPointer   = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-  /* ── MAGNETIC BUTTONS ── */
+  /* ── Magnetic buttons ── */
   if(hasPointer && !reduceMotion){
     document.querySelectorAll('[data-magnetic]').forEach(function(btn){
       btn.addEventListener('mousemove', function(e){
         var r = btn.getBoundingClientRect();
-        var x = (e.clientX - r.left) / r.width - .5;
-        var y = (e.clientY - r.top) / r.height - .5;
+        var x = (e.clientX - r.left) / r.width  - .5;
+        var y = (e.clientY - r.top)  / r.height - .5;
         btn.style.transform = 'translate('+(x*16)+'px,'+(y*10)+'px)';
       });
       btn.addEventListener('mouseleave', function(){
         btn.style.transition = 'transform .6s cubic-bezier(.23,1,.32,1)';
-        btn.style.transform = '';
+        btn.style.transform  = '';
         setTimeout(function(){ btn.style.transition = ''; }, 600);
       });
     });
   }
 
-  /* ── INTERSECTION OBSERVER ── */
+  /* ── Scroll reveals ── */
   var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('in'); }
-    });
-  }, { threshold: .15, rootMargin: '0px 0px -50px 0px' });
+    entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold:.12, rootMargin:'0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-  /* ── WORK TABS + KPI ANIMATION ── */
-  var workTabs      = document.querySelectorAll('.work-tab');
-  var workIndicator = document.querySelector('.work-tab-indicator');
-  var workPanels    = document.querySelectorAll('.work-panel');
-  var workSection   = document.getElementById('work');
+  /* ── Tab switching ── */
+  var tabs      = document.querySelectorAll('.work-tab');
+  var indicator = document.querySelector('.work-tab-indicator');
+  var panels    = document.querySelectorAll('.work-panel');
 
-  function positionIndicator(){
+  function moveIndicator(){
     var active = document.querySelector('.work-tab.active');
-    if(!active || !workIndicator) return;
-    workIndicator.style.width = active.offsetWidth + 'px';
-    workIndicator.style.transform = 'translateX(' + (active.offsetLeft - 6) + 'px)';
+    if(!active || !indicator) return;
+    indicator.style.width     = active.offsetWidth + 'px';
+    indicator.style.transform = 'translateX(' + (active.offsetLeft - 6) + 'px)';
   }
 
-  function formatVal(v, el){
-    var decimals = parseInt(el.dataset.decimals || '0', 10);
-    var prefix = el.dataset.prefix || '';
-    var suffix = el.dataset.suffix || '';
-    var str;
-    if(decimals){
-      str = v.toFixed(decimals);
-    } else {
-      var rounded = Math.round(v);
-      str = (Math.abs(rounded) >= 1000) ? rounded.toLocaleString('en-US') : rounded.toString();
-    }
-    return prefix + str + suffix;
+  function switchTab(name){
+    tabs.forEach(function(t){
+      var on = t.dataset.tab === name;
+      t.classList.toggle('active', on);
+      t.setAttribute('aria-selected', on);
+    });
+    moveIndicator();
+    panels.forEach(function(p){ p.classList.toggle('active', p.dataset.panel === name); });
   }
 
-  function animateCount(el){
-    if(reduceMotion){
-      el.textContent = formatVal(parseFloat(el.dataset.count), el);
-      return;
-    }
-    var target = parseFloat(el.dataset.count);
-    var duration = 1400;
-    var start = performance.now();
-    function tick(now){
-      var t = Math.min((now - start) / duration, 1);
-      var eased = 1 - Math.pow(1 - t, 3);
-      var v = target * eased;
-      el.textContent = formatVal(v, el);
-      if(t < 1) requestAnimationFrame(tick);
-    }
-    requestAnimationFrame(tick);
-  }
-
-  function animateLine(el, dur){
-    if(!el || reduceMotion) return;
-    var len = el.getTotalLength ? el.getTotalLength() : 1000;
-    el.style.strokeDasharray = len;
-    el.style.strokeDashoffset = len;
-    el.style.transition = 'none';
-    requestAnimationFrame(function(){
-      el.style.transition = 'stroke-dashoffset ' + (dur || 2) + 's cubic-bezier(.16,1,.3,1)';
-      el.style.strokeDashoffset = 0;
-    });
-  }
-
-  function activatePanel(name){
-    workPanels.forEach(function(p){
-      p.classList.toggle('active', p.dataset.panel === name);
-    });
-    var active = document.querySelector('.work-panel[data-panel="'+name+'"]');
-    if(!active) return;
-    active.querySelectorAll('.kpi-bar-fill, .ad-funnel-step .bar-fill').forEach(function(el){
-      el.style.width = '0%';
-    });
-    requestAnimationFrame(function(){
-      active.querySelectorAll('.kpi-bar-fill, .ad-funnel-step .bar-fill').forEach(function(el){
-        el.style.width = el.dataset.fill + '%';
-      });
-    });
-    active.querySelectorAll('.kpi-value[data-count]').forEach(animateCount);
-    animateLine(active.querySelector('#growthLine'), 2);
-    animateLine(active.querySelector('#growthLine2'), 2.4);
-  }
-
-  workTabs.forEach(function(tab){
-    tab.addEventListener('click', function(){
-      workTabs.forEach(function(t){ t.classList.remove('active'); });
-      tab.classList.add('active');
-      positionIndicator();
-      activatePanel(tab.dataset.tab);
-    });
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(){ switchTab(tab.dataset.tab); });
   });
 
-  window.addEventListener('load', positionIndicator);
-  window.addEventListener('resize', positionIndicator);
-  positionIndicator();
-
-  /* Trigger initial panel animation on page load */
-  if(workSection && 'IntersectionObserver' in window){
-    var workIO = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          var act = document.querySelector('.work-tab.active');
-          if(act) activatePanel(act.dataset.tab);
-          workIO.unobserve(workSection);
-        }
-      });
-    }, { threshold: .15 });
-    workIO.observe(workSection);
-  }
+  window.addEventListener('load',   moveIndicator);
+  window.addEventListener('resize', moveIndicator);
+  moveIndicator();
 }());
 </script>
 </body>
