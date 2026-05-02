@@ -93,22 +93,22 @@ button{font:inherit; cursor:pointer; border:0; background:none;}
   position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden;
 }
 .bg-mist::before, .bg-mist::after{
-  content:""; position:absolute; border-radius:50%; filter:blur(160px);
+  content:""; position:absolute; border-radius:50%; filter:blur(140px);
   will-change:transform;
 }
 .bg-mist::before{
   width:60vw; height:60vw; left:-15vw; top:-10vw;
-  background:radial-gradient(circle, rgba(0,217,192,.09), transparent 70%);
+  background:radial-gradient(circle, rgba(0,217,192,.07), transparent 70%);
   animation:mistA 40s ease-in-out infinite;
 }
 .bg-mist::after{
   width:55vw; height:55vw; right:-10vw; top:30vh;
-  background:radial-gradient(circle, rgba(0,217,192,.06), transparent 70%);
+  background:radial-gradient(circle, rgba(0,217,192,.05), transparent 70%);
   animation:mistB 50s ease-in-out infinite;
 }
 .bg-mist .m3{
   position:absolute; width:48vw; height:48vw; left:25vw; top:80vh;
-  background:radial-gradient(circle, rgba(0,217,192,.05), transparent 70%);
+  background:radial-gradient(circle, rgba(0,217,192,.04), transparent 70%);
   filter:blur(140px); border-radius:50%;
   animation:mistC 60s ease-in-out infinite;
 }
