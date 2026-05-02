@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Solutions — Ensign Ai Marketing Agency</title>
+<meta name="description" content="An interactive intelligence chamber. Run an Ensign agent, inspect the roster, and see what the intelligence layer can do — built in Saudi Arabia for the way modern businesses actually work.">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bone:#F2EFE8; --ink:#0A0A0A;
+  --night-deep:#040910; --night:#07111E;
+  --oasis:#00D9C0; --oasis-soft:rgba(0,217,192,.10); --oasis-dim:rgba(0,217,192,.32);
+  --ink-soft:rgba(242,239,232,.55); --ink-mute:rgba(242,239,232,.36);
+  --line:rgba(255,255,255,.07); --line-soft:rgba(255,255,255,.04);
+  --ease:cubic-bezier(.25,.46,.45,.94); --ease-out:cubic-bezier(.16,1,.3,1);
+  --shadow-md:0 4px 24px rgba(0,0,0,.22);
+  --sans:'Manrope',system-ui,sans-serif;
+  --display:'Fraunces',Georgia,serif;
+  --mono:'JetBrains Mono','Courier New',monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{
+  background:var(--night-deep); color:var(--bone);
+  font-family:var(--sans); font-size:16px; line-height:1.65;
+  min-height:100vh; overflow-x:hidden;
+}
+img,svg,video,canvas{display:block;max-width:100%;}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit;}
+ul{list-style:none;padding:0;}
+
+/* ─── Atmosphere layers ─── */
+.atmos-video{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  width:100vw;height:100vh;object-fit:cover;
+  opacity:.55;
+}
+.atmos-veil{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at center, rgba(4,9,16,.45) 0%, rgba(4,9,16,.78) 65%, rgba(4,9,16,.92) 100%),
+    linear-gradient(180deg, rgba(4,9,16,.55) 0%, rgba(4,9,16,.35) 35%, rgba(4,9,16,.65) 100%);
+}
+.atmos-grid{
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(0,217,192,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,217,192,.04) 1px, transparent 1px);
+  background-size:88px 88px;
+  background-position:center center;
+  opacity:.25;
+  animation:gridBreathe 14s ease-in-out infinite;
+  mask-image:radial-gradient(ellipse at center, black 30%, transparent 90%);
+  -webkit-mask-image:radial-gradient(ellipse at center, black 30%, transparent 90%);
+}
+@keyframes gridBreathe{
+  0%,100%{opacity:.18;}
+  50%{opacity:.35;}
+}
+.atmos-horizon{
+  position:fixed;top:-15%;left:50%;transform:translate(-50%,0);
+  width:140vw;height:90vh;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse at center top, rgba(0,217,192,.08), transparent 55%);
+  animation:horizonShift 18s ease-in-out infinite;
+  will-change:transform,opacity;
+  mix-blend-mode:screen;
+}
+@keyframes horizonShift{
+  0%,100%{opacity:.5;transform:translate(-50%,0);}
+  50%{opacity:.75;transform:translate(-50%,18px);}
+}
+.atmos-particles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;mix-blend-mode:screen;}
+
+/* ─── Container ─── */
+.container{max-width:1200px;margin:0 auto;padding:0 48px;position:relative;z-index:2;}
+@media(max-width:640px){.container{padding:0 24px;}}
+
+/* ─── Nav ─── */
+.nav-wrap{position:fixed;top:18px;left:0;right:0;z-index:50;display:flex;justify-content:center;padding:0 24px;pointer-events:none;}
+.nav{
+  display:flex;align-items:center;gap:32px;
+  background:rgba(242,239,232,.85);backdrop-filter:blur(22px) saturate(140%);-webkit-backdrop-filter:blur(22px) saturate(140%);
+  border:1px solid rgba(255,255,255,.7);box-shadow:0 1px 0 rgba(255,255,255,.6) inset,var(--shadow-md);
+  border-radius:999px;padding:10px 12px 10px 22px;pointer-events:auto;
+  color:var(--ink);
+}
+.nav-brand{display:flex;align-items:center;}
+.nav-logo-img{display:block;height:20px;width:auto;filter:brightness(0);}
+.nav-links{display:flex;gap:6px;}
+.nav-links a{font-size:13px;color:rgba(10,10,10,.62);padding:8px 14px;border-radius:999px;white-space:nowrap;transition:color .25s,background .25s;}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);background:rgba(10,10,10,.06);}
+.nav-cta{
+  background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;
+  font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease);will-change:transform;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 28px -8px rgba(10,10,10,.4);}
+@media(max-width:768px){.nav-links{display:none;}.nav{padding:8px 8px 8px 18px;gap:12px;}}
+
+/* ─── Eyebrow ─── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--oasis);margin-bottom:24px;
+}
+.dot-pulse{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--oasis);animation:pulse 2.4s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(.75);}}
+
+/* ─── Reveal system ─── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 1.1s var(--ease-out),transform 1.1s var(--ease-out);}
+.reveal.in{opacity:1;transform:translateY(0);}
+.reveal-line{position:relative;}
+.reveal-line::after{
+  content:'';position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--line);
+  transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease-out);
+}
+.reveal-line.in::after{transform:scaleX(1);}
+.stagger > .reveal{transition-delay:0ms;}
+.stagger > .reveal:nth-child(2){transition-delay:120ms;}
+.stagger > .reveal:nth-child(3){transition-delay:240ms;}
+.stagger > .reveal:nth-child(4){transition-delay:360ms;}
+.stagger > .reveal:nth-child(5){transition-delay:480ms;}
+.stagger > .reveal:nth-child(6){transition-delay:600ms;}
+
+/* ═══════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════ */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:170px 0 140px;
+  position:relative;
+}
+.hero-inner{max-width:920px;position:relative;z-index:2;}
+.hero-glow{
+  position:absolute;top:50%;left:30%;transform:translate(-50%,-50%);
+  width:80vw;max-width:900px;aspect-ratio:1;
+  background:radial-gradient(circle at center, rgba(0,217,192,.18), transparent 55%);
+  z-index:1;pointer-events:none;
+  filter:blur(20px);
+  will-change:transform;
+}
+.hero h1{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(48px,7.4vw,100px);
+  line-height:1.02;letter-spacing:-.035em;color:var(--bone);
+  margin-bottom:36px;
+}
+.hero h1 em{
+  font-style:italic;color:var(--oasis);font-weight:300;
+  display:inline-block;
+  opacity:0;transform:translateY(12px);
+  animation:emReveal 1.4s var(--ease-out) 1.1s forwards;
+}
+@keyframes emReveal{to{opacity:1;transform:translateY(0);}}
+.hero .sub{
+  font-size:19px;line-height:1.65;color:var(--ink-soft);
+  max-width:640px;margin-bottom:48px;
+}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:64px;}
+.btn-primary{
+  background:var(--oasis);color:var(--night-deep);
+  padding:16px 30px;border-radius:999px;
+  font-family:var(--sans);font-size:14.5px;font-weight:600;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+  cursor:pointer;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 44px -10px rgba(0,217,192,.45);}
+.btn-ghost{
+  background:transparent;color:var(--bone);
+  padding:16px 30px;border-radius:999px;
+  border:1px solid var(--line);
+  font-family:var(--sans);font-size:14.5px;font-weight:500;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:border-color .4s var(--ease),background .4s var(--ease),transform .4s var(--ease);
+  cursor:pointer;
+}
+.btn-ghost:hover{border-color:var(--oasis-dim);background:rgba(0,217,192,.04);transform:translateY(-2px);}
+.hero-meta{
+  display:flex;gap:32px;flex-wrap:wrap;
+  padding-top:32px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);
+}
+.hero-meta span{display:inline-flex;align-items:center;gap:8px;}
+.hero-meta span::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--oasis);}
+
+.scroll-cue{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-mute);
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+}
+.scroll-cue::after{
+  content:'';width:1px;height:36px;background:linear-gradient(to bottom,var(--oasis),transparent);
+  animation:scrollLine 2.4s ease-in-out infinite;
+}
+@keyframes scrollLine{0%{opacity:.2;transform:scaleY(.6);}50%{opacity:1;transform:scaleY(1);}100%{opacity:.2;transform:scaleY(.6);}}
+
+/* ═══════════════════════════════════════════════
+   INTRO
+   ═══════════════════════════════════════════ */
+.intro{
+  padding:120px 0;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.intro-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
+}
+@media(max-width:840px){.intro-grid{grid-template-columns:1fr;gap:32px;}}
+.intro h2{
+  font-family:var(--display);font-weight:300;font-size:clamp(34px,4.2vw,52px);
+  line-height:1.1;letter-spacing:-.025em;color:var(--bone);
+}
+.intro h2 em{font-style:italic;color:var(--oasis);}
+.intro p{font-size:16px;color:var(--ink-soft);line-height:1.75;margin-bottom:18px;}
+.intro p:last-child{margin-bottom:0;}
+
+/* ═══════════════════════════════════════════════
+   AGENT RUNNER
+   ═══════════════════════════════════════════ */
+.runner{padding:140px 0;}
+.runner-head{max-width:680px;margin-bottom:56px;}
+.runner-head h2{
+  font-family:var(--display);font-weight:300;font-size:clamp(40px,5vw,68px);
+  line-height:1.05;letter-spacing:-.03em;color:var(--bone);margin-bottom:22px;
+}
+.runner-head h2 em{font-style:italic;color:var(--oasis);}
+.runner-head p{font-size:16.5px;color:var(--ink-soft);line-height:1.7;}
+
+.demo-shell{
+  background:rgba(0,0,0,.5);
+  border:1px solid var(--line);
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+  transition:border-color .6s var(--ease);
+}
+.demo-shell.in-view{border-color:rgba(0,217,192,.18);}
+.demo-header{
+  padding:18px 24px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:16px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+}
+.demo-header .dots{display:flex;gap:6px;}
+.demo-header .dots i{display:block;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.13);}
+.demo-header .dots i:first-child{background:var(--oasis);}
+.demo-header .label{flex:1;}
+.live-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:4px 10px;border:1px solid rgba(0,217,192,.3);border-radius:999px;
+  color:var(--oasis);font-size:10px;letter-spacing:.2em;
+}
+.live-pill .dot{width:6px;height:6px;border-radius:50%;background:var(--oasis);animation:livePulse 1.6s ease-in-out infinite;}
+@keyframes livePulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,217,192,.5);}50%{opacity:.5;box-shadow:0 0 0 6px rgba(0,217,192,0);}}
+
+.demo-scenarios{
+  display:flex;gap:8px;flex-wrap:wrap;
+  padding:22px 24px;border-bottom:1px solid var(--line);
+  background:rgba(255,255,255,.01);
+}
+.scenario{
+  font-family:var(--sans);font-size:13px;color:var(--ink-soft);
+  padding:10px 18px;border:1px solid var(--line);border-radius:999px;
+  cursor:pointer;transition:all .35s var(--ease);position:relative;
+}
+.scenario:hover{color:var(--bone);border-color:var(--oasis-dim);}
+.scenario.active{
+  color:var(--night-deep);background:var(--oasis);border-color:var(--oasis);
+  box-shadow:0 0 0 4px rgba(0,217,192,.12);
+}
+
+.demo-output{
+  padding:32px 32px 28px;font-family:var(--mono);font-size:13.5px;line-height:1.85;
+  min-height:340px;color:var(--ink-soft);
+  white-space:pre-wrap;
+}
+.demo-output .prompt{color:var(--oasis);font-weight:500;}
+.demo-output .out{color:var(--bone);}
+.demo-output .ok{color:var(--oasis);}
+.demo-output .dim{color:var(--ink-mute);}
+.demo-output .num{color:var(--oasis);font-weight:500;}
+.demo-output .cursor{
+  display:inline-block;width:8px;height:14px;background:var(--oasis);
+  vertical-align:-2px;margin-left:3px;animation:blink 1s steps(1) infinite;
+}
+
+.demo-result{
+  margin:6px 30px 28px;padding:20px 24px;
+  border:1px solid rgba(0,217,192,.25);border-radius:14px;
+  background:rgba(0,217,192,.04);
+  font-family:var(--mono);font-size:12.5px;line-height:1.85;color:var(--bone);
+  opacity:0;transform:translateY(8px);transition:opacity .8s var(--ease-out),transform .8s var(--ease-out);
+}
+.demo-result.show{opacity:1;transform:translateY(0);}
+.demo-result .res-head{
+  display:flex;align-items:center;gap:10px;
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--oasis);
+  margin-bottom:12px;
+}
+.demo-result .res-head::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--oasis);}
+.demo-result .res-row{display:flex;justify-content:space-between;gap:20px;padding:5px 0;}
+.demo-result .res-row .k{color:var(--ink-soft);}
+.demo-result .res-row .v{color:var(--oasis);font-weight:500;}
+
+.demo-disclaimer{
+  margin-top:18px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink-mute);
+  text-align:center;
+}
+
+/* ═══════════════════════════════════════════════
+   AGENT ROSTER
+   ═══════════════════════════════════════════ */
+.roster{padding:140px 0;}
+.roster-head{max-width:720px;margin-bottom:64px;}
+.roster-head h2{
+  font-family:var(--display);font-weight:300;font-size:clamp(40px,5vw,68px);
+  line-height:1.05;letter-spacing:-.03em;color:var(--bone);margin-bottom:22px;
+}
+.roster-head h2 em{font-style:italic;color:var(--oasis);}
+.roster-head p{font-size:16.5px;color:var(--ink-soft);line-height:1.7;}
+
+.agent-grid{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:24px;overflow:hidden;}
+.agent{
+  background:var(--night-deep);
+  display:grid;grid-template-columns:130px 1fr 380px;gap:48px;
+  padding:48px 56px;
+  align-items:center;
+  position:relative;
+  transition:background .6s var(--ease),transform .5s var(--ease);
+}
+.agent::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:var(--oasis);transform:scaleY(0);transform-origin:top;
+  transition:transform .8s var(--ease-out);
+}
+.agent:hover{background:rgba(0,217,192,.025);}
+.agent:hover::before{transform:scaleY(1);}
+@media(max-width:980px){
+  .agent{grid-template-columns:1fr;gap:24px;padding:40px 32px;}
+}
+.agent-num{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--oasis);
+  line-height:1.7;
+}
+.agent-num .dim{color:var(--ink-mute);}
+.agent-body h3{
+  font-family:var(--display);font-weight:300;font-size:42px;line-height:1.05;letter-spacing:-.025em;
+  color:var(--bone);margin-bottom:14px;
+}
+.agent-body h3 em{font-style:italic;color:var(--oasis);}
+.agent-body p{font-size:15.5px;color:var(--ink-soft);line-height:1.7;max-width:520px;}
+.agent-body .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;}
+.agent-body .tags span{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-soft);padding:5px 11px;border:1px solid var(--line);border-radius:999px;
+  transition:border-color .4s var(--ease),color .4s var(--ease);
+}
+.agent:hover .tags span{border-color:rgba(0,217,192,.18);color:var(--bone);}
+
+.terminal{
+  background:rgba(0,0,0,.4);border:1px solid var(--line);border-radius:14px;
+  padding:18px 20px;font-family:var(--mono);font-size:12px;line-height:1.75;
+  color:var(--ink-soft);min-height:200px;
+  position:relative;overflow:hidden;
+  transition:border-color .5s var(--ease);
+}
+.agent:hover .terminal{border-color:rgba(0,217,192,.18);}
+.terminal::before{
+  content:'';position:absolute;top:14px;left:18px;width:8px;height:8px;border-radius:50%;
+  background:var(--oasis);box-shadow:14px 0 0 rgba(255,255,255,.13),28px 0 0 rgba(255,255,255,.07);
+}
+.terminal-body{margin-top:24px;min-height:140px;white-space:pre-wrap;}
+.terminal-body .prompt{color:var(--oasis);}
+.terminal-body .out{color:var(--bone);}
+.terminal-body .dim{color:var(--ink-mute);}
+.terminal-body .ok{color:var(--oasis);}
+.terminal-body .cursor{display:inline-block;width:7px;height:13px;background:var(--oasis);vertical-align:-2px;margin-left:2px;animation:blink 1s steps(1) infinite;}
+@keyframes blink{50%{opacity:0;}}
+
+/* ═══════════════════════════════════════════════
+   CAPABILITY MODULES
+   ═══════════════════════════════════════════ */
+.modules{padding:140px 0;border-top:1px solid var(--line);}
+.modules-head{max-width:720px;margin-bottom:64px;}
+.modules-head h2{
+  font-family:var(--display);font-weight:300;font-size:clamp(36px,4.4vw,56px);
+  line-height:1.1;letter-spacing:-.025em;color:var(--bone);margin-bottom:18px;
+}
+.modules-head h2 em{font-style:italic;color:var(--oasis);}
+.modules-head p{font-size:16px;color:var(--ink-soft);line-height:1.7;}
+
+.modules-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:var(--line);
+}
+@media(max-width:900px){.modules-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:560px){.modules-grid{grid-template-columns:1fr;}}
+.module{
+  background:var(--night-deep);padding:40px 36px;
+  position:relative;
+  transition:background .5s var(--ease),transform .5s var(--ease);
+  cursor:default;
+  min-height:220px;
+  display:flex;flex-direction:column;
+}
+.module::before,.module::after{
+  content:'';position:absolute;width:14px;height:14px;
+  border:1px solid var(--oasis);opacity:0;
+  transition:opacity .5s var(--ease);
+  pointer-events:none;
+}
+.module::before{top:14px;left:14px;border-right:0;border-bottom:0;}
+.module::after{bottom:14px;right:14px;border-left:0;border-top:0;}
+.module:hover{background:rgba(0,217,192,.025);}
+.module:hover::before,.module:hover::after{opacity:.7;}
+.module .mod-num{
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:var(--oasis);
+  margin-bottom:18px;
+}
+.module h3{
+  font-family:var(--display);font-weight:300;font-size:24px;line-height:1.2;letter-spacing:-.02em;
+  color:var(--bone);margin-bottom:14px;
+}
+.module h3 em{font-style:italic;color:var(--oasis);}
+.module p{font-size:14.5px;color:var(--ink-soft);line-height:1.65;}
+
+/* ═══════════════════════════════════════════════
+   HOW IT WORKS
+   ═══════════════════════════════════════════ */
+.how{padding:140px 0;border-top:1px solid var(--line);}
+.how-head{max-width:720px;margin-bottom:80px;}
+.how-head h2{
+  font-family:var(--display);font-weight:300;font-size:clamp(36px,4.4vw,56px);
+  line-height:1.1;letter-spacing:-.025em;color:var(--bone);
+}
+.how-head h2 em{font-style:italic;color:var(--oasis);}
+
+.timeline{position:relative;padding-left:60px;}
+.timeline::before{
+  content:'';position:absolute;left:24px;top:6px;bottom:6px;width:1px;
+  background:var(--line);
+}
+.timeline-fill{
+  position:absolute;left:24px;top:6px;width:1px;background:var(--oasis);
+  height:0;transition:height .8s var(--ease-out);
+}
+.step{
+  position:relative;padding:24px 0 56px;
+}
+.step:last-child{padding-bottom:0;}
+.step::before{
+  content:'';position:absolute;left:-44px;top:32px;width:13px;height:13px;border-radius:50%;
+  background:var(--night-deep);border:1px solid var(--line);
+  transition:border-color .5s var(--ease),box-shadow .5s var(--ease),background .5s var(--ease);
+}
+.step.active::before{
+  background:var(--oasis);border-color:var(--oasis);
+  box-shadow:0 0 0 4px rgba(0,217,192,.15);
+}
+.step-num{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--oasis);
+  margin-bottom:10px;
+}
+.step h3{
+  font-family:var(--display);font-weight:300;font-size:34px;line-height:1.1;letter-spacing:-.025em;
+  color:var(--bone);margin-bottom:10px;
+  transition:color .5s var(--ease);
+}
+.step.active h3 em,.step h3 em{font-style:italic;color:var(--oasis);}
+.step p{font-size:15.5px;color:var(--ink-soft);line-height:1.7;max-width:580px;}
+
+.os-mention{
+  margin-top:48px;padding-top:32px;border-top:1px solid var(--line);
+  font-family:var(--mono);font-size:12px;letter-spacing:.05em;color:var(--ink-mute);
+  max-width:680px;line-height:1.7;
+}
+.os-mention a{color:var(--oasis);text-decoration:underline;text-underline-offset:3px;}
+
+/* ═══════════════════════════════════════════════
+   WHY ENSIGN
+   ═══════════════════════════════════════════ */
+.why{padding:140px 0;border-top:1px solid var(--line);}
+.why-head{max-width:680px;margin-bottom:64px;}
+.why-head h2{
+  font-family:var(--display);font-weight:300;font-size:clamp(40px,5vw,68px);
+  line-height:1.05;letter-spacing:-.03em;color:var(--bone);margin-bottom:24px;
+}
+.why-head h2 em{font-style:italic;color:var(--oasis);}
+.why-head p{font-size:16.5px;color:var(--ink-soft);line-height:1.7;}
+
+.why-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  border:1px solid var(--line);border-radius:20px;overflow:hidden;background:var(--line);
+}
+@media(max-width:760px){.why-grid{grid-template-columns:1fr;}}
+.why-col{
+  background:var(--night-deep);padding:48px 36px;
+  display:flex;flex-direction:column;gap:14px;
+  position:relative;
+  transition:background .5s var(--ease);
+}
+.why-col .why-label{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-mute);
+}
+.why-col h3{
+  font-family:var(--display);font-weight:300;font-size:26px;line-height:1.2;letter-spacing:-.02em;
+  color:var(--ink-soft);
+}
+.why-col.is-ensign{background:rgba(0,217,192,.04);}
+.why-col.is-ensign .why-label{color:var(--oasis);}
+.why-col.is-ensign h3{color:var(--bone);font-size:30px;}
+.why-col.is-ensign h3 em{font-style:italic;color:var(--oasis);}
+.why-col.is-ensign::after{
+  content:'';position:absolute;inset:-1px;border:1px solid rgba(0,217,192,.35);
+  border-radius:inherit;pointer-events:none;
+  opacity:0;transition:opacity .8s var(--ease-out);
+}
+.why-col.is-ensign.in::after{opacity:1;}
+
+.why-close{
+  margin-top:64px;
+  font-family:var(--display);font-weight:300;font-style:italic;
+  font-size:clamp(20px,2.4vw,28px);line-height:1.5;letter-spacing:-.01em;
+  color:var(--bone);max-width:780px;
+}
+
+/* ═══════════════════════════════════════════════
+   FINAL CTA
+   ═══════════════════════════════════════════ */
+.final{
+  padding:170px 0 140px;text-align:center;position:relative;
+  border-top:1px solid var(--line);
+  overflow:hidden;
+}
+.final::before{
+  content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);
+  width:90vw;max-width:900px;aspect-ratio:1;
+  background:radial-gradient(circle at center, rgba(0,217,192,.10), transparent 55%);
+  pointer-events:none;z-index:0;
+  filter:blur(10px);
+}
+.final .container{position:relative;z-index:2;}
+.final .eyebrow{justify-content:center;margin-bottom:32px;}
+.final h2{
+  font-family:var(--display);font-weight:300;font-size:clamp(46px,6.8vw,92px);
+  line-height:1.02;letter-spacing:-.035em;color:var(--bone);margin-bottom:26px;
+}
+.final h2 em{font-style:italic;color:var(--oasis);}
+.final p{
+  font-size:17px;color:var(--ink-soft);line-height:1.65;
+  max-width:540px;margin:0 auto 48px;
+}
+.final-close{
+  margin-top:48px;
+  font-family:var(--display);font-weight:300;font-style:italic;
+  font-size:18px;color:var(--ink-mute);letter-spacing:-.005em;
+}
+
+/* ─── Footer ─── */
+.cine{
+  border-top:1px solid var(--line);
+  padding:72px 0 40px;position:relative;z-index:2;background:var(--night-deep);
+}
+.foot-grid{
+  display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:48px;
+  padding-bottom:56px;border-bottom:1px solid var(--line);margin-bottom:32px;
+}
+@media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr;gap:36px;}}
+@media(max-width:560px){.foot-grid{grid-template-columns:1fr;}}
+.foot-brand{display:flex;flex-direction:column;gap:16px;}
+.foot-logo-img{height:28px;width:auto;filter:brightness(0) invert(1);opacity:.7;}
+.foot-brand .tag{font-size:14px;color:var(--bone);opacity:.55;line-height:1.5;max-width:220px;}
+.foot-brand .desc{font-family:var(--mono);font-size:11px;color:rgba(242,239,232,.25);letter-spacing:.04em;}
+.foot-col{display:flex;flex-direction:column;gap:0;}
+.foot-col h4{
+  font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(242,239,232,.35);margin-bottom:16px;
+}
+.foot-col a{font-size:14px;color:rgba(242,239,232,.55);padding:5px 0;transition:color .2s;}
+.foot-col a:hover{color:var(--bone);}
+.foot-bottom{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+  font-family:var(--mono);font-size:11px;color:rgba(242,239,232,.25);letter-spacing:.04em;
+}
+
+.whatsapp-fab{
+  position:fixed;bottom:28px;right:28px;z-index:100;
+  width:52px;height:52px;border-radius:50%;
+  background:#25D366;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.4);
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease);
+}
+.whatsapp-fab:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(37,211,102,.5);}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+  .atmos-grid,.atmos-horizon,.atmos-particles,.hero-glow{animation:none!important;}
+  .reveal{opacity:1!important;transform:none!important;}
+  .hero h1 em{opacity:1!important;transform:none!important;animation:none!important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ATMOSPHERE -->
+<video class="atmos-video" id="bg-video" autoplay loop muted playsinline preload="auto" aria-hidden="true">
+  <source src="/assets/video/hero-bg.mp4" type="video/mp4">
+</video>
+<div class="atmos-veil" aria-hidden="true"></div>
+<div class="atmos-horizon" aria-hidden="true"></div>
+<div class="atmos-grid" aria-hidden="true"></div>
+<canvas class="atmos-particles" id="particles" aria-hidden="true"></canvas>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <header class="nav">
+    <a href="/" class="nav-brand">
+      <img src="/assets/logos/logo-main.png" alt="Ensign Ai Marketing Agency" class="nav-logo-img">
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="/ai-solutions.html" class="active">AI Solutions</a>
+      <a href="/#services">Agency</a>
+      <a href="/#eos">Ensign OS</a>
+      <a href="/work.html">Work</a>
+      <a href="/blog/">Blog</a>
+      <a href="/ar/" aria-label="Switch to Arabic">AR</a>
+    </nav>
+    <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="nav-cta">Book a Call
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </header>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-glow" id="hero-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <span class="eyebrow"><span class="dot-pulse"></span>AI Solutions</span>
+      <h1>AI agents, built for the way you <em>actually work.</em></h1>
+      <p class="sub">Ensign builds AI systems that help businesses think, act, and respond faster — across marketing, sales, operations, and decision making.</p>
+      <div class="hero-ctas">
+        <a href="#agent-runner" class="btn-primary">Run a Demo
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#agent-roster" class="btn-ghost">Explore the Agents
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span>Six agents</span>
+        <span>Arabic + English</span>
+        <span>Made in Saudi Arabia</span>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">Scroll</div>
+</section>
+
+<!-- ═══ INTRO ═══ -->
+<section class="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <h2 class="reveal">Built for the way modern businesses <em>actually work.</em></h2>
+      <div>
+        <p class="reveal">We do not build AI for show. We build intelligent systems that sit inside the business — reducing manual work, connecting teams, reading performance signals, and turning scattered information into action.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AGENT RUNNER ═══ -->
+<section class="runner" id="agent-runner">
+  <div class="container">
+    <div class="runner-head reveal">
+      <span class="eyebrow"><span class="dot-pulse"></span>Live Demonstration</span>
+      <h2>Run an <em>agent.</em></h2>
+      <p>Choose a scenario and watch how an Ensign agent thinks through the task — from signal detection to recommended action.</p>
+    </div>
+
+    <div class="demo-shell reveal" id="demo-shell">
+      <div class="demo-header">
+        <div class="dots"><i></i><i></i><i></i></div>
+        <span class="label">ensign.os · agent-runner</span>
+        <span class="live-pill"><span class="dot"></span>Live</span>
+      </div>
+      <div class="demo-scenarios" id="scenarios">
+        <button class="scenario active" data-scenario="campaign">A. Launch a Ramadan campaign</button>
+        <button class="scenario" data-scenario="lead">B. Qualify a new lead</button>
+        <button class="scenario" data-scenario="report">C. Generate weekly report</button>
+        <button class="scenario" data-scenario="analyse">D. Analyse campaign performance</button>
+        <button class="scenario" data-scenario="briefing">E. Prepare sales briefing</button>
+      </div>
+      <div class="demo-output" id="demo-output"></div>
+      <div class="demo-result" id="demo-result"></div>
+    </div>
+    <p class="demo-disclaimer">Demo output shown for illustration. Real deployments run on approved business data.</p>
+  </div>
+</section>
+
+<!-- ═══ AGENT ROSTER ═══ -->
+<section class="roster" id="agent-roster">
+  <div class="container">
+    <div class="roster-head reveal">
+      <span class="eyebrow"><span class="dot-pulse"></span>The Roster</span>
+      <h2>Six agents. <em>One stack.</em></h2>
+      <p>Each agent is built for a specific function, but they share context — so work moves from strategy to execution to measurement without anyone retyping the same information.</p>
+    </div>
+
+    <div class="agent-grid">
+
+      <article class="agent reveal">
+        <div class="agent-num"><span>AGENT</span><br><span class="dim">01</span></div>
+        <div class="agent-body">
+          <h3>The <em>Strategist.</em></h3>
+          <p>Turns business goals, audience data, and quarterly targets into structured campaign plans, channel priorities, and execution milestones.</p>
+          <div class="tags"><span>Planning</span><span>Budget</span><span>Forecasting</span></div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-body" data-script="strategist"></div>
+        </div>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-num"><span>AGENT</span><br><span class="dim">02</span></div>
+        <div class="agent-body">
+          <h3>The <em>Creative.</em></h3>
+          <p>Produces campaign ideas, ad copy, scripts, captions, and creative directions in English and Arabic, aligned with brand voice.</p>
+          <div class="tags"><span>Copywriting</span><span>Ad Creative</span><span>Bilingual</span></div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-body" data-script="creative"></div>
+        </div>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-num"><span>AGENT</span><br><span class="dim">03</span></div>
+        <div class="agent-body">
+          <h3>Lead <em>Intelligence.</em></h3>
+          <p>Scores, enriches, and routes inbound leads in real time, giving sales teams the context they need before the first call.</p>
+          <div class="tags"><span>Scoring</span><span>Enrichment</span><span>Routing</span></div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-body" data-script="leads"></div>
+        </div>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-num"><span>AGENT</span><br><span class="dim">04</span></div>
+        <div class="agent-body">
+          <h3>The <em>Concierge.</em></h3>
+          <p>Supports customer or lead conversations by preparing responses, FAQs, service information, and handover summaries.</p>
+          <div class="tags"><span>Conversation</span><span>FAQ</span><span>Handover</span></div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-body" data-script="concierge"></div>
+        </div>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-num"><span>AGENT</span><br><span class="dim">05</span></div>
+        <div class="agent-body">
+          <h3>The <em>Automator.</em></h3>
+          <p>Handles repetitive workflows such as reminders, routing, task creation, report preparation, and internal notifications.</p>
+          <div class="tags"><span>Workflow</span><span>Routing</span><span>Reminders</span></div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-body" data-script="automator"></div>
+        </div>
+      </article>
+
+      <article class="agent reveal">
+        <div class="agent-num"><span>AGENT</span><br><span class="dim">06</span></div>
+        <div class="agent-body">
+          <h3>The <em>Analyst.</em></h3>
+          <p>Reads campaign, sales, and performance data to detect patterns, risks, wasted budget, and growth opportunities.</p>
+          <div class="tags"><span>Reporting</span><span>Insights</span><span>Optimisation</span></div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-body" data-script="analyst"></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MODULES ═══ -->
+<section class="modules">
+  <div class="container">
+    <div class="modules-head reveal">
+      <span class="eyebrow"><span class="dot-pulse"></span>Capability Layer</span>
+      <h2>What the <em>intelligence layer</em> can do.</h2>
+      <p>Six capability areas that the agent stack composes into — each one designed to remove friction inside the business.</p>
+    </div>
+
+    <div class="modules-grid stagger">
+      <article class="module reveal">
+        <div class="mod-num">01</div>
+        <h3>AI <em>Agents.</em></h3>
+        <p>Role-specific agents for marketing, sales, research, content, and internal operations.</p>
+      </article>
+      <article class="module reveal">
+        <div class="mod-num">02</div>
+        <h3>AI Marketing <em>Intelligence.</em></h3>
+        <p>Analysing campaigns, surfacing winning patterns, and supporting smarter optimisation across channels.</p>
+      </article>
+      <article class="module reveal">
+        <div class="mod-num">03</div>
+        <h3>AI Sales <em>Intelligence.</em></h3>
+        <p>Lead qualification, follow-up logic, sales summaries, and faster handovers from marketing into sales.</p>
+      </article>
+      <article class="module reveal">
+        <div class="mod-num">04</div>
+        <h3>Workflow <em>Automation.</em></h3>
+        <p>Routing, reminders, approvals, reporting, and the internal coordination work that quietly drains time.</p>
+      </article>
+      <article class="module reveal">
+        <div class="mod-num">05</div>
+        <h3>Reporting &amp; <em>Decision Intelligence.</em></h3>
+        <p>Reports for management, marketing, sales, and clients — with insights that explain what to do next.</p>
+      </article>
+      <article class="module reveal">
+        <div class="mod-num">06</div>
+        <h3>AI Content &amp; <em>Creative Systems.</em></h3>
+        <p>Brand-trained assistants for captions, scripts, ad copy, briefs, prompts, and website copy.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="how">
+  <div class="container">
+    <div class="how-head reveal">
+      <span class="eyebrow"><span class="dot-pulse"></span>The Process</span>
+      <h2>How we build <em>intelligence</em> into the business.</h2>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="timeline-fill" id="timeline-fill"></div>
+      <div class="step" data-step="1">
+        <div class="step-num">01</div>
+        <h3><em>Diagnose.</em></h3>
+        <p>We map the business structure, data, team workflows, and friction points.</p>
+      </div>
+      <div class="step" data-step="2">
+        <div class="step-num">02</div>
+        <h3><em>Design.</em></h3>
+        <p>We define what the AI should do, what it should not do, and where human approval is required.</p>
+      </div>
+      <div class="step" data-step="3">
+        <div class="step-num">03</div>
+        <h3><em>Build.</em></h3>
+        <p>We create the agents, workflows, prompts, logic, dashboards, and integrations.</p>
+      </div>
+      <div class="step" data-step="4">
+        <div class="step-num">04</div>
+        <h3><em>Train.</em></h3>
+        <p>We align the system with the company's services, voice, sales process, and reporting needs.</p>
+      </div>
+      <div class="step" data-step="5">
+        <div class="step-num">05</div>
+        <h3><em>Refine.</em></h3>
+        <p>We improve the system based on usage, performance, and business outcomes.</p>
+      </div>
+    </div>
+
+    <p class="os-mention">Some deployments can connect into the wider Ensign ecosystem when deeper operational visibility is needed.</p>
+  </div>
+</section>
+
+<!-- ═══ WHY ENSIGN ═══ -->
+<section class="why">
+  <div class="container">
+    <div class="why-head reveal">
+      <span class="eyebrow"><span class="dot-pulse"></span>Why Ensign</span>
+      <h2>Two sides of the problem. <em>One company.</em></h2>
+      <p>Most companies sit on one side of the problem. Agencies can market the business. Tech companies can build the system. Ensign connects both.</p>
+    </div>
+
+    <div class="why-grid stagger">
+      <div class="why-col reveal">
+        <div class="why-label">Agencies</div>
+        <h3>Can market the business.</h3>
+      </div>
+      <div class="why-col reveal">
+        <div class="why-label">Tech Companies</div>
+        <h3>Can build the system.</h3>
+      </div>
+      <div class="why-col is-ensign reveal">
+        <div class="why-label">Ensign</div>
+        <h3><em>Connects both.</em></h3>
+      </div>
+    </div>
+
+    <p class="why-close reveal">Ensign understands campaigns, sales pressure, content, lead flow, reporting, and operations — then builds the intelligence layer behind them.</p>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final">
+  <div class="container">
+    <span class="eyebrow"><span class="dot-pulse"></span>Ready when you are</span>
+    <h2 class="reveal">Bring intelligence into <em>the operation.</em></h2>
+    <p class="reveal">If your business is growing faster than your systems can handle, Ensign can help build the AI layer behind it.</p>
+    <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="btn-primary reveal">Book a Call
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <p class="final-close reveal">Human-led intelligence. Made in Saudi Arabia.</p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="cine">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="/" class="foot-logo"><img src="/assets/logos/logo-main.png" alt="Ensign Ai Marketing Agency" class="foot-logo-img"></a>
+        <div class="tag">A New Intelligence Made in Saudi Arabia.</div>
+        <div class="desc">© 2026 Ensign Ai Marketing Agency. All rights reserved.</div>
+      </div>
+      <div class="foot-col">
+        <h4>Services</h4>
+        <a href="/ai-solutions.html">AI Solutions</a>
+        <a href="/#services">Agency</a>
+        <a href="/#eos">Ensign OS</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="/blog/">Blog</a>
+        <a href="/work.html">Work</a>
+        <a href="/careers.html">Careers</a>
+        <a href="/privacy-policy.html">Privacy Policy</a>
+        <a href="/terms-and-conditions.html">Terms</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:contact@ensignksa.com">contact@ensignksa.com</a>
+        <a href="https://wa.me/966548919405" target="_blank" rel="noopener noreferrer">+966 54 891 9405</a>
+        <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Ensign Ai Marketing Agency. All rights reserved.</span>
+      <span>Riyadh, KSA · Sun–Thu · 9:00–18:00</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/966548919405" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ── Reveal observer ── */
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold:.15, rootMargin:'0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  /* ── Sparse particles ── */
+  if(!reduce){
+    var c = document.getElementById('particles');
+    if(c){
+      var ctx = c.getContext('2d');
+      var dpr = window.devicePixelRatio || 1;
+      var pts = [];
+      var NUM = window.innerWidth < 768 ? 14 : 26;
+      function resize(){
+        c.width = innerWidth*dpr; c.height = innerHeight*dpr;
+        c.style.width = innerWidth+'px'; c.style.height = innerHeight+'px';
+        ctx.setTransform(1,0,0,1,0,0);
+        ctx.scale(dpr, dpr);
+      }
+      function init(){
+        pts = [];
+        for(var i=0;i<NUM;i++){
+          pts.push({
+            x: Math.random()*innerWidth, y: Math.random()*innerHeight,
+            vx: (Math.random()-.5)*.08, vy: (Math.random()-.5)*.08,
+            r: Math.random()*1.1 + .4,
+            tw: Math.random()*Math.PI*2
+          });
+        }
+      }
+      function draw(){
+        ctx.clearRect(0,0,innerWidth,innerHeight);
+        var t = performance.now()*.0008;
+        for(var i=0;i<pts.length;i++){
+          var p = pts[i];
+          p.x += p.vx; p.y += p.vy;
+          if(p.x<-10) p.x = innerWidth+10;
+          if(p.x>innerWidth+10) p.x = -10;
+          if(p.y<-10) p.y = innerHeight+10;
+          if(p.y>innerHeight+10) p.y = -10;
+          var alpha = .35 + Math.sin(t + p.tw) * .25;
+          ctx.fillStyle = 'rgba(0,217,192,'+alpha+')';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      resize(); init(); draw();
+      addEventListener('resize', function(){ resize(); init(); }, { passive:true });
+    }
+  }
+
+  /* ── Hero parallax (mouse) ── */
+  if(!reduce){
+    var heroGlow = document.getElementById('hero-glow');
+    if(heroGlow){
+      var tx = 0, ty = 0, cx = 0, cy = 0;
+      addEventListener('mousemove', function(e){
+        var x = (e.clientX / innerWidth - .5);
+        var y = (e.clientY / innerHeight - .5);
+        tx = x * 30; ty = y * 22;
+      }, { passive:true });
+      (function loop(){
+        cx += (tx - cx) * .04;
+        cy += (ty - cy) * .04;
+        heroGlow.style.transform = 'translate(calc(-50% + '+cx.toFixed(2)+'px), calc(-50% + '+cy.toFixed(2)+'px))';
+        requestAnimationFrame(loop);
+      })();
+    }
+  }
+
+  /* ── Agent terminal scripts ── */
+  var SCRIPTS = {
+    strategist: [
+      ['prompt','> '],['dim','load brand_inputs.json\n'],
+      ['prompt','> '],['out','parsing audience segments... '],['ok','done\n'],
+      ['prompt','> '],['out','allocating Q3 budget...\n'],
+      ['dim','  meta:        42% (SAR 84,000)\n'],
+      ['dim','  google:      28% (SAR 56,000)\n'],
+      ['dim','  whatsapp:    18% (SAR 36,000)\n'],
+      ['dim','  influencer:  12% (SAR 24,000)\n'],
+      ['prompt','> '],['ok','plan ready · 12 weeks · 4 milestones']
+    ],
+    creative: [
+      ['prompt','> '],['dim','prompt: "Eid skincare launch"\n'],
+      ['prompt','> '],['out','generating 8 ad variants...\n'],
+      ['dim','  EN headlines (4)... ✓\n'],
+      ['dim','  AR headlines (4)... ✓\n'],
+      ['dim','  caption variants (8)... ✓\n'],
+      ['prompt','> '],['out','brand voice check... '],['ok','passed\n'],
+      ['prompt','> '],['ok','ready for review in Figma']
+    ],
+    leads: [
+      ['prompt','> '],['out','inbound: HubSpot form #4192\n'],
+      ['dim','  enriching with Clearbit... ✓\n'],
+      ['dim','  company: real estate developer · Riyadh\n'],
+      ['dim','  intent score: '],['ok','87 / 100\n'],
+      ['prompt','> '],['out','routing to → '],['ok','sales.lead@ensign\n'],
+      ['prompt','> '],['ok','SLA: respond within 3 minutes']
+    ],
+    concierge: [
+      ['prompt','> '],['out','incoming: customer enquiry · ar\n'],
+      ['dim','  detecting intent... '],['ok','service-info\n'],
+      ['prompt','> '],['out','preparing response (ar)... ✓\n'],
+      ['dim','  pulling FAQ: hours, pricing, location\n'],
+      ['prompt','> '],['out','handover summary drafted\n'],
+      ['prompt','> '],['ok','reply staged · awaiting human review']
+    ],
+    automator: [
+      ['prompt','> '],['out','workflow: new-deal-routing\n'],
+      ['dim','  task created → Sara (sales)\n'],
+      ['dim','  reminder set: 24h follow-up\n'],
+      ['dim','  notion doc generated\n'],
+      ['dim','  slack notice → #sales-ops\n'],
+      ['prompt','> '],['ok','workflow complete · 4 steps · 2.1s']
+    ],
+    analyst: [
+      ['prompt','> '],['out','aggregating last 7 days...\n'],
+      ['dim','  impressions: '],['ok','+18% w/w\n'],
+      ['dim','  cost per lead: '],['ok','-12%\n'],
+      ['dim','  anomaly: meta CPC up 34% on Tue\n'],
+      ['prompt','> '],['out','recommendation: rotate creative on ad-set 7\n'],
+      ['prompt','> '],['ok','report sent · Mon 7:00am']
+    ]
+  };
+
+  function typeScript(el, lines, speed){
+    speed = speed || 16;
+    el.dataset.typing = '1';
+    el.innerHTML = '';
+    var i = 0, j = 0;
+    function tick(){
+      if(el.dataset.typing !== '1') return;
+      if(i >= lines.length){
+        el.innerHTML = lines.map(function(p){ return '<span class="'+p[0]+'">'+p[1]+'</span>'; }).join('') + '<span class="cursor"></span>';
+        return;
+      }
+      var pair = lines[i];
+      var cls = pair[0], text = pair[1];
+      if(j < text.length){
+        var html = lines.slice(0,i).map(function(p){ return '<span class="'+p[0]+'">'+p[1]+'</span>'; }).join('') + '<span class="'+cls+'">'+text.slice(0,j+1)+'</span>';
+        el.innerHTML = html + '<span class="cursor"></span>';
+        j++;
+        setTimeout(tick, speed + Math.random()*18);
+      } else {
+        i++; j = 0;
+        setTimeout(tick, 80);
+      }
+    }
+    tick();
+  }
+
+  var termIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var el = e.target;
+      var script = el.dataset.script;
+      if(!SCRIPTS[script]) return;
+      if(e.isIntersecting && el.dataset.typing !== '1' && !el.dataset.played){
+        typeScript(el, SCRIPTS[script]);
+        el.dataset.played = '1';
+      }
+    });
+  }, { threshold:.4 });
+  document.querySelectorAll('.terminal-body').forEach(function(t){ termIO.observe(t); });
+
+  /* Restart agent terminal on hover */
+  document.querySelectorAll('.agent').forEach(function(card){
+    var term = card.querySelector('.terminal-body');
+    if(!term) return;
+    card.addEventListener('mouseenter', function(){
+      var script = term.dataset.script;
+      if(SCRIPTS[script]){
+        term.dataset.typing = '0';
+        setTimeout(function(){ typeScript(term, SCRIPTS[script]); }, 60);
+      }
+    });
+  });
+
+  /* ── Demo runner ── */
+  var DEMO = {
+    campaign: {
+      lines: [
+        ['prompt','> '],['out','launching ramadan campaign for a premium hospitality group\n'],
+        ['prompt','> '],['out','strategist building a 30-day plan... '],['ok','done\n'],
+        ['dim','  4 milestones · 3 channels\n'],
+        ['prompt','> '],['out','creative drafting 12 ad variants in English and Arabic... '],['ok','passed\n'],
+        ['prompt','> '],['out','automator staging campaigns on Meta and Google\n'],
+        ['dim','  budget allocated · launch scheduled\n'],
+        ['prompt','> '],['out','concierge preparing customer FAQ for Iftar bookings\n'],
+        ['prompt','> '],['out','analyst configuring nightly performance reports\n'],
+        ['prompt','> '],['ok','campaign live · 840K reach · 1,200 — 1,500 leads · 48 hours']
+      ],
+      result: {
+        head: 'Campaign live',
+        rows: [
+          ['Expected reach','840K'],
+          ['Projected qualified leads','1,200 — 1,500'],
+          ['First results in','48 hours']
+        ]
+      }
+    },
+    lead: {
+      lines: [
+        ['prompt','> '],['out','new lead arrived from the website\n'],
+        ['prompt','> '],['out','reading form submission... '],['ok','done\n'],
+        ['dim','  name, role, and company captured\n'],
+        ['prompt','> '],['out','enriching with public business data... '],['ok','done\n'],
+        ['dim','  real estate developer · 320 units · Riyadh\n'],
+        ['prompt','> '],['out','reviewing intent signals across the site\n'],
+        ['dim','  villa listing (4x) · floorplan downloaded\n'],
+        ['prompt','> '],['out','scoring against ideal client profile\n'],
+        ['dim','  match score: '],['ok','87 / 100\n'],
+        ['prompt','> '],['out','routing to the right rep\n'],
+        ['dim','  sent to Sara · sales lead\n'],
+        ['prompt','> '],['ok','lead qualified · respond within 3 minutes']
+      ],
+      result: {
+        head: 'Lead qualified',
+        rows: [
+          ['Score','87 / 100'],
+          ['Routed to','Sara · sales lead'],
+          ['SLA','respond within 3 min']
+        ]
+      }
+    },
+    report: {
+      lines: [
+        ['prompt','> '],['out','building weekly performance report\n'],
+        ['prompt','> '],['out','pulling last 7 days... '],['ok','done\n'],
+        ['dim','  4 channels · 14 campaigns · all accounts active\n'],
+        ['prompt','> '],['out','comparing this week against last week\n'],
+        ['dim','  impressions '],['ok','+18%'],['dim',' · cost per lead '],['ok','-12%\n'],
+        ['prompt','> '],['out','looking for anomalies\n'],
+        ['dim','  flagged: meta CPC spike on Tuesday\n'],
+        ['prompt','> '],['out','drafting recommendations\n'],
+        ['dim','  rotate creative on ad-set 7\n'],
+        ['prompt','> '],['out','sending to team inbox\n'],
+        ['prompt','> '],['ok','report delivered · Mon 7:00 AM']
+      ],
+      result: {
+        head: 'Weekly report',
+        rows: [
+          ['Impressions','2.1M (+18% w/w)'],
+          ['Qualified leads','312 (+24% w/w)'],
+          ['Cost per lead','SAR 38 (-12%)'],
+          ['Recommended action','Rotate ad-set 7']
+        ]
+      }
+    },
+    analyse: {
+      lines: [
+        ['prompt','> '],['out','analysing last 30 days of campaign performance\n'],
+        ['prompt','> '],['out','reading 1,247 ad-sets across all channels... '],['ok','done\n'],
+        ['prompt','> '],['out','identifying campaigns with unusual cost patterns\n'],
+        ['dim','  2 ad-sets flagged for high cost per lead\n'],
+        ['prompt','> '],['out','reviewing the worst performer\n'],
+        ['dim','  meta ad-set 7 — '],['ok','SAR 12,400'],['dim',' spent · '],['ok','8 leads\n'],
+        ['prompt','> '],['out','drafting optimisation recommendation\n'],
+        ['dim','  pause ad-set 7 · reallocate to Google brand\n'],
+        ['prompt','> '],['out','estimating impact\n'],
+        ['dim','  projected gain: '],['ok','+24 leads / month\n'],
+        ['prompt','> '],['ok','optimisation ready · awaiting approval']
+      ],
+      result: {
+        head: 'Optimisation ready',
+        rows: [
+          ['Action','Pause Meta ad-set 7'],
+          ['Reallocate to','Google brand search'],
+          ['Projected lift','+24 leads / month'],
+          ['Status','Awaiting approval']
+        ]
+      }
+    },
+    briefing: {
+      lines: [
+        ['prompt','> '],['out','preparing sales briefing for 4:00 PM meeting\n'],
+        ['prompt','> '],['out','pulling Atelier Riyadh company profile... '],['ok','done\n'],
+        ['dim','  180 staff · 12 boutiques · Riyadh + Jeddah\n'],
+        ['prompt','> '],['out','loading last 5 touchpoints with the account\n'],
+        ['dim','  last meeting 11 March · pricing discussed\n'],
+        ['prompt','> '],['out','reviewing open threads\n'],
+        ['dim','  flagship launch still pending\n'],
+        ['prompt','> '],['out','preparing talking points\n'],
+        ['dim','  '],['ok','3 prepared'],['dim',' · '],['ok','2 risks flagged\n'],
+        ['prompt','> '],['out','sending to team inbox\n'],
+        ['prompt','> '],['ok','briefing ready · delivered 2:48 PM']
+      ],
+      result: {
+        head: 'Briefing ready',
+        rows: [
+          ['Talking points','3 prepared'],
+          ['Risks flagged','2'],
+          ['Sent to','team inbox · 2:48 PM']
+        ]
+      }
+    }
+  };
+
+  function typeDemo(el, lines, onDone){
+    el.dataset.typing = '1';
+    el.innerHTML = '';
+    var i = 0, j = 0;
+    var speed = 11;
+    function tick(){
+      if(el.dataset.typing !== '1') return;
+      if(i >= lines.length){
+        el.innerHTML = lines.map(function(p){ return '<span class="'+p[0]+'">'+p[1]+'</span>'; }).join('') + '<span class="cursor"></span>';
+        if(onDone) onDone();
+        return;
+      }
+      var pair = lines[i];
+      var cls = pair[0], text = pair[1];
+      if(j < text.length){
+        var html = lines.slice(0,i).map(function(p){ return '<span class="'+p[0]+'">'+p[1]+'</span>'; }).join('') + '<span class="'+cls+'">'+text.slice(0,j+1)+'</span>';
+        el.innerHTML = html + '<span class="cursor"></span>';
+        j++;
+        setTimeout(tick, speed + Math.random()*14);
+      } else {
+        i++; j = 0;
+        setTimeout(tick, 70);
+      }
+    }
+    tick();
+  }
+
+  function streamDemo(scenario){
+    var out = document.getElementById('demo-output');
+    var resBox = document.getElementById('demo-result');
+    var data = DEMO[scenario];
+    if(!out || !data) return;
+    out.dataset.typing = '0';
+    resBox.classList.remove('show');
+    resBox.innerHTML = '';
+    setTimeout(function(){
+      typeDemo(out, data.lines, function(){
+        var rRows = data.result.rows.map(function(r){
+          return '<div class="res-row"><span class="k">'+r[0]+'</span><span class="v">'+r[1]+'</span></div>';
+        }).join('');
+        resBox.innerHTML = '<div class="res-head">'+data.result.head+'</div>'+rRows;
+        resBox.classList.add('show');
+      });
+    }, 80);
+  }
+
+  document.querySelectorAll('.scenario').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.scenario').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      streamDemo(btn.dataset.scenario);
+    });
+  });
+
+  /* Auto-run first scenario on demo enter view + add in-view class to shell */
+  var demoIO = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        document.getElementById('demo-shell').classList.add('in-view');
+        streamDemo('campaign');
+        demoIO.unobserve(e.target);
+      }
+    });
+  }, { threshold:.35 });
+  var demoTarget = document.getElementById('demo-output');
+  if(demoTarget) demoIO.observe(demoTarget);
+
+  /* ── Timeline scroll fill + active step ── */
+  var steps = Array.prototype.slice.call(document.querySelectorAll('.step'));
+  var fill = document.getElementById('timeline-fill');
+  var timeline = document.getElementById('timeline');
+  function updateTimeline(){
+    if(!steps.length || !fill || !timeline) return;
+    var tlRect = timeline.getBoundingClientRect();
+    var center = innerHeight * 0.5;
+    var activeIdx = -1;
+    steps.forEach(function(s, i){
+      var r = s.getBoundingClientRect();
+      var topInTl = r.top - tlRect.top + r.height/2;
+      if(r.top < center) activeIdx = i;
+      s.classList.toggle('active', r.top < center && r.bottom > center * 0.4);
+    });
+    var lastActive = steps[Math.max(0, activeIdx)];
+    if(activeIdx < 0){ fill.style.height = '0px'; return; }
+    var lr = lastActive.getBoundingClientRect();
+    var fillTo = lr.top - tlRect.top + lr.height/2;
+    fill.style.height = Math.max(0, fillTo) + 'px';
+  }
+  addEventListener('scroll', updateTimeline, { passive:true });
+  addEventListener('resize', updateTimeline, { passive:true });
+  updateTimeline();
+
+})();
+</script>
+</body>
+</html>
