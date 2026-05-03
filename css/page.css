@@ -136,7 +136,7 @@ ul{list-style:none; padding:0;}
   border-radius:10px;
   padding:14px 16px;
   color:var(--bone);
-  font-family:var(--sans);font-size:15px;
+  font-family:var(--sans);font-size:16px;
   transition:border-color .25s,background .25s;
   width:100%;
   outline:none;
