@@ -318,15 +318,48 @@ footer.cine{ padding:80px 0 40px; border-top:1px solid var(--line); position:rel
   .grid-3{ grid-template-columns:repeat(2,1fr);}
   .foot-grid{ grid-template-columns:1fr 1fr;}
 }
+@media (max-width:820px){
+  .nav-wrap{ padding:0 8px;}
+  .nav{ padding:5px 6px 5px 10px; gap:2px; border-radius:999px; flex-wrap:nowrap; width:100%; max-width:none;}
+  .nav-brand{ flex-shrink:0;}
+  .nav-logo-img{ height:13px;}
+  .nav-links{ display:flex; flex-shrink:1; flex-grow:1; justify-content:space-around; align-items:center; gap:0; min-width:0; padding:0 2px;}
+  .nav-links a{ font-size:10.5px; padding:6px 3px; white-space:nowrap; letter-spacing:-.01em; border-radius:999px;}
+  .nav-cta{ flex-shrink:0; padding:6px 10px !important; font-size:10.5px; gap:0 !important;}
+  .nav-cta svg{ display:none;}
+}
 @media (max-width:720px){
   .container{ padding:0 22px;}
-  .nav-links{ display:none;}
-  .nav{ padding:8px 8px 8px 18px; gap:12px;}
   .blog-hero{ padding:130px 0 40px;}
   .grid-3{ grid-template-columns:1fr;}
   .cta-card{ padding:60px 28px;}
   .foot-grid{ grid-template-columns:1fr;}
   .foot-bottom{ flex-direction:column; align-items:flex-start;}
+}
+@media (max-width:380px){
+  .nav-wrap{ padding:0 6px;}
+  .nav{ padding:4px 5px 4px 8px; gap:0;}
+  .nav-logo-img{ height:12px;}
+  .nav-links a{ font-size:9.5px; padding:5px 2px;}
+  .nav-cta{ font-size:10px; padding:5px 8px !important;}
+}
+@media (max-width:640px){
+  .container{ padding:0 18px !important;}
+  .blog-hero{ padding:110px 0 32px !important;}
+  .blog-hero h1{ font-size:clamp(36px, 11vw, 56px) !important; line-height:1.05 !important;}
+  .blog-hero p.sub{ font-size:15px;}
+  .cover-body{ padding:28px 22px !important;}
+  .cover-body h2{ font-size:clamp(24px, 6vw, 32px) !important;}
+  .cta-card{ padding:48px 22px !important;}
+  .cta-card h3{ font-size:clamp(28px, 8vw, 40px);}
+  .bcard{ padding:20px 18px !important;}
+  .foot-grid{ gap:32px !important;}
+}
+@media (max-width:380px){
+  .blog-hero h1{ font-size:clamp(32px, 11vw, 48px) !important;}
+}
+@media (hover:none) and (pointer:coarse){
+  .bcard:hover, .cover:hover{ transform:none !important;}
 }
 
 /* Scheduling: hidden by default, JS reveals when publish_date <= today */
@@ -348,9 +381,8 @@ footer.cine{ padding:80px 0 40px; border-top:1px solid var(--line); position:rel
       <a href="/ai-solutions.html">AI Solutions</a>
       <a href="/agency.html">Agency</a>
       <a href="/ensign-os.html">Ensign OS</a>
-      <a href="../#work">Work</a>
+      <a href="/work.html">Our Work</a>
       <a href="./" class="active">Blog</a>
-      <a href="../ar/blog/" aria-label="Switch to Arabic">AR</a>
     </nav>
     <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-magnetic>Book a Call
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>

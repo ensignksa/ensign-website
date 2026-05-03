@@ -1184,13 +1184,16 @@ footer.cine{
   .hs-scroll{ display:none;}
   /* svc grid mobile */
   .svc-grid{ min-height:auto;}
-  .sg-items{ grid-template-columns:1fr; grid-template-rows:repeat(4, 44vw); min-height:auto;}
+  .sg-items{ grid-template-columns:1fr; grid-template-rows:repeat(4, 32vw); min-height:auto;}
   .sg-div-v{ display:none;}
-  .sg-div-h{ top:25%; }
-  .sg-item{ padding:32px 28px;}
+  .sg-div-h{ display:none;}
+  .sg-item{ padding:24px 22px;}
   .sg-tr,.sg-br{ align-items:flex-start; text-align:left;}
   .sg-tr .sg-item-arrow,.sg-br .sg-item-arrow{ transform:none;}
   .sg-portrait-placeholder{ display:none;}
+  /* marquee tighter gap on mobile */
+  .marq-track,.marquee-track{ gap:48px !important;}
+  .marq-item img{ max-height:32px;}
 }
 /* ===== Mobile Nav (single-row pill, all items visible, no scroll) ===== */
 .nav-toggle{display:none !important;}
