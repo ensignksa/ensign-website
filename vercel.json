@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/ar", "destination": "/", "permanent": false },
+    { "source": "/ar/:path*", "destination": "/", "permanent": false }
+  ]
+}
