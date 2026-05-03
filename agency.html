@@ -429,14 +429,12 @@ footer.cine{position:relative;z-index:2;background:#040A12;border-top:1px solid 
       <div class="work-strip">
         <a href="/work.html" class="work-card reveal">
           <div class="work-visual">
-            <video autoplay muted loop playsinline preload="none">
-              <source src="/assets/work/films/film-01.mp4" type="video/mp4">
-            </video>
+            <video id="film-shuffle" autoplay muted playsinline preload="auto"></video>
             <div class="work-visual-line"></div>
           </div>
           <div class="work-body">
             <div class="work-cat">Films &amp; Content</div>
-            <div class="work-title">F&amp;B Product Film</div>
+            <div class="work-title">Film &amp; Production</div>
             <p class="work-meta">A cinematic product film built for social, produced end to end for a hospitality brand.</p>
           </div>
         </a>
@@ -600,6 +598,39 @@ footer.cine{position:relative;z-index:2;background:#040A12;border-top:1px solid 
   addEventListener('scroll', updateTimeline, { passive:true });
   addEventListener('resize', updateTimeline, { passive:true });
   updateTimeline();
+
+  /* ── Film & Production shuffle loop ── */
+  var filmVid = document.getElementById('film-shuffle');
+  if(filmVid){
+    var films = [
+      '/assets/work/films/film-01.mp4',
+      '/assets/work/films/film-02.mp4',
+      '/assets/work/films/film-03.mp4',
+      '/assets/work/films/film-04.mp4'
+    ];
+    function shuffle(arr){
+      var a = arr.slice();
+      for(var i = a.length - 1; i > 0; i--){
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = a[i]; a[i] = a[j]; a[j] = t;
+      }
+      return a;
+    }
+    var playlist = shuffle(films);
+    var idx = 0;
+    function playNext(){
+      filmVid.src = playlist[idx];
+      var p = filmVid.play();
+      if(p && p.catch) p.catch(function(){});
+      idx++;
+      if(idx >= playlist.length){
+        playlist = shuffle(films);
+        idx = 0;
+      }
+    }
+    filmVid.addEventListener('ended', playNext);
+    playNext();
+  }
 })();
 </script>
 </body>
