@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -11,22 +11,22 @@
 </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Word — Ensign Ai Marketing Agency</title>
-<meta name="description" content="Films, audience growth, performance results, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.">
+<title>Our Work — Ensign Ai Marketing Agency</title>
+<meta name="description" content="Films, audience growth, performance results, AI-generated media, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.">
 <link rel="canonical" href="https://ensignksa.com/work.html">
 <link rel="alternate" hreflang="en" href="https://ensignksa.com/work.html">
 <link rel="alternate" hreflang="x-default" href="https://ensignksa.com/work.html">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ensignksa.com/work.html">
-<meta property="og:title" content="Our Word — Ensign Ai Marketing Agency">
-<meta property="og:description" content="Films, audience growth, performance results, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.">
+<meta property="og:title" content="Our Work — Ensign Ai Marketing Agency">
+<meta property="og:description" content="Films, audience growth, performance results, AI-generated media, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.">
 <meta property="og:image" content="https://ensignksa.com/assets/logos/3.png">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Ensign Ai Marketing Agency">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@ensignksa">
-<meta name="twitter:title" content="Our Word — Ensign Ai Marketing Agency">
-<meta name="twitter:description" content="Films, audience growth, performance results, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.">
+<meta name="twitter:title" content="Our Work — Ensign Ai Marketing Agency">
+<meta name="twitter:description" content="Films, audience growth, performance results, AI-generated media, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.">
 <meta name="twitter:image" content="https://ensignksa.com/assets/logos/3.png">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Ensign Ai Marketing Agency">
@@ -44,7 +44,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ensignksa.com/"},{"@type":"ListItem","position":2,"name":"Our Word","item":"https://ensignksa.com/work.html"}]}
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ensignksa.com/"},{"@type":"ListItem","position":2,"name":"Our Work","item":"https://ensignksa.com/work.html"}]}
 </script>
 
 <style>
@@ -138,29 +138,67 @@ section{position:relative;z-index:2;}
 @keyframes panelIn{from{opacity:0;transform:translateY(12px);filter:blur(6px);}to{opacity:1;transform:translateY(0);filter:blur(0);}}
 
 /* ── Proof Grid ── */
-.proof-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.proof-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:start;}
+.proof-grid-3{grid-template-columns:repeat(4,1fr);gap:14px;}
+
+/* Masonry (natural aspect — Films) */
+.proof-grid-masonry{display:block;column-count:4;column-gap:14px;}
+.proof-grid-masonry .proof-card{break-inside:avoid;-webkit-column-break-inside:avoid;margin-bottom:14px;display:block;width:100%;border-radius:14px;}
+.proof-grid-masonry .proof-card-visual{aspect-ratio:auto;}
+.proof-grid-masonry .proof-card-media{position:relative;inset:auto;width:100%;height:auto;display:block;}
+
+/* AI Feature Rows — Runway-style showcase */
+.ai-feature-list{display:flex;flex-direction:column;gap:120px;}
+.ai-feature{display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:center;}
+.ai-feature:nth-child(even){grid-template-columns:1fr 1.15fr;}
+.ai-feature:nth-child(even) .ai-feature-media{order:2;}
+.ai-feature-media{position:relative;border-radius:14px;overflow:hidden;background:radial-gradient(ellipse at center,#0E2230 0%,#07111E 100%);border:1px solid rgba(255,255,255,.05);transition:transform .6s var(--ease),box-shadow .6s var(--ease);aspect-ratio:16/9;width:100%;display:flex;align-items:center;justify-content:center;}
+.ai-feature-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 60% 80% at 50% 50%,transparent 0%,rgba(7,17,30,.35) 100%);}
+.ai-feature-media:hover{transform:translateY(-4px);box-shadow:0 24px 60px -16px rgba(0,0,0,.5);}
+.ai-feature-media video,.ai-feature-media img{display:block;width:100%;height:100%;object-fit:contain;position:relative;z-index:1;}
+.ai-feature-text{padding:0 8px;}
+.ai-feature-cat{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#00D9C0;margin-bottom:18px;display:inline-flex;align-items:center;gap:8px;}
+.ai-feature-cat::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:#00D9C0;}
+.ai-feature-title{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(28px,3.2vw,42px);line-height:1.1;letter-spacing:-.025em;margin-bottom:20px;color:var(--ink);}
+.ai-feature-title em{font-style:italic;color:#00D9C0;}
+.ai-feature-desc{font-size:15.5px;color:var(--ink-mute);line-height:1.65;max-width:440px;}
+@media(max-width:900px){
+  .ai-feature-list{gap:72px;}
+  .ai-feature,.ai-feature:nth-child(even){grid-template-columns:1fr;gap:24px;}
+  .ai-feature:nth-child(even) .ai-feature-media{order:0;}
+  .ai-feature-text{padding:0;}
+}
+
+/* Data visualization (replaces screenshots — Growth & Performance) */
+.proof-data-visual{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:12px 14px;background:linear-gradient(135deg,rgba(0,217,192,.045) 0%,transparent 60%),#0A1A26;}
+.data-viz-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:#00D9C0;letter-spacing:-.02em;line-height:1;}
+.data-viz-label{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(242,239,232,.42);margin-top:4px;margin-bottom:7px;}
+.data-viz-chart{width:94%;height:auto;max-height:42px;display:block;}
+.data-viz-chart-tall{max-height:90px;}
+.data-viz-stats{display:flex;gap:10px;margin-top:7px;font-family:'JetBrains Mono',monospace;font-size:7px;letter-spacing:.06em;text-transform:uppercase;color:rgba(242,239,232,.4);align-items:baseline;}
+.data-viz-stats span{color:#00D9C0;font-weight:500;font-size:8.5px;margin-right:3px;}
 .proof-card{border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);transition:transform .55s var(--ease),box-shadow .55s var(--ease),border-color .4s;cursor:pointer;}
 .proof-card:hover{transform:translateY(-4px);box-shadow:0 24px 60px -16px rgba(0,0,0,.45);border-color:rgba(0,217,192,.18);}
-.proof-card-visual{position:relative;aspect-ratio:16/9;overflow:hidden;}
-.proof-card-visual-bg{position:absolute;inset:0;transition:transform .6s var(--ease);}
-.proof-card:hover .proof-card-visual-bg{transform:scale(1.03);}
-.pv-a{background:linear-gradient(135deg,#0D1F2D 0%,#0A2425 100%);}
-.pv-b{background:linear-gradient(135deg,#0E1A2B 0%,#091D1D 100%);}
-.pv-c{background:linear-gradient(135deg,#121B28 0%,#0C2020 100%);}
-.pv-d{background:linear-gradient(135deg,#0B1E2C 0%,#0A2828 100%);}
-.proof-card-visual-bg::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(-55deg,transparent,transparent 18px,rgba(255,255,255,.018) 18px,rgba(255,255,255,.018) 19px);}
-.proof-card-visual-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(7,17,30,.65) 100%);}
-.proof-card-visual-label{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(242,239,232,.15);}
+.proof-card-visual{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0A1A26;}
 .proof-card-visual-line{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,217,192,.3),transparent);z-index:2;}
-.proof-card-body{padding:22px 24px 24px;}
-.proof-card-cat{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#00D9C0;margin-bottom:8px;}
-.proof-card-title{font-size:19px;font-weight:600;letter-spacing:-.02em;color:var(--ink);line-height:1.25;margin-bottom:9px;}
-.proof-card-outcome{font-size:13.5px;color:var(--ink-mute);line-height:1.6;margin-bottom:16px;}
-.proof-card-metric{display:inline-flex;align-items:baseline;gap:7px;padding:8px 14px;border-radius:8px;background:rgba(0,217,192,.06);border:1px solid rgba(0,217,192,.12);margin-bottom:14px;}
-.metric-num{font-family:'JetBrains Mono',monospace;font-size:20px;font-weight:500;color:#00D9C0;letter-spacing:-.02em;}
-.metric-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:rgba(242,239,232,.4);text-transform:uppercase;}
-.proof-card-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
-.proof-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;border:1px solid rgba(255,255,255,.09);color:rgba(242,239,232,.38);}
+
+/* Real media fills */
+.proof-card-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s var(--ease);}
+.proof-card:hover .proof-card-media{transform:scale(1.03);}
+
+/* Screenshot gallery (3 side-by-side IG screenshots) */
+.proof-screenshots{position:absolute;inset:0;display:flex;gap:2px;overflow:hidden;}
+.proof-screenshots img{flex:1;min-width:0;height:100%;object-fit:cover;object-position:top;}
+
+.proof-card-body{padding:12px 14px 14px;}
+.proof-card-cat{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:#00D9C0;margin-bottom:5px;}
+.proof-card-title{font-size:13px;font-weight:600;letter-spacing:-.01em;color:var(--ink);line-height:1.25;margin-bottom:5px;}
+.proof-card-outcome{font-size:11.5px;color:var(--ink-mute);line-height:1.5;margin-bottom:10px;}
+.proof-card-metric{display:inline-flex;align-items:baseline;gap:5px;padding:5px 9px;border-radius:6px;background:rgba(0,217,192,.06);border:1px solid rgba(0,217,192,.12);margin-bottom:8px;}
+.metric-num{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:500;color:#00D9C0;letter-spacing:-.02em;}
+.metric-label{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;color:rgba(242,239,232,.4);text-transform:uppercase;}
+.proof-card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px;}
+.proof-tag{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.08em;text-transform:uppercase;padding:2px 6px;border-radius:999px;border:1px solid rgba(255,255,255,.09);color:rgba(242,239,232,.38);}
 .proof-card-cta{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;color:#00D9C0;opacity:0;transform:translateY(5px);transition:opacity .3s var(--ease),transform .3s var(--ease);}
 .proof-card:hover .proof-card-cta{opacity:1;transform:translateY(0);}
 .proof-card-cta svg{transition:transform .3s var(--ease);}
@@ -169,9 +207,8 @@ section{position:relative;z-index:2;}
 /* ── Selected Proof ── */
 .selected-proof{padding:120px 0;border-top:1px solid var(--line);}
 .selected-proof-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center;}
-.selected-proof-visual{aspect-ratio:4/3;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:linear-gradient(135deg,#0D1F2D 0%,#0A2828 100%);position:relative;}
-.selected-proof-visual::before{content:"";position:absolute;inset:0;background-image:repeating-linear-gradient(-55deg,transparent,transparent 18px,rgba(255,255,255,.018) 18px,rgba(255,255,255,.018) 19px);}
-.selected-proof-visual-label{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(242,239,232,.15);}
+.selected-proof-visual{aspect-ratio:4/3;border-radius:28px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:#0A1A26;position:relative;}
+.selected-proof-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .selected-proof-text h2{font-family:'Fraunces',Georgia,serif;font-size:clamp(32px,3.5vw,52px);font-weight:300;letter-spacing:-.03em;line-height:1.08;color:var(--ink);margin-bottom:32px;}
 .selected-proof-text h2 em{font-style:italic;color:#00D9C0;}
 .proof-detail-list{border-top:1px solid var(--line);margin-bottom:32px;}
@@ -228,7 +265,9 @@ footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relati
 /* ── Responsive ── */
 @media(max-width:1100px){
   .container{padding:0 32px;}
-  .proof-grid{grid-template-columns:1fr 1fr;}
+  .proof-grid{grid-template-columns:repeat(3,1fr);}
+  .proof-grid-3{grid-template-columns:repeat(3,1fr);}
+  .proof-grid-masonry{column-count:3;}
   .selected-proof-inner{grid-template-columns:1fr;gap:48px;}
   .results-strip-inner{grid-template-columns:repeat(3,1fr);}
   .foot-grid{grid-template-columns:1fr 1fr;}
@@ -238,7 +277,9 @@ footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relati
   .nav-links{display:none;}
   .nav{padding:8px 8px 8px 18px;gap:12px;}
   .proof-hero{padding:130px 0 60px;}
-  .proof-grid{grid-template-columns:1fr;}
+  .proof-grid{grid-template-columns:repeat(2,1fr);}
+  .proof-grid-3{grid-template-columns:repeat(2,1fr);}
+  .proof-grid-masonry{column-count:2;}
   .results-strip-inner{grid-template-columns:repeat(2,1fr);}
   .cta-card{padding:60px 28px;}
   .foot-grid{grid-template-columns:1fr;}
@@ -262,8 +303,8 @@ footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relati
     <nav class="nav-links">
       <a href="/ai-solutions.html">AI Solutions</a>
       <a href="/#services">Agency</a>
-      <a href="/">Ensign OS</a>
-      <a href="/work.html" class="active" aria-current="page">Our Word</a>
+      <a href="/ensign-os.html">Ensign OS</a>
+      <a href="/work.html" class="active" aria-current="page">Our Work</a>
       <a href="/blog/">Blog</a>
       <a href="/ar/" aria-label="Switch to Arabic">AR</a>
     </nav>
@@ -284,7 +325,7 @@ footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relati
     <div class="proof-hero-inner">
       <span class="eyebrow reveal"><span class="dot-pulse"></span>The Proof Room</span>
       <h1 class="reveal">It wasn't luck.<br>It was <em>built.</em></h1>
-      <p class="sub reveal">Films, content, audience growth, performance results, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.</p>
+      <p class="sub reveal">Films, content, audience growth, performance results, AI-generated media, and live experiences — built for ambitious brands across Saudi Arabia and the UAE.</p>
     </div>
   </div>
 </section>
@@ -298,6 +339,7 @@ footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relati
         <button class="work-tab active" data-tab="films" role="tab" aria-selected="true">Films &amp; Content</button>
         <button class="work-tab" data-tab="growth" role="tab" aria-selected="false">Audience Growth</button>
         <button class="work-tab" data-tab="performance" role="tab" aria-selected="false">Performance Results</button>
+        <button class="work-tab" data-tab="ai-media" role="tab" aria-selected="false">AI Generated Media</button>
         <button class="work-tab" data-tab="events" role="tab" aria-selected="false">Live Experiences</button>
         <span class="work-tab-indicator" aria-hidden="true"></span>
       </div>
@@ -305,460 +347,671 @@ footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relati
 
     <div class="work-panels">
 
-      <!-- Films & Content -->
+      <!-- ── Films & Content ── -->
       <div class="work-panel active" data-panel="films">
-        <div class="proof-grid">
+        <div class="proof-grid proof-grid-masonry">
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-a"></div>
-              <!-- PLACEHOLDER: replace with campaign visual or screenshot -->
-              <div class="proof-card-visual-label">Campaign Visual</div>
+              <video class="proof-card-media" autoplay muted loop playsinline preload="none">
+                <source src="/assets/work/films/film-01.mp4" type="video/mp4">
+              </video>
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Films &amp; Content</div>
-              <div class="proof-card-title">Brand Documentary Series</div>
-              <p class="proof-card-outcome">A three-part cinematic series told the brand's founding story across social and OOH channels.</p>
+              <div class="proof-card-title">F&amp;B Product Film</div>
+              <p class="proof-card-outcome">A cinematic product film built for social — shot, styled, and produced end-to-end for a hospitality brand.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">+2.4M</span>
-                <span class="metric-label">Total Views</span>
+                <span class="metric-num">1 Day</span>
+                <span class="metric-label">Shoot to Delivery</span>
               </div>
               <div class="proof-card-tags">
                 <span class="proof-tag">Brand Film</span>
-                <span class="proof-tag">Documentary</span>
-                <span class="proof-tag">GCC</span>
-              </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
-            </div>
-          </div>
-
-          <div class="proof-card">
-            <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-b"></div>
-              <!-- PLACEHOLDER: replace with campaign visual or screenshot -->
-              <div class="proof-card-visual-label">Content System</div>
-              <div class="proof-card-visual-line"></div>
-            </div>
-            <div class="proof-card-body">
-              <div class="proof-card-cat">Films &amp; Content</div>
-              <div class="proof-card-title">Monthly Content Engine</div>
-              <p class="proof-card-outcome">Full monthly production system: scripting, shooting, editing, scheduling — 30 pieces per month, consistently delivered.</p>
-              <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">30</span>
-                <span class="metric-label">Pieces / Month</span>
-              </div>
-              <div class="proof-card-tags">
-                <span class="proof-tag">Content</span>
-                <span class="proof-tag">Production</span>
+                <span class="proof-tag">F&amp;B</span>
                 <span class="proof-tag">Social</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-c"></div>
-              <!-- PLACEHOLDER: replace with campaign visual or screenshot -->
-              <div class="proof-card-visual-label">Campaign Visual</div>
+              <img src="/assets/work/films/food-spread.jpg" alt="F&B food spread editorial" class="proof-card-media" loading="lazy">
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Films &amp; Content</div>
-              <div class="proof-card-title">Product Launch Film</div>
-              <p class="proof-card-outcome">Hero video anchored a cross-platform launch campaign for a new product entering the GCC market.</p>
+              <div class="proof-card-title">Food &amp; Beverage Editorial</div>
+              <p class="proof-card-outcome">Full food styling and editorial photography produced for a hospitality brand's digital and print channels.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">4.1M</span>
-                <span class="metric-label">Campaign Reach</span>
+                <span class="metric-num">Full</span>
+                <span class="metric-label">Production Service</span>
               </div>
               <div class="proof-card-tags">
-                <span class="proof-tag">Film</span>
-                <span class="proof-tag">Launch</span>
-                <span class="proof-tag">Campaign</span>
-              </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
-            </div>
-          </div>
-
-          <div class="proof-card">
-            <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-d"></div>
-              <!-- PLACEHOLDER: replace with campaign visual or screenshot -->
-              <div class="proof-card-visual-label">Editorial Visual</div>
-              <div class="proof-card-visual-line"></div>
-            </div>
-            <div class="proof-card-body">
-              <div class="proof-card-cat">Films &amp; Content</div>
-              <div class="proof-card-title">Editorial Series</div>
-              <p class="proof-card-outcome">Luxury editorial photography series for a fashion brand's seasonal collection, distributed to press and retail.</p>
-              <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">12</span>
-                <span class="metric-label">Editorials Produced</span>
-              </div>
-              <div class="proof-card-tags">
-                <span class="proof-tag">Editorial</span>
                 <span class="proof-tag">Photography</span>
-                <span class="proof-tag">Fashion</span>
+                <span class="proof-tag">Editorial</span>
+                <span class="proof-tag">F&amp;B</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <video class="proof-card-media" autoplay muted loop playsinline preload="none">
+                <source src="/assets/work/films/film-03.mp4" type="video/mp4">
+              </video>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Films &amp; Content</div>
+              <div class="proof-card-title">Educational Content Series</div>
+              <p class="proof-card-outcome">Short-form educational series produced to build authority and trust — scripted, filmed, and edited in-house.</p>
+              <div class="proof-card-metric">
+                <span class="metric-num">Series</span>
+                <span class="metric-label">Content Format</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Short-Form</span>
+                <span class="proof-tag">Education</span>
+                <span class="proof-tag">Series</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <video class="proof-card-media" autoplay muted loop playsinline preload="none">
+                <source src="/assets/work/films/film-02.mp4" type="video/mp4">
+              </video>
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Films &amp; Content</div>
+              <div class="proof-card-title">Brand Content Film</div>
+              <p class="proof-card-outcome">A short-form brand film produced for social channels — directed, shot, and delivered end-to-end by the Ensign team.</p>
+              <div class="proof-card-metric">
+                <span class="metric-num">Social</span>
+                <span class="metric-label">Ready Delivery</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Brand Film</span>
+                <span class="proof-tag">Short-Form</span>
+                <span class="proof-tag">Social</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <img src="/assets/work/films/cocktail-shaker.jpg" alt="Cocktail shaker product shot" class="proof-card-media" loading="lazy">
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Films &amp; Content</div>
+              <div class="proof-card-title">Cocktail Brand Photography</div>
+              <p class="proof-card-outcome">Hero product photography for a bar brand — crafted lighting, styled set, and cinematic framing built for menus and social.</p>
+              <div class="proof-card-metric">
+                <span class="metric-num">Hero</span>
+                <span class="metric-label">Product Shot</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Photography</span>
+                <span class="proof-tag">F&amp;B</span>
+                <span class="proof-tag">Brand</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <img src="/assets/work/films/signature-cocktail.jpg" alt="Signature cocktail editorial" class="proof-card-media" loading="lazy">
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Films &amp; Content</div>
+              <div class="proof-card-title">Signature Cocktail Editorial</div>
+              <p class="proof-card-outcome">Editorial shoot for a signature cocktail menu — mood-first photography designed to drive social engagement and brand recall.</p>
+              <div class="proof-card-metric">
+                <span class="metric-num">Editorial</span>
+                <span class="metric-label">Photography</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Photography</span>
+                <span class="proof-tag">F&amp;B</span>
+                <span class="proof-tag">Editorial</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <img src="/assets/work/films/cocktail-lineup.jpg" alt="Cocktail lineup campaign" class="proof-card-media" loading="lazy">
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Films &amp; Content</div>
+              <div class="proof-card-title">Cocktail Lineup Campaign</div>
+              <p class="proof-card-outcome">Full lineup campaign shoot for a cocktail menu launch — styled, lit, and shot in a single production day.</p>
+              <div class="proof-card-metric">
+                <span class="metric-num">1 Day</span>
+                <span class="metric-label">Full Lineup Shot</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Photography</span>
+                <span class="proof-tag">Campaign</span>
+                <span class="proof-tag">F&amp;B</span>
+              </div>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Audience Growth -->
+      <!-- ── Audience Growth ── -->
       <div class="work-panel" data-panel="growth">
-        <div class="proof-grid">
+        <div class="proof-grid proof-grid-3">
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-b"></div>
-              <!-- PLACEHOLDER: replace with screenshot proof -->
-              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-data-visual">
+                <div class="data-viz-num">72.3K</div>
+                <div class="data-viz-label">Monthly Views</div>
+                <svg viewBox="0 0 280 70" class="data-viz-chart" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="lineGradA" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#00D9C0" stop-opacity=".35"/>
+                      <stop offset="100%" stop-color="#00D9C0" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,60 L40,55 L80,48 L120,42 L160,32 L200,22 L240,12 L280,5 L280,70 L0,70 Z" fill="url(#lineGradA)"/>
+                  <path d="M0,60 L40,55 L80,48 L120,42 L160,32 L200,22 L240,12 L280,5" fill="none" stroke="#00D9C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="280" cy="5" r="3.5" fill="#00D9C0"/>
+                </svg>
+                <div class="data-viz-stats">
+                  <div><span>254</span>New Followers</div>
+                  <div><span>15.7K</span>Reached</div>
+                </div>
+              </div>
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Audience Growth</div>
-              <div class="proof-card-title">Instagram Growth Sprint</div>
-              <p class="proof-card-outcome">Grew a lifestyle brand's account from 8K to 74K followers in 90 days through content strategy and daily engagement.</p>
+              <div class="proof-card-title">Cosmetics Brand — Instagram Growth</div>
+              <p class="proof-card-outcome">Built a loyal, engaged audience for a cosmetics label — 254 new followers gained, 15.7K accounts reached, and 72.3K monthly views through consistent content strategy.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">+820%</span>
-                <span class="metric-label">Follower Growth</span>
+                <span class="metric-num">254</span>
+                <span class="metric-label">New Followers Gained</span>
               </div>
               <div class="proof-card-tags">
                 <span class="proof-tag">Instagram</span>
-                <span class="proof-tag">Growth</span>
-                <span class="proof-tag">Strategy</span>
+                <span class="proof-tag">Cosmetics</span>
+                <span class="proof-tag">72.3K Views</span>
+                <span class="proof-tag">15.7K Reached</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-c"></div>
-              <!-- PLACEHOLDER: replace with screenshot proof -->
-              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-data-visual">
+                <div class="data-viz-num">37.8K</div>
+                <div class="data-viz-label">Single Video Views</div>
+                <svg viewBox="0 0 280 70" class="data-viz-chart" aria-hidden="true">
+                  <rect x="10"  y="55" width="22" height="15" rx="2" fill="#00D9C0" opacity=".25"/>
+                  <rect x="42"  y="50" width="22" height="20" rx="2" fill="#00D9C0" opacity=".25"/>
+                  <rect x="74"  y="46" width="22" height="24" rx="2" fill="#00D9C0" opacity=".25"/>
+                  <rect x="106" y="42" width="22" height="28" rx="2" fill="#00D9C0" opacity=".25"/>
+                  <rect x="138" y="4"  width="22" height="66" rx="2" fill="#00D9C0"/>
+                  <rect x="170" y="48" width="22" height="22" rx="2" fill="#00D9C0" opacity=".25"/>
+                  <rect x="202" y="52" width="22" height="18" rx="2" fill="#00D9C0" opacity=".25"/>
+                  <rect x="234" y="44" width="22" height="26" rx="2" fill="#00D9C0" opacity=".25"/>
+                </svg>
+                <div class="data-viz-stats">
+                  <div><span>+753</span>New Followers</div>
+                  <div><span>1 Video</span>Drove the Spike</div>
+                </div>
+              </div>
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Audience Growth</div>
-              <div class="proof-card-title">LinkedIn Authority Build</div>
-              <p class="proof-card-outcome">Positioned a B2B founder as a top sector voice through consistent thought leadership content over six months.</p>
+              <div class="proof-card-title">Architecture Firm — TikTok Launch</div>
+              <p class="proof-card-outcome">Took an architecture firm from zero to a growing TikTok presence — one video alone drove 37.8K views and gained 753 new followers in a single spike.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">3.2M</span>
-                <span class="metric-label">Impressions · 6 months</span>
-              </div>
-              <div class="proof-card-tags">
-                <span class="proof-tag">LinkedIn</span>
-                <span class="proof-tag">B2B</span>
-                <span class="proof-tag">Thought Leadership</span>
-              </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
-            </div>
-          </div>
-
-          <div class="proof-card">
-            <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-d"></div>
-              <!-- PLACEHOLDER: replace with screenshot proof -->
-              <div class="proof-card-visual-label">Screenshot Proof</div>
-              <div class="proof-card-visual-line"></div>
-            </div>
-            <div class="proof-card-body">
-              <div class="proof-card-cat">Audience Growth</div>
-              <div class="proof-card-title">TikTok Market Entry</div>
-              <p class="proof-card-outcome">Took a Saudi brand from zero to 50K+ TikTok followers in one quarter through a short-form content system.</p>
-              <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">50K+</span>
-                <span class="metric-label">Followers in 90 Days</span>
+                <span class="metric-num">+753</span>
+                <span class="metric-label">New Followers Gained</span>
               </div>
               <div class="proof-card-tags">
                 <span class="proof-tag">TikTok</span>
-                <span class="proof-tag">Short-Form</span>
-                <span class="proof-tag">Saudi</span>
+                <span class="proof-tag">Architecture</span>
+                <span class="proof-tag">37.8K Views</span>
+                <span class="proof-tag">1 Video</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-a"></div>
-              <!-- PLACEHOLDER: replace with campaign visual or screenshot -->
-              <div class="proof-card-visual-label">Campaign Visual</div>
+              <div class="proof-data-visual">
+                <div class="data-viz-num">+202.9%</div>
+                <div class="data-viz-label">Profile Visits</div>
+                <svg viewBox="0 0 280 70" class="data-viz-chart" aria-hidden="true">
+                  <defs>
+                    <linearGradient id="lineGradC" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#00D9C0" stop-opacity=".4"/>
+                      <stop offset="100%" stop-color="#00D9C0" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M0,58 L40,57 L80,55 L120,50 L160,38 L200,22 L240,10 L280,4 L280,70 L0,70 Z" fill="url(#lineGradC)"/>
+                  <path d="M0,58 L40,57 L80,55 L120,50 L160,38 L200,22 L240,10 L280,4" fill="none" stroke="#00D9C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="280" cy="4" r="4" fill="#00D9C0"/>
+                  <circle cx="280" cy="4" r="8" fill="#00D9C0" opacity=".25"/>
+                </svg>
+                <div class="data-viz-stats">
+                  <div><span>55.5K</span>Monthly Views</div>
+                  <div><span>780</span>Followers</div>
+                </div>
+              </div>
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Audience Growth</div>
-              <div class="proof-card-title">Cross-Platform Expansion</div>
-              <p class="proof-card-outcome">Built and scaled presence across four platforms simultaneously for a GCC retail brand entering the digital space.</p>
+              <div class="proof-card-title">F&amp;B Brand — Instagram Presence</div>
+              <p class="proof-card-outcome">Built social presence for a hospitality brand from the ground up — 780 new followers gained, 55.5K monthly views, and a +202.9% jump in profile visits.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">4</span>
-                <span class="metric-label">Platforms Launched</span>
+                <span class="metric-num">780</span>
+                <span class="metric-label">New Followers Gained</span>
               </div>
               <div class="proof-card-tags">
-                <span class="proof-tag">Multi-Platform</span>
-                <span class="proof-tag">Content</span>
-                <span class="proof-tag">GCC</span>
+                <span class="proof-tag">Instagram</span>
+                <span class="proof-tag">F&amp;B</span>
+                <span class="proof-tag">55.5K Views</span>
+                <span class="proof-tag">+202.9% Profile Visits</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Performance Results -->
+      <!-- ── Performance Results ── -->
       <div class="work-panel" data-panel="performance">
         <div class="proof-grid">
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-c"></div>
-              <!-- PLACEHOLDER: replace with screenshot proof -->
-              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-data-visual">
+                <div class="data-viz-num">471</div>
+                <div class="data-viz-label">Total Leads · 5 Campaigns</div>
+                <svg viewBox="0 0 280 80" class="data-viz-chart" aria-hidden="true">
+                  <rect x="14"  y="52" width="40" height="28" rx="3" fill="#00D9C0" opacity=".5"/>
+                  <text x="34"  y="48" text-anchor="middle" fill="rgba(242,239,232,.55)" font-size="9" font-family="JetBrains Mono">83</text>
+                  <rect x="68"  y="58" width="40" height="22" rx="3" fill="#00D9C0" opacity=".4"/>
+                  <text x="88"  y="54" text-anchor="middle" fill="rgba(242,239,232,.55)" font-size="9" font-family="JetBrains Mono">66</text>
+                  <rect x="122" y="73" width="40" height="7"  rx="3" fill="#00D9C0" opacity=".3"/>
+                  <text x="142" y="69" text-anchor="middle" fill="rgba(242,239,232,.55)" font-size="9" font-family="JetBrains Mono">20</text>
+                  <rect x="176" y="55" width="40" height="25" rx="3" fill="#00D9C0" opacity=".45"/>
+                  <text x="196" y="51" text-anchor="middle" fill="rgba(242,239,232,.55)" font-size="9" font-family="JetBrains Mono">73</text>
+                  <rect x="230" y="6"  width="40" height="74" rx="3" fill="#00D9C0"/>
+                  <text x="250" y="2"  text-anchor="middle" fill="#00D9C0" font-size="10" font-family="JetBrains Mono" font-weight="600">229</text>
+                </svg>
+                <div class="data-viz-stats">
+                  <div><span>SAR 13.65</span>Best CPL</div>
+                  <div><span>2.30%</span>Top CTR</div>
+                </div>
+              </div>
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Performance Results</div>
-              <div class="proof-card-title">Real Estate Lead Gen</div>
-              <p class="proof-card-outcome">Meta campaign generated 1,200+ qualified leads at SAR 18 per lead for a residential developer in Riyadh.</p>
+              <div class="proof-card-title">Real Estate Agency — Lead Generation</div>
+              <p class="proof-card-outcome">Meta campaign system built across 5 campaigns for a real estate agency — consistent lead flow at controlled cost per result.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">SAR 18</span>
-                <span class="metric-label">Cost Per Lead</span>
+                <span class="metric-num">471</span>
+                <span class="metric-label">Total Leads · 5 Campaigns</span>
               </div>
               <div class="proof-card-tags">
                 <span class="proof-tag">Meta Ads</span>
                 <span class="proof-tag">Real Estate</span>
-                <span class="proof-tag">Leads</span>
+                <span class="proof-tag">Lead Gen</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-d"></div>
-              <!-- PLACEHOLDER: replace with screenshot proof -->
-              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-data-visual">
+                <svg viewBox="0 0 280 160" class="data-viz-chart data-viz-chart-tall" aria-hidden="true">
+                  <circle cx="140" cy="80" r="72" fill="none" stroke="rgba(0,217,192,.18)" stroke-width="1.5" stroke-dasharray="2 4"/>
+                  <circle cx="140" cy="80" r="72" fill="rgba(0,217,192,.04)"/>
+                  <circle cx="140" cy="80" r="54" fill="rgba(0,217,192,.12)" stroke="#00D9C0" stroke-width="1.5"/>
+                  <text x="140" y="78" text-anchor="middle" fill="#00D9C0" font-size="22" font-family="JetBrains Mono" font-weight="500">2.48M</text>
+                  <text x="140" y="92" text-anchor="middle" fill="rgba(242,239,232,.5)" font-size="8" font-family="JetBrains Mono" letter-spacing="2">REACH</text>
+                  <text x="140" y="14" text-anchor="middle" fill="rgba(242,239,232,.65)" font-size="10" font-family="JetBrains Mono" letter-spacing="1.5">3.25M IMPRESSIONS</text>
+                </svg>
+                <div class="data-viz-stats" style="margin-top:6px;">
+                  <div><span>SAR 3,066</span>Total Spend</div>
+                  <div><span>1.31</span>Frequency</div>
+                </div>
+              </div>
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Performance Results</div>
-              <div class="proof-card-title">E-Commerce ROAS</div>
-              <p class="proof-card-outcome">Google + Meta performance system for a GCC e-commerce brand hit 6.2× return on ad spend in 60 days.</p>
+              <div class="proof-card-title">F&amp;B Brand — Awareness Campaign</div>
+              <p class="proof-card-outcome">Full-funnel Meta awareness campaign for a hospitality brand — massive reach at an efficient spend, dominating the local market.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">6.2×</span>
-                <span class="metric-label">Return on Ad Spend</span>
+                <span class="metric-num">2.48M</span>
+                <span class="metric-label">Total Reach</span>
               </div>
               <div class="proof-card-tags">
-                <span class="proof-tag">Google</span>
-                <span class="proof-tag">Meta</span>
-                <span class="proof-tag">E-Commerce</span>
+                <span class="proof-tag">Meta Ads</span>
+                <span class="proof-tag">F&amp;B</span>
+                <span class="proof-tag">3.25M Impressions</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-a"></div>
-              <!-- PLACEHOLDER: replace with screenshot proof -->
-              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-data-visual">
+                <svg viewBox="0 0 280 160" class="data-viz-chart data-viz-chart-tall" aria-hidden="true">
+                  <polygon points="20,18 260,18 200,72 80,72" fill="rgba(0,217,192,.1)" stroke="#00D9C0" stroke-width="1.2"/>
+                  <text x="140" y="44" text-anchor="middle" fill="#00D9C0" font-size="18" font-family="JetBrains Mono" font-weight="500">20,673</text>
+                  <text x="140" y="58" text-anchor="middle" fill="rgba(242,239,232,.5)" font-size="8" font-family="JetBrains Mono" letter-spacing="1.8">PEOPLE REACHED</text>
+                  <line x1="80" y1="78" x2="200" y2="78" stroke="rgba(0,217,192,.25)" stroke-width="1" stroke-dasharray="3 3"/>
+                  <polygon points="80,84 200,84 168,138 112,138" fill="rgba(0,217,192,.35)" stroke="#00D9C0" stroke-width="1.2"/>
+                  <text x="140" y="112" text-anchor="middle" fill="#00D9C0" font-size="18" font-family="JetBrains Mono" font-weight="500">914</text>
+                  <text x="140" y="126" text-anchor="middle" fill="rgba(242,239,232,.5)" font-size="8" font-family="JetBrains Mono" letter-spacing="1.8">LINK CLICKS</text>
+                </svg>
+                <div class="data-viz-stats" style="margin-top:6px;">
+                  <div><span>4.4%</span>CTR</div>
+                  <div><span>SAR 948</span>Spent</div>
+                </div>
+              </div>
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Performance Results</div>
-              <div class="proof-card-title">App Install Campaign</div>
-              <p class="proof-card-outcome">Performance campaign drove 28,000 app installs at below-target cost-per-install for a fintech client.</p>
+              <div class="proof-card-title">Architecture Firm — Traffic Campaign</div>
+              <p class="proof-card-outcome">Paid media campaign driving high-intent traffic to an architecture firm's portfolio — strong click-through at precise audience targeting.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">28K</span>
-                <span class="metric-label">App Installs</span>
+                <span class="metric-num">914</span>
+                <span class="metric-label">Link Clicks</span>
               </div>
               <div class="proof-card-tags">
-                <span class="proof-tag">App Installs</span>
-                <span class="proof-tag">Fintech</span>
-                <span class="proof-tag">Mobile</span>
+                <span class="proof-tag">Meta Ads</span>
+                <span class="proof-tag">Architecture</span>
+                <span class="proof-tag">20.6K Reached</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-b"></div>
-              <!-- PLACEHOLDER: replace with screenshot proof -->
-              <div class="proof-card-visual-label">Screenshot Proof</div>
+              <div class="proof-data-visual">
+                <svg viewBox="0 0 280 160" class="data-viz-chart data-viz-chart-tall" aria-hidden="true">
+                  <polygon points="20,18 260,18 200,72 80,72" fill="rgba(0,217,192,.1)" stroke="#00D9C0" stroke-width="1.2"/>
+                  <text x="140" y="44" text-anchor="middle" fill="#00D9C0" font-size="18" font-family="JetBrains Mono" font-weight="500">204,499</text>
+                  <text x="140" y="58" text-anchor="middle" fill="rgba(242,239,232,.5)" font-size="8" font-family="JetBrains Mono" letter-spacing="1.8">IMPRESSIONS</text>
+                  <line x1="80" y1="78" x2="200" y2="78" stroke="rgba(0,217,192,.25)" stroke-width="1" stroke-dasharray="3 3"/>
+                  <polygon points="80,84 200,84 168,138 112,138" fill="rgba(0,217,192,.4)" stroke="#00D9C0" stroke-width="1.2"/>
+                  <text x="140" y="112" text-anchor="middle" fill="#00D9C0" font-size="18" font-family="JetBrains Mono" font-weight="500">145</text>
+                  <text x="140" y="126" text-anchor="middle" fill="rgba(242,239,232,.5)" font-size="8" font-family="JetBrains Mono" letter-spacing="1.8">CONVERSIONS</text>
+                </svg>
+                <div class="data-viz-stats" style="margin-top:6px;">
+                  <div><span>0.07%</span>Conversion Rate</div>
+                  <div><span>Multi</span>Sector</div>
+                </div>
+              </div>
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Performance Results</div>
-              <div class="proof-card-title">Retargeting System</div>
-              <p class="proof-card-outcome">Rebuilt a client's retargeting architecture from scratch, cutting cost-per-conversion by 41%.</p>
+              <div class="proof-card-title">Multi-Sector Lead Gen Campaign</div>
+              <p class="proof-card-outcome">Performance campaign built for scale — over 200K impressions with 145 direct conversions at measurable cost-per-result.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">−41%</span>
-                <span class="metric-label">Cost Per Conversion</span>
+                <span class="metric-num">145</span>
+                <span class="metric-label">Conversions</span>
               </div>
               <div class="proof-card-tags">
-                <span class="proof-tag">Retargeting</span>
+                <span class="proof-tag">Lead Gen</span>
                 <span class="proof-tag">Performance</span>
-                <span class="proof-tag">Optimization</span>
+                <span class="proof-tag">204K Impressions</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- Live Experiences -->
+      <!-- ── AI Generated Media ── -->
+      <div class="work-panel" data-panel="ai-media">
+        <div class="ai-feature-list">
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-01.mp4" type="video/mp4"></video></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Film</div>
+              <h3 class="ai-feature-title">Residential brand <em>film.</em></h3>
+              <p class="ai-feature-desc">A branded film for a residential real estate client — architecture, lifestyle, and atmosphere built entirely in AI. Cinematic property content without the production cost.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-10.mp4" type="video/mp4"></video></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Film</div>
+              <h3 class="ai-feature-title">Brand <em>cinema.</em></h3>
+              <p class="ai-feature-desc">A brand cinema piece created with AI tools — atmosphere over assets. Built to live on a homepage, not a feed.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-02.mp4" type="video/mp4"></video></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Portrait</div>
+              <h3 class="ai-feature-title">Jewelry brand <em>portrait.</em></h3>
+              <p class="ai-feature-desc">A brand portrait for a jewelry client — model, necklace, and atmosphere generated entirely in AI. No photoshoot. No studio. Just the image the brand needed.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-03.mp4" type="video/mp4"></video></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Film</div>
+              <h3 class="ai-feature-title">Beauty <em>atelier.</em></h3>
+              <p class="ai-feature-desc">Quiet beauty film prompted into existence — soft tone, slow motion, full creative control over every frame.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><img src="/assets/work/ai-media/ai-pic-02.jpg" alt="AI generated product visual" loading="lazy"></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Visual</div>
+              <h3 class="ai-feature-title">Product <em>campaign.</em></h3>
+              <p class="ai-feature-desc">Photoreal AI product visual produced for digital channels. Iterations land in hours instead of weeks — same brand language, faster.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-04.mp4" type="video/mp4"></video></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Film</div>
+              <h3 class="ai-feature-title">Luxury resort <em>film.</em></h3>
+              <p class="ai-feature-desc">Aerial resort film generated in AI — sweeping views, golden-hour light, and luxury positioning shaped entirely through prompts. No location shoot. No drone crew.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-05.mp4" type="video/mp4"></video></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Film</div>
+              <h3 class="ai-feature-title">Underwater <em>film.</em></h3>
+              <p class="ai-feature-desc">An underwater brand film produced entirely in AI — depth, light, and cinematic tension built through prompts. The kind of shot that would cost a full dive-shoot day, delivered in hours.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><img src="/assets/work/ai-media/ai-pic-03.jpg" alt="AI generated editorial frame" loading="lazy"></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Editorial</div>
+              <h3 class="ai-feature-title">Editorial <em>frame.</em></h3>
+              <p class="ai-feature-desc">A still editorial moment generated for a brand storytelling drop — campaign-grade visual without a single travel day.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-06.mp4" type="video/mp4"></video></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Film</div>
+              <h3 class="ai-feature-title">Atelier <em>story.</em></h3>
+              <p class="ai-feature-desc">Atelier-mood AI film built for a long-form brand narrative. Tone and pacing shaped frame by frame.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-07.mp4" type="video/mp4"></video></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Film</div>
+              <h3 class="ai-feature-title">City brand <em>film.</em></h3>
+              <p class="ai-feature-desc">Aerial skyline film built in AI — Riyadh at golden hour, framed for destination and real estate campaigns. Generated without a single drone flight.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><img src="/assets/work/ai-media/ai-pic-04.jpg" alt="AI generated brand visual" loading="lazy"></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Visual</div>
+              <h3 class="ai-feature-title">Brand <em>visual.</em></h3>
+              <p class="ai-feature-desc">Cross-channel brand visual built in AI — same artwork ships to social, web, and OOH.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-08.mp4" type="video/mp4"></video></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Film</div>
+              <h3 class="ai-feature-title">Editorial <em>film.</em></h3>
+              <p class="ai-feature-desc">Editorial-tone AI film made for a fashion brand's seasonal moment — print sensibility, motion delivery.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><img src="/assets/work/ai-media/ai-pic-05.jpg" alt="AI generated fashion portrait" loading="lazy"></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Editorial</div>
+              <h3 class="ai-feature-title">Fashion <em>portrait.</em></h3>
+              <p class="ai-feature-desc">Fashion portrait visual generated for a campaign brief — model casting, styling, and lighting all prompt-driven.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-09.mp4" type="video/mp4"></video></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Film</div>
+              <h3 class="ai-feature-title">Lifestyle <em>film.</em></h3>
+              <p class="ai-feature-desc">A lifestyle AI film capturing a destination mood without travelling there. Place, light, and pacing all generated.</p>
+            </div>
+          </div>
+
+          <div class="ai-feature">
+            <div class="ai-feature-media"><img src="/assets/work/ai-media/ai-pic-06.jpg" alt="AI generated luxury editorial" loading="lazy"></div>
+            <div class="ai-feature-text">
+              <div class="ai-feature-cat">AI Editorial</div>
+              <h3 class="ai-feature-title">Luxury <em>editorial.</em></h3>
+              <p class="ai-feature-desc">Luxury editorial frame generated in AI for a product launch — atmosphere first, hard sell second.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── Live Experiences ── -->
       <div class="work-panel" data-panel="events">
         <div class="proof-grid">
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-d"></div>
-              <!-- PLACEHOLDER: replace with event visual -->
-              <div class="proof-card-visual-label">Event Visual</div>
+              <img src="/assets/work/events/corp-01.jpg" alt="Corporate event production" class="proof-card-media" loading="lazy">
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Live Experiences</div>
-              <div class="proof-card-title">Brand Activation</div>
-              <p class="proof-card-outcome">Pop-up brand activation in Riyadh — 4,000+ attendees and 600K organic impressions generated in 48 hours.</p>
+              <div class="proof-card-title">Corporate Brand Event</div>
+              <p class="proof-card-outcome">Full event production for a corporate activation — creative direction, logistics, and on-the-day execution from a single team.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">4,000+</span>
-                <span class="metric-label">Attendees</span>
+                <span class="metric-num">Full</span>
+                <span class="metric-label">Production Service</span>
               </div>
               <div class="proof-card-tags">
+                <span class="proof-tag">Corporate</span>
                 <span class="proof-tag">Activation</span>
-                <span class="proof-tag">Riyadh</span>
-                <span class="proof-tag">Brand</span>
-              </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
-            </div>
-          </div>
-
-          <div class="proof-card">
-            <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-a"></div>
-              <!-- PLACEHOLDER: replace with event visual -->
-              <div class="proof-card-visual-label">Event Visual</div>
-              <div class="proof-card-visual-line"></div>
-            </div>
-            <div class="proof-card-body">
-              <div class="proof-card-cat">Live Experiences</div>
-              <div class="proof-card-title">Annual Conference</div>
-              <p class="proof-card-outcome">Full production, AV, speakers, and communications for a 300-person industry conference from concept to execution.</p>
-              <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">300</span>
-                <span class="metric-label">Guests Hosted</span>
-              </div>
-              <div class="proof-card-tags">
-                <span class="proof-tag">Conference</span>
                 <span class="proof-tag">Production</span>
-                <span class="proof-tag">Events</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-b"></div>
-              <!-- PLACEHOLDER: replace with event visual -->
-              <div class="proof-card-visual-label">Event Visual</div>
+              <img src="/assets/work/events/corp-04.jpg" alt="Corporate event gathering" class="proof-card-media" loading="lazy">
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Live Experiences</div>
-              <div class="proof-card-title">Product Launch Event</div>
-              <p class="proof-card-outcome">Press and influencer launch event for a new product line — 85 media and press in attendance, full coverage achieved.</p>
+              <div class="proof-card-title">Corporate Gathering</div>
+              <p class="proof-card-outcome">Produced a curated corporate gathering — venue, styling, communications, and content capture all coordinated in-house.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">85</span>
-                <span class="metric-label">Press Attended</span>
+                <span class="metric-num">End-to-End</span>
+                <span class="metric-label">Coordination</span>
               </div>
               <div class="proof-card-tags">
-                <span class="proof-tag">Launch</span>
-                <span class="proof-tag">Press</span>
-                <span class="proof-tag">Influencer</span>
+                <span class="proof-tag">Corporate</span>
+                <span class="proof-tag">Venue</span>
+                <span class="proof-tag">Content</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
           <div class="proof-card">
             <div class="proof-card-visual">
-              <div class="proof-card-visual-bg pv-c"></div>
-              <!-- PLACEHOLDER: replace with event visual -->
-              <div class="proof-card-visual-label">Event Visual</div>
+              <img src="/assets/work/events/private-01.jpg" alt="Private event experience" class="proof-card-media" loading="lazy">
               <div class="proof-card-visual-line"></div>
             </div>
             <div class="proof-card-body">
               <div class="proof-card-cat">Live Experiences</div>
-              <div class="proof-card-title">VIP Dinner Series</div>
-              <p class="proof-card-outcome">Intimate private dinner series connecting brand leadership with key client stakeholders across six carefully curated evenings.</p>
+              <div class="proof-card-title">Private Brand Dinner</div>
+              <p class="proof-card-outcome">An intimate brand dinner designed to deepen client relationships — atmosphere, styling, and a curated guest journey from arrival to close.</p>
               <div class="proof-card-metric">
-                <!-- PLACEHOLDER: replace with real metric -->
-                <span class="metric-num">6</span>
-                <span class="metric-label">Events Executed</span>
+                <span class="metric-num">Private</span>
+                <span class="metric-label">Experience Design</span>
+              </div>
+              <div class="proof-card-tags">
+                <span class="proof-tag">Private</span>
+                <span class="proof-tag">Dinner</span>
+                <span class="proof-tag">Hospitality</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <div class="proof-card-visual">
+              <img src="/assets/work/events/private-03.jpg" alt="Private event photography" class="proof-card-media" loading="lazy">
+              <div class="proof-card-visual-line"></div>
+            </div>
+            <div class="proof-card-body">
+              <div class="proof-card-cat">Live Experiences</div>
+              <div class="proof-card-title">VIP Private Event</div>
+              <p class="proof-card-outcome">A high-end private event produced and documented — from concept and styling to live content capture and post-event gallery.</p>
+              <div class="proof-card-metric">
+                <span class="metric-num">VIP</span>
+                <span class="metric-label">Experience &amp; Content</span>
               </div>
               <div class="proof-card-tags">
                 <span class="proof-tag">VIP</span>
-                <span class="proof-tag">Hospitality</span>
                 <span class="proof-tag">Private</span>
+                <span class="proof-tag">Documentation</span>
               </div>
-              <span class="proof-card-cta">View case
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-              </span>
             </div>
           </div>
 
@@ -774,41 +1027,34 @@ footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relati
   <div class="container">
     <div class="selected-proof-inner reveal">
       <div class="selected-proof-visual">
-        <!-- PLACEHOLDER: replace with real case study visual -->
-        <div class="selected-proof-visual-label">Selected Proof Visual</div>
+        <img src="/assets/work/films/cocktail-shaker.jpg" alt="F&B brand campaign visual">
       </div>
       <div class="selected-proof-text">
         <span class="eyebrow"><span class="dot-pulse"></span>Selected Proof</span>
-        <h2>From idea to<br>visible <em>impact.</em></h2>
+        <h2>From first brief<br>to full <em>presence.</em></h2>
         <div class="proof-detail-list">
           <div class="proof-detail-item">
             <span class="dl">Project</span>
-            <!-- PLACEHOLDER: replace with real project name -->
-            <span class="dv">Real Estate Lead Generation Campaign</span>
+            <span class="dv">Hospitality Brand — Full-Service Campaign</span>
           </div>
           <div class="proof-detail-item">
             <span class="dl">Service</span>
-            <!-- PLACEHOLDER: replace with real service type -->
-            <span class="dv">Paid Media · Meta Ads · Lead Nurturing</span>
+            <span class="dv">Content Production · Social Management · Meta Ads</span>
           </div>
           <div class="proof-detail-item">
             <span class="dl">Challenge</span>
-            <!-- PLACEHOLDER: replace with real challenge description -->
-            <span class="dv">A Riyadh residential developer needed qualified leads at scale — fast, with a fixed acquisition budget and a hard launch deadline.</span>
+            <span class="dv">A Riyadh hospitality brand needed a complete digital presence built from scratch — content, community, and paid performance working as one system.</span>
           </div>
           <div class="proof-detail-item">
             <span class="dl">What we did</span>
-            <!-- PLACEHOLDER: replace with real approach description -->
-            <span class="dv">Built a full Meta funnel: creative, targeting, landing pages, CRM integration, and a weekly optimisation cadence from day one.</span>
+            <span class="dv">Built a monthly film production system, managed daily community, and ran a full Meta awareness campaign with custom creative across all placements.</span>
           </div>
           <div class="proof-detail-item">
             <span class="dl">Result</span>
-            <!-- PLACEHOLDER: replace with real result -->
-            <span class="dv result">1,200+ qualified leads at SAR 18 per lead — 40% below the target cost.</span>
+            <span class="dv result">55.5K monthly views · 2.48M campaign reach · SAR 3,066 total ad spend</span>
           </div>
         </div>
-        <!-- PLACEHOLDER: link to full case study page when available -->
-        <a href="#" class="selected-proof-link">View full case study
+        <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="selected-proof-link">Work with us on yours
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -821,29 +1067,24 @@ footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relati
   <div class="container">
     <div class="results-strip-inner reveal">
       <div class="result-block">
-        <!-- PLACEHOLDER: replace XX with real number -->
-        <div class="result-num">XX+</div>
-        <div class="result-label">Films &amp; content pieces produced</div>
+        <div class="result-num">200+</div>
+        <div class="result-label">Content pieces produced</div>
       </div>
       <div class="result-block">
-        <!-- PLACEHOLDER: replace XX with real number -->
-        <div class="result-num">XX+</div>
-        <div class="result-label">Followers grown for clients</div>
+        <div class="result-num">72.3K</div>
+        <div class="result-label">Monthly views generated</div>
       </div>
       <div class="result-block">
-        <!-- PLACEHOLDER: replace XX with real number -->
-        <div class="result-num">XX+</div>
+        <div class="result-num">471+</div>
         <div class="result-label">Qualified leads generated</div>
       </div>
       <div class="result-block">
-        <!-- PLACEHOLDER: replace XX with real number -->
-        <div class="result-num">XX+</div>
-        <div class="result-label">Live experiences executed</div>
+        <div class="result-num">2.48M</div>
+        <div class="result-label">Campaign reach achieved</div>
       </div>
       <div class="result-block">
-        <!-- PLACEHOLDER: replace XX with real average ROAS -->
-        <div class="result-num">XX×</div>
-        <div class="result-label">Average return on ad spend</div>
+        <div class="result-num">10+</div>
+        <div class="result-label">Live experiences executed</div>
       </div>
     </div>
   </div>
@@ -876,14 +1117,14 @@ footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relati
         <h4>Services</h4>
         <a href="/ai-solutions.html">AI Solutions</a>
         <a href="/#services">Agency</a>
-        <a href="/">Ensign OS</a>
+        <a href="/ensign-os.html">Ensign OS</a>
         <a href="/#services">App / Website Development</a>
       </div>
       <div class="foot-col">
         <h4>Company</h4>
-        <a href="/ai-solutions.html">About</a>
+        <a href="/about.html">About</a>
         <a href="/blog/">Blog</a>
-        <a href="/work.html">Our Word</a>
+        <a href="/work.html">Our Work</a>
         <a href="/careers.html">Careers</a>
         <a href="/privacy-policy.html">Privacy Policy</a>
         <a href="/terms-and-conditions.html">Terms</a>
@@ -954,7 +1195,14 @@ footer.cine{padding:80px 0 40px;border-top:1px solid var(--line);position:relati
       t.setAttribute('aria-selected', on);
     });
     moveIndicator();
-    panels.forEach(function(p){ p.classList.toggle('active', p.dataset.panel === name); });
+    panels.forEach(function(p){
+      var on = p.dataset.panel === name;
+      p.classList.toggle('active', on);
+      /* pause videos in hidden panels, play in active */
+      p.querySelectorAll('video').forEach(function(v){
+        if(on){ v.play().catch(function(){}); } else { v.pause(); }
+      });
+    });
   }
 
   tabs.forEach(function(tab){

@@ -685,7 +685,7 @@ section{ position:relative; z-index:2;}
 }
 .work-tab{
   position:relative; z-index:2;
-  padding:11px 22px; border-radius:999px;
+  padding:10px 20px; border-radius:999px;
   font-family:inherit; font-size:13px; font-weight:500;
   color:var(--ink-mute); background:transparent; cursor:pointer; white-space:nowrap;
   transition:color .35s var(--ease);
@@ -694,7 +694,9 @@ section{ position:relative; z-index:2;}
 .work-tab.active{ color:#fff;}
 .work-tab-indicator{
   position:absolute; top:6px; left:0; height:calc(100% - 12px);
-  background:var(--ink); border-radius:999px; z-index:1;
+  background:#181818;
+  box-shadow:0 4px 14px -4px rgba(10,10,10,.35);
+  border-radius:999px; z-index:1;
   transition:transform .55s var(--ease), width .55s var(--ease);
   will-change:transform, width;
 }
@@ -711,39 +713,77 @@ section{ position:relative; z-index:2;}
   to{ opacity:1; transform:translateY(0); filter:blur(0);}
 }
 
-/* ───── Tile Strip (Media + Events) ───── */
-.work-tile-strip{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
-.work-tile{
-  position:relative; aspect-ratio:4/5; overflow:hidden;
-  border-radius:22px;
+/* ───── Banner (Media + Events) — full-width connected strip ───── */
+.work-banner{
+  display:flex; gap:0;
+  border-radius:24px; overflow:hidden;
   border:1px solid rgba(255,255,255,.7);
   box-shadow:var(--shadow-md);
-  transition:transform .55s var(--ease), box-shadow .55s var(--ease);
-  cursor:pointer; will-change:transform;
+  aspect-ratio:16/7;
+  background:var(--warm);
+  position:relative;
 }
-.work-tile:hover{ transform:translateY(-6px) scale(1.015); box-shadow:var(--shadow-lg);}
-.work-tile.t-a{ background:linear-gradient(135deg,#ddd6fe 0%,#fce7f3 50%,#fef3c7 100%);}
-.work-tile.t-b{ background:linear-gradient(135deg,#bae6fd 0%,#ddd6fe 50%,#fbcfe8 100%);}
-.work-tile.t-c{ background:linear-gradient(135deg,#fef3c7 0%,#fed7aa 50%,#fbcfe8 100%);}
-.work-tile.t-d{ background:linear-gradient(135deg,#c7d2fe 0%,#bae6fd 50%,#d1fae5 100%);}
-.work-tile.t-e{ background:linear-gradient(135deg,#fce7f3 0%,#ddd6fe 50%,#bae6fd 100%);}
-.work-tile.t-f{ background:linear-gradient(135deg,#d1fae5 0%,#bae6fd 50%,#c7d2fe 100%);}
-.work-tile img, .work-tile video{
+.work-bp{
+  flex:1; position:relative; overflow:hidden;
+  border-inline-start:1px solid rgba(255,255,255,.55);
+  transition:flex .65s var(--ease);
+  cursor:pointer; min-width:0;
+}
+.work-bp:first-child{ border-inline-start:0;}
+.work-bp.t-a{ background:linear-gradient(135deg,#ddd6fe 0%,#fce7f3 50%,#fef3c7 100%);}
+.work-bp.t-b{ background:linear-gradient(135deg,#bae6fd 0%,#ddd6fe 50%,#fbcfe8 100%);}
+.work-bp.t-c{ background:linear-gradient(135deg,#fef3c7 0%,#fed7aa 50%,#fbcfe8 100%);}
+.work-bp.t-d{ background:linear-gradient(135deg,#c7d2fe 0%,#bae6fd 50%,#d1fae5 100%);}
+.work-bp.t-e{ background:linear-gradient(135deg,#fce7f3 0%,#ddd6fe 50%,#bae6fd 100%);}
+.work-bp.t-f{ background:linear-gradient(135deg,#d1fae5 0%,#bae6fd 50%,#c7d2fe 100%);}
+.work-bp img, .work-bp video{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  transition:transform .9s var(--ease);
 }
-.work-tile-shade{
-  position:absolute; inset:0;
-  background:linear-gradient(180deg, transparent 50%, rgba(0,0,0,.18) 100%);
+.work-banner:hover .work-bp{ flex:.85;}
+.work-banner:hover .work-bp:hover{ flex:1.5;}
+.work-bp:hover img, .work-bp:hover video{ transform:scale(1.05);}
+.work-bp::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, transparent 60%, rgba(0,0,0,.10) 100%);
   pointer-events:none;
 }
-.work-tile-label{
-  position:absolute; bottom:14px; left:14px; z-index:2;
-  padding:7px 14px; border-radius:999px;
-  background:rgba(255,255,255,.85);
-  backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
-  border:1px solid rgba(255,255,255,.7);
-  font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.14em; text-transform:uppercase;
-  color:var(--ink);
+.work-bp.bp-in{ animation:bpIn .9s var(--ease-out) both;}
+@keyframes bpIn{ from{ opacity:0; transform:translateY(20px) scale(.98);} to{ opacity:1; transform:translateY(0) scale(1);} }
+
+/* ───── Account / Campaign result block ───── */
+.result-block{
+  position:relative; overflow:hidden;
+  padding:36px 36px 32px;
+  background:var(--glass); border:1px solid rgba(255,255,255,.7); border-radius:24px;
+  backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+  box-shadow:var(--shadow-sm);
+  margin-bottom:18px;
+  opacity:0; transform:translateY(20px);
+  transition:opacity .85s var(--ease-out), transform .85s var(--ease-out);
+}
+.work-panel.active .result-block{ opacity:1; transform:translateY(0);}
+.result-block::before{
+  content:""; position:absolute; inset:auto -20% -50% -10%; height:60%;
+  background:radial-gradient(circle, rgba(59,69,217,.10), transparent 60%);
+  filter:blur(28px); pointer-events:none;
+}
+.result-block:nth-child(even)::before{
+  background:radial-gradient(circle, rgba(245,188,54,.12), transparent 60%);
+  inset:auto -10% -50% -20%;
+}
+.rb-head{ margin-bottom:24px;}
+.rb-head .label{
+  display:inline-flex; align-items:center; gap:8px;
+  font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--indigo); margin-bottom:10px;
+}
+.rb-head .label::before{ content:""; width:18px; height:1px; background:var(--indigo);}
+.rb-head h3{
+  font-size:clamp(22px, 2.4vw, 30px); line-height:1.15; letter-spacing:-.02em; font-weight:500;
+}
+.rb-head p{
+  margin-top:6px; font-size:14px; color:var(--ink-mute); line-height:1.55; max-width:520px;
 }
 
 /* ───── KPI Grid ───── */
@@ -931,8 +971,15 @@ footer.cine{
   .ac-left{ position:static;}
   .eos-grid{ grid-template-columns:1fr; gap:48px;}
   .work-grid{ grid-template-columns:1fr;}
-  .work-tile-strip{ grid-template-columns:repeat(2,1fr);}
+  .work-banner{ aspect-ratio:auto; flex-wrap:wrap;}
+  .work-banner .work-bp{ flex:0 0 50%; aspect-ratio:4/3;}
+  .work-banner .work-bp:nth-child(2){ border-inline-start:1px solid rgba(255,255,255,.55);}
+  .work-banner .work-bp:nth-child(3){ border-top:1px solid rgba(255,255,255,.55); border-inline-start:0;}
+  .work-banner .work-bp:nth-child(4){ border-top:1px solid rgba(255,255,255,.55);}
+  .work-banner:hover .work-bp{ flex:0 0 50%;}
+  .work-banner:hover .work-bp:hover{ flex:0 0 50%;}
   .kpi-grid{ grid-template-columns:repeat(2,1fr);}
+  .result-block{ padding:28px 24px;}
   .work-card.lg{ min-height:380px;}
   .foot-grid{ grid-template-columns:1fr 1fr;}
 }
@@ -951,12 +998,15 @@ footer.cine{
   .foot-grid{ grid-template-columns:1fr;}
   .foot-bottom{ flex-direction:column; align-items:flex-start;}
 
-  .work-tile-strip{
-    display:flex; overflow-x:auto; scroll-snap-type:x mandatory;
-    gap:12px; padding:0 22px 12px; margin:0 -22px;
+  .work-banner{
+    flex-wrap:nowrap; overflow-x:auto; scroll-snap-type:x mandatory;
+    aspect-ratio:auto; height:auto;
+    border-radius:18px;
   }
-  .work-tile-strip > *{ flex:0 0 78%; scroll-snap-align:start;}
+  .work-banner .work-bp{ flex:0 0 78%; aspect-ratio:4/3; scroll-snap-align:start; border-top:0;}
+  .work-banner .work-bp:nth-child(n+2){ border-inline-start:1px solid rgba(255,255,255,.55);}
   .kpi-grid{ grid-template-columns:1fr;}
+  .result-block{ padding:24px 18px;}
   .ad-funnel-step .name{ width:90px; font-size:12px;}
   .ad-funnel-step .val{ width:48px;}
 }
@@ -1268,134 +1318,48 @@ footer.cine{
 
     <div class="work-panels">
 
-      <!-- Media Production -->
+      <!-- Media Production — full-width connected banner -->
       <div class="work-panel active" data-panel="media">
-        <div class="work-tile-strip">
-          <figure class="work-tile t-a">
+        <div class="work-banner">
+          <figure class="work-bp t-a">
             <img src="/work/media-production-01.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Brand Film</span>
           </figure>
-          <figure class="work-tile t-b">
+          <figure class="work-bp t-b">
             <video src="/work/media-production-02.mp4" autoplay muted loop playsinline onerror="this.style.display='none'"></video>
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Product Reel</span>
           </figure>
-          <figure class="work-tile t-c">
+          <figure class="work-bp t-c">
             <img src="/work/media-production-03.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Editorial</span>
           </figure>
-          <figure class="work-tile t-d">
+          <figure class="work-bp t-d">
             <video src="/work/media-production-04.mp4" autoplay muted loop playsinline onerror="this.style.display='none'"></video>
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Campaign</span>
           </figure>
         </div>
       </div>
 
-      <!-- Account Growth -->
+      <!-- Account Growth — populated from data -->
       <div class="work-panel" data-panel="growth">
-        <div class="kpi-grid">
-          <div class="kpi-card"><div class="glow"></div>
-            <div class="kpi-label">Reach Growth</div>
-            <div class="kpi-value" data-count="185" data-prefix="+" data-suffix="%">+0%</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="92"></div></div>
-          </div>
-          <div class="kpi-card"><div class="glow warm"></div>
-            <div class="kpi-label">Follower Growth</div>
-            <div class="kpi-value" data-count="72" data-prefix="+" data-suffix="%">+0%</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="64"></div></div>
-          </div>
-          <div class="kpi-card"><div class="glow"></div>
-            <div class="kpi-label">Profile Visits</div>
-            <div class="kpi-value" data-count="240" data-prefix="+" data-suffix="%">+0%</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="100"></div></div>
-          </div>
-          <div class="kpi-card"><div class="glow warm"></div>
-            <div class="kpi-label">Engagement Lift</div>
-            <div class="kpi-value" data-count="3.8" data-suffix="x" data-decimals="1">0.0x</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="76"></div></div>
-          </div>
-        </div>
-        <div class="growth-chart">
-          <div class="chart-glow"></div>
-          <div class="growth-chart-head">
-            <h4>Audience trajectory · 90 days</h4>
-            <div class="legend">
-              <span><span class="dot" style="background:var(--indigo)"></span>Reach</span>
-              <span><span class="dot" style="background:var(--yellow)"></span>Engagement</span>
-            </div>
-          </div>
-          <svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="gArea" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#3B45D9" stop-opacity=".25"/>
-                <stop offset="100%" stop-color="#3B45D9" stop-opacity="0"/>
-              </linearGradient>
-            </defs>
-            <path id="growthArea" d="M0,170 C80,160 130,140 200,120 C270,100 320,80 400,55 C480,30 540,18 600,10 L600,200 L0,200 Z" fill="url(#gArea)"/>
-            <path id="growthLine" d="M0,170 C80,160 130,140 200,120 C270,100 320,80 400,55 C480,30 540,18 600,10" fill="none" stroke="#3B45D9" stroke-width="2" stroke-linecap="round"/>
-            <path id="growthLine2" d="M0,180 C80,175 140,165 220,150 C300,135 360,118 440,95 C500,80 560,68 600,60" fill="none" stroke="#F5BC36" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4" opacity=".75"/>
-          </svg>
-        </div>
+        <div id="acc-blocks"></div>
       </div>
 
-      <!-- Ads Results -->
+      <!-- Ads Results — populated from data -->
       <div class="work-panel" data-panel="ads">
-        <div class="kpi-grid">
-          <div class="kpi-card"><div class="glow"></div>
-            <div class="kpi-label">Leads Generated</div>
-            <div class="kpi-value" data-count="1240" data-suffix="+">0</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="88"></div></div>
-          </div>
-          <div class="kpi-card"><div class="glow warm"></div>
-            <div class="kpi-label">Cost Per Lead</div>
-            <div class="kpi-value" data-count="-38" data-suffix="%">0%</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="62"></div></div>
-          </div>
-          <div class="kpi-card"><div class="glow"></div>
-            <div class="kpi-label">Conversion Rate</div>
-            <div class="kpi-value" data-count="64" data-prefix="+" data-suffix="%">+0%</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="78"></div></div>
-          </div>
-          <div class="kpi-card"><div class="glow warm"></div>
-            <div class="kpi-label">Campaign Efficiency</div>
-            <div class="kpi-value" data-count="2.7" data-suffix="x" data-decimals="1">0.0x</div>
-            <div class="kpi-bar"><div class="kpi-bar-fill" data-fill="68"></div></div>
-          </div>
-        </div>
-        <div class="ad-funnel">
-          <div class="ad-funnel-head">Conversion funnel · last 30 days</div>
-          <div class="ad-funnel-step"><span class="name">Impressions</span><div class="bar"><div class="bar-fill" data-fill="100"></div></div><span class="val">1.2M</span></div>
-          <div class="ad-funnel-step"><span class="name">Clicks</span><div class="bar"><div class="bar-fill" data-fill="42"></div></div><span class="val">48K</span></div>
-          <div class="ad-funnel-step"><span class="name">Leads</span><div class="bar"><div class="bar-fill" data-fill="18"></div></div><span class="val">1.24K</span></div>
-          <div class="ad-funnel-step"><span class="name">Conversions</span><div class="bar"><div class="bar-fill" data-fill="9"></div></div><span class="val">312</span></div>
-        </div>
+        <div id="cmp-blocks"></div>
       </div>
 
-      <!-- Events -->
+      <!-- Events — full-width connected banner -->
       <div class="work-panel" data-panel="events">
-        <div class="work-tile-strip">
-          <figure class="work-tile t-c">
+        <div class="work-banner">
+          <figure class="work-bp t-c">
             <img src="/work/events-01.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Brand Activation</span>
           </figure>
-          <figure class="work-tile t-d">
+          <figure class="work-bp t-d">
             <img src="/work/events-02.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Conference</span>
           </figure>
-          <figure class="work-tile t-e">
+          <figure class="work-bp t-e">
             <video src="/work/events-03.mp4" autoplay muted loop playsinline onerror="this.style.display='none'"></video>
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">Launch</span>
           </figure>
-          <figure class="work-tile t-f">
+          <figure class="work-bp t-f">
             <img src="/work/events-04.jpg" alt="" loading="lazy" onerror="this.style.display='none'">
-            <span class="work-tile-shade"></span>
-            <span class="work-tile-label">VIP Dinner</span>
           </figure>
         </div>
       </div>
@@ -1618,6 +1582,152 @@ footer.cine{
     }, { passive:true });
   }
 
+  /* ── PREVIOUS WORK DATA (data-driven blocks) ── */
+  var workData = {
+    accountGrowth: [
+      {
+        accountLabel: "Managed Account 01",
+        context: "Account growth and engagement development",
+        metrics: [
+          { label: "Reach Growth",    value: 185, prefix:"+", suffix:"%", fill: 92 },
+          { label: "Follower Growth", value: 72,  prefix:"+", suffix:"%", fill: 64 },
+          { label: "Profile Visits",  value: 240, prefix:"+", suffix:"%", fill: 100 },
+          { label: "Engagement Lift", value: 3.8, suffix:"x", decimals:1, fill: 76 }
+        ],
+        chart: {
+          line:  "M0,170 C80,160 130,140 200,120 C270,100 320,80 400,55 C480,30 540,18 600,10",
+          line2: "M0,180 C80,175 140,165 220,150 C300,135 360,118 440,95 C500,80 560,68 600,60"
+        }
+      },
+      {
+        accountLabel: "Managed Account 02",
+        context: "Audience growth and content performance improvement",
+        metrics: [
+          { label: "Reach Growth",    value: 96,  prefix:"+", suffix:"%", fill: 70 },
+          { label: "Follower Growth", value: 41,  prefix:"+", suffix:"%", fill: 48 },
+          { label: "Profile Visits",  value: 130, prefix:"+", suffix:"%", fill: 82 },
+          { label: "Engagement Lift", value: 2.1, suffix:"x", decimals:1, fill: 58 }
+        ],
+        chart: {
+          line:  "M0,175 C80,170 130,158 200,142 C270,128 320,110 400,90 C480,70 540,55 600,42",
+          line2: "M0,182 C80,178 140,170 220,160 C300,148 360,135 440,118 C500,108 560,98 600,90"
+        }
+      }
+    ],
+    adsResults: [
+      {
+        campaignLabel: "Paid Campaign 01",
+        context: "Lead generation and conversion campaign",
+        metrics: [
+          { label: "Leads Generated",     value: 1240, suffix:"+",                fill: 88 },
+          { label: "Cost Per Lead",       value: -38,  suffix:"%",                fill: 62 },
+          { label: "Conversion Rate",     value: 64,   prefix:"+", suffix:"%",    fill: 78 },
+          { label: "Campaign Efficiency", value: 2.7,  suffix:"x", decimals:1,    fill: 68 }
+        ],
+        funnel: [
+          { label: "Impressions", value: "1.2M",  percentage: 100 },
+          { label: "Clicks",      value: "48K",   percentage: 42 },
+          { label: "Leads",       value: "1.24K", percentage: 18 },
+          { label: "Conversions", value: "312",   percentage: 9 }
+        ]
+      },
+      {
+        campaignLabel: "Paid Campaign 02",
+        context: "Awareness and audience expansion campaign",
+        metrics: [
+          { label: "Leads Generated",     value: 860, suffix:"+",              fill: 70 },
+          { label: "Cost Per Lead",       value: -24, suffix:"%",              fill: 50 },
+          { label: "Conversion Rate",     value: 38,  prefix:"+", suffix:"%",  fill: 56 },
+          { label: "Campaign Efficiency", value: 1.9, suffix:"x", decimals:1,  fill: 52 }
+        ],
+        funnel: [
+          { label: "Impressions", value: "880K", percentage: 100 },
+          { label: "Clicks",      value: "31K",  percentage: 36 },
+          { label: "Leads",       value: "860",  percentage: 14 },
+          { label: "Conversions", value: "192",  percentage: 7 }
+        ]
+      }
+    ]
+  };
+
+  function buildKpiCards(metrics){
+    return metrics.map(function(m, j){
+      return '<div class="kpi-card"><div class="glow' + (j%2 ? ' warm' : '') + '"></div>'
+        + '<div class="kpi-label">' + m.label + '</div>'
+        + '<div class="kpi-value" data-count="' + m.value + '"'
+        + (m.prefix   ? ' data-prefix="' + m.prefix + '"' : '')
+        + (m.suffix   ? ' data-suffix="' + m.suffix + '"' : '')
+        + (m.decimals ? ' data-decimals="' + m.decimals + '"' : '')
+        + '>0</div>'
+        + '<div class="kpi-bar"><div class="kpi-bar-fill" data-fill="' + m.fill + '"></div></div>'
+        + '</div>';
+    }).join('');
+  }
+
+  function renderAccountBlocks(){
+    var c = document.getElementById('acc-blocks');
+    if(!c) return;
+    c.innerHTML = workData.accountGrowth.map(function(a, i){
+      var areaId = 'gArea_acc_' + i;
+      return '<div class="result-block">'
+        + '<div class="rb-head">'
+          + '<span class="label">Account Result</span>'
+          + '<h3>' + a.accountLabel + '</h3>'
+          + '<p>' + a.context + '</p>'
+        + '</div>'
+        + '<div class="kpi-grid">' + buildKpiCards(a.metrics) + '</div>'
+        + '<div class="growth-chart" style="margin-top:18px;">'
+          + '<div class="chart-glow"></div>'
+          + '<div class="growth-chart-head">'
+            + '<h4>Trajectory · 90 days</h4>'
+            + '<div class="legend">'
+              + '<span><span class="dot" style="background:var(--indigo)"></span>Reach</span>'
+              + '<span><span class="dot" style="background:var(--yellow)"></span>Engagement</span>'
+            + '</div>'
+          + '</div>'
+          + '<svg viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">'
+            + '<defs><linearGradient id="' + areaId + '" x1="0" y1="0" x2="0" y2="1">'
+              + '<stop offset="0%" stop-color="#3B45D9" stop-opacity=".25"/>'
+              + '<stop offset="100%" stop-color="#3B45D9" stop-opacity="0"/>'
+            + '</linearGradient></defs>'
+            + '<path d="' + a.chart.line + ' L600,200 L0,200 Z" fill="url(#' + areaId + ')"/>'
+            + '<path class="growthLine" d="' + a.chart.line + '" fill="none" stroke="#3B45D9" stroke-width="2" stroke-linecap="round"/>'
+            + '<path class="growthLine2" d="' + a.chart.line2 + '" fill="none" stroke="#F5BC36" stroke-width="2" stroke-linecap="round" stroke-dasharray="4 4" opacity=".75"/>'
+          + '</svg>'
+        + '</div>'
+      + '</div>';
+    }).join('');
+  }
+
+  function renderCampaignBlocks(){
+    var c = document.getElementById('cmp-blocks');
+    if(!c) return;
+    c.innerHTML = workData.adsResults.map(function(cm){
+      var funnelHtml = cm.funnel.map(function(s){
+        return '<div class="ad-funnel-step">'
+          + '<span class="name">' + s.label + '</span>'
+          + '<div class="bar"><div class="bar-fill" data-fill="' + s.percentage + '"></div></div>'
+          + '<span class="val">' + s.value + '</span>'
+        + '</div>';
+      }).join('');
+      return '<div class="result-block">'
+        + '<div class="rb-head">'
+          + '<span class="label">Campaign Result</span>'
+          + '<h3>' + cm.campaignLabel + '</h3>'
+          + '<p>' + cm.context + '</p>'
+        + '</div>'
+        + '<div class="kpi-grid">' + buildKpiCards(cm.metrics) + '</div>'
+        + '<div class="ad-funnel" style="margin-top:18px;">'
+          + '<div class="ad-funnel-head">Conversion funnel</div>'
+          + funnelHtml
+        + '</div>'
+      + '</div>';
+    }).join('');
+  }
+
+  renderAccountBlocks();
+  renderCampaignBlocks();
+
   /* ── WORK TABS + KPI ANIMATION ── */
   var workTabs      = document.querySelectorAll('.work-tab');
   var workIndicator = document.querySelector('.work-tab-indicator');
@@ -1681,21 +1791,39 @@ footer.cine{
     });
     var active = document.querySelector('.work-panel[data-panel="'+name+'"]');
     if(!active) return;
+
+    /* Stagger reveal of result blocks */
+    active.querySelectorAll('.result-block').forEach(function(b, i){
+      b.style.transitionDelay = (i * 140) + 'ms';
+    });
+
+    /* Stagger entry of banner panels */
+    var bps = active.querySelectorAll('.work-bp');
+    if(bps.length){
+      bps.forEach(function(bp){ bp.classList.remove('bp-in'); });
+      void active.offsetWidth;  /* reflow to restart animation */
+      bps.forEach(function(bp, i){
+        bp.style.animationDelay = (i * 110) + 'ms';
+        bp.classList.add('bp-in');
+      });
+    }
+
     /* Reset bar fills then animate */
     active.querySelectorAll('.kpi-bar-fill, .ad-funnel-step .bar-fill').forEach(function(el){
       el.style.width = '0%';
     });
-    /* Trigger after a tick so transition fires */
     requestAnimationFrame(function(){
       active.querySelectorAll('.kpi-bar-fill, .ad-funnel-step .bar-fill').forEach(function(el){
         el.style.width = el.dataset.fill + '%';
       });
     });
+
     /* Count up KPI values */
     active.querySelectorAll('.kpi-value[data-count]').forEach(animateCount);
-    /* Animate growth chart lines */
-    animateLine(active.querySelector('#growthLine'), 2);
-    animateLine(active.querySelector('#growthLine2'), 2.4);
+
+    /* Animate growth chart lines (now class-based for multiple blocks) */
+    active.querySelectorAll('.growthLine').forEach(function(el){ animateLine(el, 2); });
+    active.querySelectorAll('.growthLine2').forEach(function(el){ animateLine(el, 2.4); });
   }
 
   workTabs.forEach(function(tab){

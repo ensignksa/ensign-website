@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 388 70" fill="currentColor" aria-label="Ensign">
+  
+  
+  <g>
+    <polygon points="1,0 52,0 52,13 13,13"></polygon>
+    <rect x="0" y="28" width="52" height="14"></rect>
+    <polygon points="13,57 52,57 52,70 1,70"></polygon>
+  </g>
+  
+  <g transform="translate(64,0)">
+    <rect x="0" y="0" width="50" height="14"></rect>
+    <rect x="0" y="0" width="14" height="70"></rect>
+    <rect x="0" y="28" width="40" height="14"></rect>
+    <rect x="0" y="56" width="50" height="14"></rect>
+  </g>
+  
+  <g transform="translate(126,0)">
+    <rect x="0" y="0" width="14" height="70"></rect>
+    <rect x="36" y="0" width="14" height="70"></rect>
+    <rect x="0" y="0" width="50" height="14"></rect>
+  </g>
+  
+  <g transform="translate(188,0)">
+    <rect x="0" y="0" width="50" height="14"></rect>
+    <rect x="0" y="0" width="14" height="42"></rect>
+    <rect x="0" y="28" width="50" height="14"></rect>
+    <rect x="36" y="28" width="14" height="42"></rect>
+    <rect x="0" y="56" width="50" height="14"></rect>
+  </g>
+  
+  <g transform="translate(250,0)">
+    <rect x="0" y="0" width="14" height="70"></rect>
+  </g>
+  
+  <g transform="translate(276,0)">
+    <rect x="0" y="0" width="50" height="14"></rect>
+    <rect x="0" y="0" width="14" height="70"></rect>
+    <rect x="0" y="56" width="50" height="14"></rect>
+    <rect x="36" y="28" width="14" height="42"></rect>
+    <rect x="22" y="28" width="28" height="14"></rect>
+  </g>
+  
+  <g transform="translate(338,0)">
+    <rect x="0" y="0" width="14" height="70"></rect>
+    <rect x="36" y="0" width="14" height="70"></rect>
+    <rect x="0" y="0" width="50" height="14"></rect>
+  </g>
+</svg>

@@ -1,0 +1,335 @@
+/* ════════════════════════════════════════════════════════════════
+   ENSIGN BRAND BOOK · v2 · Cinematic mono + Oasis
+   Palette: Bone #F2EFE8 (50%) · Black #0A0A0A (30%) · Oasis #00D9C0 (20%)
+   No gradients. No gray fills. No background grids. Hairlines only in ink.
+   ════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Fraunces:opsz,wght,SOFT@9..144,300..900,0..100&display=swap');
+
+:root{
+  --bone: #F2EFE8;
+  --ink: #0A0A0A;
+  --uv: #00D9C0;
+  --hair: rgba(10,10,10,0.16);
+  --hair-strong: rgba(10,10,10,0.6);
+
+  --sans: 'Manrope', ui-sans-serif, system-ui, sans-serif;
+  --display: 'Fraunces', 'Times New Roman', serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* page geometry */
+  --page-w: 210mm;
+  --page-h: 297mm;
+  --pad: 18mm;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: #d8d6d0;
+  font-family: var(--sans);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.book {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 14mm; padding: 14mm 0;
+}
+
+/* Page */
+.page {
+  width: var(--page-w);
+  height: var(--page-h);
+  background: var(--bone);
+  color: var(--ink);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1mm 6mm rgba(0,0,0,0.18);
+  page-break-after: always;
+  break-after: page;
+}
+.page.ink { background: var(--ink); color: var(--bone); }
+.page.uv  { background: var(--uv);  color: var(--ink); }
+
+.pad {
+  position: absolute;
+  inset: var(--pad);
+}
+
+/* Page chrome — top section + book mark */
+.pg-section{
+  position: absolute; top: 0; left: 0;
+  display: flex; align-items: center; gap: 4mm;
+  font-family: var(--mono);
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hair-strong);
+}
+.pg-section .dot{
+  width: 2mm; height: 2mm; border-radius: 50%;
+  background: var(--uv);
+  display: inline-block;
+}
+.pg-section .num{
+  font-weight: 600;
+  color: var(--ink);
+}
+.page.ink .pg-section,
+.page.ink .pg-section .num{ color: rgba(242,239,232,0.65); }
+.page.ink .pg-section .num{ color: var(--bone); }
+
+.pg-mark{
+  position: absolute; top: 0; right: 0;
+  font-family: var(--mono);
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hair-strong);
+}
+.page.ink .pg-mark{ color: rgba(242,239,232,0.65); }
+
+/* Page footer */
+.pg-no{
+  position: absolute; bottom: var(--pad); left: var(--pad);
+  font-family: var(--mono);
+  font-size: 8pt;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+}
+.pg-tag{
+  position: absolute; bottom: var(--pad); right: var(--pad);
+  font-family: var(--mono);
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hair-strong);
+}
+.page.ink .pg-no{ color: var(--bone); }
+.page.ink .pg-tag{ color: rgba(242,239,232,0.65); }
+
+/* Top hairline & bottom hairline above the chrome */
+.page::before{
+  content: "";
+  position: absolute;
+  top: calc(var(--pad) - 4mm);
+  left: var(--pad); right: var(--pad);
+  height: 1px; background: var(--hair);
+}
+.page::after{
+  content: "";
+  position: absolute;
+  bottom: calc(var(--pad) - 4mm);
+  left: var(--pad); right: var(--pad);
+  height: 1px; background: var(--hair);
+}
+.page.ink::before, .page.ink::after { background: rgba(242,239,232,0.18); }
+
+/* Body region */
+.body{
+  position: absolute;
+  top: 6mm; bottom: 6mm; left: 0; right: 0;
+}
+
+/* ─── TYPE ─── */
+.h-eyebrow{
+  font-family: var(--mono);
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--hair-strong);
+  margin: 0;
+}
+.page.ink .h-eyebrow{ color: rgba(242,239,232,0.65); }
+
+.h-section-num{
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 90pt;
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  font-feature-settings: "ss01";
+  font-variation-settings: "SOFT" 50;
+  color: var(--ink);
+}
+.page.ink .h-section-num{ color: var(--bone); }
+
+.h-display{
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 38pt;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin: 0;
+  font-variation-settings: "SOFT" 30;
+}
+.h-display em{ font-style: italic; font-weight: 300; color: var(--uv); }
+
+.h-headline{
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 22pt;
+  line-height: 1.05;
+  letter-spacing: -0.018em;
+  margin: 0;
+}
+.h-sub{
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 12pt;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+.h-body{
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 9.5pt;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0;
+  max-width: 62ch;
+}
+.page.ink .h-body{ color: rgba(242,239,232,0.85); }
+
+.h-mono{
+  font-family: var(--mono);
+  font-size: 8pt;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+.page.ink .h-mono{ color: var(--bone); }
+
+.h-spec{
+  font-family: var(--mono);
+  font-size: 7pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.page.ink .h-spec{ color: var(--bone); }
+
+/* Section header block — IDENTICAL placement on every page.
+   Sits at top: 16mm inside .pad (= y≈34mm from page top).
+   Number left, title+lede stacked right. */
+.section-head{
+  position: absolute;
+  top: 16mm;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 60mm 1fr;
+  gap: 10mm;
+  align-items: start;
+}
+.section-head .num{
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: 76pt;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  font-variation-settings: "SOFT" 50;
+}
+.section-head .title{ padding-top: 8mm; }
+.section-head .title h2{
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: 30pt;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin: 0 0 5mm 0;
+  max-width: 22ch;
+  font-variation-settings: "SOFT" 30;
+}
+.section-head .title .lede{
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 10pt;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 56ch;
+  color: rgba(10,10,10,0.7);
+}
+.page.ink .section-head .title .lede{ color: rgba(242,239,232,0.7); }
+/* Body content row anchor — sits 80mm below .section-head start = top: 96mm in .pad */
+.section-body{
+  position: absolute;
+  top: 110mm;
+  left: 0;
+  right: 0;
+  bottom: 14mm; /* leave 14mm safe gap above page chrome at .page bottom: 18mm */
+}
+
+/* Tag pill */
+.tag{
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 6.5pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 1mm 2.5mm;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  border-radius: 0;
+}
+.tag.uv{ background: var(--uv); color: var(--bone); border-color: var(--uv); }
+.tag.ink{ background: var(--ink); color: var(--bone); border-color: var(--ink); }
+.page.ink .tag{ border-color: var(--bone); color: var(--bone); }
+
+/* Hairline rule */
+.hr{
+  height: 1px; background: var(--hair); border: 0; margin: 0;
+}
+.page.ink .hr{ background: rgba(242,239,232,0.18); }
+
+/* Ensign logo & mark sizing helpers */
+.ensign-logo{ display: inline-block; }
+.ensign-logo svg, .ensign-logo img{ display: block; height: 100%; width: auto; }
+.ensign-mark{ display: inline-block; }
+.ensign-mark svg, .ensign-mark img{ display: block; height: 100%; width: auto; }
+
+/* Construction grid — only used for explicit construction pages, never as ambient bg */
+.construction-grid{
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(10,10,10,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(10,10,10,0.08) 1px, transparent 1px);
+  background-size: 6mm 6mm;
+  pointer-events: none;
+}
+
+/* TOC rows */
+.toc-row{
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 4mm;
+  font-family: var(--sans);
+  font-size: 10pt;
+  font-weight: 500;
+  padding: 2mm 0;
+  border-top: 1px solid var(--hair);
+}
+.toc-row:last-child{ border-bottom: 1px solid var(--hair); }
+.toc-row .dots{
+  border-bottom: 1px dotted var(--hair-strong);
+  height: 1px;
+  align-self: end;
+  margin-bottom: 1.5mm;
+}
+.toc-row .pg{
+  font-family: var(--mono);
+  font-size: 8pt;
+  letter-spacing: 0.06em;
+  color: var(--hair-strong);
+}
+
+/* Print */
+@media print {
+  body { background: white; }
+  .book { gap: 0; padding: 0; }
+  .page { box-shadow: none; margin: 0; }
+}
+@page { size: A4; margin: 0; }
