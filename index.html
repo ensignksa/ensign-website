@@ -1,15 +1,19 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-<style id="flash-fix">html,body{background:#07111E;color:#F2EFE8}.reveal{animation:revealFallback 0s linear 4s forwards}@keyframes revealFallback{to{opacity:1;transform:none}}</style>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-LWTQMQ08D4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-LWTQMQ08D4');
-</script>
+<style id="flash-fix">
+html,body{background:#07111E;color:#F2EFE8}
+.reveal{animation:revealFallback 0s linear 2s forwards}
+@keyframes revealFallback{to{opacity:1;transform:none}}
+/* ── Mobile: kill all entrance animations, show content instantly ── */
+@media(max-width:820px){
+  .nav{opacity:1!important;transform:none!important;animation:none!important}
+  .hero-eyebrow,.hero-sub,.hero-cta-row,.scroll-hint,.hero-visual{opacity:1!important;transform:none!important;animation:none!important}
+  .hs-line{opacity:1!important;animation:none!important}
+  .reveal{opacity:1!important;transform:none!important;animation:none!important}
+  .grain{display:none!important}
+}
+</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ensign Ai Marketing Agency — AI Systems. Human Leadership.</title>
@@ -1316,6 +1320,22 @@ footer.cine{
 }
 
 
+/* ── Mobile performance: kill expensive GPU effects & animations ── */
+@media(max-width:820px){
+  /* Hide mist entirely — blur(140px) filters are the biggest GPU drain */
+  .bg-mist{display:none!important;}
+  /* Nav: remove backdrop blur (GPU compositor layer) */
+  .nav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
+  /* Stop hero pearl float + ring spin */
+  .hero-visual .pearl,.hero-visual [class*="ring"]{animation:none!important;}
+  /* Stop infinite pulsing dots */
+  .kicker .dot,.live-frame-dot,.eos-tag .pill .d{animation:none!important;}
+  /* Scroll hint line pulse */
+  .scroll-hint::before{animation:none!important;}
+  /* Remove will-change hints that create compositor layers unnecessarily */
+  .hero-video,.nav-cta,.btn-primary,.btn-ghost{will-change:auto!important;}
+}
+
 /* iOS / mobile polish */
 html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
 *{-webkit-tap-highlight-color:rgba(0,0,0,0);}
@@ -1751,6 +1771,14 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
     v.load();
   }
 })();
+</script>
+<!-- Google Analytics — deferred to end of body so it never blocks render -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LWTQMQ08D4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-LWTQMQ08D4');
 </script>
 </body>
 </html>
