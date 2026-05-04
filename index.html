@@ -1362,7 +1362,7 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
 <div class="bg-mist" aria-hidden="true"><div class="m3"></div></div>
 <div class="grain" aria-hidden="true"></div>
 <div class="hero-video-wrap" aria-hidden="true">
-  <video class="hero-video" data-desktop-src="/assets/video/hero-bg.mp4" autoplay muted loop playsinline preload="none"></video>
+  <video class="hero-video" data-desktop-src="/assets/video/hero-bg-desktop.mp4" autoplay muted loop playsinline preload="none"></video>
 </div>
 
 <!-- ───────── NAV ───────── -->
@@ -1751,11 +1751,12 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
     if(href === path){ a.classList.add('active'); }
   });
 })();
-/* Load hero video on all devices */
+/* Load correct hero video size per device */
 (function(){
   var v = document.querySelector('.hero-video[data-desktop-src]');
   if(!v) return;
-  v.src = v.dataset.desktopSrc;
+  var isMobile = window.matchMedia('(max-width:820px)').matches;
+  v.src = isMobile ? '/assets/video/hero-bg-mobile.mp4' : v.dataset.desktopSrc;
   v.load();
 })();
 </script>
