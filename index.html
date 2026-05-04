@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
+<style id="flash-fix">html,body{background:#07111E;color:#F2EFE8}.reveal{animation:revealFallback 0s linear 4s forwards}@keyframes revealFallback{to{opacity:1;transform:none}}</style>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWTQMQ08D4"></script>
 <script>
@@ -43,7 +44,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="dns-prefetch" href="https://cal.eu">
 <link rel="dns-prefetch" href="https://wa.me">
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Ensign Ai Marketing Agency","alternateName":"Ensign Agency","url":"https://ensignksa.com","logo":"https://ensignksa.com/assets/logos/3.png","description":"Ensign Ai Marketing Agency is a Riyadh-based AI marketing consultancy that builds intelligent marketing systems, automation frameworks, and high-performance campaigns for businesses in Saudi Arabia and the UAE.","email":"contact@ensignksa.com","address":{"@type":"PostalAddress","addressLocality":"Riyadh","addressCountry":"SA"},"sameAs":["https://www.linkedin.com/company/ensignailab","https://x.com/ensignksa","https://www.instagram.com/ensignksa/"]}
@@ -313,12 +314,12 @@ section{ position:relative; z-index:2;}
   margin-top:32px; max-width:480px;
   font-size:18px; line-height:1.55; color:var(--ink-mute);
   opacity:0; transform:translateY(14px);
-  animation:fadeUp 1s var(--ease-out) 1.4s forwards;
+  animation:fadeUp 1s var(--ease-out) 0.4s forwards;
 }
 .hero-cta-row{
   margin-top:40px; display:flex; gap:12px; flex-wrap:wrap;
   opacity:0; transform:translateY(14px);
-  animation:fadeUp 1s var(--ease-out) 1.6s forwards;
+  animation:fadeUp 1s var(--ease-out) 0.4s forwards;
 }
 .btn-primary{
   background:var(--oasis); color:var(--night); padding:16px 26px; border-radius:0;
@@ -392,7 +393,7 @@ section{ position:relative; z-index:2;}
   position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
   font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.3em;
   color:var(--ink-soft); display:flex; align-items:center; gap:10px;
-  opacity:0; animation:fadeUp .9s var(--ease-out) 2.2s forwards;
+  opacity:0; animation:fadeUp .9s var(--ease-out) 0.4s forwards;
 }
 .scroll-hint::before{
   content:""; width:1px; height:28px; background:var(--ink-soft);
