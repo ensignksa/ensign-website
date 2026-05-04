@@ -1614,6 +1614,14 @@ html[lang="ar"] .live-line-time{
   unicode-bidi: bidi-override;
 }
 html[lang="ar"] .nav-logo-img{ filter: brightness(0) !important;}
+
+/* === RTL background video mirror — matches Arabic reading direction === */
+html[lang="ar"] .hero-video,
+html[lang="ar"] .atmos-video,
+html[lang="ar"] video.hero-video,
+html[lang="ar"] video.atmos-video{
+  transform: scale(-1.08, 1.08) !important;
+}
 </style>
 </head>
 <body dir="rtl">
