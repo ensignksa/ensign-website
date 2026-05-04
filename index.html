@@ -1060,20 +1060,17 @@ footer.cine{
   .kpi-grid{ grid-template-columns:1fr;}
   .ad-funnel-step .name{ width:90px; font-size:12px;}
   .ad-funnel-step .val{ width:48px;}
-  /* hero split mobile — keep 2-column layout to match desktop */
-  .hero-split{ grid-template-columns:40fr 60fr; min-height:100vh;}
-  .hs-photo{ display:block;}
-  .hs-divider{ display:block; left:40%;}
-  .hs-text{ padding:100px 18px 80px 18px; min-height:100vh; justify-content:center;}
-  .hs-text h1{ font-size:clamp(22px, 5.5vw, 34px) !important; line-height:.95 !important;}
+  /* hero split mobile */
+  .hero-split{ grid-template-columns:1fr; grid-template-rows:1fr; min-height:auto;}
+  .hs-photo{ display:none;}
+  .hs-divider{ display:block;}
+  .hs-text{ padding:120px 24px 80px; min-height:90vh; justify-content:center;}
   .hs-scroll{ display:none;}
-  /* svc grid mobile — keep 2-column layout with vertical divider */
+  /* svc grid mobile */
   .svc-grid{ min-height:auto;}
-  .sg-items{ grid-template-columns:1fr 1fr; grid-template-rows:repeat(2, auto); min-height:auto;}
-  .sg-div-v{ display:block; left:50%;}
+  .sg-items{ grid-template-columns:1fr; grid-template-rows:repeat(4, 32vw); min-height:auto;}
+  .sg-div-v{ display:block;}
   .sg-div-h{ display:none;}
-  .sg-item{ padding:32px 16px;}
-  .sg-item-name{ font-size:clamp(18px, 4.5vw, 28px);}
   .sg-item{ padding:24px 22px;}
   .sg-tr,.sg-br{ align-items:flex-start; text-align:left;}
   .sg-tr .sg-item-arrow,.sg-br .sg-item-arrow{ transform:none;}
