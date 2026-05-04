@@ -41,7 +41,7 @@
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://cal.eu" rel="dns-prefetch"/>
 <link href="https://wa.me" rel="dns-prefetch"/>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&amp;family=JetBrains+Mono:wght@400;500&amp;family=Noto+Kufi+Arabic:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&amp;family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300&amp;family=JetBrains+Mono:wght@400;500&amp;family=IBM+Plex+Sans+Arabic:wght@100;200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://ensignksa.com/"},{"@type":"ListItem","position":2,"name":"Agency","item":"https://ensignksa.com/agency.html"}]}
 </script>
@@ -366,23 +366,53 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
 
 </style>
 <style>
-/* Arabic typography overrides */
-html[lang="ar"] body,
+/* Arabic typography overrides — Brand Book v1.0 May 2026 */
+html[lang="ar"] body{
+  font-family: 'IBM Plex Sans Arabic', 'Manrope', system-ui, sans-serif !important;
+  font-weight: 400;
+  letter-spacing: 0 !important;
+}
 html[lang="ar"] .nav,
 html[lang="ar"] .nav-links a,
 html[lang="ar"] .nav-cta,
 html[lang="ar"] p,
 html[lang="ar"] li,
+html[lang="ar"] button,
+html[lang="ar"] input,
+html[lang="ar"] textarea,
+html[lang="ar"] label,
+html[lang="ar"] .section-sub,
+html[lang="ar"] .what-desc,
+html[lang="ar"] .cap-desc,
+html[lang="ar"] .module-desc,
+html[lang="ar"] .work-meta,
+html[lang="ar"] .why-text p,
+html[lang="ar"] .why-obs-text,
+html[lang="ar"] .what-list li,
+html[lang="ar"] .ag-hero-body,
+html[lang="ar"] .about-hero-body,
+html[lang="ar"] .os-body,
+html[lang="ar"] .cta-body,
+html[lang="ar"] .foot-col a,
+html[lang="ar"] .foot-bottom,
+html[lang="ar"] .foot-brand .desc,
+html[lang="ar"] .approach-desc,
+html[lang="ar"] .principle p,
+html[lang="ar"] .flow-desc,
+html[lang="ar"] .blog-post-content,
+html[lang="ar"] .blog-post-content p,
+html[lang="ar"] .blog-post-content li{
+  font-family: 'IBM Plex Sans Arabic', 'Manrope', system-ui, sans-serif !important;
+  font-weight: 400;
+  letter-spacing: 0 !important;
+}
+/* Display / headlines — IBM Plex Sans Arabic light (300) for premium feel */
 html[lang="ar"] h1,
 html[lang="ar"] h2,
 html[lang="ar"] h3,
 html[lang="ar"] h4,
 html[lang="ar"] h5,
 html[lang="ar"] h6,
-html[lang="ar"] button,
-html[lang="ar"] input,
-html[lang="ar"] textarea,
-html[lang="ar"] label,
 html[lang="ar"] .section-h,
 html[lang="ar"] .cta-h,
 html[lang="ar"] .ag-hero h1,
@@ -396,48 +426,217 @@ html[lang="ar"] .what-title,
 html[lang="ar"] .cap-title,
 html[lang="ar"] .module-title,
 html[lang="ar"] .work-title,
-html[lang="ar"] .work-cat,
-html[lang="ar"] .eyebrow,
-html[lang="ar"] .mono,
 html[lang="ar"] .approach-title,
 html[lang="ar"] .tl-step h3,
-html[lang="ar"] .tl-num,
 html[lang="ar"] .principle h3,
 html[lang="ar"] .flow-name,
-html[lang="ar"] .why-vis-label,
-html[lang="ar"] .data-num,
-html[lang="ar"] .data-label,
-html[lang="ar"] .who-tag,
-html[lang="ar"] .what-soon,
 html[lang="ar"] .position-h,
-html[lang="ar"] .why-text p,
-html[lang="ar"] .what-list li,
-html[lang="ar"] .footer,
-html[lang="ar"] .foot-col,
-html[lang="ar"] .foot-col a,
-html[lang="ar"] .foot-col h4,
-html[lang="ar"] .foot-bottom{
-  font-family: 'Noto Kufi Arabic', 'Manrope', system-ui, sans-serif !important;
-  letter-spacing: 0 !important;
+html[lang="ar"] .blog-post-content h2,
+html[lang="ar"] .blog-post-content h3,
+html[lang="ar"] .blog-post-content h4{
+  font-family: 'IBM Plex Sans Arabic', 'Fraunces', serif !important;
+  font-weight: 300;
+  letter-spacing: -.01em !important;
 }
-/* Keep brand-name latin words in their original (Ensign, EOS) */
-html[lang="ar"] .nav-logo-img{ filter: brightness(0) !important;}
-/* Italic / em fallback in Arabic — use color only, no italic */
-html[lang="ar"] em{ font-style: normal !important; color: var(--oasis, #00D9C0); font-weight: 500;}
+/* Bolder body weight for cards and key paragraphs */
+html[lang="ar"] strong,
+html[lang="ar"] .studio-lead,
+html[lang="ar"] .about-hero-sub,
+html[lang="ar"] .ag-hero-sub{
+  font-weight: 500;
+}
+/* Mono — keep JetBrains Mono for labels and system text */
+html[lang="ar"] .mono,
+html[lang="ar"] .eyebrow,
+html[lang="ar"] .work-cat,
+html[lang="ar"] .cap-num,
+html[lang="ar"] .module-tag,
+html[lang="ar"] .tl-num,
+html[lang="ar"] .principle-num,
+html[lang="ar"] .approach-num,
+html[lang="ar"] .flow-num,
+html[lang="ar"] .why-vis-label,
+html[lang="ar"] .data-label,
+html[lang="ar"] .data-viz-label,
+html[lang="ar"] .result-label,
+html[lang="ar"] .live-line-time,
+html[lang="ar"] .live-output-label,
+html[lang="ar"] .what-soon,
+html[lang="ar"] .live-indicator,
+html[lang="ar"] .os-status,
+html[lang="ar"] .os-note,
+html[lang="ar"] .foot-col h4,
+html[lang="ar"] .scenario-pill,
+html[lang="ar"] .role-tab,
+html[lang="ar"] .work-tab,
+html[lang="ar"] .data-num,
+html[lang="ar"] .metric-num,
+html[lang="ar"] .data-viz-num,
+html[lang="ar"] .result-num{
+  font-family: 'JetBrains Mono', monospace !important;
+}
+/* Italic / em fallback in Arabic — color + weight, no italic */
+html[lang="ar"] em{
+  font-style: normal !important;
+  color: var(--oasis, #00D9C0);
+  font-weight: 500;
+}
 html[lang="ar"] h1 em,
 html[lang="ar"] h2 em,
 html[lang="ar"] h3 em,
 html[lang="ar"] .section-h em,
-html[lang="ar"] .cta-h em{ font-style: normal !important;}
-/* RTL number fixes */
+html[lang="ar"] .cta-h em{
+  font-style: normal !important;
+  font-weight: 300;
+}
+/* Numbers / mono labels stay LTR */
 html[lang="ar"] .data-num,
 html[lang="ar"] .metric-num,
 html[lang="ar"] .data-viz-num,
-html[lang="ar"] .result-num{ direction: ltr; unicode-bidi: bidi-override;}
+html[lang="ar"] .result-num,
 html[lang="ar"] [class*="mono"],
-html[lang="ar"] .nav-cta::after,
-html[lang="ar"] [class*="JetBrains"]{ direction: ltr;}
-</style></head>
+html[lang="ar"] .live-line-time{
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+html[lang="ar"] .nav-logo-img{ filter: brightness(0) !important;}
+</style><style>
+/* Arabic typography overrides — Brand Book v1.0 May 2026 */
+html[lang="ar"] body{
+  font-family: 'IBM Plex Sans Arabic', 'Manrope', system-ui, sans-serif !important;
+  font-weight: 400;
+  letter-spacing: 0 !important;
+}
+html[lang="ar"] .nav,
+html[lang="ar"] .nav-links a,
+html[lang="ar"] .nav-cta,
+html[lang="ar"] p,
+html[lang="ar"] li,
+html[lang="ar"] button,
+html[lang="ar"] input,
+html[lang="ar"] textarea,
+html[lang="ar"] label,
+html[lang="ar"] .section-sub,
+html[lang="ar"] .what-desc,
+html[lang="ar"] .cap-desc,
+html[lang="ar"] .module-desc,
+html[lang="ar"] .work-meta,
+html[lang="ar"] .why-text p,
+html[lang="ar"] .why-obs-text,
+html[lang="ar"] .what-list li,
+html[lang="ar"] .ag-hero-body,
+html[lang="ar"] .about-hero-body,
+html[lang="ar"] .os-body,
+html[lang="ar"] .cta-body,
+html[lang="ar"] .foot-col a,
+html[lang="ar"] .foot-bottom,
+html[lang="ar"] .foot-brand .desc,
+html[lang="ar"] .approach-desc,
+html[lang="ar"] .principle p,
+html[lang="ar"] .flow-desc,
+html[lang="ar"] .blog-post-content,
+html[lang="ar"] .blog-post-content p,
+html[lang="ar"] .blog-post-content li{
+  font-family: 'IBM Plex Sans Arabic', 'Manrope', system-ui, sans-serif !important;
+  font-weight: 400;
+  letter-spacing: 0 !important;
+}
+/* Display / headlines — IBM Plex Sans Arabic light (300) for premium feel */
+html[lang="ar"] h1,
+html[lang="ar"] h2,
+html[lang="ar"] h3,
+html[lang="ar"] h4,
+html[lang="ar"] h5,
+html[lang="ar"] h6,
+html[lang="ar"] .section-h,
+html[lang="ar"] .cta-h,
+html[lang="ar"] .ag-hero h1,
+html[lang="ar"] .about-hero h1,
+html[lang="ar"] .os-h1,
+html[lang="ar"] .ag-hero-sub,
+html[lang="ar"] .about-hero-sub,
+html[lang="ar"] .hero h1,
+html[lang="ar"] .hs-text h1,
+html[lang="ar"] .what-title,
+html[lang="ar"] .cap-title,
+html[lang="ar"] .module-title,
+html[lang="ar"] .work-title,
+html[lang="ar"] .approach-title,
+html[lang="ar"] .tl-step h3,
+html[lang="ar"] .principle h3,
+html[lang="ar"] .flow-name,
+html[lang="ar"] .position-h,
+html[lang="ar"] .blog-post-content h2,
+html[lang="ar"] .blog-post-content h3,
+html[lang="ar"] .blog-post-content h4{
+  font-family: 'IBM Plex Sans Arabic', 'Fraunces', serif !important;
+  font-weight: 300;
+  letter-spacing: -.01em !important;
+}
+/* Bolder body weight for cards and key paragraphs */
+html[lang="ar"] strong,
+html[lang="ar"] .studio-lead,
+html[lang="ar"] .about-hero-sub,
+html[lang="ar"] .ag-hero-sub{
+  font-weight: 500;
+}
+/* Mono — keep JetBrains Mono for labels and system text */
+html[lang="ar"] .mono,
+html[lang="ar"] .eyebrow,
+html[lang="ar"] .work-cat,
+html[lang="ar"] .cap-num,
+html[lang="ar"] .module-tag,
+html[lang="ar"] .tl-num,
+html[lang="ar"] .principle-num,
+html[lang="ar"] .approach-num,
+html[lang="ar"] .flow-num,
+html[lang="ar"] .why-vis-label,
+html[lang="ar"] .data-label,
+html[lang="ar"] .data-viz-label,
+html[lang="ar"] .result-label,
+html[lang="ar"] .live-line-time,
+html[lang="ar"] .live-output-label,
+html[lang="ar"] .what-soon,
+html[lang="ar"] .live-indicator,
+html[lang="ar"] .os-status,
+html[lang="ar"] .os-note,
+html[lang="ar"] .foot-col h4,
+html[lang="ar"] .scenario-pill,
+html[lang="ar"] .role-tab,
+html[lang="ar"] .work-tab,
+html[lang="ar"] .data-num,
+html[lang="ar"] .metric-num,
+html[lang="ar"] .data-viz-num,
+html[lang="ar"] .result-num{
+  font-family: 'JetBrains Mono', monospace !important;
+}
+/* Italic / em fallback in Arabic — color + weight, no italic */
+html[lang="ar"] em{
+  font-style: normal !important;
+  color: var(--oasis, #00D9C0);
+  font-weight: 500;
+}
+html[lang="ar"] h1 em,
+html[lang="ar"] h2 em,
+html[lang="ar"] h3 em,
+html[lang="ar"] .section-h em,
+html[lang="ar"] .cta-h em{
+  font-style: normal !important;
+  font-weight: 300;
+}
+/* Numbers / mono labels stay LTR */
+html[lang="ar"] .data-num,
+html[lang="ar"] .metric-num,
+html[lang="ar"] .data-viz-num,
+html[lang="ar"] .result-num,
+html[lang="ar"] [class*="mono"],
+html[lang="ar"] .live-line-time{
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+html[lang="ar"] .nav-logo-img{ filter: brightness(0) !important;}
+</style>
+</head>
 <body dir="rtl">
 <div aria-hidden="true" class="atmos">
 <div class="atmos-mist a"></div>
