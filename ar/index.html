@@ -1129,13 +1129,12 @@ footer.cine{
   .nav-wrap{padding:0 16px;}
   .nav{
     padding:10px 18px 10px 14px;
-    gap:0; justify-content:space-between;
+    gap:8px;
     width:auto; max-width:none;
   }
   .nav-brand{flex-shrink:0;}
   .nav-logo-img{height:18px;}
   .nav-links{display:none !important;}
-  .nav-lang{display:none !important;}
   .nav-cta{display:none !important;}
   .nav-toggle{
     display:flex !important;
@@ -1251,7 +1250,7 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
   background:rgba(10,10,10,.04);
 }
 @media (max-width:820px){
-  .nav-lang{font-size:9.5px; padding:5px 9px; margin-right:3px; letter-spacing:.14em;}
+  .nav-lang{font-size:9.5px; padding:5px 9px; margin-inline-start:auto; margin-right:0; letter-spacing:.14em;}
 }
 @media (max-width:380px){
   .nav-lang{font-size:9px; padding:4px 7px; margin-right:2px;}
@@ -1558,8 +1557,8 @@ html[lang="ar"] video.atmos-video{
 <a href="/ar/work.html">أعمالنا</a>
 <a href="/ar/blog/">المدونة</a>
 </nav>
-<button aria-expanded="false" aria-label="Toggle menu" class="nav-toggle" type="button"><span></span><span></span><span></span></button>
 <a aria-label="Switch language" class="nav-lang" href="/">EN</a>
+<button aria-expanded="false" aria-label="Toggle menu" class="nav-toggle" type="button"><span></span><span></span><span></span></button>
 <a class="nav-cta" data-magnetic="" href="https://cal.eu/ensignksa/30min" rel="noopener noreferrer" target="_blank">اتصل بنا</a>
 </header>
 </div>
