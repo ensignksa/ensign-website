@@ -11,7 +11,6 @@ html,body{background:#07111E;color:#F2EFE8}
   .hero-eyebrow,.hero-sub,.hero-cta-row,.scroll-hint,.hero-visual{opacity:1!important;transform:none!important;animation:none!important}
   .hs-line{opacity:1!important;animation:none!important}
   .reveal{opacity:1!important;transform:none!important;animation:none!important}
-  .grain{display:none!important}
 }
 </style>
 <meta charset="UTF-8">
@@ -1320,20 +1319,10 @@ footer.cine{
 }
 
 
-/* ── Mobile performance: kill expensive GPU effects & animations ── */
+/* ── Mobile performance: remove entrance-animation delays only ── */
 @media(max-width:820px){
-  /* Hide mist entirely — blur(140px) filters are the biggest GPU drain */
-  .bg-mist{display:none!important;}
-  /* Nav: remove backdrop blur (GPU compositor layer) */
+  /* Nav: remove backdrop blur (heavy GPU compositor layer on mobile) */
   .nav{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;}
-  /* Stop hero pearl float + ring spin */
-  .hero-visual .pearl,.hero-visual [class*="ring"]{animation:none!important;}
-  /* Stop infinite pulsing dots */
-  .kicker .dot,.live-frame-dot,.eos-tag .pill .d{animation:none!important;}
-  /* Scroll hint line pulse */
-  .scroll-hint::before{animation:none!important;}
-  /* Remove will-change hints that create compositor layers unnecessarily */
-  .hero-video,.nav-cta,.btn-primary,.btn-ghost{will-change:auto!important;}
 }
 
 /* iOS / mobile polish */
@@ -1762,14 +1751,12 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
     if(href === path){ a.classList.add('active'); }
   });
 })();
-/* Load hero video only on desktop (skip 5.8MB on mobile) */
+/* Load hero video on all devices */
 (function(){
   var v = document.querySelector('.hero-video[data-desktop-src]');
   if(!v) return;
-  if(window.matchMedia('(min-width: 821px)').matches){
-    v.src = v.dataset.desktopSrc;
-    v.load();
-  }
+  v.src = v.dataset.desktopSrc;
+  v.load();
 })();
 </script>
 <!-- Google Analytics — deferred to end of body so it never blocks render -->
