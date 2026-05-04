@@ -1079,53 +1079,80 @@ footer.cine{
   .marq-track,.marquee-track{ gap:48px !important;}
   .marq-item img{ max-height:32px;}
 }
-/* ===== Mobile Nav (single-row pill, all items visible, no scroll) ===== */
-.nav-toggle{display:none !important;}
-.mobile-menu{display:none !important;}
+/* ===== Mobile Nav — hamburger + full-screen overlay ===== */
+.nav-toggle{display:none;}
+/* Overlay: hidden by default, shown via .open class */
+.mobile-menu{
+  position:fixed; inset:0; z-index:200;
+  display:none;
+  background:rgba(5,9,18,0.97);
+  flex-direction:column; align-items:center; justify-content:center;
+}
+.mobile-menu.open{display:flex; animation:menuIn .25s ease forwards;}
+@keyframes menuIn{from{opacity:0}to{opacity:1}}
+/* X close button (top-right of overlay) */
+.mobile-menu-close{
+  position:absolute; top:22px; right:22px;
+  background:none; border:none; cursor:pointer;
+  color:#F2EFE8; padding:10px;
+  opacity:.6; transition:opacity .2s;
+  display:flex; align-items:center; justify-content:center;
+}
+.mobile-menu-close:hover{opacity:1;}
+/* Nav links — large, centered */
+.mobile-menu-links{
+  display:flex; flex-direction:column; align-items:center; gap:2px;
+  margin-bottom:44px;
+}
+.mobile-menu-links a{
+  font-size:clamp(28px,7.5vw,38px);
+  font-weight:300; font-family:var(--display);
+  color:#F2EFE8; padding:10px 32px;
+  letter-spacing:-.03em;
+  transition:opacity .2s;
+}
+.mobile-menu-links a:hover{opacity:.5;}
+.mobile-menu-links a.active{color:var(--oasis); opacity:1;}
+/* Bottom: CTA + lang */
+.mobile-menu-foot{
+  display:flex; flex-direction:column; align-items:center; gap:14px;
+}
+.mobile-menu-cta{
+  background:#F2EFE8; color:#0A0A0A;
+  padding:13px 36px; border-radius:999px;
+  font-size:14px; font-weight:600; letter-spacing:-.01em;
+}
+.mobile-menu-lang-link{
+  font-size:11px; letter-spacing:.12em;
+  color:rgba(242,239,232,.4); font-family:var(--mono);
+  transition:color .2s;
+}
+.mobile-menu-lang-link:hover{color:rgba(242,239,232,.8);}
+/* Pill on mobile: logo left, hamburger right */
 @media (max-width:820px){
-  .nav-wrap{padding:0 8px;}
+  .nav-wrap{padding:0 16px;}
   .nav{
-    padding:5px 6px 5px 10px;
-    gap:2px;
-    border-radius:999px;
-    flex-wrap:nowrap;
-    width:100%;
-    max-width:none;
+    padding:10px 14px 10px 18px;
+    gap:0; justify-content:space-between;
+    width:auto; max-width:none;
   }
   .nav-brand{flex-shrink:0;}
-  .nav-logo-img{height:13px;}
-  .nav-links{
+  .nav-logo-img{height:18px;}
+  .nav-links{display:none !important;}
+  .nav-lang{display:none !important;}
+  .nav-cta{display:none !important;}
+  .nav-toggle{
     display:flex !important;
-    flex-shrink:1;
-    flex-grow:1;
-    justify-content:space-around;
-    align-items:center;
-    gap:0;
-    min-width:0;
-    padding:0 2px;
+    flex-direction:column; justify-content:center; gap:5px;
+    background:none; border:none; cursor:pointer; padding:8px;
+    pointer-events:all;
   }
-  .nav-links a{
-    font-size:10.5px;
-    padding:6px 3px;
-    white-space:nowrap;
-    letter-spacing:-.01em;
-    border-radius:999px;
+  .nav-toggle span{
+    display:block; width:22px; height:2px;
+    background:var(--ink); border-radius:2px;
+    transition:transform .3s, opacity .3s;
   }
-  .nav-cta{
-    flex-shrink:0;
-    padding:6px 10px !important;
-    font-size:10.5px;
-    gap:0 !important;
-  }
-  .nav-cta svg{display:none;}
   .container,.container-narrow{padding-left:18px !important; padding-right:18px !important;}
-}
-@media (max-width:380px){
-  .nav-wrap{padding:0 6px;}
-  .nav{padding:4px 5px 4px 8px; gap:0;}
-  .nav-logo-img{height:12px;}
-  .nav-links a{font-size:9.5px; padding:5px 2px;}
-  .nav-cta{font-size:10px; padding:5px 8px !important;}
 }
 
 /* === Mobile Polish (autonomous audit pass) === */
@@ -1266,15 +1293,20 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
 </div>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" aria-label="Close menu">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
   <nav class="mobile-menu-links">
     <a href="/ai-solutions.html">AI Solutions</a>
     <a href="/agency.html">Agency</a>
     <a href="/ensign-os.html">Ensign OS</a>
     <a href="/work.html">Our Work</a>
-    <a href="/about.html">About</a>
     <a href="/blog/">Blog</a>
   </nav>
-  <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta">Book a Call</a>
+  <div class="mobile-menu-foot">
+    <a href="https://cal.eu/ensignksa/30min" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta">Book a Call</a>
+    <a href="/ar/" class="mobile-menu-lang-link">عربي</a>
+  </div>
 </div>
 
 
@@ -1618,6 +1650,8 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
   navToggle.addEventListener('click', function(){
     setMenu(!mobileMenu.classList.contains('open'));
   });
+  var closeBtn = mobileMenu.querySelector('.mobile-menu-close');
+  if(closeBtn) closeBtn.addEventListener('click', function(){ setMenu(false); });
   mobileMenu.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){ setMenu(false); });
   });
