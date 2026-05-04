@@ -1248,7 +1248,7 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
 <div class="nav-wrap">
   <header class="nav">
     <a href="/" class="nav-brand">
-      <img src="/assets/logos/logo-main.png" alt="Ensign Ai Marketing Agency" class="nav-logo-img">
+      <img src="/assets/logos/logo-main.png" alt="Ensign Ai Marketing Agency" class="nav-logo-img" fetchpriority="high">
     </a>
     <nav class="nav-links">
       <a href="/ai-solutions.html">AI Solutions</a>
@@ -1403,7 +1403,7 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
   <div class="container">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="/" class="foot-logo"><img src="/assets/logos/logo-main.png" alt="Ensign Ai Marketing Agency" class="foot-logo-img"></a>
+        <a href="/" class="foot-logo"><img src="/assets/logos/logo-main.png" alt="Ensign Ai Marketing Agency" class="foot-logo-img" loading="lazy" fetchpriority="low"></a>
         <div class="tag">A New Intelligence Made in Saudi Arabia.</div>
         <div class="desc">© 2026 Ensign Ai Marketing Agency. All rights reserved.</div>
       </div>
@@ -1630,13 +1630,17 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
     if(href === path){ a.classList.add('active'); }
   });
 })();
-/* Load correct hero video size per device */
+/* Load hero video after page is ready — avoids bandwidth competition with fonts/GA */
 (function(){
   var v = document.querySelector('.hero-video[data-desktop-src]');
   if(!v) return;
   var isMobile = window.matchMedia('(max-width:820px)').matches;
-  v.src = isMobile ? '/assets/video/hero-bg-mobile.mp4' : v.dataset.desktopSrc;
-  v.load();
+  var src = isMobile ? '/assets/video/hero-bg-mobile.mp4' : v.dataset.desktopSrc;
+  if(document.readyState === 'complete'){
+    v.src = src; v.load();
+  } else {
+    window.addEventListener('load', function(){ v.src = src; v.load(); });
+  }
 })();
 </script>
 <!-- Google Analytics — deferred to end of body so it never blocks render -->
