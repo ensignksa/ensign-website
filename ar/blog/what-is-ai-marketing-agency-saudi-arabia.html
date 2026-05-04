@@ -309,6 +309,32 @@ html[lang="ar"] .live-line-time{
   unicode-bidi: bidi-override;
 }
 html[lang="ar"] .nav-logo-img{ filter: brightness(0) !important;}
+
+/* === Language Switcher === */
+.nav-lang{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10.5px;
+  letter-spacing:.18em;
+  color:rgba(10,10,10,.55);
+  padding:7px 12px;
+  border:1px solid rgba(10,10,10,.10);
+  border-radius:999px;
+  transition:color .25s,background .25s,border-color .25s;
+  margin-right:6px;
+  flex-shrink:0;
+}
+.nav-lang:hover{
+  color:#0A0A0A;
+  border-color:rgba(10,10,10,.22);
+  background:rgba(10,10,10,.04);
+}
+@media (max-width:820px){
+  .nav-lang{font-size:9.5px; padding:5px 9px; margin-right:3px; letter-spacing:.14em;}
+}
+@media (max-width:380px){
+  .nav-lang{font-size:9px; padding:4px 7px; margin-right:2px;}
+}
+
 </style><style>
 /* Arabic typography overrides — Brand Book v1.0 May 2026 */
 html[lang="ar"] body{
@@ -459,7 +485,8 @@ html[lang="ar"] .nav-logo-img{ filter: brightness(0) !important;}
 <a href="../ar/blog/">المدونة</a>
 </nav>
 <div class="nav-actions">
-<a class="nav-cta" href="https://cal.eu/ensignksa/30min" rel="noopener noreferrer" target="_blank">اتصل بنا</a>
+<a href="/blog/what-is-ai-marketing-agency-saudi-arabia.html" class="nav-lang" aria-label="Switch language">EN</a>
+    <a class="nav-cta" href="https://cal.eu/ensignksa/30min" rel="noopener noreferrer" target="_blank">اتصل بنا</a>
 <button aria-expanded="false" aria-label="Toggle menu" class="nav-burger" id="nav-burger"><span></span><span></span><span></span></button>
 </div>
 </header>
@@ -469,8 +496,7 @@ html[lang="ar"] .nav-logo-img{ filter: brightness(0) !important;}
 <a href="/ar/ensign-os.html">نظام إنساين التشغيلي</a>
 <a href="../#work">أعمالنا</a>
 <a href="../ar/blog/">المدونة</a>
-<a class="nav-lang" href="../ar/" style="opacity:.6;">العربية</a>
-<a class="nav-mobile-cta" href="https://cal.eu/ensignksa/30min" rel="noopener noreferrer" target="_blank">اتصل بنا</a>
+    <a class="nav-mobile-cta" href="https://cal.eu/ensignksa/30min" rel="noopener noreferrer" target="_blank">اتصل بنا</a>
 </nav>
 
 <!-- Blog Post Hero -->
