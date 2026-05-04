@@ -376,6 +376,28 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
   .nav-lang{font-size:9px; padding:4px 7px; margin-right:2px;}
 }
 
+/* ── RTL Layout Fixes (Arabic about page) ── */
+/* what-grid: right-aligned in RTL */
+.what-grid{ text-align:right;}
+/* what-list bullets: RTL side */
+.what-list li{ padding-left:0; padding-right:18px;}
+.what-list li::before{ left:auto; right:0;}
+/* Timeline: flip to right side */
+.timeline{ padding-left:0; padding-right:60px;}
+.timeline::before,.timeline-fill{ left:auto; right:24px;}
+.tl-step::before{ left:auto; right:-44px;}
+@media (max-width:640px){
+  .timeline{ padding-left:0; padding-right:36px;}
+  .timeline::before,.timeline-fill{ left:auto; right:8px;}
+  .tl-step::before{ left:auto; right:-32px;}
+}
+/* Footer bottom: keep right edge on mobile */
+@media (max-width:640px){
+  .foot-bottom{ align-items:flex-end;}
+}
+/* Reverse arrow hover direction */
+.foot-col a:hover{ transform:translateX(-3px);}
+
 </style>
 <style>
 /* Arabic typography overrides — Brand Book v1.0 May 2026 */

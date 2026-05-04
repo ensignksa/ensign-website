@@ -423,6 +423,15 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
   .nav-lang{font-size:9px; padding:4px 7px; margin-right:2px;}
 }
 
+/* ── RTL Layout Fixes (Arabic blog index) ── */
+/* Blog cards: text-align follows dir=rtl automatically, ensure no LTR overrides */
+/* Footer bottom: right-align when stacked */
+@media (max-width:640px){
+  .foot-bottom{ align-items:flex-end;}
+}
+/* Reverse arrow hover direction */
+.foot-col a:hover{ transform:translateX(-3px);}
+
 </style>
 <style>
 /* Arabic typography overrides — Brand Book v1.0 May 2026 */

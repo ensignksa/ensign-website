@@ -1068,7 +1068,7 @@ footer.cine{
   .sg-div-v{ display:block;}
   .sg-div-h{ display:none;}
   .sg-item{ padding:24px 22px;}
-  .sg-tr,.sg-br{ align-items:flex-start; text-align:left;}
+  .sg-tr,.sg-br{ align-items:flex-start; text-align:right;}
   .sg-tr .sg-item-arrow,.sg-br .sg-item-arrow{ transform:none;}
   .sg-portrait-placeholder{ display:none;}
   /* marquee tighter gap on mobile */
@@ -1086,9 +1086,9 @@ footer.cine{
 }
 .mobile-menu.open{display:flex; animation:menuIn .25s ease forwards;}
 @keyframes menuIn{from{opacity:0}to{opacity:1}}
-/* X close button (top-left for RTL) */
+/* X close button (top-right for RTL) */
 .mobile-menu-close{
-  position:absolute; top:22px; left:22px;
+  position:absolute; top:22px; right:22px;
   background:none; border:none; cursor:pointer;
   color:#F2EFE8; padding:10px;
   opacity:.6; transition:opacity .2s;
@@ -1261,6 +1261,38 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
 }
 @media (max-width:380px){
   .nav-lang{font-size:9px; padding:4px 7px; margin-right:2px;}
+}
+
+/* ── RTL Mobile Fixes (Arabic homepage) ── */
+/* Reverse arrow hover direction for RTL */
+.p-row:hover .p-arrow{ transform:translateX(-6px);}
+.foot-col a:hover{ transform:translateX(-3px);}
+
+/* Hero eyebrow: line appears on the left (end) side in RTL */
+.hs-eyebrow::before{ display:none;}
+.hs-eyebrow::after{ content:''; width:24px; height:1px; background:var(--oasis);}
+
+@media (max-width:720px){
+  /* Pillars header: keep end-aligned in RTL */
+  .pillars-head{ align-items:flex-end;}
+  /* Footer bottom stacked: keep right-aligned */
+  .foot-bottom{ align-items:flex-end; text-align:right;}
+  /* svc-grid: all quadrants right-aligned when stacked */
+  .sg-tl,.sg-bl{ align-items:flex-start; text-align:right;}
+}
+
+/* what-list bullets: RTL side */
+.what-list li{ padding-left:0; padding-right:18px;}
+.what-list li::before{ left:auto; right:0;}
+
+/* Timeline: flip to right side */
+.timeline{ padding-left:0; padding-right:60px;}
+.timeline::before,.timeline-fill{ left:auto; right:24px;}
+.tl-step::before{ left:auto; right:-44px;}
+@media (max-width:640px){
+  .timeline{ padding-left:0; padding-right:36px;}
+  .timeline::before,.timeline-fill{ left:auto; right:8px;}
+  .tl-step::before{ left:auto; right:-32px;}
 }
 
 </style>

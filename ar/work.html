@@ -434,6 +434,18 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
   .nav-lang{font-size:9px; padding:4px 7px; margin-right:2px;}
 }
 
+/* ── RTL Layout Fixes (Arabic work page) ── */
+/* Footer bottom stacked: right-align */
+@media (max-width:720px){
+  .foot-bottom{ align-items:flex-end; text-align:right;}
+}
+/* Reverse arrow hover direction */
+.foot-col a:hover{ transform:translateX(-3px);}
+/* work-header on mobile: keep end-aligned (right side in RTL) */
+@media (max-width:900px){
+  .work-header{ align-items:flex-end;}
+}
+
 </style>
 <style>
 /* Arabic typography overrides — Brand Book v1.0 May 2026 */

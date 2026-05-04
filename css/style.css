@@ -2283,3 +2283,108 @@ button { font-family: inherit; cursor: pointer; }
 .btn-hero-primary, .btn-hero-primary2, .btn-hero-ghost, .nav-cta {
   will-change: transform;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   RTL / ARABIC MOBILE FIXES
+   All rules scoped to html[lang="ar"] — never affects EN layout
+   ══════════════════════════════════════════════════════════════ */
+
+/* --- Shared arrow / hover direction reversal --- */
+html[lang="ar"] .p-row:hover .p-arrow { transform: translateX(-6px); }
+html[lang="ar"] .foot-col a:hover { transform: translateX(-3px); }
+
+/* --- Pillars header on mobile: keep start-aligned in RTL --- */
+@media (max-width: 720px) {
+  html[lang="ar"] .pillars-head { align-items: flex-end; }
+  /* svc-grid mobile: in single-column RTL, all items start from right */
+  html[lang="ar"] .sg-tr,
+  html[lang="ar"] .sg-br {
+    align-items: flex-start;
+    text-align: right;
+  }
+  /* hero-btns alignment */
+  html[lang="ar"] .hero-btns { align-items: flex-end; }
+  /* footer bottom stack: start = right side in RTL */
+  html[lang="ar"] .foot-bottom { align-items: flex-end; }
+}
+
+/* --- what-list bullet: RTL uses padding-right + right-positioned ::before --- */
+html[lang="ar"] .what-list li {
+  padding-left: 0;
+  padding-right: 18px;
+}
+html[lang="ar"] .what-list li::before {
+  left: auto;
+  right: 0;
+}
+
+/* --- Timeline: flip to right side in RTL --- */
+html[lang="ar"] .timeline {
+  padding-left: 0;
+  padding-right: 60px;
+}
+html[lang="ar"] .timeline::before {
+  left: auto;
+  right: 24px;
+}
+html[lang="ar"] .timeline-fill {
+  left: auto;
+  right: 24px;
+}
+html[lang="ar"] .tl-step::before {
+  left: auto;
+  right: -44px;
+}
+@media (max-width: 640px) {
+  html[lang="ar"] .timeline { padding-left: 0; padding-right: 36px; }
+  html[lang="ar"] .timeline::before,
+  html[lang="ar"] .timeline-fill { left: auto; right: 8px; }
+  html[lang="ar"] .tl-step::before { left: auto; right: -32px; }
+}
+
+/* --- what-grid: text should be right-aligned in RTL --- */
+html[lang="ar"] .what-grid { text-align: right; }
+
+/* --- Blog footer/bottom alignment on mobile --- */
+@media (max-width: 600px) {
+  html[lang="ar"] .footer-bottom { align-items: flex-end; }
+  html[lang="ar"] .footer-inner { direction: rtl; }
+}
+
+/* --- hs-scroll: positioned from right in RTL --- */
+html[lang="ar"] .hs-scroll {
+  left: auto;
+  right: 26%;
+}
+
+/* --- hs-eyebrow line: appears after text in RTL (::before becomes trailing) --- */
+html[lang="ar"] .hs-eyebrow::before {
+  display: none;
+}
+html[lang="ar"] .hs-eyebrow::after {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--oasis, #00D9C0);
+}
+
+/* --- Mobile nav hamburger: in RTL page, hamburger is on left, logo on right (handled by dir=rtl) --- */
+/* Ensure mobile-menu-close button stays accessible on RTL */
+html[lang="ar"] .mobile-menu-close {
+  left: auto;
+  right: 22px;
+}
+
+/* --- footer: align-items flex-start = right side in RTL on mobile --- */
+@media (max-width: 720px) {
+  html[lang="ar"] .foot-bottom { text-align: right; }
+}
+
+/* --- Proof / work page tab indicator: translateX must be RTL-aware --- */
+/* (handled by the JS, no override needed here) */
+
+/* --- ad-funnel-step val: in RTL, align to left (logical end) --- */
+html[lang="ar"] .ad-funnel-step .val { text-align: left; direction: ltr; }
+
+/* --- growth-chart-head legend: keep LTR for numbers --- */
+html[lang="ar"] .growth-chart-head .legend { direction: ltr; }
