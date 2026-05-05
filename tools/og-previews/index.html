@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ensign — OG Image Previews</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#F2EFE8;
+    --ink:#0A0A0A;
+    --oasis:#00D9C0;
+    --gold:#E8C885;
+    --gold-warm:#D4A574;
+    --grey:rgba(242,239,232,0.7);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:#1a1a1a;
+    font-family:'Manrope',sans-serif;
+    padding:40px 20px;
+    color:#999;
+  }
+  .gallery{max-width:1280px;margin:0 auto;}
+  h1.title{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-size:32px;
+    color:#F2EFE8;
+    margin-bottom:8px;
+    letter-spacing:-.02em;
+  }
+  .subtitle{font-size:13px;font-family:'JetBrains Mono',monospace;color:#666;margin-bottom:40px;}
+  .variant-block{margin-bottom:48px;}
+  .variant-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:#00D9C0;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    margin-bottom:8px;
+  }
+  .variant-name{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-size:22px;
+    color:#F2EFE8;
+    margin-bottom:14px;
+    letter-spacing:-.01em;
+  }
+  .variant-name em{font-style:italic;color:#E8C885;}
+  .og-frame{
+    width:1200px;
+    height:630px;
+    border:1px solid #2a2a2a;
+    overflow:hidden;
+    transform-origin:top left;
+    transform:scale(1);
+    margin-bottom:0;
+  }
+  /* shrink wrap to fit page */
+  .scaler{
+    width:1200px;height:630px;
+    transform:scale(0.95);transform-origin:top left;
+    margin-bottom:-20px;
+  }
+
+  /* ================== VARIANT 1 — CINEMATIC GLOW ================== */
+  .v1{
+    width:1200px;height:630px;
+    background:#0A0A0A;
+    position:relative;
+    overflow:hidden;
+    font-family:'Manrope',sans-serif;
+  }
+  .v1::before{
+    content:'';position:absolute;
+    width:700px;height:700px;
+    top:-200px;right:-100px;
+    background:radial-gradient(circle, rgba(0,217,192,0.18) 0%, rgba(0,217,192,0.05) 35%, transparent 70%);
+    filter:blur(20px);
+  }
+  .v1::after{
+    content:'';position:absolute;
+    width:500px;height:500px;
+    bottom:-150px;right:50px;
+    background:radial-gradient(circle, rgba(212,165,116,0.20) 0%, rgba(212,165,116,0.06) 40%, transparent 75%);
+    filter:blur(20px);
+  }
+  .v1-grain{
+    position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,0.015) 1px, transparent 1px);
+    background-size:3px 3px;
+    pointer-events:none;
+  }
+  .v1-content{
+    position:relative;z-index:2;
+    padding:64px 72px;
+    height:100%;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .v1-logo{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-size:22px;
+    color:#F2EFE8;
+    letter-spacing:-.01em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .v1-logo-mark{
+    width:28px;height:28px;
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, #00D9C0, #008C7A);
+    box-shadow:0 0 18px rgba(0,217,192,.5);
+  }
+  .v1-headline{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-size:88px;
+    line-height:1;
+    color:#F2EFE8;
+    letter-spacing:-.04em;
+    margin-bottom:16px;
+  }
+  .v1-headline em{font-style:italic;color:#F2EFE8;}
+  .v1-sub{
+    font-family:'Manrope',sans-serif;
+    font-weight:500;
+    font-size:24px;
+    color:#E8C885;
+    letter-spacing:-.005em;
+    margin-bottom:18px;
+  }
+  .v1-desc{
+    font-family:'Manrope',sans-serif;
+    font-weight:400;
+    font-size:17px;
+    line-height:1.45;
+    color:rgba(242,239,232,0.72);
+    max-width:580px;
+    letter-spacing:0;
+  }
+  .v1-url{
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    color:#00D9C0;
+    letter-spacing:.05em;
+  }
+
+  /* ================== VARIANT 2 — EDITORIAL ================== */
+  .v2{
+    width:1200px;height:630px;
+    background:linear-gradient(135deg, #0A0A0A 0%, #14181F 100%);
+    position:relative;
+    overflow:hidden;
+  }
+  .v2::before{
+    content:'';position:absolute;
+    width:900px;height:900px;
+    top:-300px;right:-300px;
+    background:radial-gradient(circle, rgba(0,217,192,0.12) 0%, transparent 60%);
+  }
+  .v2-rule{
+    position:absolute;
+    left:72px;top:72px;
+    width:40px;height:1px;
+    background:#00D9C0;
+  }
+  .v2-content{
+    position:relative;z-index:2;
+    padding:64px 72px;
+    height:100%;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .v2-top{display:flex;align-items:center;justify-content:space-between;}
+  .v2-logo{
+    font-family:'Manrope',sans-serif;
+    font-weight:600;
+    font-size:18px;
+    color:#F2EFE8;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    margin-top:24px;
+  }
+  .v2-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:rgba(242,239,232,0.5);
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    margin-top:24px;
+  }
+  .v2-headline{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-size:108px;
+    line-height:.95;
+    color:#F2EFE8;
+    letter-spacing:-.045em;
+    margin-bottom:24px;
+  }
+  .v2-headline em{
+    font-style:italic;
+    font-weight:300;
+    color:#E8C885;
+  }
+  .v2-sub{
+    font-family:'Manrope',sans-serif;
+    font-weight:400;
+    font-size:22px;
+    color:#E8C885;
+    letter-spacing:-.005em;
+    margin-bottom:14px;
+  }
+  .v2-desc{
+    font-family:'Manrope',sans-serif;
+    font-weight:300;
+    font-size:16px;
+    line-height:1.5;
+    color:rgba(242,239,232,0.65);
+    max-width:560px;
+  }
+  .v2-bottom{display:flex;align-items:center;justify-content:space-between;}
+  .v2-url{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:#F2EFE8;
+    letter-spacing:.08em;
+  }
+  .v2-mark{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:rgba(242,239,232,0.4);
+    letter-spacing:.15em;
+  }
+
+  /* ================== VARIANT 3 — CINEMATIC LIGHT BEAM ================== */
+  .v3{
+    width:1200px;height:630px;
+    background:#070809;
+    position:relative;
+    overflow:hidden;
+  }
+  .v3-beam{
+    position:absolute;
+    width:480px;height:900px;
+    top:-200px;
+    left:50%;
+    transform:translateX(-50%) rotate(-2deg);
+    background:radial-gradient(ellipse at center, rgba(0,217,192,0.18) 0%, rgba(0,217,192,0.04) 40%, transparent 70%);
+    filter:blur(40px);
+  }
+  .v3-warm{
+    position:absolute;
+    width:600px;height:600px;
+    bottom:-200px;right:-100px;
+    background:radial-gradient(circle, rgba(212,165,116,0.16) 0%, transparent 65%);
+    filter:blur(30px);
+  }
+  .v3-particles{
+    position:absolute;inset:0;
+    background-image:
+      radial-gradient(1px 1px at 30% 20%, rgba(0,217,192,0.6), transparent),
+      radial-gradient(1px 1px at 50% 35%, rgba(0,217,192,0.4), transparent),
+      radial-gradient(1px 1px at 70% 25%, rgba(0,217,192,0.5), transparent),
+      radial-gradient(1px 1px at 40% 50%, rgba(232,200,133,0.4), transparent),
+      radial-gradient(1px 1px at 60% 60%, rgba(0,217,192,0.3), transparent);
+  }
+  .v3-content{
+    position:relative;z-index:3;
+    padding:60px 80px;
+    height:100%;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .v3-logo{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-size:24px;
+    color:#F2EFE8;
+    letter-spacing:-.015em;
+  }
+  .v3-headline{
+    font-family:'Manrope',sans-serif;
+    font-weight:700;
+    font-size:84px;
+    line-height:1;
+    color:#F2EFE8;
+    letter-spacing:-.045em;
+    margin-bottom:20px;
+  }
+  .v3-headline span{color:#00D9C0;}
+  .v3-sub{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:26px;
+    color:#E8C885;
+    letter-spacing:-.01em;
+    margin-bottom:16px;
+  }
+  .v3-desc{
+    font-family:'Manrope',sans-serif;
+    font-weight:400;
+    font-size:17px;
+    line-height:1.45;
+    color:rgba(242,239,232,0.7);
+    max-width:600px;
+  }
+  .v3-bottom{
+    display:flex;align-items:center;gap:16px;
+  }
+  .v3-url{
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    color:#F2EFE8;
+    letter-spacing:.06em;
+  }
+  .v3-dot{
+    width:6px;height:6px;border-radius:50%;
+    background:#00D9C0;
+    box-shadow:0 0 10px #00D9C0;
+  }
+
+  /* ================== VARIANT 4 — ASYMMETRIC GRID ================== */
+  .v4{
+    width:1200px;height:630px;
+    background:#0A0A0A;
+    position:relative;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1fr 1px 480px;
+  }
+  .v4-left{
+    padding:64px 72px;
+    display:flex;flex-direction:column;justify-content:space-between;
+    position:relative;z-index:2;
+  }
+  .v4-divider{
+    background:linear-gradient(180deg, transparent 0%, rgba(0,217,192,0.4) 30%, rgba(0,217,192,0.4) 70%, transparent 100%);
+  }
+  .v4-right{
+    position:relative;
+    overflow:hidden;
+    background:radial-gradient(ellipse at 30% 50%, rgba(0,217,192,0.18) 0%, transparent 60%),
+               radial-gradient(ellipse at 70% 80%, rgba(212,165,116,0.20) 0%, transparent 65%),
+               #0A0A0A;
+  }
+  .v4-orb{
+    position:absolute;
+    width:280px;height:280px;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, rgba(0,217,192,0.5), rgba(0,140,122,0.2) 50%, transparent 75%);
+    filter:blur(2px);
+    box-shadow:0 0 80px rgba(0,217,192,0.3), inset 0 0 60px rgba(232,200,133,0.2);
+  }
+  .v4-ring{
+    position:absolute;
+    width:340px;height:340px;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    border:1px solid rgba(0,217,192,0.25);
+  }
+  .v4-ring2{
+    position:absolute;
+    width:420px;height:420px;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    border:1px solid rgba(0,217,192,0.10);
+  }
+  .v4-logo{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    font-size:22px;
+    color:#F2EFE8;
+    letter-spacing:-.01em;
+  }
+  .v4-headline{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-size:78px;
+    line-height:1;
+    color:#F2EFE8;
+    letter-spacing:-.04em;
+    margin-bottom:18px;
+  }
+  .v4-headline em{font-style:italic;color:#E8C885;}
+  .v4-sub{
+    font-family:'Manrope',sans-serif;
+    font-weight:500;
+    font-size:21px;
+    color:#E8C885;
+    letter-spacing:-.005em;
+    margin-bottom:14px;
+  }
+  .v4-desc{
+    font-family:'Manrope',sans-serif;
+    font-weight:400;
+    font-size:16px;
+    line-height:1.5;
+    color:rgba(242,239,232,0.7);
+    max-width:520px;
+  }
+  .v4-url{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:#00D9C0;
+    letter-spacing:.06em;
+  }
+
+  /* note panel */
+  .note{
+    background:#1f1f1f;
+    border-left:3px solid #00D9C0;
+    padding:14px 18px;
+    margin-bottom:32px;
+    color:#bbb;
+    font-size:13px;
+    line-height:1.6;
+    font-family:'Manrope',sans-serif;
+  }
+  .note strong{color:#F2EFE8;font-weight:600;}
+</style>
+</head>
+<body>
+<div class="gallery">
+  <h1 class="title">Ensign — OG image previews</h1>
+  <div class="subtitle">1200 × 630 px · 1.91:1 · for LinkedIn / X / WhatsApp / Slack / Discord</div>
+
+  <div class="note">
+    <strong>Note:</strong> these are CSS-rendered mocks using the actual Ensign brand fonts (Manrope + Fraunces) and palette. Once you save the cinematic background image to <code>assets/og/og-bg.jpg</code>, I'll layer the chosen variant's typography over it for the final export. For now, each variant generates the dark cinematic mood with pure CSS — radial glows, particles, and gradients — so you can compare typographic treatments cleanly.
+  </div>
+
+  <!-- VARIANT 1 -->
+  <div class="variant-block">
+    <div class="variant-label">Variant 01</div>
+    <div class="variant-name">Cinematic <em>Glow</em> &nbsp;·&nbsp; soft ambient halos, Fraunces display headline</div>
+    <div class="og-frame">
+      <div class="v1">
+        <div class="v1-grain"></div>
+        <div class="v1-content">
+          <div class="v1-logo">
+            <div class="v1-logo-mark"></div>
+            Ensign
+          </div>
+          <div>
+            <div class="v1-headline">Ensign Solutions</div>
+            <div class="v1-sub">A new intelligence built in Saudi Arabia.</div>
+            <div class="v1-desc">AI-powered marketing, sales, and business systems built to connect strategy, execution, and intelligence.</div>
+          </div>
+          <div class="v1-url">ensignksa.com</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIANT 2 -->
+  <div class="variant-block">
+    <div class="variant-label">Variant 02</div>
+    <div class="variant-name">Editorial &nbsp;·&nbsp; Fraunces italic accent, hairline rule, Manrope wordmark</div>
+    <div class="og-frame">
+      <div class="v2">
+        <div class="v2-rule"></div>
+        <div class="v2-content">
+          <div class="v2-top">
+            <div class="v2-logo">ENSIGN</div>
+            <div class="v2-tag">Riyadh · KSA</div>
+          </div>
+          <div>
+            <div class="v2-headline">Ensign <em>Solutions</em></div>
+            <div class="v2-sub">A new intelligence built in Saudi Arabia.</div>
+            <div class="v2-desc">AI-powered marketing, sales, and business systems built to connect strategy, execution, and intelligence.</div>
+          </div>
+          <div class="v2-bottom">
+            <div class="v2-url">ensignksa.com</div>
+            <div class="v2-mark">AI · MARKETING · INTELLIGENCE</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIANT 3 -->
+  <div class="variant-block">
+    <div class="variant-label">Variant 03</div>
+    <div class="variant-name">Light <em>Beam</em> &nbsp;·&nbsp; particle field, Manrope bold headline with Oasis accent</div>
+    <div class="og-frame">
+      <div class="v3">
+        <div class="v3-beam"></div>
+        <div class="v3-warm"></div>
+        <div class="v3-particles"></div>
+        <div class="v3-content">
+          <div class="v3-logo">Ensign</div>
+          <div>
+            <div class="v3-headline">Ensign <span>Solutions</span></div>
+            <div class="v3-sub">A new intelligence built in Saudi Arabia.</div>
+            <div class="v3-desc">AI-powered marketing, sales, and business systems built to connect strategy, execution, and intelligence.</div>
+          </div>
+          <div class="v3-bottom">
+            <div class="v3-dot"></div>
+            <div class="v3-url">ensignksa.com</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VARIANT 4 -->
+  <div class="variant-block">
+    <div class="variant-label">Variant 04</div>
+    <div class="variant-name">Asymmetric <em>Grid</em> &nbsp;·&nbsp; type left, glowing orb right, divider rule</div>
+    <div class="og-frame">
+      <div class="v4">
+        <div class="v4-left">
+          <div class="v4-logo">Ensign</div>
+          <div>
+            <div class="v4-headline">Ensign <em>Solutions</em></div>
+            <div class="v4-sub">A new intelligence built in Saudi Arabia.</div>
+            <div class="v4-desc">AI-powered marketing, sales, and business systems built to connect strategy, execution, and intelligence.</div>
+          </div>
+          <div class="v4-url">ensignksa.com</div>
+        </div>
+        <div class="v4-divider"></div>
+        <div class="v4-right">
+          <div class="v4-ring2"></div>
+          <div class="v4-ring"></div>
+          <div class="v4-orb"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
