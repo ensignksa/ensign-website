@@ -154,28 +154,28 @@ Same NAP must appear identically on:
 ### Add UTM Parameters to Booking Links
 UTM parameters let GA4 track where bookings come from.
 
-**Current booking URL:** `https://cal.eu/ensignksa/30min`
+**Current booking URL:** `https://cal.com/ensign-ai-agency-q4mmzg/30min`
 
 **Add UTM tags by changing all booking button links on the website to:**
 
 For buttons on the homepage:
 ```
-https://cal.eu/ensignksa/30min?utm_source=website&utm_medium=cta&utm_campaign=homepage
+https://cal.com/ensign-ai-agency-q4mmzg/30min?utm_source=website&utm_medium=cta&utm_campaign=homepage
 ```
 
 For buttons on agency.html:
 ```
-https://cal.eu/ensignksa/30min?utm_source=website&utm_medium=cta&utm_campaign=agency-page
+https://cal.com/ensign-ai-agency-q4mmzg/30min?utm_source=website&utm_medium=cta&utm_campaign=agency-page
 ```
 
 For buttons on ai-solutions.html:
 ```
-https://cal.eu/ensignksa/30min?utm_source=website&utm_medium=cta&utm_campaign=ai-solutions-page
+https://cal.com/ensign-ai-agency-q4mmzg/30min?utm_source=website&utm_medium=cta&utm_campaign=ai-solutions-page
 ```
 
 For blog posts:
 ```
-https://cal.eu/ensignksa/30min?utm_source=blog&utm_medium=cta&utm_campaign=blog-cta
+https://cal.com/ensign-ai-agency-q4mmzg/30min?utm_source=blog&utm_medium=cta&utm_campaign=blog-cta
 ```
 
 ### Connect Outlook Calendar to Cal.com
