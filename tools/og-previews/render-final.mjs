@@ -17,7 +17,13 @@ const outProd = path.join(__dirname, '..', '..', 'assets', 'og-image.png');
   const page = await context.newPage();
   await page.goto(url, { waitUntil: 'networkidle' });
   await page.evaluate(() => document.fonts.ready);
-  await page.waitForTimeout(500);
+  // Wait for bg image to fully load
+  await page.evaluate(() => new Promise(r => {
+    const img = new Image();
+    img.onload = r; img.onerror = r;
+    img.src = '/assets/og/og-bg.png?_=' + Date.now();
+  }));
+  await page.waitForTimeout(1500);
   const el = await page.$('#og');
   await el.screenshot({ path: out, omitBackground: false });
   console.log(`✓ ${out}`);
