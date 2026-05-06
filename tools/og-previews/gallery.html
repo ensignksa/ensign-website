@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ensign · OG image gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    background:#0A0A0A;
+    color:#F2EFE8;
+    font-family:'Manrope',sans-serif;
+    padding:60px 48px 120px;
+    min-height:100vh;
+  }
+  .head{ max-width:1280px; margin:0 auto 48px; }
+  h1{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-size:56px;
+    letter-spacing:-.04em;
+    line-height:.95;
+    margin-bottom:14px;
+  }
+  h1 em{ font-style:italic; color:#00D9C0; font-weight:400; }
+  .lede{
+    font-family:'Manrope',sans-serif;
+    font-size:18px;
+    color:rgba(242,239,232,0.7);
+    max-width:720px;
+    line-height:1.5;
+    margin-bottom:8px;
+  }
+  .meta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:#00D9C0;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+  }
+  .section{ max-width:1280px; margin:0 auto 72px; }
+  .section-head{
+    display:flex; align-items:baseline; gap:18px;
+    margin-bottom:24px;
+    padding-bottom:14px;
+    border-bottom:1px solid rgba(242,239,232,0.12);
+  }
+  .section-head h2{
+    font-family:'Fraunces',serif;
+    font-weight:300;
+    font-size:32px;
+    letter-spacing:-.02em;
+  }
+  .section-head .count{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:rgba(242,239,232,0.5);
+    letter-spacing:.15em;
+  }
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:32px 28px;
+  }
+  .card{
+    background:#13161C;
+    border:1px solid rgba(242,239,232,0.08);
+    border-radius:8px;
+    overflow:hidden;
+    transition:border-color .2s, transform .2s;
+  }
+  .card:hover{
+    border-color:rgba(0,217,192,0.4);
+    transform:translateY(-2px);
+  }
+  .card img{
+    width:100%; height:auto; display:block;
+    aspect-ratio:1200/630;
+    object-fit:cover;
+  }
+  .card-foot{
+    padding:14px 18px 16px;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:12px;
+  }
+  .card-name{
+    font-family:'Manrope',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:-.005em;
+    color:#F2EFE8;
+  }
+  .card-spec{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    color:rgba(242,239,232,0.5);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+  }
+  .card-path{
+    font-family:'JetBrains Mono',monospace;
+    font-size:10px;
+    color:#00D9C0;
+    letter-spacing:.05em;
+    margin-top:2px;
+    opacity:.75;
+  }
+  .ar-tag{
+    display:inline-block;
+    background:rgba(0,217,192,0.15);
+    color:#00D9C0;
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;
+    letter-spacing:.15em;
+    padding:2px 6px;
+    border-radius:3px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .footer{
+    max-width:1280px; margin:80px auto 0;
+    padding-top:32px;
+    border-top:1px solid rgba(242,239,232,0.12);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:rgba(242,239,232,0.5);
+    letter-spacing:.08em;
+    line-height:1.8;
+  }
+</style>
+</head>
+<body>
+  <div class="head">
+    <div class="meta">OG IMAGE SET · 1200 × 630 · 1.91:1</div>
+    <h1>Ensign · social <em>preview</em> images</h1>
+    <p class="lede">One template, 18 per-page variants. Manrope bold headline, Fraunces italic Oasis subheadline, Manrope description, JetBrains Mono URL — all on the cinematic background, no invented colors or shapes.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2>English pages</h2>
+      <span class="count">10 IMAGES</span>
+    </div>
+    <div class="grid">
+      <div class="card"><img src="/assets/og/pages/home.png" alt="Home"><div class="card-foot"><div><div class="card-name">Home</div><div class="card-path">/assets/og/pages/home.png</div></div><div class="card-spec">EN · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/about.png" alt="About"><div class="card-foot"><div><div class="card-name">About</div><div class="card-path">/assets/og/pages/about.png</div></div><div class="card-spec">EN · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/agency.png" alt="Agency"><div class="card-foot"><div><div class="card-name">Marketing Agency</div><div class="card-path">/assets/og/pages/agency.png</div></div><div class="card-spec">EN · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/ai-solutions.png" alt="AI Solutions"><div class="card-foot"><div><div class="card-name">AI Solutions</div><div class="card-path">/assets/og/pages/ai-solutions.png</div></div><div class="card-spec">EN · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/ensign-os.png" alt="Ensign OS"><div class="card-foot"><div><div class="card-name">Ensign OS</div><div class="card-path">/assets/og/pages/ensign-os.png</div></div><div class="card-spec">EN · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/work.png" alt="Our Work"><div class="card-foot"><div><div class="card-name">Our Work</div><div class="card-path">/assets/og/pages/work.png</div></div><div class="card-spec">EN · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/careers.png" alt="Careers"><div class="card-foot"><div><div class="card-name">Careers</div><div class="card-path">/assets/og/pages/careers.png</div></div><div class="card-spec">EN · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/blog.png" alt="Blog"><div class="card-foot"><div><div class="card-name">Blog</div><div class="card-path">/assets/og/pages/blog.png</div></div><div class="card-spec">EN · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/privacy.png" alt="Privacy Policy"><div class="card-foot"><div><div class="card-name">Privacy Policy</div><div class="card-path">/assets/og/pages/privacy.png</div></div><div class="card-spec">EN · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/terms.png" alt="Terms"><div class="card-foot"><div><div class="card-name">Terms &amp; Conditions</div><div class="card-path">/assets/og/pages/terms.png</div></div><div class="card-spec">EN · 1200×630</div></div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head">
+      <h2>Arabic pages <span class="ar-tag">RTL</span></h2>
+      <span class="count">8 IMAGES</span>
+    </div>
+    <div class="grid">
+      <div class="card"><img src="/assets/og/pages/home-ar.png" alt="Home AR"><div class="card-foot"><div><div class="card-name">الرئيسية · Home</div><div class="card-path">/assets/og/pages/home-ar.png</div></div><div class="card-spec">AR · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/about-ar.png" alt="About AR"><div class="card-foot"><div><div class="card-name">من نحن · About</div><div class="card-path">/assets/og/pages/about-ar.png</div></div><div class="card-spec">AR · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/agency-ar.png" alt="Agency AR"><div class="card-foot"><div><div class="card-name">وكالة التسويق · Agency</div><div class="card-path">/assets/og/pages/agency-ar.png</div></div><div class="card-spec">AR · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/ai-solutions-ar.png" alt="AI Solutions AR"><div class="card-foot"><div><div class="card-name">حلول الذكاء الاصطناعي · AI Solutions</div><div class="card-path">/assets/og/pages/ai-solutions-ar.png</div></div><div class="card-spec">AR · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/ensign-os-ar.png" alt="Ensign OS AR"><div class="card-foot"><div><div class="card-name">نظام إنساين التشغيلي · Ensign OS</div><div class="card-path">/assets/og/pages/ensign-os-ar.png</div></div><div class="card-spec">AR · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/work-ar.png" alt="Work AR"><div class="card-foot"><div><div class="card-name">أعمالنا · Our Work</div><div class="card-path">/assets/og/pages/work-ar.png</div></div><div class="card-spec">AR · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/careers-ar.png" alt="Careers AR"><div class="card-foot"><div><div class="card-name">التوظيف · Careers</div><div class="card-path">/assets/og/pages/careers-ar.png</div></div><div class="card-spec">AR · 1200×630</div></div></div>
+      <div class="card"><img src="/assets/og/pages/blog-ar.png" alt="Blog AR"><div class="card-foot"><div><div class="card-name">المدونة · Blog</div><div class="card-path">/assets/og/pages/blog-ar.png</div></div><div class="card-spec">AR · 1200×630</div></div></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    DIMENSIONS · 1200 × 630 PX · UNIVERSAL OG · 1.91:1 RATIO<br>
+    SAFE ZONE · ALL TEXT WITHIN INNER 1080 × 565 PX (LINKEDIN/WHATSAPP CROP TOLERANT)<br>
+    OUTPUT · PNG · ~150 KB EACH · UNDER WHATSAPP 300 KB THRESHOLD<br>
+    SOURCE · TOOLS/OG-PREVIEWS/TEMPLATE.HTML · CONFIG IN PAGES.CONFIG.MJS<br>
+    REGEN · NODE TOOLS/OG-PREVIEWS/RENDER-ALL.MJS
+  </div>
+</body>
+</html>
