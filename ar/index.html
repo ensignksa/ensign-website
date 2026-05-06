@@ -13,7 +13,17 @@ html,body{background:#07111E;color:#F2EFE8}
   .bg-mist::before,.bg-mist::after{filter:blur(50px)!important;will-change:auto!important}
   .bg-mist .m3{filter:blur(50px)!important}
   .grain{animation-duration:2s!important}
+  .nav-links{display:none!important}
+  .nav-cta{display:none!important}
+  .nav-toggle{display:flex!important}
 }
+</style>
+<script>if(window.innerWidth<=820){document.documentElement.classList.add('mob')}</script>
+<style>
+html.mob .nav-links{display:none!important;visibility:hidden!important}
+html.mob .nav-cta{display:none!important;visibility:hidden!important}
+html.mob .nav-toggle{display:flex!important}
+html.mob .nav-toggle span{display:block!important}
 </style>
 
 <meta charset="utf-8"/>
