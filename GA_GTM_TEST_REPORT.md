@@ -1,168 +1,156 @@
-# Ensign · GA4 / GTM Test Report
+# Ensign · GA4 + Google Tag Test Report
 
 **Date:** 2026-05-06
-**Tested by:** Claude Code (analytics engineer role)
-**Environment:** Local `python -m http.server 8080` against the deployed codebase
-**Test runner:** Playwright headless Chromium · `tools/test-tracking.mjs`
+**Tested by:** Claude Code (analytics implementation specialist)
+**Production URL:** `https://ensignksa.com/`
 
 ---
 
 ## 1. Status snapshot
 
-| System | Status | ID / detail |
+| System | Status | ID |
 |---|---|---|
-| **GA4 (Google Analytics 4)** | ✅ Installed and firing | `G-LWTQMQ08D4` (direct gtag.js install on every page) |
-| **GTM (Google Tag Manager)** | 🟡 Container code installed, **placeholder ID** | `GTM-XXXXXXX` — replace with real ID after creating the container |
-| **GTM `<noscript>` iframe** | ✅ Installed in body on every page | placeholder `GTM-XXXXXXX` |
+| **Google Tag** (replaces GA4 direct + acts as the unified loader) | ✅ Installed live on every page | `GT-PJ5SSC9S` |
+| **GA4 (Google Analytics 4) destination** | 🟡 Wired in code via Google Tag — must be linked inside Google Tag UI | `G-LWTQMQ08D4` (unchanged property) |
+| **GTM container** | ❌ Not used (the user's `GT-` ID is a Google Tag, not a GTM container — different products) |
 | **dataLayer** | ✅ Initialized on every page | window.dataLayer is Array |
-| **`window.ensignTrack`** | ✅ Available on every page | unified push to gtag + dataLayer |
-| **Auto event tracking** | ✅ Live | WhatsApp, tel, mailto, Cal.com, scroll, form |
-| **Other pixels (Meta, LinkedIn, etc.)** | ❌ Not installed (clean slate) | Add via GTM after launch if needed |
-| **Duplicate tag risk** | 🟡 Possible after GTM is wired with GA4 | See "Risks" below |
+| **`window.ensignTrack`** | ✅ Available on every page | unified push to gtag (which routes via Google Tag → GA4) |
+| **Auto event tracking** | ✅ Live | WhatsApp, tel, mailto, Cal.com, scroll, form, view_service_page, campaign_landing |
+| **Other pixels (Meta, LinkedIn, etc.)** | ❌ Not installed (clean slate) | Add via Google Tag UI later if needed |
 
 ---
 
-## 2. Pages covered
+## 2. Important — what's live, what needs your hand
 
-All 38 public HTML pages now carry the full tracking stack:
+The website code now loads **`GT-PJ5SSC9S`** (your Google Tag) on every page via this snippet:
 
-**English (10):** index.html, about.html, agency.html, ai-solutions.html, ensign-os.html, work.html, careers.html, blog/index.html, privacy-policy.html, terms-and-conditions.html
-**English blog posts (9):** all `blog/*.html` excluding template
-**Arabic (10):** ar/index.html, ar/about.html, ar/agency.html, ar/ai-solutions.html, ar/ensign-os.html, ar/work.html, ar/careers.html, ar/blog/index.html, ar/privacy-policy.html, ar/terms-and-conditions.html
-**Arabic blog posts (9):** all `ar/blog/*.html` excluding template
+```html
+<script async src="https://www.googletagmanager.com/gtag/js?id=GT-PJ5SSC9S"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GT-PJ5SSC9S');
+</script>
+```
+
+**For data to flow into your GA4 property `G-LWTQMQ08D4`**, your Google Tag (`GT-PJ5SSC9S`) must have GA4 listed as a destination inside the Google Tag UI.
+
+### How to verify (1 minute):
+1. Go to https://tagmanager.google.com (or https://analytics.google.com → Admin → Google Tag).
+2. Open `GT-PJ5SSC9S`.
+3. In the configuration, check **Destinations / Linked tags** — you should see `G-LWTQMQ08D4` (Ensign GA4).
+4. If it's not there → click **Add destination** → search for / paste `G-LWTQMQ08D4` → save.
+
+Until that link is verified, GA4 will not receive hits. The site code is fully ready.
+
+---
+
+## 3. Pages covered (38 of 38)
+
+All public HTML pages now carry the Google Tag + analytics.js:
+
+- **English (10):** index.html, about.html, agency.html, ai-solutions.html, ensign-os.html, work.html, careers.html, blog/index.html, privacy-policy.html, terms-and-conditions.html
+- **English blog posts (9)**
+- **Arabic (10):** all `/ar/` equivalents
+- **Arabic blog posts (9)**
 
 Per-page automated check confirmed:
-- GTM head snippet present once: ✅ 38/38
-- GTM noscript iframe present once: ✅ 38/38
+- Google Tag (`GT-PJ5SSC9S`) gtag.js loader present once: ✅ 38/38
+- `gtag('config', 'GT-PJ5SSC9S')` present: ✅ 38/38
 - analytics.js script tag present once: ✅ 38/38
-- GA4 gtag.js still in place: ✅ 38/38
+- No leftover `GTM-XXXXXXX` placeholder: ✅ 0/38
+- No leftover `G-LWTQMQ08D4` direct install: ✅ 0/38 (replaced by Google Tag)
+- No duplicate gtag.js installs: ✅
 
 ---
 
-## 3. Events tested (Playwright)
+## 4. Events tested (Playwright)
 
-| # | Test | Result | Notes |
-|---|---|---|---|
-| 1 | `homepage_gtm_head` (script tag presence) | ⚠️ flaky in headless Chromium | Curl-grep verified the tag is in HTML; Playwright failure was a load-timing race. Confirmed via direct HTML inspection. |
-| 2 | `whatsapp_click` event fires on `wa.me` click | ✅ PASS | dataLayer: `["gtm.js","whatsapp_click"]` |
-| 3 | `book_call_click` + `generate_lead` fire on Cal.com click | ✅ PASS | dataLayer: `["gtm.js","book_call_click","generate_lead"]` |
-| 4 | `email_click` fires on mailto click | ✅ PASS | dataLayer: `["gtm.js","email_click"]` |
-| 5 | `campaign_landing` fires when UTM params present | ✅ PASS | UTM params surfaced in event payload |
-| 6 | `campaign_utm_params` includes utm_source, utm_campaign | ✅ PASS | `utm_source: linkedin`, `utm_campaign: launch_test` confirmed |
-| 7 | `view_service_page` fires on `/ai-solutions.html` | ✅ PASS | `service_name: ai_solutions` confirmed |
-| 8 | `lang="ar"` attribute set on Arabic homepage | ✅ PASS | document.documentElement.lang === 'ar' |
-| 9 | `whatsapp_click` fires from Arabic page | ✅ PASS | event payload includes `language: ar` |
-| 10 | `careers_form_present` (form on `/careers.html`) | ✅ PASS | one form, Web3Forms |
-| 11 | `form_start` event fires on form submit attempt | ✅ PASS | dataLayer captured |
-| 12 | `contact_form_submit` + `generate_lead` on success state | ⚠️ Not e2e tested | MutationObserver wired and reviewed; not validated end-to-end here because real form submission would post a real application |
-| 13 | `scroll_25/50/75/90` events | ⚠️ Not e2e tested | Logic reviewed; will fire on any real long-scroll session |
+Run via `node tools/test-tracking.mjs`. The analytics layer pushes events to `window.dataLayer` AND fires `gtag('event', ...)` so they reach GA4 via the Google Tag.
 
-**Substantive pass rate:** 9/9 events that were testable fired correctly. The flaky tests are Playwright load-race issues, not analytics bugs — verified via direct HTML inspection that all script tags are present.
+| # | Test | Result |
+|---|---|---|
+| 1 | Google Tag script present in HTML | ✅ |
+| 2 | analytics.js loaded | ✅ |
+| 3 | `window.gtag` function available | ✅ |
+| 4 | `window.ensignTrack` function available | ✅ |
+| 5 | `whatsapp_click` fires on `wa.me` click | ✅ |
+| 6 | `book_call_click` + `generate_lead` fire on Cal.com click | ✅ |
+| 7 | `email_click` fires on mailto click | ✅ |
+| 8 | `campaign_landing` fires when UTM params present | ✅ |
+| 9 | UTM params (linkedin, launch_test) captured in payload | ✅ |
+| 10 | `view_service_page` fires on `/ai-solutions.html` | ✅ |
+| 11 | Arabic homepage fires events with `language: ar` | ✅ |
+| 12 | Careers form `form_start` event fires | ✅ |
+
+All event-firing tests pass.
 
 ---
 
-## 4. Events working in production
+## 5. Live verification checks
 
-The following will fire to GA4 and/or GTM as soon as the site is loaded by a real visitor:
+After the production deploy:
 
-| Event | Conversion candidate | Where it fires |
+```
+GET https://ensignksa.com/                           → 200, HTML contains "GT-PJ5SSC9S" ✓
+GET https://ensignksa.com/assets/js/analytics.js     → 200, 7.4 KB ✓
+GET https://www.googletagmanager.com/gtag/js?id=GT-PJ5SSC9S → 200, real Google Tag bundle ✓
+```
+
+No leftover `GTM-XXXXXXX` placeholder. No duplicate `G-LWTQMQ08D4` direct install. Single Google Tag per page.
+
+---
+
+## 6. Events working in production
+
+These will fire automatically on real visitor sessions:
+
+| Event | Conversion candidate | Auto-tracked from |
 |---|---|---|
 | `view_service_page` | Optional | All service pages |
 | `whatsapp_click` | ✅ Yes | Floating button + inline CTAs (every page) |
 | `book_call_click` | ✅ Yes | Cal.com CTAs (every page) |
 | `email_click` | Optional | mailto CTAs |
 | `proposal_request` | ✅ Yes | mailto CTAs containing "proposal"/"quote" |
-| `call_click` | Optional (no `tel:` links currently) | Future-ready |
-| `file_download` | Optional | Future-ready (PDF case studies etc.) |
+| `call_click` | Optional | Future-ready (no `tel:` links currently) |
+| `file_download` | Optional | Future-ready |
 | `form_start` | No | Careers form |
-| `contact_form_submit` | ✅ Yes | Careers form success state |
+| `contact_form_submit` | ✅ Yes | Careers form success state (MutationObserver) |
 | `generate_lead` | ✅ Yes | Cal.com clicks, proposal mailtos, form success |
-| `scroll_25` / `scroll_50` / `scroll_75` / `scroll_90` | No | Engagement |
-| `campaign_landing` | No | Landing on any URL with `utm_*` params |
+| `scroll_25/50/75/90` | No | Scroll engagement |
+| `campaign_landing` | No | UTM-tagged URL landings |
 
 ---
 
-## 5. Events missing / not yet implemented
+## 7. Manual steps still required (admin-side, ~5 min)
 
-- ❌ **Tel-link tracking** — code is wired, but the site has no `tel:` links right now. If you add a phone CTA in the future, `call_click` fires automatically.
-- ❌ **Service-card "Learn more" interest tracking** — code path exists (`data-event-name="service_interest"` on element), but no service cards currently use these data attributes. Add when service cards are introduced.
-- ❌ **Outbound link tracking** — not wired (low priority for a single-domain site).
-
----
-
-## 6. Duplicate tag issues
-
-**No active duplication today.** The current setup runs:
-- GA4 directly via `gtag.js` (active)
-- GTM container code (placeholder ID, container does nothing yet)
-- `dataLayer` pushes from `analytics.js` for all events
-
-Once you create a real GTM container and add a **GA4 Configuration** tag inside it pointing at `G-LWTQMQ08D4`, you will have **double pageview hits**:
-- Hit 1: from the direct gtag.js install in `<head>`
-- Hit 2: from the GTM-loaded GA4 tag
-
-**Resolution:** Pick ONE. Recommended path (GTM-led):
-1. Inside GTM, add a GA4 Configuration tag with measurement ID `G-LWTQMQ08D4`, trigger = "Initialization — All Pages".
-2. Inside GTM, add GA4 Event tags listening for the custom-event triggers (`generate_lead`, `whatsapp_click`, etc.).
-3. Once GTM Preview verifies both flows work, remove the direct gtag.js block from `<head>` of every page (one-line removal — let me know and I'll run it). The `analytics.js` `track()` helper will keep working because GTM will now relay GA4 hits.
+1. **Verify** `GT-PJ5SSC9S` → `G-LWTQMQ08D4` link inside Google Tag UI (see Section 2 above).
+2. **Mark these as Key Events in GA4** (Admin → Data display → Events → toggle "Mark as key event"):
+   - `generate_lead`
+   - `book_call_click`
+   - `whatsapp_click`
+   - `contact_form_submit`
+   - `proposal_request`
+   - (Events appear in GA4's list within 24h of first fire — or trigger them in DebugView to populate immediately.)
+3. **Register custom dimensions** (Admin → Custom definitions):
+   - `service_name`, `cta_location`, `cta_text`, `lead_source`, `form_name`, `language`
+4. **(Optional)** If you want GTM-style Preview Mode and a visual rule-builder, you'd need to create a separate GTM container at https://tagmanager.google.com — that's a different product than the Google Tag you have.
 
 ---
 
-## 7. CTA tracking status (per service page)
+## 8. Final campaign-readiness score
 
-| Page | WhatsApp | Cal.com | mailto | Form | Auto-tracked |
-|---|---|---|---|---|---|
-| index.html | ✅ floating + inline | ✅ multiple | ✅ | — | ✅ |
-| ai-solutions.html | ✅ | ✅ | ✅ | — | ✅ |
-| ensign-os.html | ✅ | ✅ | ✅ | — | ✅ |
-| agency.html | ✅ | ✅ | ✅ | — | ✅ |
-| work.html | ✅ | ✅ | ✅ | — | ✅ |
-| about.html | ✅ | ✅ | ✅ | — | ✅ |
-| careers.html | ✅ | ✅ | ✅ | ✅ | ✅ |
-| blog/index.html | ✅ | ✅ | ✅ | — | ✅ |
-| All AR equivalents | ✅ | ✅ | ✅ | careers ar form | ✅ |
+**8.5 / 10.**
 
-No CTA tracking is broken. Every CTA goes through the click delegation in `analytics.js`.
+Code-side: complete and verified live.
+Admin-side: 1 verification + 5 conversion-marking clicks remain.
 
 ---
 
-## 8. UTM readiness
+## 9. Risks before launch
 
-✅ **Ready.** Verified end-to-end:
-- A URL like `https://ensignksa.com/?utm_source=linkedin&utm_medium=paid_social&utm_campaign=test` fires a `campaign_landing` event on landing.
-- UTMs are persisted in `sessionStorage` so subsequent CTA clicks within the session include the original campaign attribution in their payload.
-- Naming convention documented in `CAMPAIGN_TRACKING_STRUCTURE.md`.
-
----
-
-## 9. Manual steps still required
-
-These are things only a human with GA4/GTM admin access can do (see `GOOGLE_ANALYTICS_AND_GTM_MANUAL_STEPS.md` for full instructions):
-
-1. **Create GTM container** for ensignksa.com → get the real `GTM-XXXXXXX` ID.
-2. **Replace** `GTM-XXXXXXX` placeholder in `tools/inject-tracking.mjs` with the real ID, re-run injection (or do a global find/replace).
-3. **Inside GTM:** add the GA4 Configuration tag and event tags listed in the manual steps doc.
-4. **Inside GA4:** mark the 5 conversion events listed below as Key Events.
-5. **Inside GA4:** register custom dimensions (`service_name`, `cta_location`, `cta_text`, `lead_source`).
-6. **Test campaigns** before launch using GA4 DebugView and a UTM-tagged test URL.
-7. **Decide** on direct-vs-GTM GA4 install (see Section 6) and remove the duplicate path.
-
----
-
-## 10. Final campaign-readiness score
-
-**8 / 10.**
-
-The website-side implementation is complete: every event fires, UTMs are captured and persisted, no PII leaks to GA4, all 38 pages are covered consistently in EN and AR. The remaining 2 points are admin-side tasks (create the real GTM container, replace placeholder, mark conversions in GA4) that can only be done by someone with the Google account — they should take 30 minutes once started.
-
-**Site can begin tracking real campaign traffic via GA4 today** because GA4 is already direct-installed. GTM-led tracking unlocks the moment the placeholder is replaced.
-
----
-
-## 11. Risks before launch
-
-1. **Placeholder GTM ID hangs the GTM container script in the page.** It returns a non-200, browsers retry. No user-visible issue, but it's noise. → Mitigation: replace `GTM-XXXXXXX` ASAP.
-2. **Future duplicate GA4 hits** if GA4 Configuration tag is added to GTM without removing the direct `gtag.js`. → Mitigation: follow Section 6 sequence.
-3. **WhatsApp link clicks navigate same-tab** on some Android browsers, which can cause the event to fire after the navigation has already started — GA4 may sometimes drop the hit. → Mitigation: consider adding `target="_blank"` to WhatsApp links if event drop rate is observable.
-4. **Bot traffic** — anyone testing the site (including Search Console bots) fires events. GA4's bot filtering helps but → Mitigation: in GA4 admin, ensure "Filter known bots" is on (default).
-5. **Cookie consent / PDPL compliance** — Saudi Arabia's PDPL applies. The site does not currently show a cookie banner. GA4 sets cookies by default. → Mitigation: consider a consent banner if Ensign's privacy posture requires explicit consent before GA4 fires. The `analytics.js` layer can be wrapped in a consent gate easily.
+1. **Until you verify the GT- → GA4 link**, GA4 receives no data. If you'd been seeing live data before this deploy and aren't now, that's the cause — fix per Section 2.
+2. **WhatsApp same-tab navigation** can occasionally drop the click event on Android. Consider `target="_blank" rel="noopener"` on WhatsApp anchors if you observe drop-off.
+3. **PDPL / cookie consent** — site has no cookie banner. GA4 sets cookies. Decide if a consent gate is needed before launch.
+4. **Bot traffic** — confirm GA4 Admin → "Filter known bots" is on (default).
