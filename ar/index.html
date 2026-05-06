@@ -1278,8 +1278,8 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
   .pillars-head{ align-items:flex-end;}
   /* Footer bottom stacked: keep right-aligned */
   .foot-bottom{ align-items:flex-end; text-align:right;}
-  /* svc-grid: all quadrants right-aligned when stacked */
-  .sg-tl,.sg-bl{ align-items:flex-start; text-align:right;}
+  /* svc-grid mirror: sg-tl/sg-bl align to visual LEFT (mirror of EN's right) so the zig-zag mirrors EN */
+  .sg-tl,.sg-bl{ align-items:flex-end; text-align:left;}
 }
 
 /* what-list bullets: RTL side */
@@ -1363,12 +1363,19 @@ html[lang="ar"] .tl-step h3,
 html[lang="ar"] .principle h3,
 html[lang="ar"] .flow-name,
 html[lang="ar"] .position-h,
+html[lang="ar"] .sg-item-name,
 html[lang="ar"] .blog-post-content h2,
 html[lang="ar"] .blog-post-content h3,
 html[lang="ar"] .blog-post-content h4{
   font-family: 'IBM Plex Sans Arabic', 'Fraunces', serif !important;
   font-weight: 300;
   letter-spacing: -.01em !important;
+}
+/* Service grid name: tighter line-height tuned for Arabic display */
+html[lang="ar"] .sg-item-name{ line-height: 1.05; }
+html[lang="ar"] .sg-item-name em{
+  font-family: 'IBM Plex Sans Arabic', 'Fraunces', serif !important;
+  font-weight: 500;
 }
 /* Bolder body weight for cards and key paragraphs */
 html[lang="ar"] strong,
@@ -1498,12 +1505,19 @@ html[lang="ar"] .tl-step h3,
 html[lang="ar"] .principle h3,
 html[lang="ar"] .flow-name,
 html[lang="ar"] .position-h,
+html[lang="ar"] .sg-item-name,
 html[lang="ar"] .blog-post-content h2,
 html[lang="ar"] .blog-post-content h3,
 html[lang="ar"] .blog-post-content h4{
   font-family: 'IBM Plex Sans Arabic', 'Fraunces', serif !important;
   font-weight: 300;
   letter-spacing: -.01em !important;
+}
+/* Service grid name: tighter line-height tuned for Arabic display */
+html[lang="ar"] .sg-item-name{ line-height: 1.05; }
+html[lang="ar"] .sg-item-name em{
+  font-family: 'IBM Plex Sans Arabic', 'Fraunces', serif !important;
+  font-weight: 500;
 }
 /* Bolder body weight for cards and key paragraphs */
 html[lang="ar"] strong,
@@ -1640,10 +1654,42 @@ html[lang="ar"] video.atmos-video{
 <div aria-hidden="true" class="sg-div-v"></div>
 <!-- 4 quadrant items -->
 <div class="sg-items">
-<a class="sg-item sg-tl" href="/ar/agency.html" data-event-name="service_interest" data-service-name="agency" data-cta-location="service_grid">01 وكالة التسويق</a>
-<a class="sg-item sg-tr" href="/ar/ai-solutions.html" data-event-name="service_interest" data-service-name="ai_solutions" data-cta-location="service_grid">02 حلول الذكاء الاصطناعي</a>
-<a class="sg-item sg-bl" href="/ar/" data-event-name="service_interest" data-service-name="website_development" data-cta-location="service_grid">03 تطوير التطبيقات والمواقع</a>
-<a class="sg-item sg-br" href="/ar/" data-event-name="service_interest" data-service-name="ensign_os" data-cta-location="service_grid">04 نظام إنساين التشغيلي، نظام التشغيل الإيرادي</a>
+<a class="sg-item sg-tl" href="/ar/agency.html" data-event-name="service_interest" data-service-name="agency" data-cta-location="service_grid">
+  <span class="sg-item-num">01</span>
+  <div>
+    <div class="sg-item-name">وكالة<br>التسويق</div>
+    <div class="sg-item-arrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </div>
+  </div>
+</a>
+<a class="sg-item sg-tr" href="/ar/ai-solutions.html" data-event-name="service_interest" data-service-name="ai_solutions" data-cta-location="service_grid">
+  <span class="sg-item-num">02</span>
+  <div>
+    <div class="sg-item-name">حلول<br>الذكاء الاصطناعي</div>
+    <div class="sg-item-arrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </div>
+  </div>
+</a>
+<a class="sg-item sg-bl" href="/ar/" data-event-name="service_interest" data-service-name="website_development" data-cta-location="service_grid">
+  <span class="sg-item-num">03</span>
+  <div>
+    <div class="sg-item-name">تطوير<br>التطبيقات والمواقع</div>
+    <div class="sg-item-arrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </div>
+  </div>
+</a>
+<a class="sg-item sg-br" href="/ar/" data-event-name="service_interest" data-service-name="ensign_os" data-cta-location="service_grid">
+  <span class="sg-item-num">04</span>
+  <div>
+    <div class="sg-item-name">نظام إنساين<br><em>EOS</em></div>
+    <div class="sg-item-arrow">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17 17 7M9 7h8v8"/></svg>
+    </div>
+  </div>
+</a>
 </div>
 </section>
 <!-- ───────── PARTNERS ───────── -->
