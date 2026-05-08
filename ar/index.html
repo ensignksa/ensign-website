@@ -772,12 +772,10 @@ section{ position:relative; z-index:2;}
 .marquee{
   position:relative; overflow:hidden; padding:36px 0;
   mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-  direction:ltr;
 }
 .marquee-track{
   display:flex; flex-direction:row; gap:120px; align-items:center; width:max-content;
   animation:marquee 40s linear infinite;
-  direction:ltr;
 }
 .marquee-track:hover{ animation-play-state:paused;}
 @keyframes marquee{ to{ transform:translateX(-50%);} }
@@ -1723,8 +1721,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 class="reveal">فخورون بأن نكون جزءاً من</h2>
 <p class="reveal partners-sub">فخورون بالعمل إلى جانب علامات تجارية طموحة عبر المملكة وخارجها، وهؤلاء بعض من شركائنا الموثوق بهم.</p>
 </div>
-<div class="marquee">
-<div class="marquee-track">
+<div class="marquee" dir="ltr">
+<div class="marquee-track" dir="ltr">
 <span class="marq-item"><img alt="Selainne Co" decoding="async" loading="lazy" src="/assets/partners/1.webp"/></span>
 <span class="marq-item"><img alt="KW Prime Keller Williams KSA" decoding="async" loading="lazy" src="/assets/partners/2.webp"/></span>
 <span class="marq-item"><img alt="Rally Jameel" decoding="async" loading="lazy" src="/assets/partners/3.webp"/></span>
