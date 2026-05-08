@@ -772,13 +772,16 @@ section{ position:relative; z-index:2;}
 .marquee{
   position:relative; overflow:hidden; padding:36px 0;
   mask-image:linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  direction:ltr;
 }
 .marquee-track{
-  display:flex; gap:120px; align-items:center; width:max-content;
+  display:flex; flex-direction:row; gap:120px; align-items:center; width:max-content;
   animation:marquee 40s linear infinite;
+  direction:ltr;
 }
 .marquee-track:hover{ animation-play-state:paused;}
 @keyframes marquee{ to{ transform:translateX(-50%);} }
+.marq-dupes{ display:contents; }
 .marq-item{
   display:flex; align-items:center;
   white-space:nowrap; flex-shrink:0;
@@ -1091,7 +1094,8 @@ footer.cine{
   .sg-portrait-placeholder{ display:none;}
   /* marquee tighter gap on mobile */
   .marq-track,.marquee-track{ gap:48px !important;}
-  .marq-item img{ max-height:32px;}
+  .marq-item img{ height:72px; max-height:72px;}
+  .marquee{ mask-image:linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);}
 }
 /* ===== Mobile Nav — hamburger + full-screen overlay ===== */
 .nav-toggle{display:none;}
@@ -1737,6 +1741,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <span class="marq-item"><img alt="MDL Beast Gamers8" decoding="async" loading="lazy" src="/assets/partners/14.webp"/></span>
 <span class="marq-item"><img alt="جولة سعودية" decoding="async" loading="lazy" src="/assets/partners/15.webp"/></span>
 <!-- duplicate for seamless loop -->
+<span class="marq-dupes">
 <span class="marq-item"><img alt="Selainne Co" decoding="async" loading="lazy" src="/assets/partners/1.webp"/></span>
 <span class="marq-item"><img alt="KW Prime Keller Williams KSA" decoding="async" loading="lazy" src="/assets/partners/2.webp"/></span>
 <span class="marq-item"><img alt="Rally Jameel" decoding="async" loading="lazy" src="/assets/partners/3.webp"/></span>
@@ -1752,6 +1757,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <span class="marq-item"><img alt="مهرجان السعودية فيست الغذائي" decoding="async" loading="lazy" src="/assets/partners/13.webp"/></span>
 <span class="marq-item"><img alt="MDL Beast Gamers8" decoding="async" loading="lazy" src="/assets/partners/14.webp"/></span>
 <span class="marq-item"><img alt="جولة سعودية" decoding="async" loading="lazy" src="/assets/partners/15.webp"/></span>
+</span>
 </div>
 </div>
 </section>
