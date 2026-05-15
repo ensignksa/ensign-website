@@ -1,4 +1,4 @@
-# Ensign Ai Marketing Agency
+﻿# Ensign Ai Marketing Agency
 
 > Saudi-based AI and marketing consultancy designing intelligent marketing systems, automation frameworks, and high-performance campaigns. Based in Riyadh, Saudi Arabia, serving businesses across KSA and the UAE.
 
@@ -9,7 +9,7 @@ Ensign Ai Marketing Agency is a Riyadh-based AI marketing consultancy that combi
 - Founded in Riyadh, Saudi Arabia
 - Tagline: "AI Systems. Human Leadership."
 - Contact: contact@ensignksa.com
-- Phone/WhatsApp: +966 54 891 9405
+- Phone/WhatsApp: +966 55 440 9891
 - Working Hours: Available 24/7
 - Booking: https://cal.com/ensign-ai-agency-q4mmzg/30min
 

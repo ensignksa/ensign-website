@@ -1,4 +1,4 @@
-# Google & Tracking Setup — Step-by-Step Manual Guide
+﻿# Google & Tracking Setup — Step-by-Step Manual Guide
 **For:** Ensign Ai Marketing Agency  
 **Domain:** https://ensignksa.com  
 **Date:** 2026-05-05
@@ -138,7 +138,7 @@ After each new deployment, manually request indexing for the most important page
 NAP = Name, Address, Phone — must match exactly across all platforms:
 - **Name:** Ensign Ai Marketing Agency
 - **Address:** Riyadh, Saudi Arabia (Service Area Business — no street address needed)
-- **Phone:** +966 54 891 9405
+- **Phone:** +966 55 440 9891
 - **Website:** https://ensignksa.com
 
 Same NAP must appear identically on:
