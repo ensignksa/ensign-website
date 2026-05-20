@@ -109,17 +109,12 @@ window.EnsignIntelStrings = {
       ],
     },
     modules: {
-      heading: "SESSION SIGNAL",
-      business_context: "Business Context",
-      growth_signal: "Growth Signal",
-      intelligence_depth: "Intelligence Depth",
-      recommended_direction: "Recommended Direction",
-      placeholders: {
-        business_context: "Awaiting signal",
-        growth_signal: "Not yet detected",
-        intelligence_depth: "Initializing",
-        recommended_direction: "Awaiting analysis",
-      },
+      // Quiet operational interpretation panel. Renders only after the AI has
+      // real signals to show. Labels are human, not telemetric.
+      heading: "What I'm seeing",
+      business_context: "Detected",
+      growth_signal: "Likely friction",
+      recommended_direction: "Operational impact",
     },
     review: {
       eyebrow: "INITIAL REVIEW",
@@ -254,17 +249,11 @@ window.EnsignIntelStrings = {
       ],
     },
     modules: {
-      heading: "إشارة الجلسة",
-      business_context: "سياق الأعمال",
-      growth_signal: "إشارة النمو",
-      intelligence_depth: "عمق التحليل",
-      recommended_direction: "الاتجاه المقترح",
-      placeholders: {
-        business_context: "في انتظار الإشارة",
-        growth_signal: "لم يتم اكتشافها بعد",
-        intelligence_depth: "جاري التهيئة",
-        recommended_direction: "في انتظار التحليل",
-      },
+      // لوحة هادئة تظهر فقط بعد أن تتوفر إشارات حقيقية من المحادثة.
+      heading: "ما الذي ألاحظه",
+      business_context: "ما اكتشفته",
+      growth_signal: "الاحتكاك المحتمل",
+      recommended_direction: "الأثر التشغيلي",
     },
     review: {
       eyebrow: "المراجعة الأولية",

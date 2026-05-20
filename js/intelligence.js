@@ -657,14 +657,12 @@
 
     const body = el("div", { class: "ei-body" });
 
-    // Rail
-    const rail = el("div", { class: "ei-panel ei-panel-rail" });
-    const railInner = el("div", { class: "ei-rail" });
-    railInner.appendChild(el("div", { class: "ei-rail-eyebrow", text: S[lang].modules.heading }));
-    railInner.appendChild(module("business_context"));
-    railInner.appendChild(module("growth_signal"));
-    railInner.appendChild(module("intelligence_depth"));
-    railInner.appendChild(module("recommended_direction"));
+    // Rail starts EMPTY. No placeholder telemetry, no "Awaiting signal".
+    // It only reveals itself once the AI Employee has read enough context to
+    // produce a real operational interpretation — via setModule() below.
+    const rail = el("aside", { class: "ei-panel ei-panel-rail" });
+    const railInner = el("div", { class: "ei-op-panel", id: "ei-op-panel" });
+    // Eyebrow is added lazily on first real signal (in setModule).
     rail.appendChild(railInner);
 
     // Main column
@@ -856,24 +854,49 @@
     setTimeout(() => hero.remove(), 480);
   }
 
-  function module(key) {
-    const placeholder = S[lang].modules.placeholders?.[key] || "";
-    const m = el("div", { class: "ei-module ei-module--pending", "data-key": key, id: `ei-module-${key}` }, [
-      el("div", { class: "ei-module-label", text: S[lang].modules[key] }),
-      el("div", { class: "ei-module-value", id: `ei-module-value-${key}` }, [
-        el("span", { class: "ei-module-placeholder", text: placeholder }),
-      ]),
-    ]);
-    return m;
-  }
-
+  // The rail is conversation-first. There are no static placeholders; modules
+  // are *appended* the first time the AI emits a real signal for that key.
+  // Each module fades in once and updates in place after that. The eyebrow
+  // ("What I'm seeing") is injected on the first signal so the panel never
+  // sits there empty under a header.
   function setModule(key, value) {
-    const wrap = document.getElementById(`ei-module-${key}`);
-    const v = document.getElementById(`ei-module-value-${key}`);
-    if (!wrap || !v) return;
-    v.textContent = value;
-    wrap.classList.remove("ei-module--pending");
-    wrap.classList.add("is-active");
+    if (!value || !S[lang]?.modules?.[key]) return;
+    const panel = document.getElementById("ei-op-panel");
+    if (!panel) return;
+
+    // Reveal the panel + add the eyebrow the first time anything arrives.
+    if (!panel.classList.contains("is-revealed")) {
+      const eyebrow = el("div", { class: "ei-op-eyebrow", text: S[lang].modules.heading });
+      panel.appendChild(eyebrow);
+      panel.classList.add("is-revealed");
+    }
+
+    let row = document.getElementById(`ei-op-row-${key}`);
+    if (!row) {
+      const valueNode = el("div", { class: "ei-op-value", id: `ei-op-value-${key}` });
+      row = el("div", { class: "ei-op-row", id: `ei-op-row-${key}` }, [
+        el("div", { class: "ei-op-label", text: S[lang].modules[key] }),
+        valueNode,
+      ]);
+      panel.appendChild(row);
+      // Trigger fade-in
+      requestAnimationFrame(() => row.classList.add("is-in"));
+    }
+
+    const valueNode = document.getElementById(`ei-op-value-${key}`);
+    if (valueNode) {
+      // Allow pipe-separated friction lines to render as a stacked list,
+      // otherwise just render as a single line.
+      valueNode.textContent = "";
+      const parts = String(value).split(/\s*\|\s*/).filter(Boolean);
+      if (parts.length > 1) {
+        const ul = el("ul", { class: "ei-op-list" });
+        parts.forEach((p) => ul.appendChild(el("li", { text: p })));
+        valueNode.appendChild(ul);
+      } else {
+        valueNode.textContent = value;
+      }
+    }
   }
 
   function progressLabel(turn, max) {

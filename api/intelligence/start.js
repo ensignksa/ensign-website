@@ -2,10 +2,29 @@ import { validateProfile, hashEmail, newSessionId, clientIP } from "./_lib/valid
 import { createSession, isEmailLocked, bumpIPLock } from "./_lib/kv.js";
 import { sendLeadIntakeEmail } from "./_lib/email.js";
 
-const FIRST_MESSAGE = {
-  en: "Your session is ready. To begin properly, tell me the one business challenge that is currently slowing growth, sales, operations, or visibility.",
-  ar: "الجلسة جاهزة. لنبدأ بشكل صحيح: ما هو التحدي الأهم الذي يبطئ نموك، مبيعاتك، عملياتك، أو ظهورك في السوق؟",
-};
+// Warm, immediate, in-character opening. Uses the visitor's first name and
+// stated industry so the AI Employee never lands in an empty/abstract state.
+function firstName(full) {
+  return String(full || "").trim().split(/\s+/)[0] || "";
+}
+function buildFirstMessage(lang, profile) {
+  const fn = firstName(profile?.name);
+  const industry = (profile?.industry || "").trim();
+  if (lang === "ar") {
+    const greeting = fn ? `مرحباً ${fn}.` : "مرحباً.";
+    const role = industry
+      ? `أنا أحد موظفي Ensign الأذكياء، جاهز لأريك كيف نعمل داخل أعمال ${industry}.`
+      : "أنا أحد موظفي Ensign الأذكياء، جاهز لأريك كيف نعمل داخل أعمال مثل أعمالك.";
+    const ask = "ما الشيء الواحد الذي يبطّئك أكثر اليوم؟";
+    return `${greeting}\n${role}\n\n${ask}`;
+  }
+  const greeting = fn ? `Hello ${fn}.` : "Hello.";
+  const role = industry
+    ? `I'm one of Ensign's AI employees, ready to show you how we'd work inside a ${industry} business.`
+    : "I'm one of Ensign's AI employees, ready to show you how we'd work inside a business like yours.";
+  const ask = "What's the one thing slowing you down most right now?";
+  return `${greeting}\n${role}\n\n${ask}`;
+}
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -40,19 +59,20 @@ export default async function handler(req, res) {
 
     const sessionId = newSessionId();
     const lang = body.lang === "ar" ? "ar" : "en";
-    const firstMessage = FIRST_MESSAGE[lang];
+    const profile = {
+      name: body.name,
+      email: body.email,
+      phone: body.phone || "",
+      company: body.company || "",       // optional / hidden in current UI
+      industry: body.industry,
+      website: body.website || "",
+    };
+    const firstMessage = buildFirstMessage(lang, profile);
 
     const session = {
       id: sessionId,
       lang,
-      profile: {
-        name: body.name,
-        email: body.email,
-        phone: body.phone || "",
-        company: body.company || "",       // optional / hidden in current UI
-        industry: body.industry,
-        website: body.website || "",
-      },
+      profile,
       ip,
       emailHash,
       messages: [{ role: "assistant", content: firstMessage, t: Date.now() }],

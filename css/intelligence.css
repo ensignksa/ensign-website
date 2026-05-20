@@ -1424,3 +1424,93 @@ body.ei-locked { overflow: hidden; }
   text-underline-offset: 3px;
 }
 .ei-consent-link:hover { color: var(--ei-oasis); }
+
+/* ========== OPERATIONAL INTERPRETATION PANEL (replaces old .ei-rail) ==========
+   The rail starts EMPTY. No telemetry, no "Initializing", no placeholders.
+   It reveals itself only after the AI Employee has read enough context to
+   produce a real operational interpretation. Warm + minimal, not dashboardy.
+*/
+.ei-panel-rail { background: transparent; border-inline-end: 1px solid transparent; }
+.ei-op-panel {
+  padding: 56px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+.ei-op-panel.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+  border-inline-end: 1px solid var(--ei-line);
+}
+.ei-panel-rail:has(.ei-op-panel.is-revealed) { border-inline-end: 1px solid var(--ei-line); }
+.ei-op-eyebrow {
+  font-family: 'Fraunces', Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ei-muted);
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+}
+.ei-root[lang="ar"] .ei-op-eyebrow {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  font-style: normal;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.ei-op-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 500ms ease 80ms, transform 500ms ease 80ms;
+}
+.ei-op-row.is-in { opacity: 1; transform: translateY(0); }
+.ei-op-label {
+  font-family: 'Manrope', system-ui, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ei-muted);
+}
+.ei-root[lang="ar"] .ei-op-label {
+  font-family: 'IBM Plex Sans Arabic', sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+  font-size: 12px;
+}
+.ei-op-value {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ei-bone);
+}
+.ei-root[lang="ar"] .ei-op-value { font-size: 15px; line-height: 1.75; }
+.ei-op-list { margin: 2px 0 0; padding: 0; list-style: none; }
+.ei-op-list li {
+  position: relative;
+  padding-inline-start: 14px;
+  margin: 4px 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ei-bone);
+  opacity: 0.92;
+}
+.ei-op-list li::before {
+  content: '';
+  position: absolute;
+  inset-inline-start: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 1px;
+  background: var(--ei-oasis);
+}
+@media (max-width: 980px) {
+  /* On smaller screens, hide the panel entirely so the chat keeps full width. */
+  .ei-panel-rail { display: none; }
+}
+
+/* Suppress any lingering DOM from the old telemetry shell (defensive). */
+.ei-rail-eyebrow, .ei-module--pending, .ei-module-placeholder { display: none !important; }
