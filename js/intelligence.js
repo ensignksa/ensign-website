@@ -377,10 +377,18 @@
     const thread = el("div", { class: "ei-thread", id: "ei-thread" });
 
     // One adaptive intelligence — no lens grid, no tool selection.
-    // The server's opening message is rendered as the first chat bubble and the
-    // input bar is unlocked immediately. Lens routing is inferred server-side
-    // from the user's first message.
-    session.messages.forEach((m) => appendMessage(m.role, m.content, false));
+    // Render existing session messages directly into the local thread element
+    // BEFORE it's appended to the DOM. (appendMessage() uses getElementById and
+    // would return null at this point, so build bubbles inline here.)
+    session.messages.forEach((m) => {
+      const fromLabel = m.role === "assistant" ? S[lang].chat.fromAI : S[lang].chat.fromUser;
+      const msg = el("div", { class: `ei-msg ei-msg--${m.role === "assistant" ? "ai" : "user"}` }, [
+        el("div", { class: "ei-msg-from", text: fromLabel }),
+        el("div", { class: "ei-msg-body", dir: "auto" }, [document.createTextNode(m.content)]),
+      ]);
+      msg.style.animation = "none";
+      thread.appendChild(msg);
+    });
 
     main.appendChild(thread);
 
