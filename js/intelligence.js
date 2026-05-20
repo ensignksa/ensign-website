@@ -620,14 +620,36 @@
     appendMessage("user", text);
     session.messages.push({ role: "user", content: text });
 
-    // Typing indicator
+    // Thinking indicator: cycling fade-in/out status lines while we wait.
     const thread = document.getElementById("ei-thread");
-    const typing = el("div", { class: "ei-msg ei-msg--ai", id: "ei-typing-msg" }, [
+    const thinkingLine = el("span", { class: "ei-thinking-line", dir: "auto" });
+    const typing = el("div", { class: "ei-msg ei-msg--ai ei-msg--thinking", id: "ei-typing-msg" }, [
       el("div", { class: "ei-msg-from", text: S[lang].chat.fromAI }),
-      el("div", { class: "ei-msg-body" }, [el("span", { class: "ei-typing" })]),
+      el("div", { class: "ei-msg-body" }, [thinkingLine]),
     ]);
     thread.appendChild(typing);
     thread.scrollTop = thread.scrollHeight;
+
+    const phases = (S[lang].chat.thinkingPhases) || ["…"];
+    let phaseIdx = 0;
+    const setPhase = (text) => {
+      thinkingLine.classList.remove("is-in");
+      // double rAF to restart the fade animation
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        thinkingLine.textContent = text;
+        thinkingLine.classList.add("is-in");
+      }));
+    };
+    setPhase(phases[0]);
+    const phaseTimer = setInterval(() => {
+      phaseIdx = (phaseIdx + 1) % phases.length;
+      setPhase(phases[phaseIdx]);
+    }, 2800);
+
+    // Client-side timeout fallback. Vercel function maxDuration is 60s; we give
+    // a small buffer so the user sees a graceful retry prompt instead of a hang.
+    const controller = new AbortController();
+    const fetchTimer = setTimeout(() => controller.abort(), 70000);
 
     try {
       const res = await fetch("/api/intelligence/message", {
@@ -638,8 +660,11 @@
           message: text,
           selectedIntelligence: session.selectedIntelligence || null,
         }),
+        signal: controller.signal,
       });
       const data = await res.json();
+      clearInterval(phaseTimer);
+      clearTimeout(fetchTimer);
       typing.remove();
       if (!res.ok) throw new Error(data.error || "request_failed");
 
@@ -662,11 +687,15 @@
       }
     } catch (err) {
       console.error(err);
+      clearInterval(phaseTimer);
+      clearTimeout(fetchTimer);
       const typingEl = document.getElementById("ei-typing-msg");
       if (typingEl) typingEl.remove();
-      appendMessage("assistant", lang === "ar"
-        ? "حدث خطأ مؤقت. حاول مرة أخرى."
-        : "A temporary error occurred. Please try again.");
+      const isAbort = err && (err.name === "AbortError" || err.code === 20);
+      const msg = isAbort
+        ? (S[lang].chat.timeoutMessage || "Request timed out. Try again.")
+        : (lang === "ar" ? "حدث خطأ مؤقت. حاول مرة أخرى." : "A temporary error occurred. Please try again.");
+      appendMessage("assistant", msg);
     } finally {
       busy = false;
       const sb = document.getElementById("ei-send");

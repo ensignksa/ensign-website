@@ -1,5 +1,10 @@
 {
   "redirects": [],
+  "functions": {
+    "api/intelligence/start.js": { "maxDuration": 30 },
+    "api/intelligence/message.js": { "maxDuration": 60 },
+    "api/intelligence/complete.js": { "maxDuration": 60 }
+  },
   "headers": [
     {
       "source": "/sitemap.xml",

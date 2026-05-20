@@ -828,6 +828,24 @@
   100% { opacity: 1; filter: blur(0); transform: none; }
 }
 
+/* Cycling fade-in/out status indicator while a turn is being generated. */
+.ei-msg--thinking .ei-msg-body {
+  color: var(--ei-bone);
+  opacity: 0.85;
+  font-style: italic;
+  min-height: 1.6em;
+}
+.ei-thinking-line {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(2px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+.ei-thinking-line.is-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* ========== INPUT BAR ========== */
 .ei-input-bar {
   flex-shrink: 0;

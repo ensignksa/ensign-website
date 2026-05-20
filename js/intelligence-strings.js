@@ -54,6 +54,15 @@ window.EnsignIntelStrings = {
       turn: "TURN",
       of: "OF",
       synthesizing: "Synthesizing review",
+      thinkingPhases: [
+        "Reading what you sent.",
+        "Pulling up your site.",
+        "Mapping the signals.",
+        "Sharpening the angle.",
+        "Lining up the build direction.",
+        "Almost there, this is worth the wait.",
+      ],
+      timeoutMessage: "That one took longer than usual. Try sending again, or rephrase in one short line.",
     },
     hero: {
       headlinePrimary: "How can Ensign solve the challenge you’re facing today?",
@@ -163,6 +172,15 @@ window.EnsignIntelStrings = {
       turn: "الدور",
       of: "من",
       synthesizing: "تركيب المراجعة",
+      thinkingPhases: [
+        "أقرأ ما أرسلته.",
+        "أفتح موقعك الآن.",
+        "أرسم خريطة الإشارات.",
+        "أحدّ الزاوية.",
+        "أرتّب اتجاه البناء.",
+        "أوشكنا، هذه النتيجة تستحق الانتظار.",
+      ],
+      timeoutMessage: "هذه أخذت وقتاً أطول من المعتاد. حاول الإرسال مجدداً، أو أعد الصياغة في سطر قصير.",
     },
     hero: {
       headlinePrimary: "استعرض، كيف يمكن لإنساين حل مشكلاتك بالذكاء الاصطناعي",
