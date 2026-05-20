@@ -28,9 +28,10 @@ export default async function handler(req, res) {
 
     const ip = clientIP(req);
     const isLocal = ip === "127.0.0.1" || ip === "::1" || ip.startsWith("::ffff:127.") || ip === "unknown";
+    // QA branch: cap raised to 50 while iterating on preview. Restore to 5 before production merge.
     if (!isLocal) {
       const ipCount = await bumpIPLock(ip);
-      if (ipCount > 5) {
+      if (ipCount > 50) {
         res.status(429).json({ error: "rate_limit" });
         return;
       }
