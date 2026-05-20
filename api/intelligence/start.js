@@ -1,5 +1,6 @@
 import { validateProfile, hashEmail, newSessionId, clientIP } from "./_lib/validate.js";
 import { createSession, isEmailLocked, bumpIPLock } from "./_lib/kv.js";
+import { sendLeadIntakeEmail } from "./_lib/email.js";
 
 const FIRST_MESSAGE = {
   en: "Your session is ready. To begin properly, tell me the one business challenge that is currently slowing growth, sales, operations, or visibility.",
@@ -47,7 +48,8 @@ export default async function handler(req, res) {
       profile: {
         name: body.name,
         email: body.email,
-        company: body.company,
+        phone: body.phone || "",
+        company: body.company || "",       // optional / hidden in current UI
         industry: body.industry,
         website: body.website || "",
       },
@@ -62,6 +64,17 @@ export default async function handler(req, res) {
     };
 
     await createSession(sessionId, session);
+
+    // Fire-and-forget lead intake notification to contact@ensignksa.com.
+    // We do not await the result so a missing RESEND_API_KEY (or transient SMTP
+    // hiccup) never blocks the user from starting the experience.
+    try {
+      sendLeadIntakeEmail({ profile: session.profile, lang, sessionId }).catch((err) => {
+        console.warn("[intake email] non-fatal:", String(err?.message || err));
+      });
+    } catch (e) {
+      console.warn("[intake email] dispatch failed (non-fatal):", String(e?.message || e));
+    }
 
     res.status(200).json({
       sessionId,

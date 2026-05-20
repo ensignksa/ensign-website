@@ -197,9 +197,10 @@
       placeholder: t.emailPlaceholder, autocomplete: "email", required: "true",
     }));
 
-    const companyField = field("company", t.company, el("input", {
-      class: "ei-input", id: "ei-company", type: "text", name: "company",
-      placeholder: t.companyPlaceholder, autocomplete: "organization", required: "true",
+    const phoneField = field("phone", t.phone, el("input", {
+      class: "ei-input", id: "ei-phone", type: "tel", name: "phone",
+      placeholder: t.phonePlaceholder, autocomplete: "tel", required: "true",
+      inputmode: "tel",
     }));
 
     const industrySelect = el("select", { class: "ei-select", id: "ei-industry", name: "industry", required: "true" });
@@ -207,19 +208,24 @@
     t.industries.forEach((i) => industrySelect.appendChild(el("option", { value: i, text: i })));
     const industryField = field("industry", t.industry, industrySelect);
 
-    const websiteField = field("website", t.website, el("input", {
-      class: "ei-input", id: "ei-website", type: "url", name: "website",
-      placeholder: t.websitePlaceholder, autocomplete: "url",
-    }));
-
     const row1 = el("div", { class: "ei-form-row" }, [nameField, emailField]);
-    const row2 = el("div", { class: "ei-form-row" }, [companyField, industryField]);
+    const row2 = el("div", { class: "ei-form-row" }, [phoneField, industryField]);
 
     form.appendChild(row1);
     form.appendChild(row2);
-    form.appendChild(websiteField);
 
-    form.appendChild(el("p", { class: "ei-consent", text: t.consent }));
+    // Privacy paragraph with embedded link to the privacy policy.
+    const privacyP = el("p", { class: "ei-consent" });
+    privacyP.appendChild(document.createTextNode(t.privacyLead + " "));
+    privacyP.appendChild(el("a", {
+      class: "ei-consent-link",
+      href: t.privacyLinkHref,
+      target: "_blank",
+      rel: "noopener",
+      text: t.privacyLinkText,
+    }));
+    privacyP.appendChild(document.createTextNode(t.privacyTrailing || ""));
+    form.appendChild(privacyP);
 
     const submit = el("button", { class: "ei-submit", type: "submit", id: "ei-submit" }, [
       el("span", { text: t.submit }),
@@ -254,17 +260,20 @@
       lang,
       name: document.getElementById("ei-name").value.trim(),
       email: document.getElementById("ei-email").value.trim(),
-      company: document.getElementById("ei-company").value.trim(),
+      phone: document.getElementById("ei-phone").value.trim(),
       industry: document.getElementById("ei-industry").value,
-      website: document.getElementById("ei-website").value.trim(),
     };
 
-    if (!payload.name || !payload.email || !payload.company || !payload.industry) {
+    if (!payload.name || !payload.email || !payload.phone || !payload.industry) {
       err.textContent = S[lang].unlock.errorFields;
       return;
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(payload.email)) {
       err.textContent = S[lang].unlock.errorEmail;
+      return;
+    }
+    if (((payload.phone.match(/\d/g) || []).length) < 7) {
+      err.textContent = S[lang].unlock.errorPhone || S[lang].unlock.errorFields;
       return;
     }
 
@@ -309,10 +318,11 @@
         signals: {},
         completed: false,
         selectedIntelligence: null,
+        mode: null, // set by the mode picker (chat | voice)
       };
       // Wait until the staged loader finishes its arc.
       await wait(2200);
-      renderConversation();
+      renderModePicker();
     } catch (e3) {
       console.error(e3);
       await wait(800);
@@ -351,6 +361,292 @@
     setTimeout(() => { l1.classList.add("is-visible", "is-active"); }, 100);
     setTimeout(() => { l1.classList.remove("is-active"); l1.classList.add("is-done"); l2.classList.add("is-visible", "is-active"); }, 900);
     setTimeout(() => { l2.classList.remove("is-active"); l2.classList.add("is-done"); l3.classList.add("is-visible", "is-active"); }, 1700);
+  }
+
+  // ----- Mode picker (Chat / Voice) — shown after the form, before the chat -----
+  function renderModePicker() {
+    clearStage();
+    const stage = document.getElementById("ei-stage");
+    stage.appendChild(renderHeader());
+
+    const t = S[lang].ready || {};
+    const wrap = el("div", { class: "ei-panel-scroll" });
+    const inner = el("div", { class: "ei-mode-picker" });
+    inner.appendChild(el("div", { class: "ei-eyebrow", text: t.eyebrow || "READY" }));
+    inner.appendChild(el("h1", { class: "ei-display", text: t.headline || "Choose how you'd like to start." }));
+    if (t.sub) inner.appendChild(el("p", { class: "ei-sub", text: t.sub }));
+
+    const grid = el("div", { class: "ei-mode-grid" });
+
+    const chatBtn = el("button", { class: "ei-mode-card", type: "button" }, [
+      el("div", { class: "ei-mode-card-title", text: t.chat || "Start Chat" }),
+      el("div", { class: "ei-mode-card-hint", text: t.chatHint || "Type and read" }),
+    ]);
+    chatBtn.addEventListener("click", () => {
+      if (session) session.mode = "chat";
+      renderConversation();
+    });
+
+    const voiceBtn = el("button", { class: "ei-mode-card ei-mode-card--accent", type: "button" }, [
+      el("div", { class: "ei-mode-card-title", text: t.voice || "Start Voice" }),
+      el("div", { class: "ei-mode-card-hint", text: t.voiceHint || "Speak and listen" }),
+    ]);
+    voiceBtn.addEventListener("click", () => {
+      if (session) session.mode = "voice";
+      renderVoiceIntro();
+    });
+
+    grid.appendChild(chatBtn);
+    grid.appendChild(voiceBtn);
+    inner.appendChild(grid);
+    wrap.appendChild(inner);
+    stage.appendChild(wrap);
+  }
+
+  // ----- Voice intro: mic readiness note + start button -----
+  function renderVoiceIntro() {
+    clearStage();
+    const stage = document.getElementById("ei-stage");
+    stage.appendChild(renderHeader());
+
+    const t = S[lang].voice || {};
+    const wrap = el("div", { class: "ei-panel-scroll" });
+    const inner = el("div", { class: "ei-mode-picker" });
+    inner.appendChild(el("div", { class: "ei-eyebrow", text: t.eyebrow || "VOICE" }));
+    inner.appendChild(el("h1", { class: "ei-display", text: t.headline || "Make sure your microphone is working." }));
+    if (t.sub) inner.appendChild(el("p", { class: "ei-sub", text: t.sub }));
+
+    const row = el("div", { class: "ei-mode-actions" });
+    const startBtn = el("button", { class: "ei-submit", type: "button" }, [
+      el("span", { text: t.start || "Start Voice Experience" }),
+    ]);
+    startBtn.addEventListener("click", startVoiceExperience);
+    const fallbackBtn = el("button", { class: "ei-mode-link", type: "button", text: t.switchToChat || "Switch to chat" });
+    fallbackBtn.addEventListener("click", () => {
+      if (session) session.mode = "chat";
+      renderConversation();
+    });
+
+    row.appendChild(startBtn);
+    row.appendChild(fallbackBtn);
+    inner.appendChild(row);
+    wrap.appendChild(inner);
+    stage.appendChild(wrap);
+  }
+
+  // ----- Voice experience — browser-native Web Speech API with chat fallback -----
+  // 3-minute soft limit. Never abrupt; nudges user toward Book a Call near the end.
+  async function startVoiceExperience() {
+    const t = S[lang].voice || {};
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) {
+      if (session) session.mode = "chat";
+      renderConversation();
+      const thread = document.getElementById("ei-thread");
+      if (thread) appendMessage("assistant", t.unsupported || "Voice isn't available in this browser. Continuing in chat instead.");
+      return;
+    }
+
+    try {
+      const ms = await navigator.mediaDevices.getUserMedia({ audio: true });
+      ms.getTracks().forEach((tr) => tr.stop()); // we just needed the permission
+    } catch (_e) {
+      if (session) session.mode = "chat";
+      renderConversation();
+      const thread = document.getElementById("ei-thread");
+      if (thread) appendMessage("assistant", t.permissionDenied || "Microphone access was blocked. Continuing in chat instead.");
+      return;
+    }
+
+    // Render the voice surface
+    clearStage();
+    const stage = document.getElementById("ei-stage");
+    stage.appendChild(renderHeader());
+
+    const wrap = el("div", { class: "ei-panel-scroll" });
+    const inner = el("div", { class: "ei-voice-surface" });
+
+    const status = el("div", { class: "ei-voice-status", id: "ei-voice-status", text: t.idleHint || "Tap the mic to speak." });
+    const transcript = el("div", { class: "ei-voice-transcript", id: "ei-voice-transcript" });
+    const micBtn = el("button", { class: "ei-voice-mic", id: "ei-voice-mic", type: "button", "aria-label": t.listening || "Mic" });
+    micBtn.appendChild(el("span", { class: "ei-voice-mic-dot" }));
+
+    const actions = el("div", { class: "ei-voice-actions" });
+    const bookBtn = el("a", {
+      class: "ei-voice-book is-hidden",
+      id: "ei-voice-book",
+      href: "https://cal.com/ensign-ai-agency-q4mmzg/30min",
+      target: "_blank",
+      rel: "noopener",
+      text: (S[lang].bookCTA || t.bookCTA || "Book a Call With Ensign"),
+    });
+    const switchToChat = el("button", { class: "ei-mode-link", type: "button", text: t.switchToChat || "Switch to chat" });
+    switchToChat.addEventListener("click", () => {
+      voiceTeardown();
+      if (session) session.mode = "chat";
+      renderConversation();
+    });
+
+    actions.appendChild(bookBtn);
+    actions.appendChild(switchToChat);
+
+    inner.appendChild(status);
+    inner.appendChild(transcript);
+    inner.appendChild(micBtn);
+    inner.appendChild(actions);
+    wrap.appendChild(inner);
+    stage.appendChild(wrap);
+
+    // ── Recognition + synthesis ──
+    const rec = new SR();
+    rec.lang = lang === "ar" ? "ar-SA" : "en-US";
+    rec.interimResults = true;
+    rec.continuous = false;
+    rec.maxAlternatives = 1;
+
+    let currentUtterance = "";
+    let listening = false;
+    let bookCTAShown = false;
+
+    voiceState = { rec, started: Date.now(), softLimitFired: false, hardLimitFired: false, timer: null, teardown: voiceTeardown };
+
+    function setStatus(text) {
+      const s = document.getElementById("ei-voice-status");
+      if (s) s.textContent = text;
+    }
+    function appendTranscript(role, content) {
+      const elNode = el("div", { class: "ei-voice-line ei-voice-line--" + role });
+      elNode.appendChild(el("span", { class: "ei-voice-role", text: role === "user" ? S[lang].chat.fromUser : S[lang].chat.fromAI }));
+      elNode.appendChild(el("span", { class: "ei-voice-text", text: content }));
+      transcript.appendChild(elNode);
+      transcript.scrollTop = transcript.scrollHeight;
+    }
+    function showBookCTA() {
+      if (bookCTAShown) return;
+      const b = document.getElementById("ei-voice-book");
+      if (b) b.classList.remove("is-hidden");
+      bookCTAShown = true;
+    }
+
+    rec.onstart = () => {
+      listening = true;
+      micBtn.classList.add("is-listening");
+      setStatus(t.listening || "Listening…");
+    };
+    rec.onresult = (ev) => {
+      let finalText = "";
+      let interim = "";
+      for (let i = ev.resultIndex; i < ev.results.length; i++) {
+        const r = ev.results[i];
+        if (r.isFinal) finalText += r[0].transcript;
+        else interim += r[0].transcript;
+      }
+      currentUtterance = (finalText + interim).trim();
+      const s = document.getElementById("ei-voice-status");
+      if (s && currentUtterance) s.textContent = "“" + currentUtterance + "”";
+    };
+    rec.onerror = (ev) => {
+      console.warn("[voice] recognition error", ev.error);
+      listening = false;
+      micBtn.classList.remove("is-listening");
+      setStatus(t.idleHint || "Tap the mic to speak.");
+    };
+    rec.onend = async () => {
+      listening = false;
+      micBtn.classList.remove("is-listening");
+      const userText = (currentUtterance || "").trim();
+      currentUtterance = "";
+      if (!userText) {
+        setStatus(t.idleHint || "Tap the mic to speak.");
+        return;
+      }
+      appendTranscript("user", userText);
+      setStatus(t.thinking || "Thinking…");
+      try {
+        const replyText = await sendVoiceTurn(userText);
+        appendTranscript("assistant", replyText);
+        speakOut(replyText);
+      } catch (e) {
+        console.error("[voice] turn error", e);
+        setStatus(t.idleHint || "Tap the mic to speak.");
+      }
+    };
+
+    function speakOut(text) {
+      try {
+        const synth = window.speechSynthesis;
+        if (!synth) { setStatus(t.idleHint || "Tap the mic to speak."); return; }
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = lang === "ar" ? "ar-SA" : "en-US";
+        utter.rate = 1.0;
+        utter.pitch = 1.0;
+        utter.onstart = () => setStatus(t.speaking || "Speaking…");
+        utter.onend = () => setStatus(t.idleHint || "Tap the mic to speak.");
+        synth.cancel();
+        synth.speak(utter);
+      } catch (_) {
+        setStatus(t.idleHint || "Tap the mic to speak.");
+      }
+    }
+
+    micBtn.addEventListener("click", () => {
+      if (listening) {
+        try { rec.stop(); } catch (_) {}
+        return;
+      }
+      try { rec.start(); } catch (_) { /* already started */ }
+    });
+
+    // ── 3-minute soft limit ──
+    const softLimitMs = 2 * 60 * 1000 + 30 * 1000; // 2:30 — gentle escalation
+    const hardLimitMs = 3 * 60 * 1000;             // 3:00 — surface CTA prominently
+    voiceState.timer = setInterval(() => {
+      const elapsed = Date.now() - voiceState.started;
+      if (!voiceState.softLimitFired && elapsed >= softLimitMs) {
+        voiceState.softLimitFired = true;
+        const line = t.softLimit || "This is where the real implementation starts. A short call with our team would let us map the right agent, workflow, and integration around your business.";
+        appendTranscript("assistant", line);
+        speakOut(line);
+        showBookCTA();
+      }
+      if (!voiceState.hardLimitFired && elapsed >= hardLimitMs) {
+        voiceState.hardLimitFired = true;
+        showBookCTA();
+        const b = document.getElementById("ei-voice-book");
+        if (b) b.classList.add("is-prominent");
+      }
+    }, 5000);
+  }
+
+  // Cleanup for voice session
+  let voiceState = null;
+  function voiceTeardown() {
+    if (!voiceState) return;
+    try { voiceState.rec?.abort?.(); } catch (_) {}
+    try { window.speechSynthesis?.cancel?.(); } catch (_) {}
+    if (voiceState.timer) clearInterval(voiceState.timer);
+    voiceState = null;
+  }
+
+  // Voice-specific send (parallels sendMessage but lighter — no chat-thread DOM)
+  async function sendVoiceTurn(userText) {
+    session.messages.push({ role: "user", content: userText });
+    const res = await fetch("/api/intelligence/message", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sessionId: session.id,
+        message: userText,
+        selectedIntelligence: session.selectedIntelligence || null,
+        mode: "voice",
+      }),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "request_failed");
+    session.turn = data.turn;
+    if (data.signal) session.signals[data.signal.key] = data.signal.value;
+    session.messages.push({ role: "assistant", content: data.reply });
+    return data.reply;
   }
 
   // ----- Conversation -----
@@ -659,6 +955,7 @@
           sessionId: session.id,
           message: text,
           selectedIntelligence: session.selectedIntelligence || null,
+          mode: session.mode || "chat",
         }),
         signal: controller.signal,
       });

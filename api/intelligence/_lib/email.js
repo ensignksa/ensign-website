@@ -1,5 +1,67 @@
 import { Resend } from "resend";
 
+// ──────────────────────────────────────────────────────────────────────────
+// Lead intake — fires immediately on form submission so the Ensign team
+// knows a new lead is inside the AI Employee experience right now.
+// Full session briefing follows via sendLeadEmail() on /complete.
+// ──────────────────────────────────────────────────────────────────────────
+export async function sendLeadIntakeEmail({ profile, lang, sessionId }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const to = process.env.LEAD_EMAIL_TO || "contact@ensignksa.com";
+  const from = process.env.LEAD_EMAIL_FROM || "Ensign Intelligence <onboarding@resend.dev>";
+
+  const payload = {
+    name: profile?.name || "",
+    email: profile?.email || "",
+    phone: profile?.phone || "",
+    industry: profile?.industry || "",
+    lang,
+    sessionId,
+    timestamp: new Date().toISOString(),
+  };
+
+  if (!apiKey) {
+    console.warn("[Ensign Intelligence] intake: RESEND_API_KEY missing — logging payload instead.");
+    console.log("[intake]", JSON.stringify(payload));
+    return { delivered: false, reason: "no_api_key" };
+  }
+
+  const subject = `[Ensign · AI Employee] New lead — ${payload.name} · ${payload.industry}`;
+  const html = renderIntakeHTML(payload);
+
+  try {
+    const resend = new Resend(apiKey);
+    const r = await resend.emails.send({ from, to, subject, html });
+    return { delivered: true, id: r?.data?.id };
+  } catch (err) {
+    console.error("[Ensign Intelligence] intake email failed:", err);
+    return { delivered: false, reason: String(err?.message || err) };
+  }
+}
+
+function renderIntakeHTML(p) {
+  const safe = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  return `<!doctype html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:0;background:#F2EFE8;font-family:-apple-system,Segoe UI,Manrope,Arial,sans-serif;color:#0A0A0A;">
+<div style="max-width:620px;margin:0 auto;padding:28px 24px;">
+  <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#666;margin-bottom:4px;">Ensign · AI Employee · New Lead</div>
+  <h1 style="margin:0 0 6px;font-size:22px;font-weight:600;">${safe(p.name)}</h1>
+  <div style="font-size:13px;color:#555;margin-bottom:20px;">${safe(p.industry)} · session in ${p.lang === "ar" ? "Arabic" : "English"}</div>
+  <table style="width:100%;border-collapse:collapse;font-size:13px;">
+    <tr><td style="padding:6px 0;color:#666;width:140px;">Email</td><td><a href="mailto:${safe(p.email)}" style="color:#0A0A0A;">${safe(p.email)}</a></td></tr>
+    <tr><td style="padding:6px 0;color:#666;">Phone</td><td>${safe(p.phone) || "—"}</td></tr>
+    <tr><td style="padding:6px 0;color:#666;">Industry</td><td>${safe(p.industry)}</td></tr>
+    <tr><td style="padding:6px 0;color:#666;">Session</td><td>${safe(p.sessionId)}</td></tr>
+    <tr><td style="padding:6px 0;color:#666;">Timestamp</td><td>${safe(p.timestamp)}</td></tr>
+  </table>
+  <div style="margin-top:24px;padding-top:14px;border-top:1px solid #ccc;font-size:11px;color:#888;letter-spacing:.06em;text-transform:uppercase;">
+    Full session briefing follows on completion.
+  </div>
+</div>
+</body></html>`;
+}
+
 export async function sendLeadEmail({ profile, lang, sessionId, messages, review, internal }) {
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.LEAD_EMAIL_TO || "contact@ensignksa.com";
@@ -54,6 +116,10 @@ function renderEmailHTML({ profile, lang, sessionId, messages, review, internal 
       <tr><td style="padding:4px 0;color:#666;">Score</td><td><strong>${safe(internal?.lead_score)}</strong> / 100 — ${safe(internal?.lead_label)}</td></tr>
       <tr><td style="padding:4px 0;color:#666;">Service Line</td><td>${safe(internal?.service_line)}</td></tr>
       <tr><td style="padding:4px 0;color:#666;">Tags</td><td>${(internal?.tags || []).map(t => `<span style="display:inline-block;padding:2px 8px;margin:2px 4px 2px 0;background:#0A0A0A;color:#F2EFE8;border-radius:2px;font-size:11px;letter-spacing:.04em;">${safe(t)}</span>`).join("")}</td></tr>
+      <tr><td style="padding:4px 0;color:#666;">Phone</td><td>${safe(profile.phone) || "—"}</td></tr>
+      <tr><td style="padding:4px 0;color:#666;">Agent mode</td><td><strong>${safe(internal?.agent_mode || "unclear")}</strong></td></tr>
+      <tr><td style="padding:4px 0;color:#666;">Interaction</td><td>${safe(internal?.interaction_mode || "chat")}</td></tr>
+      <tr><td style="padding:4px 0;color:#666;">Book-a-Call clicked</td><td>${internal?.book_a_call_clicked ? "Yes" : "No"}</td></tr>
     </table>
   `)}
 
