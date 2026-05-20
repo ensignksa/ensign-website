@@ -104,12 +104,14 @@ export default async function handler(req, res) {
 
     const history = session.messages.map((m) => ({ role: m.role, content: m.content }));
 
-    const { text, signal } = await generateTurn({
+    const { text: rawText, signal } = await generateTurn({
       system,
       history,
       userMessage,
       profileName: session.profile.name,
     });
+
+    const text = bulletizeQuestions(rawText);
 
     session.messages.push({ role: "user", content: userMessage, t: Date.now() });
     session.messages.push({ role: "assistant", content: text, t: Date.now() });
@@ -185,3 +187,59 @@ export function inferLens(text, _lang) {
   return best;
 }
 
+
+
+// ──────────────────────────────────────────────────────────────────────────
+// Post-processor: when the model returns 2+ consecutive question lines that
+// aren't already bulleted, prefix each with "- " so the reader can scan and
+// answer easily. Gemini drops the literal bullet character even when the
+// prompt requires it; this guarantees the format in the rendered output.
+// ──────────────────────────────────────────────────────────────────────────
+export function bulletizeQuestions(text) {
+  if (!text || typeof text !== "string") return text;
+  const lines = text.split("\n");
+  const isQuestion = (l) => {
+    const t = l.trim();
+    if (!t) return false;
+    if (/^[-•·]\s/.test(t)) return false; // already bulleted
+    // Ends with ? or Arabic question mark ؟
+    return /[?؟]\s*$/.test(t);
+  };
+
+  // Find runs of 2+ consecutive question lines (ignoring blank lines between).
+  // For each line in such a run, prefix with "- ".
+  const out = [];
+  let i = 0;
+  while (i < lines.length) {
+    if (isQuestion(lines[i])) {
+      // Look ahead for another question line within the next 2 lines.
+      let runEnd = i;
+      let lookAhead = i + 1;
+      while (lookAhead < lines.length) {
+        if (isQuestion(lines[lookAhead])) {
+          runEnd = lookAhead;
+          lookAhead++;
+        } else if (lines[lookAhead].trim() === "" && lookAhead + 1 < lines.length && isQuestion(lines[lookAhead + 1])) {
+          // Allow a single blank line between questions
+          lookAhead += 2;
+          runEnd = lookAhead - 1;
+        } else {
+          break;
+        }
+      }
+      const runCount = lines.slice(i, runEnd + 1).filter(isQuestion).length;
+      if (runCount >= 2) {
+        // Bulletize all question lines in [i, runEnd]
+        for (let j = i; j <= runEnd; j++) {
+          if (isQuestion(lines[j])) out.push("- " + lines[j].trim());
+          else out.push(lines[j]);
+        }
+        i = runEnd + 1;
+        continue;
+      }
+    }
+    out.push(lines[i]);
+    i++;
+  }
+  return out.join("\n");
+}
