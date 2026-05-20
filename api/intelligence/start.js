@@ -58,7 +58,9 @@ export default async function handler(req, res) {
       messages: [{ role: "assistant", content: firstMessage, t: Date.now() }],
       signals: {},
       turn: 0,
-      maxTurns: 3,
+      // Open-ended conversation cap. Real sessions rarely exceed a handful of
+      // turns; this just protects against runaway loops, not user behavior.
+      maxTurns: 50,
       createdAt: Date.now(),
       completed: false,
     };
@@ -80,7 +82,7 @@ export default async function handler(req, res) {
       sessionId,
       lang,
       firstMessage,
-      maxTurns: 3,
+      maxTurns: 50,
     });
   } catch (err) {
     console.error("[start] error:", err);

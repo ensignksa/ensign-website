@@ -688,12 +688,7 @@
 
     main.appendChild(thread);
 
-    const progress = el("div", { class: "ei-progress", id: "ei-progress" }, [
-      el("span", { id: "ei-progress-label", text: progressLabel(session.turn, session.maxTurns) }),
-      el("div", { class: "ei-progress-bar", id: "ei-progress-bar" }),
-    ]);
-    document.documentElement.style.setProperty("--ei-prog", `${(session.turn / session.maxTurns) * 100}%`);
-    main.appendChild(progress);
+    // (Turn-counter UI removed — conversations are open-ended now.)
 
     const input = el("div", { class: "ei-input-bar" });
     const lensRequired = false; // One adaptive intelligence — input is unlocked from the start.
@@ -966,9 +961,6 @@
       if (!res.ok) throw new Error(data.error || "request_failed");
 
       session.turn = data.turn;
-      document.documentElement.style.setProperty("--ei-prog", `${(session.turn / session.maxTurns) * 100}%`);
-      const label = document.getElementById("ei-progress-label");
-      if (label) label.textContent = progressLabel(session.turn, session.maxTurns);
 
       if (data.signal) {
         setModule(data.signal.key, data.signal.value);
