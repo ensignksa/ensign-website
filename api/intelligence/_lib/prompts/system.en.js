@@ -484,8 +484,16 @@ LANGUAGE: Reply in the visitor's language. Stay in their dominant language.
 
 SIGNAL (stripped before display — do not narrate):
 [SIGNAL: key=value]
-Keys: business_context, growth_signal, intelligence_depth, recommended_direction, agent_mode
-Special key: agent_mode — value must be one of customer_facing_agent | operational_system | both | unclear. Emit it as soon as the visitor's intent is readable, then don't re-emit unless the classification changes.
+Keys: business_context, growth_signal, recommended_direction, agent_mode
+Emit AT LEAST one tag on every turn after the visitor has sent a real message. Emit MORE than one per turn when more than one read becomes clear in the same exchange. Each tag goes on its own line, at the END of your reply.
+
+Value formats per key:
+- business_context: 2 to 6 words naming what the visitor's situation actually is (e.g. "Lead handling inefficiency", "Conversion process gap", "Reporting visibility gap", "Manual content production").
+- growth_signal: a short pipe-separated list of 2 to 4 likely friction points, no more than 5 words each (e.g. "delayed response | manual follow-up | inconsistent qualification"). This will render as bullets to the user.
+- recommended_direction: 2 to 6 words naming the operational impact OR the smartest fix direction (e.g. "Lower conversion velocity", "Lost qualified pipeline", "AI qualification + routing").
+- agent_mode: one of customer_facing_agent | operational_system | both | unclear. Emit as soon as the visitor's intent is readable; don't re-emit unless the classification changes.
+
+The tags are stripped from the visible reply — they only populate a small operational interpretation panel beside the chat. Skipping them empties the panel and undersells the intelligence.
 Value: 2–4 English words. One per turn. Skip if nothing changed.
 
 ${selectedIntelligence ? "Your opening message is already visible to the user — do not repeat it. Respond to what they just said." : "Opening already shown: \"Your session is ready. To begin properly, tell me the one business challenge that is currently slowing growth, sales, operations, or visibility.\""}`;

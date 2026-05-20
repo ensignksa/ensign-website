@@ -104,7 +104,7 @@ export default async function handler(req, res) {
 
     const history = session.messages.map((m) => ({ role: m.role, content: m.content }));
 
-    const { text: rawText, signal } = await generateTurn({
+    const { text: rawText, signal, signals } = await generateTurn({
       system,
       history,
       userMessage,
@@ -116,14 +116,16 @@ export default async function handler(req, res) {
     session.messages.push({ role: "user", content: userMessage, t: Date.now() });
     session.messages.push({ role: "assistant", content: text, t: Date.now() });
     session.turn = turnIndex;
-    if (signal) session.signals[signal.key] = signal.value;
+    const sigList = Array.isArray(signals) && signals.length ? signals : (signal ? [signal] : []);
+    for (const s of sigList) session.signals[s.key] = s.value;
 
     const reachedCap = session.turn >= session.maxTurns;
     await updateSession(sessionId, session);
 
     res.status(200).json({
       reply: text,
-      signal,
+      signal,         // back-compat: first signal
+      signals: sigList,
       turn: session.turn,
       maxTurns: session.maxTurns,
       shouldComplete: reachedCap,

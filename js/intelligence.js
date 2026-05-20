@@ -986,9 +986,12 @@
 
       session.turn = data.turn;
 
-      if (data.signal) {
-        setModule(data.signal.key, data.signal.value);
-        session.signals[data.signal.key] = data.signal.value;
+      const incoming = Array.isArray(data.signals) && data.signals.length
+        ? data.signals
+        : (data.signal ? [data.signal] : []);
+      for (const s of incoming) {
+        setModule(s.key, s.value);
+        session.signals[s.key] = s.value;
       }
 
       await typeOutMessage(data.reply);
