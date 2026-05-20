@@ -845,6 +845,21 @@
     openOverlay();
   });
 
+  // ----- URL-hash auto-open (preview/QA convenience) -----
+  // Visiting any page with #open or #open-ar in the URL launches the chat.
+  // Useful on mobile and when a preview-environment toolbar intercepts taps.
+  function maybeAutoOpenFromHash() {
+    const h = (window.location.hash || "").toLowerCase();
+    if (h === "#open" || h === "#open-en") { openOverlay(); }
+    else if (h === "#open-ar") { lang = "ar"; localStorage.setItem(STORAGE_LANG_KEY, "ar"); openOverlay(); }
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", maybeAutoOpenFromHash);
+  } else {
+    maybeAutoOpenFromHash();
+  }
+  window.addEventListener("hashchange", maybeAutoOpenFromHash);
+
   // Esc closes when allowed
   document.addEventListener("keydown", function (e) {
     if (e.key !== "Escape" || !root || !root.classList.contains("is-open")) return;
