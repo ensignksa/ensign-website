@@ -680,7 +680,8 @@
         el("div", { class: "ei-msg-from", text: fromLabel }),
         el("div", { class: "ei-msg-body", dir: "auto" }, [document.createTextNode(m.content)]),
       ]);
-      msg.style.animation = "none";
+      // The default .ei-msg keyframe brings opacity 0 → 1; let it play so the
+      // greeting fades in cinematically instead of appearing as text-on-blank.
       thread.appendChild(msg);
     });
 
