@@ -3,8 +3,13 @@
 (function () {
   "use strict";
 
-  // Hidden on production until approved — only active on localhost
-  if (location.hostname !== "localhost" && location.hostname !== "127.0.0.1") return;
+  // Hidden on production until approved — active on localhost and Vercel preview URLs.
+  // Production (ensignksa.com) still bails out so the chat stays gated until launch.
+  {
+    const h = location.hostname;
+    const allowed = /^(localhost|127\.0\.0\.1)$/.test(h) || /\.vercel\.app$/.test(h);
+    if (!allowed) return;
+  }
 
   const STORAGE_KEY = "ensign_intel_completed";
   const STORAGE_LANG_KEY = "ensign_intel_lang";
