@@ -376,14 +376,11 @@
 
     const thread = el("div", { class: "ei-thread", id: "ei-thread" });
 
-    // Hero opening state — shown until the user sends their first message.
-    // We DON'T render the server's first AI greeting as a chat bubble; the hero is the opening.
-    const hasSent = session.messages.some((m) => m.role === "user");
-    if (!hasSent) {
-      thread.appendChild(renderHeroOpening());
-    } else {
-      session.messages.forEach((m) => appendMessage(m.role, m.content, false));
-    }
+    // One adaptive intelligence — no lens grid, no tool selection.
+    // The server's opening message is rendered as the first chat bubble and the
+    // input bar is unlocked immediately. Lens routing is inferred server-side
+    // from the user's first message.
+    session.messages.forEach((m) => appendMessage(m.role, m.content, false));
 
     main.appendChild(thread);
 
@@ -395,7 +392,7 @@
     main.appendChild(progress);
 
     const input = el("div", { class: "ei-input-bar" });
-    const lensRequired = !hasSent && !session.selectedIntelligence;
+    const lensRequired = false; // One adaptive intelligence — input is unlocked from the start.
     const ta = el("textarea", {
       class: "ei-textarea",
       id: "ei-textarea",

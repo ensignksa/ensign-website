@@ -30,21 +30,18 @@ export default async function handler(req, res) {
     }
 
     // Persist the chosen intelligence lens (only set once — first selection wins for the session).
-    // When a lens is selected for the first time, replace the generic opening assistant message
-    // with the lens-specific agent opening that the user actually saw on screen. This keeps
-    // Gemini's view of the conversation aligned with the user's experience.
     const ALLOWED_LENSES = ["sales", "marketing", "workflow", "reporting", "content", "agents"];
     if (selectedIntelligence && ALLOWED_LENSES.includes(selectedIntelligence) && !session.selectedIntelligence) {
       session.selectedIntelligence = selectedIntelligence;
-      const lensOpening = OPENINGS[session.lang]?.[selectedIntelligence];
-      if (lensOpening && Array.isArray(session.messages) && session.messages.length > 0) {
-        // Replace the original "Your session is ready..." opening with the lens opening.
-        if (session.messages[0].role === "assistant") {
-          session.messages[0] = { role: "assistant", content: lensOpening, t: Date.now() };
-        } else {
-          session.messages.unshift({ role: "assistant", content: lensOpening, t: Date.now() });
-        }
-      }
+    }
+
+    // One adaptive intelligence: if no lens is set yet (the public UI no longer exposes
+    // chips), infer it transparently from the user's first message. The mapping mirrors the
+    // internal routing — sales / marketing / workflow / reporting / content / agents — and
+    // never surfaces to the user. Default falls back to marketing for general business
+    // questions since it covers the broadest analytical surface.
+    if (!session.selectedIntelligence) {
+      session.selectedIntelligence = inferLens(message, session.lang);
     }
 
     const userMessage = message.trim().slice(0, 2000);
@@ -134,3 +131,57 @@ export default async function handler(req, res) {
     res.status(500).json({ error: "server_error", message: String(err?.message || err) });
   }
 }
+
+
+// ──────────────────────────────────────────────────────────────────────────
+// Lens inference — invisible to the user. Maps the first message to one of
+// the six internal lenses by counting keyword hits. Bilingual (EN + AR).
+// Default = marketing (broadest analytical surface for general questions).
+// ──────────────────────────────────────────────────────────────────────────
+const LENS_KEYWORDS = {
+  sales:     ["lead", "leads", "follow", "follow-up", "follow up", "qualif", "crm", "pipeline", "convers", "close", "deal", "outreach", "whatsapp", "booking", "sales", "prospect",
+              "عميل", "عملاء", "متابعة", "تأهيل", "صفقة", "بيع", "بيوع", "مبيعات", "حجز", "حجوزات", "واتساب"],
+  marketing: ["marketing", "campaign", "campaigns", "audience", "positioning", "brand", "messaging", "channel", "channels", "meta ads", "google ads", "tiktok ads", "ads", "growth", "acquisition", "funnel",
+              "تسويق", "حملة", "حملات", "جمهور", "تموضع", "علامة", "براند", "إعلان", "إعلانات", "نمو", "استحواذ", "قمع"],
+  workflow:  ["approval", "approvals", "process", "workflow", "operations", "ops", "manual", "bottleneck", "delay", "automate", "automation", "handoff", "coordin", "sla", "routing", "rework", "task",
+              "موافقة", "موافقات", "عملية", "سير عمل", "عمليات", "يدوي", "أتمتة", "تنسيق", "تسليم", "توجيه"],
+  reporting: ["report", "reports", "dashboard", "kpi", "kpis", "metric", "metrics", "data", "analytics", "decision", "visibility", "performance", "track", "tracking",
+              "تقرير", "تقارير", "لوحة", "مؤشر", "مؤشرات", "بيانات", "تحليلات", "قرار", "أداء", "رؤية"],
+  content:   ["content", "post", "posts", "carousel", "reel", "reels", "tiktok video", "creative", "visual", "visuals", "image", "images", "ad creative", "ad creatives", "hook", "hooks", "caption", "captions", "design", "designs", "photo", "photoshoot", "product shot", "ad", "real estate visual", "property visual", "campaign visual",
+              "محتوى", "منشور", "منشورات", "كاروسيل", "ريل", "ريلز", "تيك توك", "إبداع", "مرئي", "مرئيات", "صورة", "صور", "خطاف", "خطافات", "كابشن", "تصميم", "تصاميم", "عقار", "منتج", "مرئية حملة"],
+  agents:    ["agent", "agents", "ai agent", "bot", "automate this role", "ai worker", "assistant for", "voice agent", "chatbot",
+              "وكيل", "وكلاء", "بوت", "مساعد", "روبوت محادثة"],
+};
+
+// Lens-defining keywords that should strongly bias the result if present.
+// Each is the unambiguous name of its own lens (or a near-synonym), so it
+// counts as 3 hits instead of 1. Prevents "I want an AI agent for sales
+// follow-up" from being misrouted to sales just because the sales lens has
+// more generic keywords overlapping the sentence.
+const LENS_STRONG = {
+  sales:     [],
+  marketing: [],
+  workflow:  ["workflow", "automation", "automate", "سير عمل", "أتمتة"],
+  reporting: ["dashboard", "kpi", "report", "لوحة", "تقرير"],
+  content:   ["visual", "creative", "campaign visual", "product visual", "real estate visual", "مرئية", "إبداع"],
+  agents:    ["agent", "ai agent", "bot", "ai worker", "وكيل", "وكلاء"],
+};
+
+export function inferLens(text, _lang) {
+  const t = String(text || "").toLowerCase();
+  if (!t.trim()) return "marketing";
+  let best = "marketing";
+  let bestScore = 0;
+  for (const lens of Object.keys(LENS_KEYWORDS)) {
+    let score = 0;
+    for (const kw of LENS_KEYWORDS[lens]) {
+      if (t.includes(kw)) score += 1;
+    }
+    for (const kw of (LENS_STRONG[lens] || [])) {
+      if (t.includes(kw)) score += 2; // strong keywords get +2 on top of the +1 base hit
+    }
+    if (score > bestScore) { bestScore = score; best = lens; }
+  }
+  return best;
+}
+
