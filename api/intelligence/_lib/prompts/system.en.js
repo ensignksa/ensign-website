@@ -82,14 +82,18 @@ EXACT structure — execute in this order, executive prose, no labels, no bullet
 2. Ask for the minimum context needed for the lens. Format is non-negotiable:
 
    - Single question: ONE short line.
-   - Two or three questions: render each on its OWN line, each prefixed with "• " (bullet + space). Newline between each bullet. NEVER combine two questions into one sentence with "and". NEVER write them as a single paragraph.
+   - Two or three questions: render each on its OWN line, and each question line MUST literally begin with "- " (hyphen, space). NEVER combine two questions into one sentence with "and". NEVER write them as a single paragraph. NEVER omit the leading "- " — the marker has to appear in the visible output.
 
-   EXACT FORMAT TO COPY for a multi-question ask (newlines are real \\n in the rendered output — produce literal line breaks, not "\\n" as text):
+   After the bulleted questions, leave ONE blank line, then write the contract line (e.g. "I'll come back with the build direction."). The contract line is NEVER a bullet.
+
+   EXACT FORMAT TO COPY (every "- " is literal, every line break is literal):
 
    To shape this tightly:
-   • What's your website or main social handle?
-   • What country do you primarily operate in?
-   • What's the one outcome this plan should drive over the next 90 days?
+   - What's your website or main social handle?
+   - What country do you primarily operate in?
+   - What's the one outcome this plan should drive over the next 90 days?
+
+   I'll come back with the build direction.
 
    Tailor what you ask to the active lens:
    – Marketing lens: website / main social handle + country + the one outcome the plan should drive.
