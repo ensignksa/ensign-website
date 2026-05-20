@@ -113,19 +113,17 @@
       track('call_click', common);
       return;
     }
-    // Email — also count "proposal" mailtos as proposal_request
+    // Email — also count "proposal" mailtos as proposal_request (CLICK only, not a lead)
     if (/^mailto:/i.test(href)) {
       track('email_click', common);
       if (/proposal|quote/i.test(ctaText) || /proposal|quote/i.test(href)) {
         track('proposal_request', common);
-        track('generate_lead', Object.assign({ lead_source: 'email_proposal' }, common));
       }
       return;
     }
-    // Cal.com booking
+    // Cal.com booking — CLICK only. Real conversion fires on /thank-you.html
     if (/(?:cal\.com|cal\.eu)\/ensign/i.test(href)) {
       track('book_call_click', common);
-      track('generate_lead', Object.assign({ lead_source: 'cal_booking_click' }, common));
       return;
     }
     // File downloads
@@ -159,7 +157,6 @@
           var form = hit.closest('form') || document.querySelector('form[data-_tracked="1"]') || document.querySelector('form');
           var formName = form ? (form.id || form.getAttribute('name') || 'form') : 'form';
           track('contact_form_submit', { form_name: formName });
-          track('generate_lead', { form_name: formName, lead_source: 'website_form' });
         }
       }
     }
