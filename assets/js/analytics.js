@@ -121,8 +121,9 @@
       }
       return;
     }
-    // Cal.com booking — CLICK only. Real conversion fires on /thank-you.html
-    if (/(?:cal\.com|cal\.eu)\/ensign/i.test(href)) {
+    // Booking intent (CLICK only). Real conversion fires inside the Cal.com embed
+    // on /book.html via the bookingSuccessful event listener.
+    if (/(?:cal\.com|cal\.eu)\/ensign/i.test(href) || /\/(ar\/)?book\.html(\?|#|$)/i.test(href)) {
       track('book_call_click', common);
       return;
     }
