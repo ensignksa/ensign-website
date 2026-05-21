@@ -592,6 +592,9 @@
       set endingSession(v) { endingSession = v; },
       // Surface the auto-mute timer so voiceTeardown can clear it.
       get postAIMuteTimer() { return postAIMuteTimer; },
+      // Surface the ElevenLabs in-flight abort + playing audio element so
+      // voiceTeardown can stop them cleanly when the user switches to chat.
+      stopCurrentSpeech,
     };
 
     function setStatus(text) {
@@ -758,69 +761,131 @@
       }
     };
 
+    // Active TTS handles — used by interrupt and by speakOut to clean up.
+    let currentAudio = null;       // <audio> element when ElevenLabs is in use
+    let currentTTSAbort = null;    // AbortController for the in-flight /voice fetch
+
     function speakOut(text) {
-      const synth = window.speechSynthesis;
-      if (!synth || !text) {
+      if (!text) {
         processing = false;
         setStatus(t.listening || "Listening.");
         armPostAIMute();
         return;
       }
-      // Chrome's TTS gets blocked when continuous recognition is active. Pause
-      // recognition while we speak; restart it when TTS ends. Mic-tap remains
-      // the way to interrupt the AI mid-speech.
+
       const wasMuted = micMuted;
+      // Pause recognition while we speak — Chrome blocks TTS otherwise, and
+      // for the ElevenLabs <audio> path we want clean speaker output without
+      // the mic capturing it.
       try { rec.abort(); } catch (_) {}
       recRunning = false;
       micBtn.classList.remove("is-listening");
 
-      // Clean state before speaking — Chrome can stall if cancel/speak race.
+      // Cancel any in-flight audio fetch + any playing audio.
+      stopCurrentSpeech();
+
+      const restoreListening = () => {
+        if (!wasMuted && !micMuted && !endingSession) {
+          setTimeout(() => { try { rec.start(); } catch (_) {} }, 120);
+        }
+        armPostAIMute();
+      };
+
+      const wrapUp = () => {
+        isAISpeaking = false;
+        processing = false;
+        setStatus(t.listening || "Listening.");
+        restoreListening();
+      };
+
+      // Try ElevenLabs first; fall back to browser TTS on any failure.
+      const abort = new AbortController();
+      currentTTSAbort = abort;
+
+      isAISpeaking = true;
+      processing = true;
+      setStatus(t.speakingTapToInterrupt || "Speaking — tap mic to interrupt.");
+
+      fetch("/api/intelligence/voice", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sessionId: session?.id,
+          text,
+          lang,
+        }),
+        signal: abort.signal,
+      })
+        .then((res) => {
+          if (!res.ok) {
+            // 503 = not configured (ELEVENLABS_API_KEY/VOICE_ID missing) → silent fallback.
+            // Other non-2xx → also fall back. Either way, log it once.
+            return res.json().then((j) => Promise.reject({ status: res.status, body: j })).catch(() => Promise.reject({ status: res.status }));
+          }
+          return res.blob();
+        })
+        .then((blob) => {
+          if (abort.signal.aborted) return;
+          const url = URL.createObjectURL(blob);
+          const audio = new Audio(url);
+          currentAudio = audio;
+          audio.preload = "auto";
+
+          const cleanup = () => {
+            try { URL.revokeObjectURL(url); } catch (_) {}
+            if (currentAudio === audio) currentAudio = null;
+          };
+          audio.onended = () => { cleanup(); wrapUp(); };
+          audio.onerror = (ev) => {
+            console.warn("[voice] audio playback error", ev);
+            cleanup();
+            // Fall back to browser TTS if MP3 playback itself fails.
+            speakViaBrowser(text, wrapUp);
+          };
+          audio.play().catch((e) => {
+            console.warn("[voice] audio.play() rejected", e?.message || e);
+            cleanup();
+            speakViaBrowser(text, wrapUp);
+          });
+        })
+        .catch((err) => {
+          if (abort.signal.aborted) return; // user interrupted; not a failure
+          console.warn("[voice] elevenlabs fallback to browser TTS", err?.status || err);
+          speakViaBrowser(text, wrapUp);
+        });
+    }
+
+    // Browser fallback used when ElevenLabs isn't configured / fails.
+    function speakViaBrowser(text, onDone) {
+      const synth = window.speechSynthesis;
+      if (!synth) { onDone(); return; }
       try { synth.cancel(); } catch (_) {}
       if (synth.paused) { try { synth.resume(); } catch (_) {} }
-
-      const fire = () => {
+      setTimeout(() => {
         try {
           const utter = new SpeechSynthesisUtterance(text);
           utter.lang = lang === "ar" ? "ar-SA" : "en-US";
           utter.rate = 1.0;
           utter.pitch = 1.0;
           utter.volume = 1.0;
-
-          utter.onstart = () => {
-            isAISpeaking = true;
-            processing = true;
-            setStatus(t.speakingTapToInterrupt || "Speaking — tap mic to interrupt.");
-          };
-          const wrapUp = () => {
-            isAISpeaking = false;
-            processing = false;
-            setStatus(t.listening || "Listening.");
-            // Restart recognition unless the user explicitly muted before/during speech.
-            if (!wasMuted && !micMuted && !endingSession) {
-              setTimeout(() => { try { rec.start(); } catch (_) {} }, 120);
-            }
-            armPostAIMute();
-          };
-          utter.onend = wrapUp;
-          utter.onerror = (ev) => {
-            console.warn("[voice] tts error", ev?.error || ev);
-            wrapUp();
-          };
-
+          utter.onend = onDone;
+          utter.onerror = (ev) => { console.warn("[voice] browser tts error", ev?.error || ev); onDone(); };
           synth.speak(utter);
         } catch (e) {
-          console.error("[voice] speakOut threw", e);
-          isAISpeaking = false;
-          processing = false;
-          setStatus(t.listening || "Listening.");
-          if (!wasMuted && !micMuted && !endingSession) {
-            setTimeout(() => { try { rec.start(); } catch (_) {} }, 120);
-          }
-          armPostAIMute();
+          console.error("[voice] browser tts threw", e);
+          onDone();
         }
-      };
-      // Small delay so cancel() + abort() settle before the new utterance fires.
-      setTimeout(fire, 80);
+      }, 60);
+    }
+
+    // Cancel any in-flight audio (used by interrupt / teardown / new speakOut).
+    function stopCurrentSpeech() {
+      if (currentTTSAbort) { try { currentTTSAbort.abort(); } catch (_) {} currentTTSAbort = null; }
+      if (currentAudio) {
+        try { currentAudio.pause(); currentAudio.src = ""; } catch (_) {}
+        currentAudio = null;
+      }
+      try { window.speechSynthesis?.cancel?.(); } catch (_) {}
     }
 
     // Mic button now does double duty:
@@ -829,7 +894,9 @@
     //   2. Otherwise → toggle mute / unmute.
     micBtn.addEventListener("click", () => {
       if (isAISpeaking) {
-        try { window.speechSynthesis?.cancel?.(); } catch (_) {}
+        // Tap-to-interrupt: cancel any in-flight ElevenLabs fetch, stop the
+        // playing <audio>, and stop the browser speechSynthesis fallback.
+        stopCurrentSpeech();
         isAISpeaking = false;
         processing = false;
         cancelPostAIMute();
@@ -888,6 +955,7 @@
     if (!voiceState) return;
     try { voiceState.endingSession = true; } catch (_) {}
     try { voiceState.rec?.abort?.(); } catch (_) {}
+    try { voiceState.stopCurrentSpeech?.(); } catch (_) {}
     try { window.speechSynthesis?.cancel?.(); } catch (_) {}
     if (voiceState.timer) clearInterval(voiceState.timer);
     if (voiceState.postAIMuteTimer) clearTimeout(voiceState.postAIMuteTimer);
