@@ -448,8 +448,16 @@
       return;
     }
 
+    // Request mic with echo + noise cancellation so the mic doesn't pick up
+    // the AI's own voice through the speakers and trigger false barge-ins.
     try {
-      const ms = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const ms = await navigator.mediaDevices.getUserMedia({
+        audio: {
+          echoCancellation: true,
+          noiseSuppression: true,
+          autoGainControl: true,
+        },
+      });
       ms.getTracks().forEach((tr) => tr.stop()); // we just needed the permission
     } catch (_e) {
       if (session) session.mode = "chat";
@@ -467,16 +475,34 @@
     const wrap = el("div", { class: "ei-panel-scroll" });
     const inner = el("div", { class: "ei-voice-surface" });
 
-    const status = el("div", { class: "ei-voice-status", id: "ei-voice-status", text: t.idleHint || "Tap the mic to speak." });
+    const status = el("div", { class: "ei-voice-status", id: "ei-voice-status", text: t.listening || "Listening." });
     const transcript = el("div", { class: "ei-voice-transcript", id: "ei-voice-transcript" });
     const micBtn = el("button", { class: "ei-voice-mic", id: "ei-voice-mic", type: "button", "aria-label": t.listening || "Mic" });
     micBtn.appendChild(el("span", { class: "ei-voice-mic-dot" }));
+
+    // Starter chips — same data the chat surface gets. Tapping a chip is
+    // treated as the user saying that question out loud. Chips disappear the
+    // first time the user actually speaks OR taps one.
+    const sugWrap = el("div", { class: "ei-voice-suggestions", id: "ei-voice-suggestions" });
+    const hasStarters = Array.isArray(session?.firstSuggestions) && session.firstSuggestions.length;
+    const hasUserMsg = (session?.messages || []).some((m) => m.role === "user");
+    if (hasStarters && !hasUserMsg) {
+      session.firstSuggestions.forEach((q) => {
+        const chip = el("button", {
+          type: "button",
+          class: "ei-suggestion",
+          text: q,
+          onclick: () => onChipTap(q),
+        });
+        sugWrap.appendChild(chip);
+      });
+    }
 
     const actions = el("div", { class: "ei-voice-actions" });
     const bookBtn = el("a", {
       class: "ei-voice-book is-hidden",
       id: "ei-voice-book",
-      href: "https://cal.com/ensign-ai-agency-q4mmzg/30min",
+      href: "/book.html",
       target: "_blank",
       rel: "noopener",
       text: (S[lang].bookCTA || t.bookCTA || "Book a Call With Ensign"),
@@ -494,22 +520,44 @@
     inner.appendChild(status);
     inner.appendChild(transcript);
     inner.appendChild(micBtn);
+    if (hasStarters && !hasUserMsg) inner.appendChild(sugWrap);
     inner.appendChild(actions);
     wrap.appendChild(inner);
     stage.appendChild(wrap);
 
     // ── Recognition + synthesis ──
+    // CONTINUOUS mode so the mic is always listening. We control end-of-turn
+    // ourselves via a silence timer. This also enables barge-in: while the AI
+    // is speaking, the mic stays open and any substantive user speech
+    // immediately cancels the AI's speech.
     const rec = new SR();
     rec.lang = lang === "ar" ? "ar-SA" : "en-US";
     rec.interimResults = true;
-    rec.continuous = false;
+    rec.continuous = true;
     rec.maxAlternatives = 1;
 
-    let currentUtterance = "";
-    let listening = false;
-    let bookCTAShown = false;
+    const SILENCE_MS = 1400;          // wait this long after last speech before treating it as end-of-turn
+    const BARGE_IN_MIN_CHARS = 3;     // user must say at least this many chars to interrupt the AI
 
-    voiceState = { rec, started: Date.now(), softLimitFired: false, hardLimitFired: false, timer: null, teardown: voiceTeardown };
+    let pendingUtterance = "";
+    let silenceTimer = null;
+    let bookCTAShown = false;
+    let isAISpeaking = false;
+    let processing = false;            // in flight to API or AI is speaking
+    let chipsHidden = false;
+    let recRunning = false;
+    let endingSession = false;
+
+    voiceState = {
+      rec,
+      started: Date.now(),
+      softLimitFired: false,
+      hardLimitFired: false,
+      timer: null,
+      teardown: voiceTeardown,
+      get endingSession() { return endingSession; },
+      set endingSession(v) { endingSession = v; },
+    };
 
     function setStatus(text) {
       const s = document.getElementById("ei-voice-status");
@@ -522,6 +570,15 @@
       transcript.appendChild(elNode);
       transcript.scrollTop = transcript.scrollHeight;
     }
+    function hideChips() {
+      if (chipsHidden) return;
+      chipsHidden = true;
+      const w = document.getElementById("ei-voice-suggestions");
+      if (w) {
+        w.classList.add("is-leaving");
+        setTimeout(() => w.remove(), 350);
+      }
+    }
     function showBookCTA() {
       if (bookCTAShown) return;
       const b = document.getElementById("ei-voice-book");
@@ -529,39 +586,18 @@
       bookCTAShown = true;
     }
 
-    rec.onstart = () => {
-      listening = true;
-      micBtn.classList.add("is-listening");
-      setStatus(t.listening || "Listening…");
-    };
-    rec.onresult = (ev) => {
-      let finalText = "";
-      let interim = "";
-      for (let i = ev.resultIndex; i < ev.results.length; i++) {
-        const r = ev.results[i];
-        if (r.isFinal) finalText += r[0].transcript;
-        else interim += r[0].transcript;
-      }
-      currentUtterance = (finalText + interim).trim();
-      const s = document.getElementById("ei-voice-status");
-      if (s && currentUtterance) s.textContent = "“" + currentUtterance + "”";
-    };
-    rec.onerror = (ev) => {
-      console.warn("[voice] recognition error", ev.error);
-      listening = false;
-      micBtn.classList.remove("is-listening");
-      setStatus(t.idleHint || "Tap the mic to speak.");
-    };
-    rec.onend = async () => {
-      listening = false;
-      micBtn.classList.remove("is-listening");
-      const userText = (currentUtterance || "").trim();
-      currentUtterance = "";
-      if (!userText) {
-        setStatus(t.idleHint || "Tap the mic to speak.");
-        return;
-      }
+    function handleEndOfTurn() {
+      if (silenceTimer) { clearTimeout(silenceTimer); silenceTimer = null; }
+      const userText = (pendingUtterance || "").trim();
+      pendingUtterance = "";
+      if (!userText) return;
+      hideChips();
       appendTranscript("user", userText);
+      sendAndSpeak(userText);
+    }
+
+    async function sendAndSpeak(userText) {
+      processing = true;
       setStatus(t.thinking || "Thinking…");
       try {
         const replyText = await sendVoiceTurn(userText);
@@ -569,34 +605,127 @@
         speakOut(replyText);
       } catch (e) {
         console.error("[voice] turn error", e);
-        setStatus(t.idleHint || "Tap the mic to speak.");
+        processing = false;
+        setStatus(t.listening || "Listening.");
+      }
+    }
+
+    function onChipTap(q) {
+      if (processing) return;
+      // Cancel any in-flight greeting
+      try { window.speechSynthesis?.cancel?.(); } catch (_) {}
+      isAISpeaking = false;
+      hideChips();
+      appendTranscript("user", q);
+      sendAndSpeak(q);
+    }
+
+    rec.onstart = () => {
+      recRunning = true;
+      micBtn.classList.add("is-listening");
+      if (!isAISpeaking && !processing) setStatus(t.listening || "Listening.");
+    };
+    rec.onresult = (ev) => {
+      let finalText = "";
+      let interim = "";
+      let confidentFinal = false;
+      for (let i = ev.resultIndex; i < ev.results.length; i++) {
+        const r = ev.results[i];
+        if (r.isFinal) { finalText += r[0].transcript; confidentFinal = true; }
+        else interim += r[0].transcript;
+      }
+      const combined = (finalText + interim).trim();
+      if (!combined) return;
+
+      // Barge-in: if AI is speaking and the user said something substantive,
+      // cut the AI off immediately.
+      if (isAISpeaking && combined.length >= BARGE_IN_MIN_CHARS) {
+        try { window.speechSynthesis?.cancel?.(); } catch (_) {}
+        isAISpeaking = false;
+        processing = false;
+      }
+
+      pendingUtterance = combined;
+      const s = document.getElementById("ei-voice-status");
+      if (s && !isAISpeaking) s.textContent = "“" + combined + "”";
+
+      // Reset the silence timer on every new chunk; when it expires, treat
+      // the utterance as complete and send it.
+      if (silenceTimer) clearTimeout(silenceTimer);
+      silenceTimer = setTimeout(handleEndOfTurn, confidentFinal ? 600 : SILENCE_MS);
+    };
+    rec.onerror = (ev) => {
+      console.warn("[voice] recognition error", ev.error);
+      recRunning = false;
+      micBtn.classList.remove("is-listening");
+      if (endingSession) return;
+      // Recoverable errors -> restart
+      if (["no-speech", "audio-capture", "aborted"].includes(ev.error)) {
+        setTimeout(() => { try { rec.start(); } catch (_) {} }, 400);
+      } else {
+        setStatus(t.permissionDenied || "Microphone access was blocked. Continuing in chat instead.");
+      }
+    };
+    rec.onend = () => {
+      recRunning = false;
+      micBtn.classList.remove("is-listening");
+      // Continuous mode: keep recognition alive unless we're tearing down.
+      if (!endingSession) {
+        setTimeout(() => { try { rec.start(); } catch (_) {} }, 200);
       }
     };
 
     function speakOut(text) {
       try {
         const synth = window.speechSynthesis;
-        if (!synth) { setStatus(t.idleHint || "Tap the mic to speak."); return; }
+        if (!synth) { processing = false; setStatus(t.listening || "Listening."); return; }
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang = lang === "ar" ? "ar-SA" : "en-US";
         utter.rate = 1.0;
         utter.pitch = 1.0;
-        utter.onstart = () => setStatus(t.speaking || "Speaking…");
-        utter.onend = () => setStatus(t.idleHint || "Tap the mic to speak.");
+        utter.onstart = () => { isAISpeaking = true; processing = true; setStatus(t.speaking || "Speaking…"); };
+        utter.onend = () => { isAISpeaking = false; processing = false; setStatus(t.listening || "Listening."); };
+        utter.onerror = () => { isAISpeaking = false; processing = false; setStatus(t.listening || "Listening."); };
         synth.cancel();
         synth.speak(utter);
       } catch (_) {
-        setStatus(t.idleHint || "Tap the mic to speak.");
+        processing = false;
+        setStatus(t.listening || "Listening.");
       }
     }
 
+    // Mic button is now a toggle for muting the mic (rare case). Tap once to
+    // pause listening, tap again to resume. Default is always-listening.
+    let micMuted = false;
     micBtn.addEventListener("click", () => {
-      if (listening) {
-        try { rec.stop(); } catch (_) {}
-        return;
+      micMuted = !micMuted;
+      if (micMuted) {
+        endingSession = true;
+        try { rec.abort(); } catch (_) {}
+        micBtn.classList.add("is-muted");
+        micBtn.classList.remove("is-listening");
+        setStatus(t.idleHint || "Mic paused. Tap to resume.");
+      } else {
+        endingSession = false;
+        micBtn.classList.remove("is-muted");
+        setStatus(t.listening || "Listening.");
+        try { rec.start(); } catch (_) {}
       }
-      try { rec.start(); } catch (_) { /* already started */ }
     });
+
+    // ── Greeting on entry — AI speaks first, then auto-listens ──
+    // Same opening text the chat surface uses, spoken aloud + shown in
+    // the transcript. The continuous recognition starts before the greeting
+    // so the user can interrupt the greeting too.
+    try { rec.start(); } catch (_) { /* may already be starting */ }
+    const greeting = session?.messages?.[0]?.content || "";
+    if (greeting) {
+      appendTranscript("assistant", greeting);
+      // Tiny delay so the recognition is fully armed before TTS kicks in.
+      setTimeout(() => speakOut(greeting), 350);
+    } else {
+      setStatus(t.listening || "Listening.");
+    }
 
     // ── 3-minute soft limit ──
     const softLimitMs = 2 * 60 * 1000 + 30 * 1000; // 2:30 — gentle escalation
@@ -619,10 +748,12 @@
     }, 5000);
   }
 
-  // Cleanup for voice session
+  // Cleanup for voice session — stops continuous recognition, cancels any
+  // in-flight TTS, and signals the rec.onend handler to NOT auto-restart.
   let voiceState = null;
   function voiceTeardown() {
     if (!voiceState) return;
+    try { voiceState.endingSession = true; } catch (_) {}
     try { voiceState.rec?.abort?.(); } catch (_) {}
     try { window.speechSynthesis?.cancel?.(); } catch (_) {}
     if (voiceState.timer) clearInterval(voiceState.timer);
