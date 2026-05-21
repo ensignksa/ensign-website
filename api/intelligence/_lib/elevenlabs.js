@@ -62,7 +62,34 @@ export async function synthesizeSpeech({ text, lang, voiceId, modelId } = {}) {
   if (trimmed.length > 5000) return { ok: false, status: 400, error: "text_too_long" };
 
   const voice = voiceId || process.env.ELEVENLABS_VOICE_ID;
-  const model = modelId || process.env.ELEVENLABS_MODEL_ID || DEFAULT_MODEL;
+  // Turbo v2.5 is great for English but swallows Arabic syllables on cloned
+  // voices. eleven_multilingual_v2 has the strongest non-English phonetic
+  // coverage; use it for Arabic, keep turbo for English speed.
+  const model =
+    modelId ||
+    process.env.ELEVENLABS_MODEL_ID ||
+    (lang === "ar" ? "eleven_multilingual_v2" : DEFAULT_MODEL);
+
+  // Per-language voice tuning. Arabic on a cloned English voice needs HIGHER
+  // stability (less prosody drift = clearer phonemes) and LOWER style
+  // (expressive flourish causes Arabic letter elision). English keeps the
+  // looser, more human profile.
+  const voiceSettings =
+    lang === "ar"
+      ? {
+          stability: 0.75,
+          similarity_boost: 0.85,
+          style: 0.15,
+          speed: 0.95,
+          use_speaker_boost: true,
+        }
+      : {
+          stability: 0.5,
+          similarity_boost: 0.75,
+          style: 0.35,
+          speed: 1.0,
+          use_speaker_boost: true,
+        };
 
   // Per-language text preprocessing for TTS only — the on-screen transcript
   // is unaffected. Arabic TTS can't pronounce Latin letters like "Ensign"
@@ -83,22 +110,7 @@ export async function synthesizeSpeech({ text, lang, voiceId, modelId } = {}) {
       body: JSON.stringify({
         text: ttsText,
         model_id: model,
-        // Voice settings tuned for conversational replies. Stability lower
-        // than default to allow natural variation; similarity high to keep
-        // the cloned voice identity. Speed below 1.0 for a more human,
-        // less rushed pace.
-        voice_settings: {
-          // Tuned for "more human" delivery: looser stability allows
-          // natural prosody variation, higher style adds expressive
-          // inflection, similarity_boost slightly lower so the model
-          // isn't forced into rigid imitation of the source clone,
-          // speed back to natural conversational pace.
-          stability: 0.5,
-          similarity_boost: 0.75,
-          style: 0.35,
-          speed: 1.0,
-          use_speaker_boost: true,
-        },
+        voice_settings: voiceSettings,
       }),
       signal: controller.signal,
     });
