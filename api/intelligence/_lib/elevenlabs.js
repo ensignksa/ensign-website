@@ -77,10 +77,13 @@ export async function synthesizeSpeech({ text, lang, voiceId, modelId } = {}) {
   const voiceSettings =
     lang === "ar"
       ? {
-          stability: 0.75,
-          similarity_boost: 0.85,
-          style: 0.15,
-          speed: 0.95,
+          // Per ElevenLabs official guidance for cloned voices in non-English:
+          // high stability causes hallucinated/extra words. Lower stability +
+          // higher similarity + style=0 minimises invented content.
+          stability: 0.4,
+          similarity_boost: 0.8,
+          style: 0.0,
+          speed: 1.0,
           use_speaker_boost: true,
         }
       : {
