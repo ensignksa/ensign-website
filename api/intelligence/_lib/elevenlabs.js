@@ -7,17 +7,28 @@ const DEFAULT_MODEL = "eleven_turbo_v2_5";
 const TIMEOUT_MS = 25_000;
 const BASE_URL = "https://api.elevenlabs.io/v1";
 
-// TTS-only text transformations. The user sees the original text in the
-// transcript; the TTS engine sees this transformed version. Add per-language
-// pronunciation overrides here so the cloned voice says brand terms right.
+// TTS-only text transformations. The on-screen transcript still shows the
+// original; only the TTS payload gets these substitutions. Per-language
+// because Arabic TTS especially butchers Latin letters, symbols, and
+// number-formats it can't natively parse.
 function preprocessForTTS(text, lang) {
   let out = String(text || "");
+
+  // "24/7" is the universal offender — Arabic TTS reads it as "twenty four
+  // slash seven" or letter-by-letter; even English cloned voices sometimes
+  // mispronounce the slash. Replace with the natural spoken form.
   if (lang === "ar") {
-    // Arabic TTS reads Latin letters phonetically. Transliterate "Ensign"
-    // so it sounds like its intended brand pronunciation.
+    out = out.replace(/\b24\s*[\/\\]\s*7\b/g, "على مدار الساعة");
+  } else {
+    out = out.replace(/\b24\s*[\/\\]\s*7\b/g, "twenty-four seven");
+  }
+
+  // Brand name — Arabic TTS reads "Ensign" as the Latin letters.
+  if (lang === "ar") {
     out = out.replace(/\bEnsign\b/g, "إنساين");
   }
-  // English mode: keep "Ensign" as-is; the model pronounces it correctly.
+  // English mode: "Ensign" pronounces correctly out of the box.
+
   return out;
 }
 
@@ -77,14 +88,15 @@ export async function synthesizeSpeech({ text, lang, voiceId, modelId } = {}) {
         // the cloned voice identity. Speed below 1.0 for a more human,
         // less rushed pace.
         voice_settings: {
-          // Higher stability = more consistent tone turn-to-turn (less
-          // variation in expressiveness). Lower style = less prosodic
-          // flourish. Both bumped from the previous values because the
-          // user reported the voice felt different on every reply.
-          stability: 0.7,
-          similarity_boost: 0.85,
-          style: 0.1,
-          speed: 0.9,
+          // Tuned for "more human" delivery: looser stability allows
+          // natural prosody variation, higher style adds expressive
+          // inflection, similarity_boost slightly lower so the model
+          // isn't forced into rigid imitation of the source clone,
+          // speed back to natural conversational pace.
+          stability: 0.5,
+          similarity_boost: 0.75,
+          style: 0.35,
+          speed: 1.0,
           use_speaker_boost: true,
         },
       }),
