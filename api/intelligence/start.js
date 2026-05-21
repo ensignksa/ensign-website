@@ -182,21 +182,27 @@ export default async function handler(req, res) {
     }
 
     const emailHash = hashEmail(body.email);
-    if (await isEmailLocked(emailHash)) {
-      res.status(409).json({ error: "already_completed" });
-      return;
-    }
+    // TODO (before production merge): RESTORE these two guards.
+    //   1) Email lock — same email can't start a second session once one completes.
+    //   2) IP rate limit — caps abuse from a single IP.
+    // Both are temporarily disabled on this QA branch so iterative testing
+    // doesn't get blocked. See validate.js + complete.js for the lock writers.
+    // ── DISABLED FOR QA ──
+    // if (await isEmailLocked(emailHash)) {
+    //   res.status(409).json({ error: "already_completed" });
+    //   return;
+    // }
 
     const ip = clientIP(req);
-    const isLocal = ip === "127.0.0.1" || ip === "::1" || ip.startsWith("::ffff:127.") || ip === "unknown";
-    // QA branch: cap raised to 50 while iterating on preview. Restore to 5 before production merge.
-    if (!isLocal) {
-      const ipCount = await bumpIPLock(ip);
-      if (ipCount > 50) {
-        res.status(429).json({ error: "rate_limit" });
-        return;
-      }
-    }
+    // ── DISABLED FOR QA ──
+    // const isLocal = ip === "127.0.0.1" || ip === "::1" || ip.startsWith("::ffff:127.") || ip === "unknown";
+    // if (!isLocal) {
+    //   const ipCount = await bumpIPLock(ip);
+    //   if (ipCount > 5) {
+    //     res.status(429).json({ error: "rate_limit" });
+    //     return;
+    //   }
+    // }
 
     const sessionId = newSessionId();
     const lang = body.lang === "ar" ? "ar" : "en";
