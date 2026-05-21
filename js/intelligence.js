@@ -313,6 +313,7 @@
         lang: data.lang,
         profile: payload,
         messages: [{ role: "assistant", content: data.firstMessage }],
+        firstSuggestions: Array.isArray(data.firstSuggestions) ? data.firstSuggestions : [],
         turn: 0,
         maxTurns: data.maxTurns || 10,
         signals: {},
@@ -685,6 +686,31 @@
       thread.appendChild(msg);
     });
 
+    // Tappable starter suggestions — only when the visitor hasn't sent anything yet.
+    // Each chip sends its question immediately on click and the row disappears.
+    const hasUserMsg = session.messages.some((m) => m.role === "user");
+    if (!hasUserMsg && Array.isArray(session.firstSuggestions) && session.firstSuggestions.length) {
+      const sugWrap = el("div", { class: "ei-suggestions", id: "ei-suggestions" });
+      session.firstSuggestions.forEach((q) => {
+        const chip = el("button", {
+          type: "button",
+          class: "ei-suggestion",
+          text: q,
+          onclick: () => {
+            if (busy) return;
+            const wrap = document.getElementById("ei-suggestions");
+            if (wrap) wrap.classList.add("is-leaving");
+            setTimeout(() => wrap?.remove(), 350);
+            const ta = document.getElementById("ei-textarea");
+            if (ta) ta.value = q;
+            sendMessage();
+          },
+        });
+        sugWrap.appendChild(chip);
+      });
+      thread.appendChild(sugWrap);
+    }
+
     main.appendChild(thread);
 
     // (Turn-counter UI removed — conversations are open-ended now.)
@@ -928,6 +954,14 @@
     ta.style.height = "auto";
     busy = true;
     document.getElementById("ei-send").disabled = true;
+
+    // Hide the starter suggestion row the first time the user actually sends —
+    // whether they tapped a chip (already handled) or typed something themselves.
+    const sugWrap = document.getElementById("ei-suggestions");
+    if (sugWrap && !sugWrap.classList.contains("is-leaving")) {
+      sugWrap.classList.add("is-leaving");
+      setTimeout(() => sugWrap.remove(), 350);
+    }
 
     // First send: collapse the hero opening.
     dismissHero();
