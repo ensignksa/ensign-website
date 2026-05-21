@@ -7,6 +7,20 @@ const DEFAULT_MODEL = "eleven_turbo_v2_5";
 const TIMEOUT_MS = 25_000;
 const BASE_URL = "https://api.elevenlabs.io/v1";
 
+// TTS-only text transformations. The user sees the original text in the
+// transcript; the TTS engine sees this transformed version. Add per-language
+// pronunciation overrides here so the cloned voice says brand terms right.
+function preprocessForTTS(text, lang) {
+  let out = String(text || "");
+  if (lang === "ar") {
+    // Arabic TTS reads Latin letters phonetically. Transliterate "Ensign"
+    // so it sounds like its intended brand pronunciation.
+    out = out.replace(/\bEnsign\b/g, "إنساين");
+  }
+  // English mode: keep "Ensign" as-is; the model pronounces it correctly.
+  return out;
+}
+
 /**
  * @returns {{configured: boolean, reason?: string}}
  */
@@ -39,6 +53,11 @@ export async function synthesizeSpeech({ text, lang, voiceId, modelId } = {}) {
   const voice = voiceId || process.env.ELEVENLABS_VOICE_ID;
   const model = modelId || process.env.ELEVENLABS_MODEL_ID || DEFAULT_MODEL;
 
+  // Per-language text preprocessing for TTS only — the on-screen transcript
+  // is unaffected. Arabic TTS can't pronounce Latin letters like "Ensign"
+  // correctly; transliterate so it sounds right.
+  const ttsText = preprocessForTTS(trimmed, lang);
+
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
@@ -51,15 +70,17 @@ export async function synthesizeSpeech({ text, lang, voiceId, modelId } = {}) {
         "xi-api-key": process.env.ELEVENLABS_API_KEY,
       },
       body: JSON.stringify({
-        text: trimmed,
+        text: ttsText,
         model_id: model,
         // Voice settings tuned for conversational replies. Stability lower
         // than default to allow natural variation; similarity high to keep
-        // the cloned voice identity.
+        // the cloned voice identity. Speed below 1.0 for a more human,
+        // less rushed pace.
         voice_settings: {
-          stability: 0.45,
+          stability: 0.5,
           similarity_boost: 0.85,
           style: 0.15,
+          speed: 0.9,
           use_speaker_boost: true,
         },
       }),

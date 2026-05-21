@@ -526,18 +526,17 @@
     stage.appendChild(wrap);
 
     // ── Recognition + synthesis ──
-    // CONTINUOUS mode so the mic is always listening. We control end-of-turn
-    // ourselves via a silence timer. This also enables barge-in: while the AI
-    // is speaking, the mic stays open and any substantive user speech
-    // immediately cancels the AI's speech.
+    // Push-to-talk mode. The mic stays MUTED unless the user explicitly taps
+    // it to talk. This guarantees the mic never picks up the AI's own voice
+    // through the speakers (which was causing the AI to "hear" its own
+    // questions and re-process them as user input).
     const rec = new SR();
     rec.lang = lang === "ar" ? "ar-SA" : "en-US";
     rec.interimResults = true;
-    rec.continuous = true;
+    rec.continuous = false;
     rec.maxAlternatives = 1;
 
     const SILENCE_MS = 1400;           // wait this long after last speech before treating it as end-of-turn
-    const POST_AI_MUTE_MS = 6000;      // after the AI finishes, give the user this long to reply before auto-muting
     // Substance filters — protect against ambient/aside speech being treated
     // as conversation. An utterance is "substantive" if it's 3+ words OR ends
     // in sentence-ending punctuation. Short confirmations are allowed only
@@ -572,14 +571,12 @@
 
     let pendingUtterance = "";
     let silenceTimer = null;
-    let postAIMuteTimer = null;
     let bookCTAShown = false;
     let isAISpeaking = false;
     let processing = false;            // in flight to API or AI is speaking
     let chipsHidden = false;
-    let recRunning = false;
+    let isListening = false;
     let endingSession = false;
-    let micMuted = false;
 
     voiceState = {
       rec,
@@ -590,8 +587,6 @@
       teardown: voiceTeardown,
       get endingSession() { return endingSession; },
       set endingSession(v) { endingSession = v; },
-      // Surface the auto-mute timer so voiceTeardown can clear it.
-      get postAIMuteTimer() { return postAIMuteTimer; },
       // Surface the ElevenLabs in-flight abort + playing audio element so
       // voiceTeardown can stop them cleanly when the user switches to chat.
       stopCurrentSpeech,
@@ -628,14 +623,16 @@
       if (silenceTimer) { clearTimeout(silenceTimer); silenceTimer = null; }
       const userText = (pendingUtterance || "").trim();
       pendingUtterance = "";
-      if (!userText) return;
-      // Filter ambient / aside speech that isn't intended for the AI.
-      if (!shouldSend(userText)) {
-        // Quietly clear the visible interim text and keep listening.
-        if (!isAISpeaking && !processing) setStatus(t.listening || "Listening.");
+      if (!userText) {
+        stopListening();
         return;
       }
-      cancelPostAIMute();
+      // Filter ambient / fragment speech that isn't substantive.
+      if (!shouldSend(userText)) {
+        stopListening();
+        return;
+      }
+      stopListening();
       hideChips();
       appendTranscript("user", userText);
       sendAndSpeak(userText);
@@ -643,7 +640,6 @@
 
     async function sendAndSpeak(userText) {
       processing = true;
-      cancelPostAIMute();
       setStatus(t.thinking || "Thinking…");
       try {
         const replyText = await sendVoiceTurn(userText);
@@ -652,59 +648,44 @@
       } catch (e) {
         console.error("[voice] turn error", e);
         processing = false;
-        setStatus(t.listening || "Listening.");
-        armPostAIMute();
+        setStatus(t.tapToSpeak || "Tap mic to speak.");
       }
     }
 
     function onChipTap(q) {
       if (processing) return;
       // Cancel any in-flight greeting
-      try { window.speechSynthesis?.cancel?.(); } catch (_) {}
+      stopCurrentSpeech();
       isAISpeaking = false;
-      cancelPostAIMute();
       hideChips();
       appendTranscript("user", q);
       sendAndSpeak(q);
     }
 
-    // ── Post-AI auto-mute ──
-    // After the AI finishes speaking, give the user a fixed window to reply
-    // (POST_AI_MUTE_MS). If they say nothing substantive in that window, mute
-    // the mic so ambient/aside speech doesn't get captured. They can tap to
-    // re-arm at any time.
-    function armPostAIMute() {
-      cancelPostAIMute();
-      postAIMuteTimer = setTimeout(() => {
-        // Don't auto-mute if anything is in flight or the user is mid-utterance.
-        if (processing || isAISpeaking) return;
-        if (pendingUtterance && pendingUtterance.trim()) return;
-        applyMute(true);
-      }, POST_AI_MUTE_MS);
+    // ── Push-to-talk controls ──
+    // The mic is OFF by default. User taps mic to start a turn. Recognition
+    // stops automatically when they pause (browser detects silence) or via
+    // the silence timer below. We never auto-restart listening after AI
+    // speech — that prevented the mic from catching the AI's own voice.
+    function startListening() {
+      if (isListening || isAISpeaking || processing) return;
+      pendingUtterance = "";
+      try { rec.start(); } catch (_) {}
     }
-    function cancelPostAIMute() {
-      if (postAIMuteTimer) { clearTimeout(postAIMuteTimer); postAIMuteTimer = null; }
-    }
-
-    function applyMute(muted) {
-      micMuted = muted;
-      if (muted) {
-        try { rec.abort(); } catch (_) {}
-        micBtn.classList.add("is-muted");
-        micBtn.classList.remove("is-listening");
-        setStatus(t.idleHint || "Mic paused. Tap to speak.");
-      } else {
-        endingSession = false;
-        micBtn.classList.remove("is-muted");
-        setStatus(t.listening || "Listening.");
-        try { rec.start(); } catch (_) {}
+    function stopListening() {
+      if (silenceTimer) { clearTimeout(silenceTimer); silenceTimer = null; }
+      try { rec.abort(); } catch (_) {}
+      isListening = false;
+      micBtn.classList.remove("is-listening");
+      if (!processing && !isAISpeaking) {
+        setStatus(t.tapToSpeak || "Tap mic to speak.");
       }
     }
 
     rec.onstart = () => {
-      recRunning = true;
+      isListening = true;
       micBtn.classList.add("is-listening");
-      if (!isAISpeaking && !processing) setStatus(t.listening || "Listening.");
+      setStatus(t.listening || "Listening.");
     };
     rec.onresult = (ev) => {
       let finalText = "";
@@ -718,18 +699,6 @@
       const combined = (finalText + interim).trim();
       if (!combined) return;
 
-      // User is engaging — cancel any pending auto-mute.
-      cancelPostAIMute();
-
-      // Barge-in: only when the utterance is substantive enough that we'd
-      // actually send it. Stops the AI for real interruptions, ignores
-      // ambient fragments.
-      if (isAISpeaking && shouldBargeIn(combined)) {
-        try { window.speechSynthesis?.cancel?.(); } catch (_) {}
-        isAISpeaking = false;
-        processing = false;
-      }
-
       pendingUtterance = combined;
       const s = document.getElementById("ei-voice-status");
       if (s && !isAISpeaking) s.textContent = "“" + combined + "”";
@@ -741,24 +710,21 @@
     };
     rec.onerror = (ev) => {
       console.warn("[voice] recognition error", ev.error);
-      recRunning = false;
+      isListening = false;
       micBtn.classList.remove("is-listening");
       if (endingSession) return;
-      // Recoverable errors -> restart
+      // Push-to-talk: on recoverable errors just return to idle; user can
+      // tap to try again.
       if (["no-speech", "audio-capture", "aborted"].includes(ev.error)) {
-        setTimeout(() => { try { rec.start(); } catch (_) {} }, 400);
+        setStatus(t.tapToSpeak || "Tap mic to speak.");
       } else {
         setStatus(t.permissionDenied || "Microphone access was blocked. Continuing in chat instead.");
       }
     };
     rec.onend = () => {
-      recRunning = false;
-      micBtn.classList.remove("is-listening");
-      // Continuous mode: keep recognition alive unless the session is ending
-      // OR the user / auto-mute has paused the mic.
-      if (!endingSession && !micMuted) {
-        setTimeout(() => { try { rec.start(); } catch (_) {} }, 200);
-      }
+      // Browser-detected end of utterance. Submit whatever we captured.
+      // No auto-restart — push-to-talk requires the user to tap again.
+      handleEndOfTurn();
     };
 
     // Active TTS handles — used by interrupt and by speakOut to clean up.
@@ -768,34 +734,25 @@
     function speakOut(text) {
       if (!text) {
         processing = false;
-        setStatus(t.listening || "Listening.");
-        armPostAIMute();
+        setStatus(t.tapToSpeak || "Tap mic to speak.");
         return;
       }
 
-      const wasMuted = micMuted;
-      // Pause recognition while we speak — Chrome blocks TTS otherwise, and
-      // for the ElevenLabs <audio> path we want clean speaker output without
-      // the mic capturing it.
+      // Make absolutely sure recognition is off while the AI speaks so the
+      // mic never picks up the AI's own voice through the speakers.
       try { rec.abort(); } catch (_) {}
-      recRunning = false;
+      isListening = false;
       micBtn.classList.remove("is-listening");
 
       // Cancel any in-flight audio fetch + any playing audio.
       stopCurrentSpeech();
 
-      const restoreListening = () => {
-        if (!wasMuted && !micMuted && !endingSession) {
-          setTimeout(() => { try { rec.start(); } catch (_) {} }, 120);
-        }
-        armPostAIMute();
-      };
-
       const wrapUp = () => {
         isAISpeaking = false;
         processing = false;
-        setStatus(t.listening || "Listening.");
-        restoreListening();
+        // Push-to-talk: do NOT auto-restart recognition. Mic stays off until
+        // the user explicitly taps it.
+        setStatus(t.tapToSpeak || "Tap mic to speak.");
       };
 
       // Try ElevenLabs first; fall back to browser TTS on any failure.
@@ -892,38 +849,35 @@
     //   1. While the AI is speaking → cancel TTS, immediately start listening
     //      (this is the "interrupt" gesture).
     //   2. Otherwise → toggle mute / unmute.
+    // Push-to-talk mic button.
+    //   AI speaking → tap = interrupt + start listening.
+    //   Listening   → tap = cancel listening (in case user changed their mind).
+    //   Idle        → tap = start listening.
     micBtn.addEventListener("click", () => {
       if (isAISpeaking) {
-        // Tap-to-interrupt: cancel any in-flight ElevenLabs fetch, stop the
-        // playing <audio>, and stop the browser speechSynthesis fallback.
         stopCurrentSpeech();
         isAISpeaking = false;
         processing = false;
-        cancelPostAIMute();
-        // Make sure the mic is unmuted and start listening immediately.
-        if (micMuted) {
-          applyMute(false);
-        } else {
-          setStatus(t.listening || "Listening.");
-          try { rec.start(); } catch (_) {}
-        }
+        startListening();
         return;
       }
-      applyMute(!micMuted);
+      if (isListening) {
+        stopListening();
+        return;
+      }
+      startListening();
     });
 
-    // ── Greeting on entry — AI speaks first, then auto-listens ──
-    // Same opening text the chat surface uses, spoken aloud + shown in
-    // the transcript. The continuous recognition starts before the greeting
-    // so the user can interrupt the greeting too.
-    try { rec.start(); } catch (_) { /* may already be starting */ }
+    // ── Greeting on entry — AI speaks first; mic stays off ──
+    // Push-to-talk: the user taps the mic when they're ready to reply.
+    // (Tapping the mic during the greeting also cancels the greeting and
+    // starts listening immediately.)
     const greeting = session?.messages?.[0]?.content || "";
     if (greeting) {
       appendTranscript("assistant", greeting);
-      // Tiny delay so the recognition is fully armed before TTS kicks in.
-      setTimeout(() => speakOut(greeting), 350);
+      speakOut(greeting);
     } else {
-      setStatus(t.listening || "Listening.");
+      setStatus(t.tapToSpeak || "Tap mic to speak.");
     }
 
     // ── 3-minute soft limit ──
@@ -958,7 +912,6 @@
     try { voiceState.stopCurrentSpeech?.(); } catch (_) {}
     try { window.speechSynthesis?.cancel?.(); } catch (_) {}
     if (voiceState.timer) clearInterval(voiceState.timer);
-    if (voiceState.postAIMuteTimer) clearTimeout(voiceState.postAIMuteTimer);
     voiceState = null;
   }
 
