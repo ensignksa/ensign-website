@@ -2,28 +2,32 @@ import { validateProfile, hashEmail, newSessionId, clientIP } from "./_lib/valid
 import { createSession, isEmailLocked, bumpIPLock } from "./_lib/kv.js";
 import { sendLeadIntakeEmail } from "./_lib/email.js";
 
-// Warm, immediate, in-character opening. Uses the visitor's first name and
-// stated industry so the AI Employee never lands in an empty/abstract state.
+// Assistant-first opening. Name + light industry context, then an open
+// invitation. No pitch, no "ready to show you", no leading discovery question.
 function firstName(full) {
   return String(full || "").trim().split(/\s+/)[0] || "";
+}
+function indPhraseEN(industry) {
+  if (!industry) return "your business";
+  return /^(real estate|hospitality|finance|healthcare|education|technology|retail|luxury|government)/i.test(industry)
+    ? `${industry}`
+    : `${industry}`;
 }
 function buildFirstMessage(lang, profile) {
   const fn = firstName(profile?.name);
   const industry = (profile?.industry || "").trim();
   if (lang === "ar") {
-    const greeting = fn ? `مرحباً ${fn}.` : "مرحباً.";
+    const greeting = fn ? `مرحباً ${fn}،` : "مرحباً،";
     const role = industry
-      ? `أنا أحد موظفي Ensign الأذكياء، جاهز لأريك كيف نعمل داخل أعمال ${industry}.`
-      : "أنا أحد موظفي Ensign الأذكياء، جاهز لأريك كيف نعمل داخل أعمال مثل أعمالك.";
-    const ask = "ما الشيء الواحد الذي يبطّئك أكثر اليوم؟";
-    return `${greeting}\n${role}\n\n${ask}`;
+      ? `أنا موظف ذكي من Ensign. اسألني أي شيء عن كيف يمكن لـ Ensign أن تساعدك في مجال ${industry}.`
+      : "أنا موظف ذكي من Ensign. اسألني أي شيء عن كيف يمكن لـ Ensign أن تساعد أعمالك.";
+    return `${greeting} ${role}`;
   }
-  const greeting = fn ? `Hello ${fn}.` : "Hello.";
+  const greeting = fn ? `Hi ${fn},` : "Hi,";
   const role = industry
-    ? `I'm one of Ensign's AI employees, ready to show you how we'd work inside a ${industry} business.`
-    : "I'm one of Ensign's AI employees, ready to show you how we'd work inside a business like yours.";
-  const ask = "What's the one thing slowing you down most right now?";
-  return `${greeting}\n${role}\n\n${ask}`;
+    ? `I'm an AI employee from Ensign. Ask me anything about how Ensign can help you in ${indPhraseEN(industry)}.`
+    : "I'm an AI employee from Ensign. Ask me anything about how Ensign can help your business.";
+  return `${greeting} ${role}`;
 }
 
 export default async function handler(req, res) {

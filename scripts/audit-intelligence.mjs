@@ -136,7 +136,7 @@ check("EN has INFER FIRST block", enSample.includes("INFER FIRST"));
 check("EN has VISUAL REQUEST WORKFLOW", enSample.includes("VISUAL REQUEST WORKFLOW"));
 check("EN has ENSIGN OS BRIDGE", enSample.includes("ENSIGN OS BRIDGE"));
 check("EN has OFF-TOPIC HANDLING", enSample.includes("OFF-TOPIC HANDLING"));
-check("EN has bullet format example", enSample.includes("- What's your website"));
+check("EN enforces single-question rule", /Maximum ONE question per reply/.test(enSample));
 check("AR has equivalent infer-first rule", arSample.includes("استنتج أولاً"));
 check("AR has visual workflow", arSample.includes("مسار طلب المرئيات"));
 check("AR has off-topic rule", arSample.includes("التعامل مع الأسئلة خارج النطاق"));
