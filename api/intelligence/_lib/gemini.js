@@ -153,12 +153,21 @@ const SIMPLIFICATIONS = [
 function simplifyText(text, profileName) {
   let out = text;
 
-  // Strip the visitor's first name wherever it appears (with optional trailing punctuation/space)
+  // Strip the visitor's first name when it appears as a discourse marker
+  // ("Hi Rana, ...", "...let me know, Rana."). Original intent: prevent
+  // the AI from over-using the name. But the previous regex stripped EVERY
+  // occurrence, which also ate the brand word "Ensign" when a tester used
+  // it as their name. Now: only strip when the name is followed by a
+  // comma/period/dash (typical address pattern), and never when it equals
+  // a reserved brand word.
   if (profileName) {
     const firstName = String(profileName).trim().split(/\s+/)[0];
-    if (firstName.length >= 2) {
+    const RESERVED = new Set(["ensign"]); // brand words that must NEVER be stripped
+    if (firstName.length >= 2 && !RESERVED.has(firstName.toLowerCase())) {
       const esc = firstName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      out = out.replace(new RegExp(`\\b${esc}\\b[,.]?\\s*`, "gi"), " ");
+      // Only strip when the name is immediately followed by punctuation
+      // that signals address (",", ".", " —"), with optional trailing space.
+      out = out.replace(new RegExp(`\\b${esc}\\b\\s*[,.\\-—](?=\\s)`, "gi"), "");
     }
   }
 

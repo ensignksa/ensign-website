@@ -643,20 +643,35 @@
       setStatus(t.thinking || "Thinking…");
       try {
         const replyText = await sendVoiceTurn(userText);
+        if (!replyText || !replyText.trim()) {
+          throw new Error("empty_reply");
+        }
         appendTranscript("assistant", replyText);
         speakOut(replyText);
       } catch (e) {
         console.error("[voice] turn error", e);
         processing = false;
+        // Surface the failure in the transcript so the user knows what
+        // happened instead of staring at a frozen mic. Localized.
+        const errMsg = lang === "ar"
+          ? "حدث خطأ. اضغط الميكروفون لإعادة المحاولة."
+          : "Something went wrong. Tap the mic to try again.";
+        appendTranscript("assistant", errMsg);
         setStatus(t.tapToSpeak || "Tap mic to speak.");
       }
     }
 
     function onChipTap(q) {
-      if (processing) return;
-      // Cancel any in-flight greeting
+      // Race-safe: even if the greeting is still being fetched or playing
+      // (processing/isAISpeaking = true), cancel it cleanly and proceed.
+      // The previous version bailed silently on processing=true, which made
+      // taps during the greeting feel "dead".
       stopCurrentSpeech();
       isAISpeaking = false;
+      processing = false;
+      try { rec.abort(); } catch (_) {}
+      isListening = false;
+      micBtn.classList.remove("is-listening");
       hideChips();
       appendTranscript("user", q);
       sendAndSpeak(q);
