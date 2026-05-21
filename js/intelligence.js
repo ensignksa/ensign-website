@@ -536,17 +536,50 @@
     rec.continuous = true;
     rec.maxAlternatives = 1;
 
-    const SILENCE_MS = 1400;          // wait this long after last speech before treating it as end-of-turn
-    const BARGE_IN_MIN_CHARS = 3;     // user must say at least this many chars to interrupt the AI
+    const SILENCE_MS = 1400;           // wait this long after last speech before treating it as end-of-turn
+    const POST_AI_MUTE_MS = 6000;      // after the AI finishes, give the user this long to reply before auto-muting
+    // Substance filters — protect against ambient/aside speech being treated
+    // as conversation. An utterance is "substantive" if it's 3+ words OR ends
+    // in sentence-ending punctuation. Short confirmations are allowed only
+    // when the last AI message was a question.
+    const MIN_WORDS = 3;
+    const CONFIRM_RE = /^(yes|no|ok|okay|sure|yeah|nope|yep|nah|yup|exactly|correct|right|please|نعم|لا|تمام|أكيد|صح|بالطبع)\b/i;
+    const SENTENCE_END_RE = /[.!?؟]\s*$/;
+    function lastAIAskedQuestion() {
+      const lastAI = [...(session?.messages || [])].reverse().find((m) => m.role === "assistant");
+      return !!(lastAI && /[?؟]\s*$/.test(String(lastAI.content || "").trim()));
+    }
+    function isSubstantive(text) {
+      const t = String(text || "").trim();
+      if (!t) return false;
+      if (SENTENCE_END_RE.test(t)) return true;
+      const words = t.split(/\s+/).filter(Boolean);
+      return words.length >= MIN_WORDS;
+    }
+    function shouldSend(text) {
+      const t = String(text || "").trim();
+      if (!t) return false;
+      if (isSubstantive(t)) return true;
+      // Single-word "yes / no / ok" only counts when the AI just asked a question.
+      if (CONFIRM_RE.test(t) && lastAIAskedQuestion()) return true;
+      return false;
+    }
+    function shouldBargeIn(text) {
+      // Same threshold as sending — no point stopping the AI for an utterance
+      // we wouldn't even send back.
+      return shouldSend(text);
+    }
 
     let pendingUtterance = "";
     let silenceTimer = null;
+    let postAIMuteTimer = null;
     let bookCTAShown = false;
     let isAISpeaking = false;
     let processing = false;            // in flight to API or AI is speaking
     let chipsHidden = false;
     let recRunning = false;
     let endingSession = false;
+    let micMuted = false;
 
     voiceState = {
       rec,
@@ -557,6 +590,8 @@
       teardown: voiceTeardown,
       get endingSession() { return endingSession; },
       set endingSession(v) { endingSession = v; },
+      // Surface the auto-mute timer so voiceTeardown can clear it.
+      get postAIMuteTimer() { return postAIMuteTimer; },
     };
 
     function setStatus(text) {
@@ -591,6 +626,13 @@
       const userText = (pendingUtterance || "").trim();
       pendingUtterance = "";
       if (!userText) return;
+      // Filter ambient / aside speech that isn't intended for the AI.
+      if (!shouldSend(userText)) {
+        // Quietly clear the visible interim text and keep listening.
+        if (!isAISpeaking && !processing) setStatus(t.listening || "Listening.");
+        return;
+      }
+      cancelPostAIMute();
       hideChips();
       appendTranscript("user", userText);
       sendAndSpeak(userText);
@@ -598,6 +640,7 @@
 
     async function sendAndSpeak(userText) {
       processing = true;
+      cancelPostAIMute();
       setStatus(t.thinking || "Thinking…");
       try {
         const replyText = await sendVoiceTurn(userText);
@@ -607,6 +650,7 @@
         console.error("[voice] turn error", e);
         processing = false;
         setStatus(t.listening || "Listening.");
+        armPostAIMute();
       }
     }
 
@@ -615,9 +659,43 @@
       // Cancel any in-flight greeting
       try { window.speechSynthesis?.cancel?.(); } catch (_) {}
       isAISpeaking = false;
+      cancelPostAIMute();
       hideChips();
       appendTranscript("user", q);
       sendAndSpeak(q);
+    }
+
+    // ── Post-AI auto-mute ──
+    // After the AI finishes speaking, give the user a fixed window to reply
+    // (POST_AI_MUTE_MS). If they say nothing substantive in that window, mute
+    // the mic so ambient/aside speech doesn't get captured. They can tap to
+    // re-arm at any time.
+    function armPostAIMute() {
+      cancelPostAIMute();
+      postAIMuteTimer = setTimeout(() => {
+        // Don't auto-mute if anything is in flight or the user is mid-utterance.
+        if (processing || isAISpeaking) return;
+        if (pendingUtterance && pendingUtterance.trim()) return;
+        applyMute(true);
+      }, POST_AI_MUTE_MS);
+    }
+    function cancelPostAIMute() {
+      if (postAIMuteTimer) { clearTimeout(postAIMuteTimer); postAIMuteTimer = null; }
+    }
+
+    function applyMute(muted) {
+      micMuted = muted;
+      if (muted) {
+        try { rec.abort(); } catch (_) {}
+        micBtn.classList.add("is-muted");
+        micBtn.classList.remove("is-listening");
+        setStatus(t.idleHint || "Mic paused. Tap to speak.");
+      } else {
+        endingSession = false;
+        micBtn.classList.remove("is-muted");
+        setStatus(t.listening || "Listening.");
+        try { rec.start(); } catch (_) {}
+      }
     }
 
     rec.onstart = () => {
@@ -637,9 +715,13 @@
       const combined = (finalText + interim).trim();
       if (!combined) return;
 
-      // Barge-in: if AI is speaking and the user said something substantive,
-      // cut the AI off immediately.
-      if (isAISpeaking && combined.length >= BARGE_IN_MIN_CHARS) {
+      // User is engaging — cancel any pending auto-mute.
+      cancelPostAIMute();
+
+      // Barge-in: only when the utterance is substantive enough that we'd
+      // actually send it. Stops the AI for real interruptions, ignores
+      // ambient fragments.
+      if (isAISpeaking && shouldBargeIn(combined)) {
         try { window.speechSynthesis?.cancel?.(); } catch (_) {}
         isAISpeaking = false;
         processing = false;
@@ -650,7 +732,7 @@
       if (s && !isAISpeaking) s.textContent = "“" + combined + "”";
 
       // Reset the silence timer on every new chunk; when it expires, treat
-      // the utterance as complete and send it.
+      // the utterance as complete and (if it passes shouldSend) send it.
       if (silenceTimer) clearTimeout(silenceTimer);
       silenceTimer = setTimeout(handleEndOfTurn, confidentFinal ? 600 : SILENCE_MS);
     };
@@ -669,8 +751,9 @@
     rec.onend = () => {
       recRunning = false;
       micBtn.classList.remove("is-listening");
-      // Continuous mode: keep recognition alive unless we're tearing down.
-      if (!endingSession) {
+      // Continuous mode: keep recognition alive unless the session is ending
+      // OR the user / auto-mute has paused the mic.
+      if (!endingSession && !micMuted) {
         setTimeout(() => { try { rec.start(); } catch (_) {} }, 200);
       }
     };
@@ -678,40 +761,37 @@
     function speakOut(text) {
       try {
         const synth = window.speechSynthesis;
-        if (!synth) { processing = false; setStatus(t.listening || "Listening."); return; }
+        if (!synth) { processing = false; setStatus(t.listening || "Listening."); armPostAIMute(); return; }
         const utter = new SpeechSynthesisUtterance(text);
         utter.lang = lang === "ar" ? "ar-SA" : "en-US";
         utter.rate = 1.0;
         utter.pitch = 1.0;
         utter.onstart = () => { isAISpeaking = true; processing = true; setStatus(t.speaking || "Speaking…"); };
-        utter.onend = () => { isAISpeaking = false; processing = false; setStatus(t.listening || "Listening."); };
-        utter.onerror = () => { isAISpeaking = false; processing = false; setStatus(t.listening || "Listening."); };
+        utter.onend = () => {
+          isAISpeaking = false;
+          processing = false;
+          setStatus(t.listening || "Listening.");
+          armPostAIMute();
+        };
+        utter.onerror = () => {
+          isAISpeaking = false;
+          processing = false;
+          setStatus(t.listening || "Listening.");
+          armPostAIMute();
+        };
         synth.cancel();
         synth.speak(utter);
       } catch (_) {
         processing = false;
         setStatus(t.listening || "Listening.");
+        armPostAIMute();
       }
     }
 
-    // Mic button is now a toggle for muting the mic (rare case). Tap once to
-    // pause listening, tap again to resume. Default is always-listening.
-    let micMuted = false;
-    micBtn.addEventListener("click", () => {
-      micMuted = !micMuted;
-      if (micMuted) {
-        endingSession = true;
-        try { rec.abort(); } catch (_) {}
-        micBtn.classList.add("is-muted");
-        micBtn.classList.remove("is-listening");
-        setStatus(t.idleHint || "Mic paused. Tap to resume.");
-      } else {
-        endingSession = false;
-        micBtn.classList.remove("is-muted");
-        setStatus(t.listening || "Listening.");
-        try { rec.start(); } catch (_) {}
-      }
-    });
+    // Mic button toggles mute. Auto-mute fires automatically after the AI
+    // finishes speaking + a quiet window, so the mic doesn't sit listening
+    // forever to ambient/aside speech in the room.
+    micBtn.addEventListener("click", () => applyMute(!micMuted));
 
     // ── Greeting on entry — AI speaks first, then auto-listens ──
     // Same opening text the chat surface uses, spoken aloud + shown in
@@ -749,7 +829,8 @@
   }
 
   // Cleanup for voice session — stops continuous recognition, cancels any
-  // in-flight TTS, and signals the rec.onend handler to NOT auto-restart.
+  // in-flight TTS, clears the auto-mute timer, and signals the rec.onend
+  // handler to NOT auto-restart.
   let voiceState = null;
   function voiceTeardown() {
     if (!voiceState) return;
@@ -757,6 +838,7 @@
     try { voiceState.rec?.abort?.(); } catch (_) {}
     try { window.speechSynthesis?.cancel?.(); } catch (_) {}
     if (voiceState.timer) clearInterval(voiceState.timer);
+    if (voiceState.postAIMuteTimer) clearTimeout(voiceState.postAIMuteTimer);
     voiceState = null;
   }
 
