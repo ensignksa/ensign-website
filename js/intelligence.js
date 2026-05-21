@@ -664,13 +664,42 @@
 
     // ── Push-to-talk controls ──
     // The mic is OFF by default. User taps mic to start a turn. Recognition
-    // stops automatically when they pause (browser detects silence) or via
-    // the silence timer below. We never auto-restart listening after AI
-    // speech — that prevented the mic from catching the AI's own voice.
+    // stops automatically when they pause (browser detects silence). We
+    // never auto-restart listening after AI speech — that prevented the
+    // mic from catching the AI's own voice.
     function startListening() {
-      if (isListening || isAISpeaking || processing) return;
+      if (isListening) return;
+      // Force-clear any lingering speech / processing flags so the user
+      // tapping mic ALWAYS gets them listening, no matter what state we
+      // were in. (Previous version bailed silently when isAISpeaking or
+      // processing was stuck true, which made the mic feel "dead".)
       pendingUtterance = "";
-      try { rec.start(); } catch (_) {}
+      isAISpeaking = false;
+      processing = false;
+      stopCurrentSpeech();
+      // Visible tap-feedback so the user sees their tap registered even
+      // before recognition kicks in.
+      micBtn.classList.add("is-pressed");
+      setTimeout(() => micBtn.classList.remove("is-pressed"), 240);
+      setStatus(t.listening || "Listening.");
+      // Defensive: abort any half-running recognition, wait a tick for
+      // the state machine to settle, then start. Retry once if Chrome
+      // throws an InvalidStateError.
+      try { rec.abort(); } catch (_) {}
+      const tryStart = (attempt) => {
+        try { rec.start(); }
+        catch (e) {
+          console.warn("[voice] rec.start() attempt", attempt, "failed:", e?.message || e);
+          if (attempt < 2) setTimeout(() => tryStart(attempt + 1), 250);
+          else {
+            // Last resort: surface a hint instead of dying silently.
+            setStatus(t.tapToSpeak || "Tap mic to speak.");
+            isListening = false;
+            micBtn.classList.remove("is-listening");
+          }
+        }
+      };
+      setTimeout(() => tryStart(1), 80);
     }
     function stopListening() {
       if (silenceTimer) { clearTimeout(silenceTimer); silenceTimer = null; }

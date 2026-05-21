@@ -1604,3 +1604,16 @@ body.ei-locked { overflow: hidden; }
   background: var(--ei-muted);
   animation: none;
 }
+
+/* Tap-feedback flash on mic button — gives instant visual confirmation
+   that the click registered even before recognition kicks in. Removes
+   the "dead button" feeling when there's a 100-200ms startup delay. */
+.ei-voice-mic.is-pressed {
+  transform: scale(0.92);
+  background: rgba(0, 217, 192, 0.18);
+  border-color: var(--ei-oasis);
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+.ei-voice-mic.is-pressed .ei-voice-mic-dot {
+  background: var(--ei-oasis);
+}

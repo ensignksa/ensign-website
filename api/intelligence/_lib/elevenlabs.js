@@ -77,9 +77,13 @@ export async function synthesizeSpeech({ text, lang, voiceId, modelId } = {}) {
         // the cloned voice identity. Speed below 1.0 for a more human,
         // less rushed pace.
         voice_settings: {
-          stability: 0.5,
+          // Higher stability = more consistent tone turn-to-turn (less
+          // variation in expressiveness). Lower style = less prosodic
+          // flourish. Both bumped from the previous values because the
+          // user reported the voice felt different on every reply.
+          stability: 0.7,
           similarity_boost: 0.85,
-          style: 0.15,
+          style: 0.1,
           speed: 0.9,
           use_speaker_boost: true,
         },
