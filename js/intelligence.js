@@ -759,39 +759,91 @@
     };
 
     function speakOut(text) {
-      try {
-        const synth = window.speechSynthesis;
-        if (!synth) { processing = false; setStatus(t.listening || "Listening."); armPostAIMute(); return; }
-        const utter = new SpeechSynthesisUtterance(text);
-        utter.lang = lang === "ar" ? "ar-SA" : "en-US";
-        utter.rate = 1.0;
-        utter.pitch = 1.0;
-        utter.onstart = () => { isAISpeaking = true; processing = true; setStatus(t.speaking || "Speaking…"); };
-        utter.onend = () => {
-          isAISpeaking = false;
-          processing = false;
-          setStatus(t.listening || "Listening.");
-          armPostAIMute();
-        };
-        utter.onerror = () => {
-          isAISpeaking = false;
-          processing = false;
-          setStatus(t.listening || "Listening.");
-          armPostAIMute();
-        };
-        synth.cancel();
-        synth.speak(utter);
-      } catch (_) {
+      const synth = window.speechSynthesis;
+      if (!synth || !text) {
         processing = false;
         setStatus(t.listening || "Listening.");
         armPostAIMute();
+        return;
       }
+      // Chrome's TTS gets blocked when continuous recognition is active. Pause
+      // recognition while we speak; restart it when TTS ends. Mic-tap remains
+      // the way to interrupt the AI mid-speech.
+      const wasMuted = micMuted;
+      try { rec.abort(); } catch (_) {}
+      recRunning = false;
+      micBtn.classList.remove("is-listening");
+
+      // Clean state before speaking — Chrome can stall if cancel/speak race.
+      try { synth.cancel(); } catch (_) {}
+      if (synth.paused) { try { synth.resume(); } catch (_) {} }
+
+      const fire = () => {
+        try {
+          const utter = new SpeechSynthesisUtterance(text);
+          utter.lang = lang === "ar" ? "ar-SA" : "en-US";
+          utter.rate = 1.0;
+          utter.pitch = 1.0;
+          utter.volume = 1.0;
+
+          utter.onstart = () => {
+            isAISpeaking = true;
+            processing = true;
+            setStatus(t.speakingTapToInterrupt || "Speaking — tap mic to interrupt.");
+          };
+          const wrapUp = () => {
+            isAISpeaking = false;
+            processing = false;
+            setStatus(t.listening || "Listening.");
+            // Restart recognition unless the user explicitly muted before/during speech.
+            if (!wasMuted && !micMuted && !endingSession) {
+              setTimeout(() => { try { rec.start(); } catch (_) {} }, 120);
+            }
+            armPostAIMute();
+          };
+          utter.onend = wrapUp;
+          utter.onerror = (ev) => {
+            console.warn("[voice] tts error", ev?.error || ev);
+            wrapUp();
+          };
+
+          synth.speak(utter);
+        } catch (e) {
+          console.error("[voice] speakOut threw", e);
+          isAISpeaking = false;
+          processing = false;
+          setStatus(t.listening || "Listening.");
+          if (!wasMuted && !micMuted && !endingSession) {
+            setTimeout(() => { try { rec.start(); } catch (_) {} }, 120);
+          }
+          armPostAIMute();
+        }
+      };
+      // Small delay so cancel() + abort() settle before the new utterance fires.
+      setTimeout(fire, 80);
     }
 
-    // Mic button toggles mute. Auto-mute fires automatically after the AI
-    // finishes speaking + a quiet window, so the mic doesn't sit listening
-    // forever to ambient/aside speech in the room.
-    micBtn.addEventListener("click", () => applyMute(!micMuted));
+    // Mic button now does double duty:
+    //   1. While the AI is speaking → cancel TTS, immediately start listening
+    //      (this is the "interrupt" gesture).
+    //   2. Otherwise → toggle mute / unmute.
+    micBtn.addEventListener("click", () => {
+      if (isAISpeaking) {
+        try { window.speechSynthesis?.cancel?.(); } catch (_) {}
+        isAISpeaking = false;
+        processing = false;
+        cancelPostAIMute();
+        // Make sure the mic is unmuted and start listening immediately.
+        if (micMuted) {
+          applyMute(false);
+        } else {
+          setStatus(t.listening || "Listening.");
+          try { rec.start(); } catch (_) {}
+        }
+        return;
+      }
+      applyMute(!micMuted);
+    });
 
     // ── Greeting on entry — AI speaks first, then auto-listens ──
     // Same opening text the chat surface uses, spoken aloud + shown in

@@ -157,12 +157,14 @@ function buildSuggestions(lang, industry) {
 
 function buildFirstMessage(lang, profile) {
   const fn = firstName(profile?.name);
+  // Mode-neutral wording so it reads naturally on both the chat and voice
+  // surfaces — "tell me" covers both typing and speaking.
   if (lang === "ar") {
     const greeting = fn ? `مرحباً ${fn}،` : "مرحباً،";
-    return `${greeting} أنا موظف ذكي من Ensign. يمكنك أن تبدأ بواحدة من هذه، أو اكتب ما يدور في بالك.`;
+    return `${greeting} أنا موظف ذكي من Ensign. اختر واحدة من هذه، أو أخبرني بما يدور في بالك.`;
   }
   const greeting = fn ? `Hi ${fn},` : "Hi,";
-  return `${greeting} I'm an AI employee from Ensign. Pick one of these to start, or type what's on your mind.`;
+  return `${greeting} I'm an AI employee from Ensign. Pick one of these to start, or tell me what's on your mind.`;
 }
 
 export default async function handler(req, res) {
