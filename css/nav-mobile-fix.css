@@ -1,0 +1,91 @@
+/* ===========================================================
+   Mobile nav fix — restores burger menu on section pages.
+   Overrides legacy "cram-fit" inline rules that hid the
+   .nav-toggle and .mobile-menu and forced .nav-links to
+   stay visible on mobile. Loaded AFTER inline <style> so
+   later-loaded rules with !important win on equal specificity.
+   =========================================================== */
+
+/* Burger button */
+.nav-toggle {
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  padding: 6px;
+  width: 32px;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.nav-toggle span {
+  display: block;
+  height: 1.5px;
+  background: #0A0A0A;
+  border-radius: 2px;
+  transition: transform .3s, opacity .3s;
+  width: 18px;
+}
+.nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* Mobile drawer */
+.mobile-menu {
+  position: fixed;
+  top: 78px;
+  left: 16px;
+  right: 16px;
+  z-index: 199;
+  border-radius: 18px;
+  padding: 12px 12px 16px;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(242,239,232,.97);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(10,10,10,.08);
+  box-shadow: 0 20px 40px rgba(0,0,0,.28);
+  animation: navmob-in .2s ease;
+}
+@keyframes navmob-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+.mobile-menu.open { display: flex !important; }
+.mobile-menu-links { display: flex; flex-direction: column; gap: 2px; }
+.mobile-menu a {
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #0A0A0A;
+  text-decoration: none;
+  transition: background .2s, color .2s;
+}
+.mobile-menu a:hover { background: rgba(10,10,10,.06); }
+.mobile-menu-cta {
+  margin-top: 8px;
+  background: #0A0A0A !important;
+  color: #F2EFE8 !important;
+  border-radius: 999px !important;
+  text-align: center;
+  padding: 14px 16px !important;
+  font-weight: 600 !important;
+}
+
+/* RTL */
+[dir="rtl"] .mobile-menu, html[lang="ar"] .mobile-menu { text-align: right; }
+
+/* ─── Mobile breakpoint: restore burger, hide cram-fit links ─── */
+@media (max-width: 900px) {
+  .nav { gap: 12px !important; padding: 8px 10px 8px 18px !important; flex-wrap: nowrap !important; }
+  .nav-logo-img { height: 18px !important; }
+  .nav-links { display: none !important; }
+  .nav-links a { font-size: 14px !important; padding: 8px 12px !important; }
+  .nav-cta { display: none !important; }
+  .nav-toggle { display: flex !important; }
+  .container, .container-narrow { padding-left: 18px !important; padding-right: 18px !important; }
+}
+
+@media (max-width: 380px) {
+  .nav { padding: 6px 8px 6px 14px !important; gap: 8px !important; }
+  .nav-logo-img { height: 16px !important; }
+}
