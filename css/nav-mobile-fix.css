@@ -1,9 +1,8 @@
 /* ===========================================================
-   Mobile nav fix — restores burger menu on section pages.
-   Overrides legacy "cram-fit" inline rules that hid the
-   .nav-toggle and .mobile-menu and forced .nav-links to
-   stay visible on mobile. Loaded AFTER inline <style> so
-   later-loaded rules with !important win on equal specificity.
+   Mobile nav fix — matches homepage exactly.
+   Full-screen dark overlay, centered serif links, white CTA pill.
+   Overrides legacy "cram-fit" inline rules that hid the burger
+   and kept the desktop links visible on mobile.
    =========================================================== */
 
 /* Burger button */
@@ -30,49 +29,55 @@
 .nav-toggle.open span:nth-child(2) { opacity: 0; }
 .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
-/* Mobile drawer */
+/* ─── Full-screen mobile overlay (matches homepage) ─── */
 .mobile-menu {
   position: fixed;
-  top: 78px;
-  left: 16px;
-  right: 16px;
-  z-index: 199;
-  border-radius: 18px;
-  padding: 12px 12px 16px;
+  inset: 0;
+  z-index: 200;
+  display: none;
+  background: rgba(5, 9, 18, 0.97);
   flex-direction: column;
-  gap: 2px;
-  background: rgba(242,239,232,.97);
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  border: 1px solid rgba(10,10,10,.08);
-  box-shadow: 0 20px 40px rgba(0,0,0,.28);
-  animation: navmob-in .2s ease;
+  align-items: center;
+  justify-content: center;
 }
-@keyframes navmob-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
-.mobile-menu.open { display: flex !important; }
-.mobile-menu-links { display: flex; flex-direction: column; gap: 2px; }
-.mobile-menu a {
-  padding: 12px 16px;
-  border-radius: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #0A0A0A;
-  text-decoration: none;
-  transition: background .2s, color .2s;
-}
-.mobile-menu a:hover { background: rgba(10,10,10,.06); }
-.mobile-menu-cta {
-  margin-top: 8px;
-  background: #0A0A0A !important;
-  color: #F2EFE8 !important;
-  border-radius: 999px !important;
-  text-align: center;
-  padding: 14px 16px !important;
-  font-weight: 600 !important;
-}
+.mobile-menu.open { display: flex !important; animation: navmob-fade .25s ease forwards; }
+@keyframes navmob-fade { from { opacity: 0; } to { opacity: 1; } }
 
-/* RTL */
-[dir="rtl"] .mobile-menu, html[lang="ar"] .mobile-menu { text-align: right; }
+/* Centered large serif links */
+.mobile-menu-links {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-bottom: 44px;
+}
+.mobile-menu-links a {
+  font-size: clamp(28px, 7.5vw, 38px);
+  font-weight: 300;
+  font-family: 'Fraunces', 'Times New Roman', serif;
+  color: #F2EFE8 !important;
+  padding: 10px 32px;
+  letter-spacing: -.03em;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.mobile-menu-links a:hover { opacity: .5; }
+.mobile-menu-links a.active { color: #00D9C0 !important; opacity: 1; }
+
+/* CTA + lang footer */
+.mobile-menu-cta {
+  background: #F2EFE8 !important;
+  color: #0A0A0A !important;
+  padding: 13px 36px !important;
+  border-radius: 999px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  letter-spacing: -.01em !important;
+  margin-top: 0 !important;
+  text-align: center;
+  text-decoration: none;
+}
+.mobile-menu-cta:hover { opacity: .9; }
 
 /* ─── Mobile breakpoint: restore burger, hide cram-fit links ─── */
 @media (max-width: 900px) {
