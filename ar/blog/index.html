@@ -827,6 +827,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" aria-label="إغلاق القائمة">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
   <nav class="mobile-menu-links">
     <a href="/ar/ai-solutions.html">حلول الذكاء الاصطناعي</a>
     <a href="/ar/agency.html">وكالة التسويق</a>
@@ -835,7 +838,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/ar/about.html">من نحن</a>
     <a href="/ar/blog/" class="active">المدونة</a>
   </nav>
-  <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-event-name="book_call_click" data-cta-location="mobile_menu">احجز مكالمة</a>
+  <div class="mobile-menu-foot">
+    <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-event-name="book_call_click" data-cta-location="mobile_menu">احجز مكالمة</a>
+    <a href="/blog/" class="mobile-menu-lang-link">English</a>
+  </div>
 </div>
 
 <script>
@@ -851,6 +857,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     document.body.style.overflow = open ? 'hidden' : '';
   }
   navToggle.addEventListener('click', function(){ setMenu(!mobileMenu.classList.contains('open')); });
+  var closeBtn = mobileMenu.querySelector('.mobile-menu-close');
+  if(closeBtn) closeBtn.addEventListener('click', function(){ setMenu(false); });
   mobileMenu.querySelectorAll('a').forEach(function(a){
     a.addEventListener('click', function(){ setMenu(false); });
   });

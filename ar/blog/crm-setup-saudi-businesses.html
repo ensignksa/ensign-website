@@ -561,37 +561,73 @@ html[lang="ar"] video.atmos-video{
 }
 </style>
   <script src="/assets/js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/nav-mobile-fix.css">
 </head>
 <body dir="rtl">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTFT7PF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<header class="site-nav" id="site-nav">
-<a class="nav-brand" href="../ar/">
-<img alt="وكالة إنساين للدعاية والإعلان" class="nav-logo-img" src="../../assets/logos/logo-main.png"/>
-</a>
-<nav aria-label="Main navigation" class="nav-links">
-<a href="/ar/ai-solutions.html">حلول الذكاء الاصطناعي</a>
-<a href="/ar/agency.html">وكالة التسويق</a>
-<a href="/ar/ensign-os.html">نظام إنساين التشغيلي</a>
-<a href="../#work">أعمالنا</a>
-<a href="../ar/blog/">المدونة</a>
-</nav>
-<div class="nav-actions">
-<a aria-label="Switch language" class="nav-lang" href="/blog/crm-setup-saudi-businesses.html">EN</a>
-<a class="nav-cta" href="/ar/book.html" rel="noopener noreferrer" target="_blank" data-event-name="book_call_click" data-cta-location="nav">اتصل بنا</a>
-<button aria-expanded="false" aria-label="Toggle menu" class="nav-burger" id="nav-burger"><span></span><span></span><span></span></button>
+<div class="nav-wrap">
+  <header class="nav">
+    <a href="/ar/" class="nav-brand">
+      <img src="../../assets/logos/logo-main.png" alt="وكالة إنساين للذكاء الاصطناعي والتسويق" class="nav-logo-img" fetchpriority="high">
+    </a>
+    <nav class="nav-links">
+      <a href="/ar/ai-solutions.html">حلول الذكاء الاصطناعي</a>
+      <a href="/ar/agency.html">وكالة التسويق</a>
+      <a href="/ar/ensign-os.html">نظام إنساين التشغيلي</a>
+      <a href="/vision-2030.html">رؤية 2030</a>
+      <a href="/ar/work.html">أعمالنا</a>
+      <a href="/ar/blog/" class="active">المدونة</a>
+    </nav>
+    <a href="/blog/crm-setup-saudi-businesses.html" class="nav-lang" aria-label="Switch language">EN</a>
+    <button class="nav-toggle" aria-label="فتح القائمة" aria-expanded="false" type="button"><span></span><span></span><span></span></button>
+    <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" class="nav-cta" data-event-name="book_call_click" data-cta-location="nav">احجز مكالمة <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </header>
 </div>
-</header>
-<nav aria-label="Mobile navigation" class="nav-mobile" id="nav-mobile">
-<a href="/ar/ai-solutions.html">حلول الذكاء الاصطناعي</a>
-<a href="/ar/agency.html">وكالة التسويق</a>
-<a href="/ar/ensign-os.html">نظام إنساين التشغيلي</a>
-<a href="../#work">أعمالنا</a>
-<a href="../ar/blog/">المدونة</a>
-<a class="nav-mobile-cta" href="/ar/book.html" rel="noopener noreferrer" target="_blank" data-event-name="book_call_click" data-cta-location="mobile_menu">اتصل بنا</a>
-</nav>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" aria-label="إغلاق القائمة">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <nav class="mobile-menu-links">
+    <a href="/ar/ai-solutions.html">حلول الذكاء الاصطناعي</a>
+    <a href="/ar/agency.html">وكالة التسويق</a>
+    <a href="/ar/ensign-os.html">نظام إنساين التشغيلي</a>
+    <a href="/vision-2030.html">رؤية 2030</a>
+    <a href="/ar/work.html">أعمالنا</a>
+    <a href="/ar/blog/" class="active">المدونة</a>
+  </nav>
+  <div class="mobile-menu-foot">
+    <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-event-name="book_call_click" data-cta-location="mobile_menu">احجز مكالمة</a>
+    <a href="/blog/crm-setup-saudi-businesses.html" class="mobile-menu-lang-link">EN</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var navToggle = document.querySelector('.nav-toggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(!navToggle || !mobileMenu) return;
+  function setMenu(open){
+    mobileMenu.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  navToggle.addEventListener('click', function(){ setMenu(!mobileMenu.classList.contains('open')); });
+  var closeBtn = mobileMenu.querySelector('.mobile-menu-close');
+  if(closeBtn) closeBtn.addEventListener('click', function(){ setMenu(false); });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setMenu(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
+  });
+})();
+</script>
 <!-- Blog Post Hero -->
 <section class="section blog-post-hero">
 <div class="container">
