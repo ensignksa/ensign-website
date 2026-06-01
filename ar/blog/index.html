@@ -799,6 +799,7 @@ html[lang="ar"] video.atmos-video{
 }
 </style>
   <script src="/assets/js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/nav-mobile-fix.css">
 </head>
 <body dir="rtl">
 <!-- Google Tag Manager (noscript) -->
@@ -819,10 +820,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a href="/ar/work.html">أعمالنا</a>
 <a class="active" href="./">المدونة</a>
 </nav>
+<button class="nav-toggle" aria-label="فتح القائمة" aria-expanded="false" type="button"><span></span><span></span><span></span></button>
 <a aria-label="Switch language" class="nav-lang" href="/blog/">EN</a>
 <a class="nav-cta" data-magnetic="" href="/ar/book.html" rel="noopener noreferrer" target="_blank" data-event-name="book_call_click" data-cta-location="nav">اتصل بنا</a>
 </header>
 </div>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-links">
+    <a href="/ar/ai-solutions.html">حلول الذكاء الاصطناعي</a>
+    <a href="/ar/agency.html">وكالة التسويق</a>
+    <a href="/ar/ensign-os.html">نظام إنساين التشغيلي</a>
+    <a href="/ar/work.html">أعمالنا</a>
+    <a href="/ar/about.html">من نحن</a>
+    <a href="/ar/blog/" class="active">المدونة</a>
+  </nav>
+  <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-event-name="book_call_click" data-cta-location="mobile_menu">احجز مكالمة</a>
+</div>
+
+<script>
+(function(){
+  var navToggle = document.querySelector('.nav-toggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(!navToggle || !mobileMenu) return;
+  function setMenu(open){
+    mobileMenu.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  navToggle.addEventListener('click', function(){ setMenu(!mobileMenu.classList.contains('open')); });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setMenu(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
+  });
+})();
+</script>
 <!-- HERO -->
 <section class="blog-hero">
 <div class="container">

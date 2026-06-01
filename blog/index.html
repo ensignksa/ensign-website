@@ -405,6 +405,7 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
 
 </style>
   <script src="/assets/js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/nav-mobile-fix.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -426,12 +427,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <a href="/work.html">Our Work</a>
       <a href="./" class="active">Blog</a>
     </nav>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" type="button"><span></span><span></span><span></span></button>
     <a href="/ar/blog/" class="nav-lang" aria-label="Switch language">عربي</a>
     <a href="/book.html" target="_blank" rel="noopener noreferrer" class="nav-cta" data-magnetic data-event-name="book_call_click" data-cta-location="nav">Book a Call
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
   </header>
 </div>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <nav class="mobile-menu-links">
+    <a href="/ai-solutions.html">AI Solutions</a>
+    <a href="/agency.html">Agency</a>
+    <a href="/ensign-os.html">Ensign OS</a>
+    <a href="/vision-2030.html">Vision 2030</a>
+    <a href="/work.html">Our Work</a>
+    <a href="/about.html">About</a>
+    <a href="/blog/" class="active">Blog</a>
+  </nav>
+  <a href="/book.html" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-event-name="book_call_click" data-cta-location="mobile_menu">Book a Call</a>
+</div>
+
+<script>
+(function(){
+  var navToggle = document.querySelector('.nav-toggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(!navToggle || !mobileMenu) return;
+  function setMenu(open){
+    mobileMenu.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  navToggle.addEventListener('click', function(){ setMenu(!mobileMenu.classList.contains('open')); });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setMenu(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
+  });
+})();
+</script>
 
 <!-- HERO -->
 <section class="blog-hero">
