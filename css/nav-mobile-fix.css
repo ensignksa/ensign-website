@@ -175,18 +175,28 @@
 }
 .mobile-menu-lang-link:hover { color: rgba(242,239,232,.8) !important; }
 
-/* ─── Mobile breakpoint: restore burger, hide cram-fit links ─── */
+/* ─── Mobile breakpoint: compact centered pill, burger menu ─── */
 @media (max-width: 900px) {
-  .nav { gap: 12px !important; padding: 8px 10px 8px 18px !important; flex-wrap: nowrap !important; }
+  .nav-wrap { padding: 0 16px !important; }
+  .nav {
+    gap: 14px !important;
+    padding: 8px 8px 8px 18px !important;
+    flex-wrap: nowrap !important;
+    width: auto !important;
+    max-width: calc(100% - 32px) !important;
+  }
   .nav-logo-img { height: 18px !important; }
   .nav-links { display: none !important; }
   .nav-links a { font-size: 14px !important; padding: 8px 12px !important; }
   .nav-cta { display: none !important; }
   .nav-toggle { display: flex !important; }
+  .nav-brand { flex-shrink: 0 !important; }
+  .nav-lang { flex-shrink: 0 !important; }
   .container, .container-narrow { padding-left: 18px !important; padding-right: 18px !important; }
 }
 
 @media (max-width: 380px) {
-  .nav { padding: 6px 8px 6px 14px !important; gap: 8px !important; }
+  .nav-wrap { padding: 0 12px !important; }
+  .nav { padding: 6px 6px 6px 14px !important; gap: 10px !important; }
   .nav-logo-img { height: 16px !important; }
 }
