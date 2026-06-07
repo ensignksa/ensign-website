@@ -167,6 +167,36 @@ section{position:relative;z-index:2;}
   .ai-feature-text{padding:0;}
 }
 
+/* AI Generated Media — full-bleed heroes + 4-up vertical rows */
+.ai-stack{display:flex;flex-direction:column;gap:88px;}
+.ai-hero{position:relative;width:100vw;margin-right:calc(50% - 50vw);margin-left:calc(50% - 50vw);overflow:hidden;background:#0A0A0A;}
+.ai-hero-media{position:relative;width:100%;}
+.ai-hero-media video,.ai-hero-media img{display:block;width:100%;height:auto;max-height:88vh;object-fit:cover;}
+.ai-hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(10,10,10,.55) 100%);}
+.ai-hero-caption{position:absolute;bottom:48px;max-width:440px;padding:26px 30px;background:rgba(10,10,10,.55);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border:1px solid rgba(242,239,232,.1);border-radius:16px;color:var(--ink);z-index:2;text-align:right;direction:rtl;}
+.ai-hero.is-left .ai-hero-caption{left:48px;}
+.ai-hero.is-right .ai-hero-caption{right:48px;}
+.ai-hero-cat{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#00D9C0;display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;direction:ltr;}
+.ai-hero-cat::before{content:"";width:6px;height:6px;border-radius:50%;background:#00D9C0;}
+.ai-hero-title{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(22px,2.4vw,32px);line-height:1.2;letter-spacing:-.02em;margin-bottom:12px;color:var(--ink);}
+.ai-hero-title em{font-style:italic;color:#00D9C0;}
+.ai-hero-desc{font-size:14.5px;line-height:1.7;color:rgba(242,239,232,.78);}
+.ai-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.ai-vcard{position:relative;border-radius:12px;overflow:hidden;background:#0A0A0A;aspect-ratio:9/16;border:1px solid rgba(242,239,232,.06);transition:transform .5s var(--ease);}
+.ai-vcard:hover{transform:translateY(-4px);}
+.ai-vcard video,.ai-vcard img{width:100%;height:100%;object-fit:cover;display:block;}
+@media(max-width:900px){
+  .ai-stack{gap:56px;}
+  .ai-grid-4{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .ai-hero-caption{position:relative;bottom:auto;max-width:none;border-radius:0;border:none;border-top:1px solid rgba(242,239,232,.08);padding:24px 28px;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;}
+  .ai-hero.is-left .ai-hero-caption,.ai-hero.is-right .ai-hero-caption{left:0;right:0;}
+  .ai-hero-media video,.ai-hero-media img{max-height:none;}
+  .ai-hero-media::after{display:none;}
+}
+@media(max-width:540px){
+  .ai-grid-4{grid-template-columns:1fr;}
+}
+
 /* Data visualization (replaces screenshots — Growth & Performance) */
 .proof-data-visual{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:12px 14px;background:linear-gradient(135deg,rgba(0,217,192,.045) 0%,transparent 60%),#0A1A26;}
 .data-viz-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:#00D9C0;letter-spacing:-.02em;line-height:1;}
@@ -1338,127 +1368,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <!-- ── AI Generated Media ── -->
 <div class="work-panel active" data-panel="ai-media">
-<div class="ai-feature-list">
-<div class="ai-feature">
-<div class="ai-feature-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-01.mp4" type="video/mp4"/></video></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Film</div>
-<h3 class="ai-feature-title">فيلم علامة تجارية <em>سكني.</em></h3>
-<p class="ai-feature-desc">فيلم لعلامة تجارية لعميل في مجال العقارات السكنية، معمارية ونمط حياة وأجواء تم بناؤها بالكامل بالذكاء الاصطناعي، محتوى عقاري سينمائي دون تكلفة إنتاج.</p>
+<div class="ai-stack">
+
+<section class="ai-hero is-left">
+<div class="ai-hero-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-01.mp4" type="video/mp4"/></video></div>
+<div class="ai-hero-caption">
+<div class="ai-hero-cat">AI Film</div>
+<h3 class="ai-hero-title">فيلم علامة تجارية <em>سكني.</em></h3>
+<p class="ai-hero-desc">فيلم لعلامة تجارية لعميل في مجال العقارات السكنية، معمارية ونمط حياة وأجواء تم بناؤها بالكامل بالذكاء الاصطناعي، محتوى عقاري سينمائي دون تكلفة إنتاج.</p>
 </div>
+</section>
+
+<div class="ai-grid-4">
+<div class="ai-vcard"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-02.mp4" type="video/mp4"/></video></div>
+<div class="ai-vcard"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-03.mp4" type="video/mp4"/></video></div>
+<div class="ai-vcard"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-04.mp4" type="video/mp4"/></video></div>
+<div class="ai-vcard"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-05.mp4" type="video/mp4"/></video></div>
 </div>
-<div class="ai-feature">
-<div class="ai-feature-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-10.mp4" type="video/mp4"/></video></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Film</div>
-<h3 class="ai-feature-title">سينما العلامة <em>التجارية.</em></h3>
-<p class="ai-feature-desc">قطعة سينما للعلامة التجارية تم إنشاؤها بأدوات الذكاء الاصطناعي، أجواء تعلو الأصول، مصممة للعرض على صفحة رئيسية، وليس على خلاصة الأخبار.</p>
+
+<section class="ai-hero is-right">
+<div class="ai-hero-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-10.mp4" type="video/mp4"/></video></div>
+<div class="ai-hero-caption">
+<div class="ai-hero-cat">AI Film</div>
+<h3 class="ai-hero-title">سينما العلامة <em>التجارية.</em></h3>
+<p class="ai-hero-desc">قطعة سينما للعلامة التجارية تم إنشاؤها بأدوات الذكاء الاصطناعي، أجواء تعلو الأصول، مصممة للعرض على صفحة رئيسية، وليس على خلاصة الأخبار.</p>
 </div>
+</section>
+
+<div class="ai-grid-4">
+<div class="ai-vcard"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-06.mp4" type="video/mp4"/></video></div>
+<div class="ai-vcard"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-07.mp4" type="video/mp4"/></video></div>
+<div class="ai-vcard"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-08.mp4" type="video/mp4"/></video></div>
+<div class="ai-vcard"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-09.mp4" type="video/mp4"/></video></div>
 </div>
-<div class="ai-feature">
-<div class="ai-feature-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-02.mp4" type="video/mp4"/></video></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Portrait</div>
-<h3 class="ai-feature-title">بورتريه لعلامة تجارية <em>للمجوهرات.</em></h3>
-<p class="ai-feature-desc">بورتريه لعلامة تجارية لعميل في مجال المجوهرات، عارضة أزياء، عقد، وأجواء تم إنشاؤها بالكامل بالذكاء الاصطناعي، بلا جلسة تصوير، بلا استوديو، فقط الصورة التي احتاجتها العلامة التجارية.</p>
+
+<section class="ai-hero is-left">
+<div class="ai-hero-media"><img alt="AI generated brand visual" src="/assets/work/ai-media/ai-pic-08.jpg"/></div>
+<div class="ai-hero-caption">
+<div class="ai-hero-cat">AI Visual</div>
+<h3 class="ai-hero-title">صورة بصرية للعلامة <em>التجارية.</em></h3>
+<p class="ai-hero-desc">صورة بصرية للعلامة التجارية متعددة القنوات تم بناؤها بالذكاء الاصطناعي، نفس العمل الفني يصل إلى وسائل التواصل، والويب، واللوحات الخارجية بنفس لغة العلامة.</p>
 </div>
+</section>
+
+<div class="ai-grid-4">
+<div class="ai-vcard"><img alt="AI generated editorial visual" loading="lazy" src="/assets/work/ai-media/ai-pic-01.jpg"/></div>
+<div class="ai-vcard"><img alt="AI generated product visual" loading="lazy" src="/assets/work/ai-media/ai-pic-02.jpg"/></div>
+<div class="ai-vcard"><img alt="AI generated brand visual" loading="lazy" src="/assets/work/ai-media/ai-pic-04.jpg"/></div>
+<div class="ai-vcard"><img alt="AI generated luxury editorial" loading="lazy" src="/assets/work/ai-media/ai-pic-06.jpg"/></div>
 </div>
-<div class="ai-feature">
-<div class="ai-feature-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-03.mp4" type="video/mp4"/></video></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Film</div>
-<h3 class="ai-feature-title">أتيليه <em>الجمال.</em></h3>
-<p class="ai-feature-desc">فيلم جمال هادئ تم ابتكاره من خلال التوجيهات، نبرة هادئة، وحركة بطيئة، وتحكم إبداعي كامل في كل إطار.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><img alt="AI generated product visual" loading="lazy" src="/assets/work/ai-media/ai-pic-02.jpg"/></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Visual</div>
-<h3 class="ai-feature-title">حملة <em>منتج.</em></h3>
-<p class="ai-feature-desc">صورة منتج واقعية بالذكاء الاصطناعي تم إنتاجها للقنوات الرقمية، تصل التكرارات في ساعات بدلاً من أسابيع، بنفس لغة العلامة التجارية وبشكل أسرع.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-04.mp4" type="video/mp4"/></video></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Film</div>
-<h3 class="ai-feature-title">فيلم منتجع <em>فاخر.</em></h3>
-<p class="ai-feature-desc">فيلم جوي لمنتجع تم إنشاؤه بالذكاء الاصطناعي، إطلالات بانورامية، إضاءة الساعة الذهبية، وتموضع فاخر تم تشكيله بالكامل من خلال التوجيهات، بلا تصوير موقعي، بلا طاقم طائرات مسيرة.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-05.mp4" type="video/mp4"/></video></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Film</div>
-<h3 class="ai-feature-title">فيلم تحت <em>الماء.</em></h3>
-<p class="ai-feature-desc">فيلم علامة تجارية تحت الماء تم إنتاجه بالكامل بالذكاء الاصطناعي، عمق، إضاءة، وتوتر سينمائي تم بناؤه من خلال التوجيهات، لقطة من النوع الذي سيكلف يوماً كاملاً من التصوير تحت الماء، تم تسليمها في ساعات.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><img alt="AI generated editorial frame" loading="lazy" src="/assets/work/ai-media/ai-pic-03.jpg"/></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Editorial</div>
-<h3 class="ai-feature-title">إطار <em>تحريري.</em></h3>
-<p class="ai-feature-desc">لحظة تحريرية ثابتة تم إنشاؤها لقصة علامة تجارية موجزة، صورة بصرية بمستوى حملة دون يوم سفر واحد.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-06.mp4" type="video/mp4"/></video></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Film</div>
-<h3 class="ai-feature-title">قصة <em>أتيليه.</em></h3>
-<p class="ai-feature-desc">فيلم ذكاء اصطناعي بلمسة أتيليه تم بناؤه لسرد علامة تجارية طويل، نبرة وإيقاع تم تشكيلهما إطاراً بإطار.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-07.mp4" type="video/mp4"/></video></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Film</div>
-<h3 class="ai-feature-title">فيلم علامة تجارية <em>للمدينة.</em></h3>
-<p class="ai-feature-desc">فيلم جوي لأفق المدينة تم بناؤه بالذكاء الاصطناعي، الرياض في الساعة الذهبية، ومؤطر لحملات الوجهات والعقارات، تم إنشاؤه دون رحلة طائرة مسيرة واحدة.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><img alt="AI generated brand visual" loading="lazy" src="/assets/work/ai-media/ai-pic-04.jpg"/></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Visual</div>
-<h3 class="ai-feature-title">صورة بصرية للعلامة <em>التجارية.</em></h3>
-<p class="ai-feature-desc">صورة بصرية للعلامة التجارية متعددة القنوات تم بناؤها بالذكاء الاصطناعي، نفس العمل الفني يتم إرساله إلى وسائل التواصل الاجتماعي، الويب، و OOH.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-08.mp4" type="video/mp4"/></video></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Film</div>
-<h3 class="ai-feature-title">فيلم <em>تحريري.</em></h3>
-<p class="ai-feature-desc">فيلم بالذكاء الاصطناعي بأسلوب تحريري صُمِّمَ للحظة موسمية لعلامة أزياء، بحس المطبوعات، وتقديم حركي.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><img alt="AI generated fashion portrait" loading="lazy" src="/assets/work/ai-media/ai-pic-05.jpg"/></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Editorial</div>
-<h3 class="ai-feature-title">صورة <em>أزياء.</em></h3>
-<p class="ai-feature-desc">تصور بصري لأزياء مُولّد لملخص حملة، اختيار العارضين، والتصميم، والإضاءة، جميعها موجّهة بالموجه.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><video autoplay="" loop="" muted="" playsinline="" preload="none"><source src="/assets/work/ai-media/ai-vid-09.mp4" type="video/mp4"/></video></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Film</div>
-<h3 class="ai-feature-title">فيلم نمط <em>حياة.</em></h3>
-<p class="ai-feature-desc">فيلم نمط حياة بالذكاء الاصطناعي يلتقط أجواء وجهة دون الحاجة للسفر إليها، الموقع، والإضاءة، والإيقاع، جميعها مُولّدة.</p>
-</div>
-</div>
-<div class="ai-feature">
-<div class="ai-feature-media"><img alt="AI generated luxury editorial" loading="lazy" src="/assets/work/ai-media/ai-pic-06.jpg"/></div>
-<div class="ai-feature-text">
-<div class="ai-feature-cat">AI Editorial</div>
-<h3 class="ai-feature-title">تحرير <em>فاخر.</em></h3>
-<p class="ai-feature-desc">إطار تحريري فاخر مُولّد بالذكاء الاصطناعي لإطلاق منتج، الأجواء أولاً، والبيع المباشر ثانياً.</p>
-</div>
-</div>
+
 </div>
 </div>
 <!-- ── Live Experiences ── -->
