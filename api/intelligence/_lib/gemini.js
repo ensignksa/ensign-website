@@ -59,7 +59,7 @@ export async function generateTurn({ system, history, userMessage, profileName }
   });
   const raw = result.response.text();
   const parsed = parseSignal(raw);
-  return { text: simplifyText(parsed.text, profileName), signal: parsed.signal };
+  return { text: simplifyText(parsed.text, profileName), signal: parsed.signal, signals: parsed.signals };
 }
 
 // ---------------------------------------------------------------------------
@@ -153,12 +153,21 @@ const SIMPLIFICATIONS = [
 function simplifyText(text, profileName) {
   let out = text;
 
-  // Strip the visitor's first name wherever it appears (with optional trailing punctuation/space)
+  // Strip the visitor's first name when it appears as a discourse marker
+  // ("Hi Rana, ...", "...let me know, Rana."). Original intent: prevent
+  // the AI from over-using the name. But the previous regex stripped EVERY
+  // occurrence, which also ate the brand word "Ensign" when a tester used
+  // it as their name. Now: only strip when the name is followed by a
+  // comma/period/dash (typical address pattern), and never when it equals
+  // a reserved brand word.
   if (profileName) {
     const firstName = String(profileName).trim().split(/\s+/)[0];
-    if (firstName.length >= 2) {
+    const RESERVED = new Set(["ensign"]); // brand words that must NEVER be stripped
+    if (firstName.length >= 2 && !RESERVED.has(firstName.toLowerCase())) {
       const esc = firstName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      out = out.replace(new RegExp(`\\b${esc}\\b[,.]?\\s*`, "gi"), " ");
+      // Only strip when the name is immediately followed by punctuation
+      // that signals address (",", ".", " —"), with optional trailing space.
+      out = out.replace(new RegExp(`\\b${esc}\\b\\s*[,.\\-—](?=\\s)`, "gi"), "");
     }
   }
 
@@ -204,23 +213,26 @@ function recoverJSON(s) {
 }
 
 function parseSignal(text) {
-  // Strip ALL signal brackets from the text so none leak into the visible reply,
-  // then return only the FIRST key=value pair as the canonical signal.
+  // Strip ALL signal brackets from the text so none leak into the visible reply.
+  // Return EVERY key=value pair encountered, so the operational interpretation
+  // panel can populate multiple fields in a single turn (business_context,
+  // growth_signal, recommended_direction, agent_mode, etc.).
   let visible = text;
-  let firstSignal = null;
+  const signals = [];
   visible = visible.replace(/\[SIGNAL:\s*([^\]]+)\]/gi, (_m, body) => {
-    if (!firstSignal) {
-      // Body may be "key=value" or "key=value, other_key=other_value".
-      // Take only the first pair, splitting on the first '='.
-      const firstPair = String(body).split(/,(?=\s*[a-z_]+\s*=)/i)[0].trim();
-      const eq = firstPair.indexOf("=");
-      if (eq > 0) {
-        const k = firstPair.slice(0, eq).trim();
-        const v = firstPair.slice(eq + 1).trim();
-        if (/^[a-z_]+$/i.test(k) && v) firstSignal = { key: k, value: v };
-      }
+    // Body may carry one or more comma-separated pairs:
+    //   "key=value"
+    //   "key=value, other_key=other_value"
+    const parts = String(body).split(/,(?=\s*[a-z_]+\s*=)/i);
+    for (const raw of parts) {
+      const eq = raw.indexOf("=");
+      if (eq <= 0) continue;
+      const k = raw.slice(0, eq).trim();
+      const v = raw.slice(eq + 1).trim();
+      if (/^[a-z_]+$/i.test(k) && v) signals.push({ key: k, value: v });
     }
     return "";
   });
-  return { text: visible.trim(), signal: firstSignal };
+  // Back-compat: callers that still read `.signal` get the first one.
+  return { text: visible.trim(), signal: signals[0] || null, signals };
 }

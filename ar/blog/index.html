@@ -799,6 +799,7 @@ html[lang="ar"] video.atmos-video{
 }
 </style>
   <script src="/assets/js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/nav-mobile-fix.css">
 </head>
 <body dir="rtl">
 <!-- Google Tag Manager (noscript) -->
@@ -811,7 +812,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- NAV -->
 <div class="nav-wrap">
 <header class="nav">
-<a class="nav-brand" href="../ar/"><img alt="وكالة إنساين للدعاية والإعلان" class="nav-logo-img" src="../assets/logos/logo-main.png"/></a>
+<a class="nav-brand" href="/ar/"><img alt="وكالة إنساين للذكاء الاصطناعي والتسويق" class="nav-logo-img" src="/assets/logos/logo-main.png" fetchpriority="high"/></a>
 <nav class="nav-links">
 <a href="/ar/ai-solutions.html">حلول الذكاء الاصطناعي</a>
 <a href="/ar/agency.html">وكالة التسويق</a>
@@ -819,10 +820,53 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <a href="/ar/work.html">أعمالنا</a>
 <a class="active" href="./">المدونة</a>
 </nav>
+<button class="nav-toggle" aria-label="فتح القائمة" aria-expanded="false" type="button"><span></span><span></span><span></span></button>
 <a aria-label="Switch language" class="nav-lang" href="/blog/">EN</a>
-<a class="nav-cta" data-magnetic="" href="https://cal.com/ensign-ai-agency-q4mmzg/30min" rel="noopener noreferrer" target="_blank" data-event-name="book_call_click" data-cta-location="nav">اتصل بنا</a>
+<a class="nav-cta" data-magnetic="" href="/ar/book.html" rel="noopener noreferrer" target="_blank" data-event-name="book_call_click" data-cta-location="nav">اتصل بنا</a>
 </header>
 </div>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" aria-label="إغلاق القائمة">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <nav class="mobile-menu-links">
+    <a href="/ar/ai-solutions.html">حلول الذكاء الاصطناعي</a>
+    <a href="/ar/agency.html">وكالة التسويق</a>
+    <a href="/ar/ensign-os.html">نظام إنساين التشغيلي</a>
+    <a href="/ar/work.html">أعمالنا</a>
+    <a href="/ar/about.html">من نحن</a>
+    <a href="/ar/blog/" class="active">المدونة</a>
+  </nav>
+  <div class="mobile-menu-foot">
+    <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-event-name="book_call_click" data-cta-location="mobile_menu">احجز مكالمة</a>
+    <a href="/blog/" class="mobile-menu-lang-link">English</a>
+  </div>
+</div>
+
+<script>
+(function(){
+  var navToggle = document.querySelector('.nav-toggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(!navToggle || !mobileMenu) return;
+  function setMenu(open){
+    mobileMenu.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  navToggle.addEventListener('click', function(){ setMenu(!mobileMenu.classList.contains('open')); });
+  var closeBtn = mobileMenu.querySelector('.mobile-menu-close');
+  if(closeBtn) closeBtn.addEventListener('click', function(){ setMenu(false); });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setMenu(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
+  });
+})();
+</script>
 <!-- HERO -->
 <section class="blog-hero">
 <div class="container">
@@ -1022,7 +1066,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <span class="kicker">دعنا نتحدث</span>
 <h2>دعنا نبني الفصل التالي.</h2>
 <p>أخبرنا عن عملك. سنتواصل معك خلال يومي عمل.</p>
-<a class="btn-primary" data-magnetic="" href="https://cal.com/ensign-ai-agency-q4mmzg/30min" rel="noopener noreferrer" target="_blank" data-event-name="book_call_click" data-cta-location="body">احجز استشارة</a>
+<a class="btn-primary" data-magnetic="" href="/ar/book.html" rel="noopener noreferrer" target="_blank" data-event-name="book_call_click" data-cta-location="body">احجز استشارة</a>
 </div>
 </div>
 </section>
@@ -1055,7 +1099,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h4>تواصل معنا</h4>
 <a href="mailto:contact@ensignksa.com">contact@ensignksa.com</a>
 <a href="https://wa.me/966554409891" rel="noopener noreferrer" target="_blank" data-event-name="whatsapp_click" data-cta-location="footer">+966 55 440 9891</a>
-<a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" rel="noopener noreferrer" target="_blank" data-event-name="book_call_click" data-cta-location="footer">اتصل بنا</a>
+<a href="/ar/book.html" rel="noopener noreferrer" target="_blank" data-event-name="book_call_click" data-cta-location="footer">اتصل بنا</a>
 </div>
 </div>
 <div class="foot-bottom">

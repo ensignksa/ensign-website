@@ -61,6 +61,16 @@ export default async function handler(req, res) {
     await updateSession(sessionId, session);
     await lockEmail(session.emailHash);
 
+    // Surface the AI Employee classification, the interaction mode, and the
+    // Book-a-Call click signal into the internal block so the lead briefing
+    // email shows them prominently to the Ensign team.
+    const agentMode = session.signals?.agent_mode || "unclear";
+    const interactionMode = body?.mode || session.mode || "chat";
+    const bookACallClicked = !!body?.bookACallClicked;
+    internal.agent_mode = agentMode;
+    internal.interaction_mode = interactionMode;
+    internal.book_a_call_clicked = bookACallClicked;
+
     const emailResult = await sendLeadEmail({
       profile: session.profile,
       lang: session.lang,

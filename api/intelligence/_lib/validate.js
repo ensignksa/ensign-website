@@ -7,6 +7,7 @@ const DISPOSABLE = new Set([
 ]);
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const PHONE_DIGITS_RE = /\d/g;
 
 export function validateProfile(p) {
   const errors = [];
@@ -15,7 +16,8 @@ export function validateProfile(p) {
   const trim = (v, max) => typeof v === "string" ? v.trim().slice(0, max) : "";
   p.name = trim(p.name, 80);
   p.email = trim(p.email, 120).toLowerCase();
-  p.company = trim(p.company, 120);
+  p.phone = trim(p.phone, 40);
+  p.company = trim(p.company, 120);       // optional now (company field hidden in UI; still accepted if sent)
   p.industry = trim(p.industry, 60);
   p.website = trim(p.website, 200);
   p.lang = p.lang === "ar" ? "ar" : "en";
@@ -24,7 +26,11 @@ export function validateProfile(p) {
   if (!EMAIL_RE.test(p.email)) errors.push("email");
   const domain = p.email.split("@")[1];
   if (domain && DISPOSABLE.has(domain)) errors.push("email_disposable");
-  if (p.company.length < 2) errors.push("company");
+
+  // Phone: require at least 7 digits anywhere in the string.
+  const phoneDigits = (p.phone.match(PHONE_DIGITS_RE) || []).length;
+  if (phoneDigits < 7) errors.push("phone");
+
   if (p.industry.length < 2) errors.push("industry");
 
   return errors;

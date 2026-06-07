@@ -170,6 +170,36 @@ section{position:relative;z-index:2;}
   .ai-feature-text{padding:0;}
 }
 
+/* AI Generated Media — full-bleed heroes + 4-up vertical rows */
+.ai-stack{display:flex;flex-direction:column;gap:88px;}
+.ai-hero{position:relative;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);overflow:hidden;background:#0A0A0A;}
+.ai-hero-media{position:relative;width:100%;}
+.ai-hero-media video,.ai-hero-media img{display:block;width:100%;height:auto;max-height:88vh;object-fit:cover;}
+.ai-hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,transparent 55%,rgba(10,10,10,.55) 100%);}
+.ai-hero-caption{position:absolute;bottom:48px;max-width:440px;padding:26px 30px;background:rgba(10,10,10,.55);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border:1px solid rgba(242,239,232,.1);border-radius:16px;color:var(--ink);z-index:2;}
+.ai-hero.is-left .ai-hero-caption{left:48px;}
+.ai-hero.is-right .ai-hero-caption{right:48px;}
+.ai-hero-cat{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#00D9C0;display:inline-flex;align-items:center;gap:8px;margin-bottom:14px;}
+.ai-hero-cat::before{content:"";width:6px;height:6px;border-radius:50%;background:#00D9C0;}
+.ai-hero-title{font-family:'Fraunces',Georgia,serif;font-weight:300;font-size:clamp(22px,2.4vw,32px);line-height:1.15;letter-spacing:-.02em;margin-bottom:12px;color:var(--ink);}
+.ai-hero-title em{font-style:italic;color:#00D9C0;}
+.ai-hero-desc{font-size:14.5px;line-height:1.6;color:rgba(242,239,232,.78);}
+.ai-grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.ai-vcard{position:relative;border-radius:12px;overflow:hidden;background:#0A0A0A;aspect-ratio:9/16;border:1px solid rgba(242,239,232,.06);transition:transform .5s var(--ease);}
+.ai-vcard:hover{transform:translateY(-4px);}
+.ai-vcard video,.ai-vcard img{width:100%;height:100%;object-fit:cover;display:block;}
+@media(max-width:900px){
+  .ai-stack{gap:56px;}
+  .ai-grid-4{grid-template-columns:repeat(2,1fr);gap:14px;}
+  .ai-hero-caption{position:relative;bottom:auto;max-width:none;border-radius:0;border:none;border-top:1px solid rgba(242,239,232,.08);padding:24px 28px;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;}
+  .ai-hero.is-left .ai-hero-caption,.ai-hero.is-right .ai-hero-caption{left:0;right:0;}
+  .ai-hero-media video,.ai-hero-media img{max-height:none;}
+  .ai-hero-media::after{display:none;}
+}
+@media(max-width:540px){
+  .ai-grid-4{grid-template-columns:1fr;}
+}
+
 /* Data visualization (replaces screenshots — Growth & Performance) */
 .proof-data-visual{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:12px 14px;background:linear-gradient(135deg,rgba(0,217,192,.045) 0%,transparent 60%),#0A1A26;}
 .data-viz-num{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:500;color:#00D9C0;letter-spacing:-.02em;line-height:1;}
@@ -443,6 +473,7 @@ html{-webkit-text-size-adjust:100%; text-size-adjust:100%;}
 
 </style>
   <script src="/assets/js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/nav-mobile-fix.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -466,13 +497,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" type="button"><span></span><span></span><span></span></button>
     <a href="/ar/work.html" class="nav-lang" aria-label="Switch language">عربي</a>
-    <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-magnetic>Book a Call
+    <a href="/book.html" target="_blank" rel="noopener noreferrer" class="nav-cta" data-magnetic data-event-name="book_call_click" data-cta-location="nav">Book a Call
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>
   </header>
 </div>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" aria-label="Close menu">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
   <nav class="mobile-menu-links">
     <a href="/ai-solutions.html">AI Solutions</a>
     <a href="/agency.html">Agency</a>
@@ -483,7 +517,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="/about.html">About</a>
     <a href="/blog/">Blog</a>
   </nav>
-  <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta">Book a Call</a>
+  <div class="mobile-menu-foot">
+    <a href="/book.html" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-event-name="book_call_click" data-cta-location="mobile_menu">Book a Call</a>
+    <a href="/ar/work.html" class="mobile-menu-lang-link">عربي</a>
+  </div>
 </div>
 
 
@@ -509,10 +546,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="work-tabs-wrap reveal">
       <div class="work-tabs" role="tablist">
-        <button class="work-tab active" data-tab="films" role="tab" aria-selected="true">Films &amp; Content</button>
+        <button class="work-tab active" data-tab="ai-media" role="tab" aria-selected="true">AI Generated Media</button>
         <button class="work-tab" data-tab="growth" role="tab" aria-selected="false">Audience Growth</button>
         <button class="work-tab" data-tab="performance" role="tab" aria-selected="false">Performance Results</button>
-        <button class="work-tab" data-tab="ai-media" role="tab" aria-selected="false">AI Generated Media</button>
+        <button class="work-tab" data-tab="films" role="tab" aria-selected="false">Films &amp; Content</button>
         <button class="work-tab" data-tab="events" role="tab" aria-selected="false">Live Experiences</button>
         <span class="work-tab-indicator" aria-hidden="true"></span>
       </div>
@@ -521,7 +558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="work-panels">
 
       <!-- ── Films & Content ── -->
-      <div class="work-panel active" data-panel="films">
+      <div class="work-panel" data-panel="films">
         <div class="proof-grid proof-grid-masonry">
 
           <div class="proof-card">
@@ -999,147 +1036,120 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
 
       <!-- ── AI Generated Media ── -->
-      <div class="work-panel" data-panel="ai-media">
-        <div class="ai-feature-list">
+      <div class="work-panel active" data-panel="ai-media">
+        <div class="ai-stack">
 
-          <div class="ai-feature">
-            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-01.mp4" type="video/mp4"></video></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Film</div>
-              <h3 class="ai-feature-title">Residential brand <em>film.</em></h3>
-              <p class="ai-feature-desc">A branded film for a residential real estate client — architecture, lifestyle, and atmosphere built entirely in AI. Cinematic property content without the production cost.</p>
+          <section class="ai-hero is-left">
+            <div class="ai-hero-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-12.mp4" type="video/mp4"></video></div>
+            <div class="ai-hero-caption">
+              <div class="ai-hero-cat">AI Film</div>
+              <h3 class="ai-hero-title">Signature <em>opener.</em></h3>
+              <p class="ai-hero-desc">A signature AI brand film built to lead a campaign — tone, motion, and pacing shaped from the first frame.</p>
             </div>
+          </section>
+
+          <div class="ai-grid-4">
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-17.mp4" type="video/mp4"></video></div>
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-18.mp4" type="video/mp4"></video></div>
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-19.mp4" type="video/mp4"></video></div>
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-20.mp4" type="video/mp4"></video></div>
           </div>
 
-          <div class="ai-feature">
-            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-10.mp4" type="video/mp4"></video></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Film</div>
-              <h3 class="ai-feature-title">Brand <em>cinema.</em></h3>
-              <p class="ai-feature-desc">A brand cinema piece created with AI tools — atmosphere over assets. Built to live on a homepage, not a feed.</p>
+          <section class="ai-hero is-right">
+            <div class="ai-hero-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-13.mp4" type="video/mp4"></video></div>
+            <div class="ai-hero-caption">
+              <div class="ai-hero-cat">AI Film</div>
+              <h3 class="ai-hero-title">Brand <em>narrative.</em></h3>
+              <p class="ai-hero-desc">A brand narrative piece generated in AI — story-led, mood-first, built to anchor a long-form campaign.</p>
             </div>
+          </section>
+
+          <section class="ai-hero is-left">
+            <div class="ai-hero-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-14.mp4" type="video/mp4"></video></div>
+            <div class="ai-hero-caption">
+              <div class="ai-hero-cat">AI Film</div>
+              <h3 class="ai-hero-title">Campaign <em>cut.</em></h3>
+              <p class="ai-hero-desc">A campaign cut built entirely with AI — every beat composed in prompts, every frame brand-tuned.</p>
+            </div>
+          </section>
+
+          <section class="ai-hero is-right">
+            <div class="ai-hero-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-15.mp4" type="video/mp4"></video></div>
+            <div class="ai-hero-caption">
+              <div class="ai-hero-cat">AI Film</div>
+              <h3 class="ai-hero-title">Banner <em>spot.</em></h3>
+              <p class="ai-hero-desc">A cinematic banner spot generated in AI — sized for digital placements, finished at campaign quality.</p>
+            </div>
+          </section>
+
+          <section class="ai-hero is-left">
+            <div class="ai-hero-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-16.mp4" type="video/mp4"></video></div>
+            <div class="ai-hero-caption">
+              <div class="ai-hero-cat">AI Film</div>
+              <h3 class="ai-hero-title">Hero <em>creative.</em></h3>
+              <p class="ai-hero-desc">A homepage hero creative built in AI for a branded living concept — atmosphere first, product second.</p>
+            </div>
+          </section>
+
+          <section class="ai-hero is-right">
+            <div class="ai-hero-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-01.mp4" type="video/mp4"></video></div>
+            <div class="ai-hero-caption">
+              <div class="ai-hero-cat">AI Film</div>
+              <h3 class="ai-hero-title">Residential brand <em>film.</em></h3>
+              <p class="ai-hero-desc">A branded film for a residential real estate client — architecture, lifestyle, and atmosphere built entirely in AI. Cinematic property content without the production cost.</p>
+            </div>
+          </section>
+
+          <div class="ai-grid-4">
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-02.mp4" type="video/mp4"></video></div>
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-03.mp4" type="video/mp4"></video></div>
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-04.mp4" type="video/mp4"></video></div>
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-05.mp4" type="video/mp4"></video></div>
           </div>
 
-          <div class="ai-feature">
-            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-02.mp4" type="video/mp4"></video></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Portrait</div>
-              <h3 class="ai-feature-title">Jewelry brand <em>portrait.</em></h3>
-              <p class="ai-feature-desc">A brand portrait for a jewelry client — model, necklace, and atmosphere generated entirely in AI. No photoshoot. No studio. Just the image the brand needed.</p>
+          <section class="ai-hero is-left">
+            <div class="ai-hero-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-10.mp4" type="video/mp4"></video></div>
+            <div class="ai-hero-caption">
+              <div class="ai-hero-cat">AI Film</div>
+              <h3 class="ai-hero-title">Brand <em>cinema.</em></h3>
+              <p class="ai-hero-desc">A brand cinema piece created with AI tools — atmosphere over assets. Built to live on a homepage, not a feed.</p>
             </div>
+          </section>
+
+          <div class="ai-grid-4">
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-06.mp4" type="video/mp4"></video></div>
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-07.mp4" type="video/mp4"></video></div>
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-08.mp4" type="video/mp4"></video></div>
+            <div class="ai-vcard"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-09.mp4" type="video/mp4"></video></div>
           </div>
 
-          <div class="ai-feature">
-            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-03.mp4" type="video/mp4"></video></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Film</div>
-              <h3 class="ai-feature-title">Beauty <em>atelier.</em></h3>
-              <p class="ai-feature-desc">Quiet beauty film prompted into existence — soft tone, slow motion, full creative control over every frame.</p>
+          <section class="ai-hero is-right">
+            <div class="ai-hero-media"><img src="/assets/work/ai-media/ai-pic-08.jpg" alt="AI generated brand visual"></div>
+            <div class="ai-hero-caption">
+              <div class="ai-hero-cat">AI Visual</div>
+              <h3 class="ai-hero-title">Brand <em>visual.</em></h3>
+              <p class="ai-hero-desc">Cross-channel brand visual built in AI — same artwork ships to social, web, and OOH without losing the brand language.</p>
             </div>
+          </section>
+
+          <div class="ai-grid-4">
+            <div class="ai-vcard"><img src="/assets/work/ai-media/ai-pic-01.jpg" alt="AI generated editorial visual" loading="lazy"></div>
+            <div class="ai-vcard"><img src="/assets/work/ai-media/ai-pic-02.jpg" alt="AI generated product visual" loading="lazy"></div>
+            <div class="ai-vcard"><img src="/assets/work/ai-media/ai-pic-04.jpg" alt="AI generated brand visual" loading="lazy"></div>
+            <div class="ai-vcard"><img src="/assets/work/ai-media/ai-pic-06.jpg" alt="AI generated luxury editorial" loading="lazy"></div>
           </div>
 
-          <div class="ai-feature">
-            <div class="ai-feature-media"><img src="/assets/work/ai-media/ai-pic-02.jpg" alt="AI generated product visual" loading="lazy"></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Visual</div>
-              <h3 class="ai-feature-title">Product <em>campaign.</em></h3>
-              <p class="ai-feature-desc">Photoreal AI product visual produced for digital channels. Iterations land in hours instead of weeks — same brand language, faster.</p>
+          <section class="ai-hero is-left">
+            <div class="ai-hero-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-11.mp4" type="video/mp4"></video></div>
+            <div class="ai-hero-caption">
+              <div class="ai-hero-cat">AI Film</div>
+              <h3 class="ai-hero-title">Cinematic <em>spot.</em></h3>
+              <p class="ai-hero-desc">A cinematic brand spot built in AI — mood and motion shaped frame by frame without a single shoot day.</p>
             </div>
-          </div>
-
-          <div class="ai-feature">
-            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-04.mp4" type="video/mp4"></video></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Film</div>
-              <h3 class="ai-feature-title">Luxury resort <em>film.</em></h3>
-              <p class="ai-feature-desc">Aerial resort film generated in AI — sweeping views, golden-hour light, and luxury positioning shaped entirely through prompts. No location shoot. No drone crew.</p>
-            </div>
-          </div>
-
-          <div class="ai-feature">
-            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-05.mp4" type="video/mp4"></video></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Film</div>
-              <h3 class="ai-feature-title">Underwater <em>film.</em></h3>
-              <p class="ai-feature-desc">An underwater brand film produced entirely in AI — depth, light, and cinematic tension built through prompts. The kind of shot that would cost a full dive-shoot day, delivered in hours.</p>
-            </div>
-          </div>
-
-          <div class="ai-feature">
-            <div class="ai-feature-media"><img src="/assets/work/ai-media/ai-pic-03.jpg" alt="AI generated editorial frame" loading="lazy"></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Editorial</div>
-              <h3 class="ai-feature-title">Editorial <em>frame.</em></h3>
-              <p class="ai-feature-desc">A still editorial moment generated for a brand storytelling drop — campaign-grade visual without a single travel day.</p>
-            </div>
-          </div>
-
-          <div class="ai-feature">
-            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-06.mp4" type="video/mp4"></video></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Film</div>
-              <h3 class="ai-feature-title">Atelier <em>story.</em></h3>
-              <p class="ai-feature-desc">Atelier-mood AI film built for a long-form brand narrative. Tone and pacing shaped frame by frame.</p>
-            </div>
-          </div>
-
-          <div class="ai-feature">
-            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-07.mp4" type="video/mp4"></video></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Film</div>
-              <h3 class="ai-feature-title">City brand <em>film.</em></h3>
-              <p class="ai-feature-desc">Aerial skyline film built in AI — Riyadh at golden hour, framed for destination and real estate campaigns. Generated without a single drone flight.</p>
-            </div>
-          </div>
-
-          <div class="ai-feature">
-            <div class="ai-feature-media"><img src="/assets/work/ai-media/ai-pic-04.jpg" alt="AI generated brand visual" loading="lazy"></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Visual</div>
-              <h3 class="ai-feature-title">Brand <em>visual.</em></h3>
-              <p class="ai-feature-desc">Cross-channel brand visual built in AI — same artwork ships to social, web, and OOH.</p>
-            </div>
-          </div>
-
-          <div class="ai-feature">
-            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-08.mp4" type="video/mp4"></video></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Film</div>
-              <h3 class="ai-feature-title">Editorial <em>film.</em></h3>
-              <p class="ai-feature-desc">Editorial-tone AI film made for a fashion brand's seasonal moment — print sensibility, motion delivery.</p>
-            </div>
-          </div>
-
-          <div class="ai-feature">
-            <div class="ai-feature-media"><img src="/assets/work/ai-media/ai-pic-05.jpg" alt="AI generated fashion portrait" loading="lazy"></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Editorial</div>
-              <h3 class="ai-feature-title">Fashion <em>portrait.</em></h3>
-              <p class="ai-feature-desc">Fashion portrait visual generated for a campaign brief — model casting, styling, and lighting all prompt-driven.</p>
-            </div>
-          </div>
-
-          <div class="ai-feature">
-            <div class="ai-feature-media"><video autoplay muted loop playsinline preload="none"><source src="/assets/work/ai-media/ai-vid-09.mp4" type="video/mp4"></video></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Film</div>
-              <h3 class="ai-feature-title">Lifestyle <em>film.</em></h3>
-              <p class="ai-feature-desc">A lifestyle AI film capturing a destination mood without travelling there. Place, light, and pacing all generated.</p>
-            </div>
-          </div>
-
-          <div class="ai-feature">
-            <div class="ai-feature-media"><img src="/assets/work/ai-media/ai-pic-06.jpg" alt="AI generated luxury editorial" loading="lazy"></div>
-            <div class="ai-feature-text">
-              <div class="ai-feature-cat">AI Editorial</div>
-              <h3 class="ai-feature-title">Luxury <em>editorial.</em></h3>
-              <p class="ai-feature-desc">Luxury editorial frame generated in AI for a product launch — atmosphere first, hard sell second.</p>
-            </div>
-          </div>
+          </section>
 
         </div>
       </div>
-
       <!-- ── Live Experiences ── -->
       <div class="work-panel" data-panel="events">
         <div class="proof-grid">
@@ -1267,7 +1277,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="dv result">55.5K monthly views · 2.48M campaign reach · SAR 3,066 total ad spend</span>
           </div>
         </div>
-        <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" class="selected-proof-link">Work with us on yours
+        <a href="/book.html" target="_blank" rel="noopener noreferrer" class="selected-proof-link" data-event-name="book_call_click" data-cta-location="footer">Work with us on yours
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
         </a>
       </div>
@@ -1310,7 +1320,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="cta-kicker">Let's talk</span>
       <h2>Have work that<br>needs to <em>move?</em></h2>
       <p>Tell us about your brand. We'll come back within two working days with a clear plan.</p>
-      <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" class="btn-primary" data-magnetic>Book a Discovery Call
+      <a href="/book.html" target="_blank" rel="noopener noreferrer" class="btn-primary" data-magnetic data-event-name="book_call_click" data-cta-location="body">Book a Discovery Call
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
     </div>
@@ -1345,8 +1355,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="foot-col">
         <h4>Contact</h4>
         <a href="mailto:contact@ensignksa.com">contact@ensignksa.com</a>
-        <a href="https://wa.me/966554409891" target="_blank" rel="noopener noreferrer">+966 55 440 9891</a>
-        <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+        <a href="https://wa.me/966554409891" target="_blank" rel="noopener noreferrer" data-event-name="whatsapp_click" data-cta-location="footer">+966 55 440 9891</a>
+        <a href="/book.html" target="_blank" rel="noopener noreferrer" data-event-name="book_call_click" data-cta-location="footer">Book a Call</a>
       </div>
     </div>
     <div class="foot-bottom">
@@ -1357,7 +1367,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
 <!-- ── WhatsApp FAB ── -->
-<a href="https://wa.me/966554409891" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp">
+<a href="https://wa.me/966554409891" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp" data-event-name="whatsapp_click" data-cta-location="fab">
   <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 

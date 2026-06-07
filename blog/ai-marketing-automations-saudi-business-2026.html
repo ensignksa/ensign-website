@@ -200,37 +200,73 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </style>
   <script src="/assets/js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/nav-mobile-fix.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTFT7PF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<header class="site-nav" id="site-nav">
-  <a href="../" class="nav-brand">
-    <img src="../assets/logos/logo-main.png" alt="Ensign Ai Marketing Agency" class="nav-logo-img">
-  </a>
-  <nav class="nav-links" aria-label="Main navigation">
+<div class="nav-wrap">
+  <header class="nav">
+    <a href="/" class="nav-brand">
+      <img src="../assets/logos/logo-main.png" alt="Ensign Ai Marketing Agency" class="nav-logo-img" fetchpriority="high">
+    </a>
+    <nav class="nav-links">
+      <a href="/ai-solutions.html">AI Solutions</a>
+      <a href="/agency.html">Agency</a>
+      <a href="/ensign-os.html">Ensign OS</a>
+      <a href="/vision-2030.html">Vision 2030</a>
+      <a href="/work.html">Our Work</a>
+      <a href="/blog/" class="active">Blog</a>
+    </nav>
+    <a href="/ar/blog/ai-marketing-automations-saudi-business-2026.html" class="nav-lang" aria-label="Switch language">عربي</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" type="button"><span></span><span></span><span></span></button>
+    <a href="/book.html" target="_blank" rel="noopener noreferrer" class="nav-cta" data-event-name="book_call_click" data-cta-location="nav">Book a Call <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </header>
+</div>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" aria-label="Close menu">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <nav class="mobile-menu-links">
     <a href="/ai-solutions.html">AI Solutions</a>
     <a href="/agency.html">Agency</a>
     <a href="/ensign-os.html">Ensign OS</a>
-    <a href="../#work">Work</a>
-    <a href="../blog/">Blog</a>
+    <a href="/vision-2030.html">Vision 2030</a>
+    <a href="/work.html">Our Work</a>
+    <a href="/blog/" class="active">Blog</a>
   </nav>
-  <div class="nav-actions">
-    <a href="/ar/blog/ai-marketing-automations-saudi-business-2026.html" class="nav-lang" aria-label="Switch language">عربي</a>
-    <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" class="nav-cta">Book a Call <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <button class="nav-burger" id="nav-burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="mobile-menu-foot">
+    <a href="/book.html" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-event-name="book_call_click" data-cta-location="mobile_menu">Book a Call</a>
+    <a href="/ar/blog/ai-marketing-automations-saudi-business-2026.html" class="mobile-menu-lang-link">عربي</a>
   </div>
-</header>
-<nav class="nav-mobile" id="nav-mobile" aria-label="Mobile navigation">
-  <a href="/ai-solutions.html">AI Solutions</a>
-  <a href="/agency.html">Agency</a>
-  <a href="/ensign-os.html">Ensign OS</a>
-  <a href="../#work">Work</a>
-  <a href="../blog/">Blog</a>
-    <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" class="nav-mobile-cta">Book a Call →</a>
-</nav>
+</div>
+
+<script>
+(function(){
+  var navToggle = document.querySelector('.nav-toggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(!navToggle || !mobileMenu) return;
+  function setMenu(open){
+    mobileMenu.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  navToggle.addEventListener('click', function(){ setMenu(!mobileMenu.classList.contains('open')); });
+  var closeBtn = mobileMenu.querySelector('.mobile-menu-close');
+  if(closeBtn) closeBtn.addEventListener('click', function(){ setMenu(false); });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setMenu(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
+  });
+})();
+</script>
   </div>
 
   <!-- Blog Post Hero -->
@@ -392,7 +428,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="#" class="blog-share-link" aria-label="Share on X" onclick="window.open('https://x.com/intent/tweet?url='+encodeURIComponent(window.location.href)+'&text='+encodeURIComponent(document.title),'twitter','width=600,height=400');return false;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
           </a>
-          <a href="#" class="blog-share-link" aria-label="Share on WhatsApp" onclick="window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+window.location.href),'whatsapp','width=600,height=400');return false;">
+          <a href="#" class="blog-share-link" aria-label="Share on WhatsApp" onclick="window.open('https://wa.me/?text='+encodeURIComponent(document.title+' '+window.location.href),'whatsapp','width=600,height=400');return false;" data-event-name="whatsapp_click" data-cta-location="footer">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </a>
           <a href="#" class="blog-share-link" aria-label="Copy link" onclick="navigator.clipboard.writeText(window.location.href);this.innerHTML='<svg width=18 height=18 viewBox=&quot;0 0 24 24&quot; fill=none stroke=&quot;currentColor&quot; stroke-width=2><path d=&quot;M20 6L9 17l-5-5&quot;/></svg>';setTimeout(()=>{this.innerHTML='<svg width=18 height=18 viewBox=&quot;0 0 24 24&quot; fill=none stroke=&quot;currentColor&quot; stroke-width=2><path d=&quot;M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71&quot;/><path d=&quot;M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71&quot;/></svg>';},2000);return false;">
@@ -411,14 +447,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <h2 class="cta-title">Ready to Automate Your Marketing?</h2>
         <p class="cta-subtitle">We help Saudi businesses design and implement AI marketing systems &mdash; from lead response agents to full CRM automation and campaign optimization.</p>
         <div class="cta-buttons">
-          <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
+          <a href="/book.html" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large" data-event-name="book_call_click" data-cta-location="body">
             <span>Book a Discovery Call</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
           <a href="mailto:contact@ensignksa.com" class="btn btn-outline btn-large">
             <span>Request a Proposal</span>
           </a>
-          <a href="https://wa.me/966554409891" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-large">
+          <a href="https://wa.me/966554409891" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp btn-large" data-event-name="whatsapp_click" data-cta-location="body">
             <span>WhatsApp Us</span>
           </a>
         </div>
@@ -454,8 +490,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="footer-col">
       <h4>Contact</h4>
       <a href="mailto:contact@ensignksa.com">contact@ensignksa.com</a>
-      <a href="https://wa.me/966554409891" target="_blank" rel="noopener noreferrer">+966 55 440 9891</a>
-      <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer">Book a Call</a>
+      <a href="https://wa.me/966554409891" target="_blank" rel="noopener noreferrer" data-event-name="whatsapp_click" data-cta-location="footer">+966 55 440 9891</a>
+      <a href="/book.html" target="_blank" rel="noopener noreferrer" data-event-name="book_call_click" data-cta-location="footer">Book a Call</a>
     </div>
   </div>
   <div class="footer-bottom">
@@ -473,6 +509,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </footer>
 
   <script src="../js/main.min.js"></script>
-<a href="https://wa.me/966554409891" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<a href="https://wa.me/966554409891" target="_blank" rel="noopener noreferrer" class="whatsapp-fab" aria-label="Chat on WhatsApp" data-event-name="whatsapp_click" data-cta-location="fab"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 </body>
 </html>

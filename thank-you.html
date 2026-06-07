@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TTFT7PF7');</script>
+<!-- End Google Tag Manager -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Booking confirmed — Ensign Ai Marketing Agency</title>
+<meta name="description" content="Your discovery call with Ensign Ai Marketing Agency is confirmed. We'll see you on the call.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://ensignksa.com/thank-you.html">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@1,9..144,300&display=swap">
+<style>
+:root{--bone:#F2EFE8;--ink:#0A0A0A;--oasis:#00D9C0;--mute:rgba(242,239,232,.62)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--ink);color:var(--bone);font-family:'Manrope',system-ui,sans-serif;font-weight:400;line-height:1.5;display:flex;align-items:center;justify-content:center;padding:24px;overflow:hidden}
+.bg{position:fixed;inset:0;background:radial-gradient(circle at 30% 20%,rgba(0,217,192,.08),transparent 50%),radial-gradient(circle at 70% 80%,rgba(0,217,192,.05),transparent 50%);pointer-events:none}
+.card{position:relative;max-width:560px;width:100%;text-align:center;padding:48px 32px;border:1px solid rgba(242,239,232,.08);border-radius:16px;background:rgba(242,239,232,.02);backdrop-filter:blur(20px)}
+.check{width:64px;height:64px;border-radius:50%;background:rgba(0,217,192,.12);border:1px solid rgba(0,217,192,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 28px}
+.check svg{width:28px;height:28px;stroke:var(--oasis);stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+h1{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:clamp(28px,5vw,40px);line-height:1.15;margin-bottom:16px;letter-spacing:-.01em}
+p{color:var(--mute);font-size:16px;max-width:420px;margin:0 auto 32px}
+.row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+a.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:999px;font-weight:500;font-size:14px;text-decoration:none;transition:.2s}
+a.primary{background:var(--bone);color:var(--ink)}
+a.primary:hover{background:var(--oasis)}
+a.ghost{color:var(--bone);border:1px solid rgba(242,239,232,.18)}
+a.ghost:hover{border-color:var(--oasis);color:var(--oasis)}
+.label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--oasis);margin-bottom:14px}
+</style>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTFT7PF7" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<div class="bg" aria-hidden="true"></div>
+<main class="card">
+  <div class="check" aria-hidden="true">
+    <svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"/></svg>
+  </div>
+  <div class="label">Booking confirmed</div>
+  <h1>Your call with Ensign is scheduled.</h1>
+  <p>A calendar invite has been sent to your inbox with the MS Teams link. We'll see you on the call.</p>
+  <div class="row">
+    <a class="btn primary" href="/">Back to home</a>
+    <a class="btn ghost" href="/work.html">See our work</a>
+  </div>
+</main>
+
+<script>
+(function(){
+  // Fire conversion exactly once per booking. Cal.com appends ?date=... on success;
+  // we use sessionStorage to dedupe refreshes within the same session.
+  try {
+    var key = 'ensign_booking_fired_' + (location.search || '_');
+    if (!sessionStorage.getItem(key)) {
+      sessionStorage.setItem(key, '1');
+      window.dataLayer = window.dataLayer || [];
+      var payload = {
+        page_title: document.title,
+        page_location: location.href,
+        page_path: location.pathname,
+        language: 'en',
+        lead_source: 'cal_booking_completed'
+      };
+      window.dataLayer.push(Object.assign({event:'booking_completed'}, payload));
+      window.dataLayer.push(Object.assign({event:'generate_lead'}, payload));
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>

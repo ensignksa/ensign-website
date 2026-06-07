@@ -94,37 +94,73 @@ body, .blog-post-content { font-family: 'Cairo', sans-serif; }
   margin-inline-start:auto;margin-left:0;}}
 </style>
 <script src="/assets/js/analytics.js" defer></script>
+<link rel="stylesheet" href="/css/nav-mobile-fix.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TTFT7PF7"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<header class="site-nav" id="site-nav">
-  <a href="../../ar/" class="nav-brand">
-    <img src="../../assets/logos/logo-main.png" alt="Ensign AI Marketing Agency" class="nav-logo-img">
-  </a>
-  <nav class="nav-links" aria-label="التنقل الرئيسي">
-    <a href="/ai-solutions.html">حلول AI</a>
-    <a href="/agency.html">الوكالة</a>
-    <a href="/ensign-os.html">Ensign OS</a>
+<div class="nav-wrap">
+  <header class="nav">
+    <a href="/ar/" class="nav-brand">
+      <img src="../../assets/logos/logo-main.png" alt="وكالة إنساين للذكاء الاصطناعي والتسويق" class="nav-logo-img" fetchpriority="high">
+    </a>
+    <nav class="nav-links">
+      <a href="/ar/ai-solutions.html">حلول الذكاء الاصطناعي</a>
+      <a href="/ar/agency.html">وكالة التسويق</a>
+      <a href="/ar/ensign-os.html">نظام إنساين التشغيلي</a>
+      <a href="/vision-2030.html">رؤية 2030</a>
+      <a href="/ar/work.html">أعمالنا</a>
+      <a href="/ar/blog/" class="active">المدونة</a>
+    </nav>
+    <a href="/blog/agentic-ai-marketing-what-it-means-2026.html" class="nav-lang" aria-label="Switch language">EN</a>
+    <button class="nav-toggle" aria-label="فتح القائمة" aria-expanded="false" type="button"><span></span><span></span><span></span></button>
+    <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" class="nav-cta" data-event-name="book_call_click" data-cta-location="nav">احجز مكالمة <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </header>
+</div>
+
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <button class="mobile-menu-close" aria-label="إغلاق القائمة">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <nav class="mobile-menu-links">
+    <a href="/ar/ai-solutions.html">حلول الذكاء الاصطناعي</a>
+    <a href="/ar/agency.html">وكالة التسويق</a>
+    <a href="/ar/ensign-os.html">نظام إنساين التشغيلي</a>
     <a href="/vision-2030.html">رؤية 2030</a>
+    <a href="/ar/work.html">أعمالنا</a>
     <a href="/ar/blog/" class="active">المدونة</a>
   </nav>
-  <div class="nav-actions">
-    <a href="/blog/agentic-ai-marketing-what-it-means-2026.html" class="nav-lang" aria-label="Switch to English">EN</a>
-    <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" class="nav-cta" data-event-name="book_call_click" data-cta-location="nav">احجز مكالمة <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-    <button class="nav-burger" id="nav-burger" aria-label="فتح القائمة" aria-expanded="false"><span></span><span></span><span></span></button>
+  <div class="mobile-menu-foot">
+    <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" class="mobile-menu-cta" data-event-name="book_call_click" data-cta-location="mobile_menu">احجز مكالمة</a>
+    <a href="/blog/agentic-ai-marketing-what-it-means-2026.html" class="mobile-menu-lang-link">EN</a>
   </div>
-</header>
-<nav class="nav-mobile" id="nav-mobile" aria-label="القائمة الجوالة">
-  <a href="/ai-solutions.html">حلول AI</a>
-  <a href="/agency.html">الوكالة</a>
-  <a href="/ensign-os.html">Ensign OS</a>
-  <a href="/vision-2030.html">رؤية 2030</a>
-  <a href="/ar/blog/">المدونة</a>
-  <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" class="nav-mobile-cta" data-event-name="book_call_click" data-cta-location="mobile_menu">احجز مكالمة</a>
-</nav>
+</div>
+
+<script>
+(function(){
+  var navToggle = document.querySelector('.nav-toggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  if(!navToggle || !mobileMenu) return;
+  function setMenu(open){
+    mobileMenu.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  navToggle.addEventListener('click', function(){ setMenu(!mobileMenu.classList.contains('open')); });
+  var closeBtn = mobileMenu.querySelector('.mobile-menu-close');
+  if(closeBtn) closeBtn.addEventListener('click', function(){ setMenu(false); });
+  mobileMenu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ setMenu(false); });
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && mobileMenu.classList.contains('open')) setMenu(false);
+  });
+})();
+</script>
 
 <!-- Blog Post Hero -->
 <section class="section blog-post-hero">
@@ -264,7 +300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
       <h2>دور Ensign</h2>
 
-      <p>في (Ensign)، نحن لا نكتفي بنشر الحلول، بل نهندس البنية التحتية المتكاملة التي تضمن نجاح التسويق الوكيلي؛ بدءاً من صياغة الهيكل الهندسي للـ $CRM$، وتدشين مسارات تدفق البيانات ($Data Pipelines$)، وصولاً إلى بناء تدفقات الأتمتة، وتنصيب طبقة الوكلاء الأذكياء فوقها. حيدتنا صارمة: نحن لا نزرع وكلاء الذكاء الاصطناعي داخل بيئات عمل متهالكة؛ بل نشيد الأنظمة الصلبة أولاً، ثم نطلق العنان للوكلاء.إذا كنت تسعى لمعرفة مدى جاهزية منظمتك لنشر وكلاء الذكاء الاصطناعي في قطاع التسويق، ندعوك <a href="../../ai-solutions.html">للاطلاع على محفظة حلولنا المتقدمة</a> أو <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" data-event-name="book_call_click" data-cta-location="footer">حجز جلسة استشارية مباشرة مع خبراء الاستراتيجية لدينا</a>. التقييم مجاني تماماً، والوضوح فوري.</p>
+      <p>في (Ensign)، نحن لا نكتفي بنشر الحلول، بل نهندس البنية التحتية المتكاملة التي تضمن نجاح التسويق الوكيلي؛ بدءاً من صياغة الهيكل الهندسي للـ $CRM$، وتدشين مسارات تدفق البيانات ($Data Pipelines$)، وصولاً إلى بناء تدفقات الأتمتة، وتنصيب طبقة الوكلاء الأذكياء فوقها. حيدتنا صارمة: نحن لا نزرع وكلاء الذكاء الاصطناعي داخل بيئات عمل متهالكة؛ بل نشيد الأنظمة الصلبة أولاً، ثم نطلق العنان للوكلاء.إذا كنت تسعى لمعرفة مدى جاهزية منظمتك لنشر وكلاء الذكاء الاصطناعي في قطاع التسويق، ندعوك <a href="../../ai-solutions.html">للاطلاع على محفظة حلولنا المتقدمة</a> أو <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" data-event-name="book_call_click" data-cta-location="footer">حجز جلسة استشارية مباشرة مع خبراء الاستراتيجية لدينا</a>. التقييم مجاني تماماً، والوضوح فوري.</p>
 
       <!-- Internal links -->
       <div class="blog-post-related">
@@ -331,9 +367,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <p class="blog-cta-label">ابدأ الآن</p>
       <h2 class="blog-cta-title">توقف عن التقييم. ابدأ البناء.</h2>
       <p class="blog-cta-sub">معظم الشركات على بُعد 90 يوماً من تشغيل وكلاء AI حقيقيين في عملياتها التسويقية. السؤال هو ما إذا كانت البنية التحتية جاهزة. احجز مكالمة واكتشف ذلك.</p>
-      <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" class="blog-cta-btn" data-event-name="book_call_click" data-cta-location="footer">احجز مكالمة <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" class="blog-cta-btn" data-event-name="book_call_click" data-cta-location="footer">احجز مكالمة <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
   </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section" id="contact">
+<div class="container">
+<div class="cta-card" data-animate="fade-up">
+<div class="cta-pattern"></div>
+<h2 class="cta-title">هل أنت مستعد لتشغيل الذكاء الاصطناعي الوكيل في منظومتك التسويقية؟</h2>
+<p class="cta-subtitle">الذكاء الاصطناعي الوكيل ليس اتجاهاً مستقبلياً، بل تقنية تشغيلية يختبرها منافسوك الآن. دعنا نحدد لك أين يناسبك الوكلاء الأذكياء، وأين لا يناسبونك، وكيف تبدو أول تسعين يوماً فعلياً.</p>
+<div class="cta-buttons">
+<a class="btn btn-primary btn-large" href="/ar/book.html" rel="noopener noreferrer" target="_blank" data-event-name="book_call_click" data-cta-location="body">احجز موعداً الآن</a>
+<a class="btn btn-outline btn-large" href="mailto:contact@ensignksa.com">راسلنا لطلب عرض أسعار</a>
+<a class="btn btn-whatsapp btn-large" href="https://wa.me/966554409891" rel="noopener noreferrer" target="_blank" data-event-name="whatsapp_click" data-cta-location="body">تواصل معنا عبر واتساب</a>
+</div>
+</div>
+</div>
 </section>
 
 <!-- Footer -->
@@ -364,7 +416,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="footer-col">
           <p class="footer-col-title">تواصل معنا</p>
           <a href="mailto:contact@ensignksa.com">contact@ensignksa.com</a>
-          <a href="https://cal.com/ensign-ai-agency-q4mmzg/30min" target="_blank" rel="noopener noreferrer" data-event-name="book_call_click" data-cta-location="footer">احجز مكالمة</a>
+          <a href="/ar/book.html" target="_blank" rel="noopener noreferrer" data-event-name="book_call_click" data-cta-location="footer">احجز مكالمة</a>
           <a href="/blog/">EN</a>
         </div>
       </div>
